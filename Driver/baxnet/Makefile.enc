@@ -1,0 +1,39 @@
+###############################################################################
+#
+# VAMPIREGFX makefile for vbcc
+#
+# author: Henryk Richter <henryk.richter@gmx.net>
+# 
+# concept:
+#
+# tools required:
+#  - vbcc, defaulting to m68k-amigaos
+#  - vlink
+#  - vasm
+#
+# porting:
+#
+###############################################################################
+
+###############################################################################
+# Name, version
+# 
+###############################################################################
+DEVICEVERSION=1
+DEVICEREVISION=91
+DEVICEDATE=06.06.2018
+ASMOBJECTS = $(SUBDIR)/enc624j6l.o $(SUBDIR)/intervaltimer.o
+SUBDIR=enc624j6net
+
+DEVICEID=enc624j6net.device
+DEFINES = # -DPROTO_V2EXPNET
+ASMDEFS = # -DPROTO_V2EXPNET
+
+
+###############################################################################
+# import generic ruleset
+# 
+###############################################################################
+include Common.mk
+
+

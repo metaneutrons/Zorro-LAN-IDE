@@ -1,0 +1,247 @@
+SDNet - A SANA-II driver for ENC28J60 10BaseT ethernet modules
+
+Written in 2016-2018 by Henryk Richter <henryk.richter@gmx.net>
+
+This driver is supposed to support ENC28J60 modules hooked up to the MicroSD
+slot of Vampire 500/600 cards or the expansion port of Vampire 500V2+ cards.
+
+
+Installation:
+-------------
+
+Installation of the driver is straightforward. 
+Just copy the sdnet.device and v2expeth.device to devs:networks and enable 
+the interface in your favorite  TCP/IP stack as usual. So far, successful 
+tests have been done with the free AmiTCP/IP 3.0b2, AmiTCP4.0-4.2, Genesis, 
+MiamiDX and RoadShow. 
+
+devs:networks/sdnet.device    - SD card slot of V600/V500
+devs:networks/v2expeth.device - expansion port of V500V2+
+
+From version 0.8, the driver will require vampire.resource which is included
+in the ROM of Vampire Cards since the Gold2.5 release.
+
+Also, make sure that the Vampire SD Card driver (sagasd.device) is not present
+in the system or at least inactive when using sdnet.device. Both pieces of 
+software bang the same hardware registers. v2expeth.device may be used safely
+in conjunction with the SD card driver.
+
+
+Vampire500 Expansion port Hardware
+-----------------------------------
+
+Please see http://wiki.apollo-accelerators.com/doku.php/expansionport for 
+guidance.
+
+
+MicroSD Slot Hardware:
+----------------------
+
+In terms of required hardware, you need the following:
+- ready-to-use ENC28J60 module (a 3.3V part, DON'T USE an _unmodified_ 5V 
+  module!)
+- MicroSD breakout, e.g.
+  - a TF to SD extension cable where you rip off the full size SD slot and 
+    solder on short extension cables towards the ENC28J60 module
+  - MicroSD breakout board (that comes directly with pin headers)
+
+!!ATTENTION!!
+Be extremely careful with your SD breakout board. Many conveniently looking
+breakouts are made of thick and/or sharp edged PCB material that will likely
+damage your Vampire SD slot. Such breakouts could be made working - but only 
+after  patient sanding. Some people in the beta test team have destroyed 
+their SD  slot already. If you don't have the required mechanical skills and 
+patience, I'd advise against DIY building.
+!!ATTENTION!!
+
+You need to connect the SD breakout pins as follows (microSD card sketch
+looking at the connectors) to the ENC28J60 module:
+
+ -----------------------                       ENC28J60
+ |  8  ----
+ |  7  ----           SO  --------------------  SO
+ |  6 -----          GND  --------------------  GND
+ |  5  ----          SCK  --------------------  SCK
+ |  4 -----        +3.3V  ------  +3.3V  -----  VCC (see below)
+ |  3  ----           SI  --------------------  SI
+ |  2  ----          /CS  --------------------  /CS
+ |  1  ----         /INT  --   __________   -- /INT
+ ------    -------------    \_| 3.3 kOhm |_/
+       \___|                  `----------´
+
+As there is a myriad of ENC28J60 modules available, the naming scheme on
+a particular board might differ. Please be aware the some of the boards
+have a "CLK" pin as well as an "SCK" pin. Use the latter. 
+
+My test setup uses a separate 5V to 3.3V DC-DC converter. I got confirmation 
+from Igor Majstorovic (majsta) that the 3.3V line on his V500 Vampire designs 
+should be able to handle the max. 200 mA required by the module. To be on the 
+safe side, I recommend to use a conveniently placed 5V to 3.3V converter 
+(hint: the Floppy power connector is easily accessible). 
+
+Speaking of power: the reason why I didn't recommend 5V ENC28J60 boards 
+is that at least some of them have pullups from /CS and /RST to +5V. Your 3.3V
+Vampire SD slot will quite likely not be happy with that.
+
+Please put a 3.3 kOhm resistor into the connection from /INT of the ENC28J60 to
+pin 1 of the MicroSD breakout.
+
+
+Testing a new module:
+---------------------
+
+I've included two small test programs: sdnettest and v2expethtest. Both will 
+require the TCP/IP stack to be off(!) The program will perform a series of tests 
+to check for module presence and communication results at various clock rates. Don't 
+be alarmed when the slowest (biggest clock divider) mode is commented with a "fail". 
+This is intentional. What matters is that SPI clock dividers 1, 2 and 3 are working 
+properly. In case that sdnettest shows a failure for divider 1, see below how
+to set a higher clock divider.
+
+Use sdnettest for the SD slot and v2expethtest for the V500 expansion connector.
+
+
+Software notes:
+---------------
+
+
+ - The SD slot doesn't feature an interrupt. I had to implement polling
+   for incoming data. The current default interval is 10ms. (configurable via
+   echo "TIMER=20000" >ENVARC:sana2/sdnet.config, value in microseconds,
+   don't forget Makedir ENVARC:Sana2 if it didn't exist yet, you may also
+   consider "setenv")
+
+ - SPI speed is set to a safe level supporting higher core speeds than
+   x11 (see released x12 cores). Therefore this default of "SPISPEED=2"
+   is not providing maximum performance on x10 or x11 cores. For max
+   speed you may set echo "SPISPEED=1" >ENVARC:sana2/sdnet.config or
+   echo "SPISPEED=1" >ENVARC:sana2/v2expeth.config, respectively. I'd
+   suggest to run the test tool to determine the maximum reliable
+   speed setting.
+
+ - The required vampire.resource is unavailable with older versions of the
+   Vampire Kick Rom (anything before Gold2.5). 
+   To load vampire.resource manually, copy the file to SYS:devs/ and 
+   add the following near the top of your startup-sequence
+    C:VERSION >nil: vampire.resource 42
+    IF WARN
+       LoadModule >nil: DEVS:vampire.resource
+    ENDIF
+   In case of OS3.9, you can add the "noreboot" keyword to the loadmodule
+   line if you call the sniplet above before setpatch.
+
+ - If you want to use multiple options in the SANA-II config, concatenate them 
+   in the "echo" command (alternatively "setenv") or use a text editor. 
+
+
+Options 
+-------
+
+Below you find the options accepted by the drivers. Please note that no special
+configuration is necessary for normal operation. What you find documented below
+is available for tuning purposes.
+
+The options template for the config files 
+ENVARC:sana2/sdnet.config  
+ENVARC:sana2/v2expeth.config
+
+is as follows:
+
+NOSPECIALSTATS/S,PRIORITY=PRI/K/N,BPS/K/N,MTU/K/N,FULLDUPLEX/S,SPISPEED/K/N,
+TIMER/K/N,MULTICAST/S
+
+ SPISPEED       - SPI clock divider (1-10, default 2), controls maximum
+                  clock of SPI bus. Actual I/O clock is Core_Clock/(3+SPISPEED).
+
+ FULLDUPLEX     - change Ethernet module into full duplex mode, 
+                  caution: requires manual configuration of duplex mode
+		           on the switch, too.
+
+ PRIORITY       - server task priority (default 1)
+
+ BPS            - bit per seconds for statistics purposes
+
+ MTU            - maximum transmission unit (default 1500) 
+
+ NOSPECIALSTATS - obsolete, kept for config file backwards compatibility with 
+                  old driver
+
+ MULTICAST      - obsolete, kept for config file backwards compatibility with 
+                  old driver
+
+ example (useful for DSL via PPPoE on x11 core with AmiTCP):
+  echo "MTU=1492 SPISPEED=1 PRIORITY=6" >ENVARC:sana2/sdnet.config  
+
+
+Changelog:
+----------
+
+1.90  - first Beta of completely rewritten driver
+      - support for concurrent IP stacks
+      - faster handling of statistics
+      - multiple board support where applicable (not for sdnet)
+      - workaround for Shapeshifter network plugin bug
+      - GCC or VBCC as compiler
+      - faster lowlevel read/write
+
+1.03  - small fixes in sdnettest/v2expethtest, graceful exit when not run
+        on Vampire Gold 2.5 or later core
+      - fixed a minor bug in signal handling
+
+1.02  - added build variant for V500V2+ expansion port, same config options
+        but distinct config file (ENV:SANA2/v2expeth.config), see
+	http://wiki.apollo-accelerators.com/doku.php/expansionport for pinout
+      - some more work on robustness (TX robustness and more error handling
+        this time)
+      - reworked test utilities to send valid BOOTP/DHCP requests while
+        doing TX/RX testing, increases chance of received frames within
+	testing interval
+
+1.01  - some more fine tuning
+      - adjustments for Gold 2.7 x12, i.e. SPISPEED=2 by default 
+        (see above for reverting to clock divider 1)
+
+1.0   - some modest performance improvements
+      - reworked lowlevel code for higher robustness
+      - LED blinking modified: green LED will blink on RX,
+        orange LED blinks on TX
+
+0.81  - sdnettest added
+
+0.8   - proper hardware allocation by means of vampire.resource
+      - check for ENC28J60 hardware presence
+
+0.7   - cleanups
+
+0.6   - SPI speed setting support
+      - removal of spi.c,spi.h
+
+0.5   - auto-generated MAC address, based on the Vampire FPGA serial
+      - busy waiting moved entirely to lowlevel asm source
+      - optimized compilation now produces working binaries
+      - more cleanups
+
+0.4   - cleanups, config variables added
+
+0.3   - first version shared with the Apollo team
+
+
+Copyrights:
+-----------
+
+The SDNet source is heavily based on plipbox, which is in turn based on the magPLIP 
+driver found on aminet.net:
+
+http://lallafa.de/blog/amiga-projects/plipbox/
+http://aminet.net/package/comm/net/magPLIP38.1
+
+magPLIP - SANA II compliant PLIP device driver for AmiTCP/IP, Envoy,
+	    AS225 and other networking packages
+
+  (C) Copyright 1993-1994 Oliver Wagner, Michael Balzer
+  (C) Copyright 1995 Jan Kratochvil & Martin Mares
+  (C) Copyright 1995-1996 Marius Groeger
+      All Rights Reserved.
+
+  Changes have been made by Stéphane Zermatten to the driver to connect
+  a LinuxBox to an Amiga via a LapLing cable, based on the release 37.8.

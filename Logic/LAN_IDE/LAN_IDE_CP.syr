@@ -3,14 +3,14 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 --> Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.19 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.20 secs
  
 --> Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.19 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.20 secs
  
 --> Reading design: LAN_IDE_CP.prj
 
@@ -132,31 +132,31 @@ WARNING:Xst - You have specified state <nop> as a recovery-only state for the sa
     Found 1-bit tristate buffer for signal <DTACK>.
     Found 1-bit tristate buffer for signal <INT_OUT>.
     Found 4-bit tristate buffer for signal <LAN_CFG>.
-    Found 1-bit xor2 for signal <AMIGA_CLK$xor0000> created at line 143.
+    Found 1-bit xor2 for signal <AMIGA_CLK$xor0000> created at line 146.
     Found 2-bit register for signal <AUTO_CONFIG_DONE>.
     Found 2-bit register for signal <AUTO_CONFIG_DONE_CYCLE>.
-    Found 2-bit adder for signal <AUTO_CONFIG_DONE_CYCLE$addsub0000> created at line 405.
+    Found 2-bit adder for signal <AUTO_CONFIG_DONE_CYCLE$addsub0000> created at line 413.
     Found 1-bit register for signal <autoconfig>.
     Found 1-bit register for signal <cp>.
-    Found 8-bit comparator equal for signal <cp$cmp_eq0001> created at line 211.
-    Found 8-bit comparator equal for signal <cp$cmp_eq0002> created at line 216.
-    Found 2-bit comparator less for signal <cp$cmp_lt0000> created at line 210.
+    Found 8-bit comparator equal for signal <cp$cmp_eq0001> created at line 216.
+    Found 8-bit comparator equal for signal <cp$cmp_eq0002> created at line 222.
+    Found 2-bit comparator less for signal <cp$cmp_lt0000> created at line 215.
     Found 8-bit register for signal <CP_BASEADR>.
     Found 1-bit register for signal <CP_RD_S>.
     Found 1-bit register for signal <CP_WE_QUIRK>.
     Found 1-bit register for signal <CP_WE_S>.
     Found 4-bit register for signal <Dout1>.
-    Found 3-bit comparator less for signal <Dout1$cmp_lt0000> created at line 327.
+    Found 3-bit comparator less for signal <Dout1$cmp_lt0000> created at line 335.
     Found 1-bit register for signal <DS_D>.
     Found 1-bit register for signal <ide>.
-    Found 8-bit comparator equal for signal <ide$cmp_eq0000> created at line 218.
+    Found 8-bit comparator equal for signal <ide$cmp_eq0000> created at line 225.
     Found 8-bit register for signal <IDE_BASEADR>.
     Found 1-bit register for signal <IDE_ENABLE>.
     Found 1-bit register for signal <IDE_R_S>.
     Found 1-bit register for signal <IDE_W_S>.
     Found 1-bit register for signal <lan_adr>.
     Found 1-bit register for signal <lan_adr_sw>.
-    Found 2-bit comparator less for signal <lan_adr_sw$cmp_lt0000> created at line 213.
+    Found 2-bit comparator less for signal <lan_adr_sw$cmp_lt0000> created at line 218.
     Found 8-bit register for signal <LAN_BASEADR>.
     Found 1-bit register for signal <LAN_CS_RST>.
     Found 1-bit register for signal <LAN_INT_ENABLE>.
@@ -166,11 +166,12 @@ WARNING:Xst - You have specified state <nop> as a recovery-only state for the sa
     Found 1-bit register for signal <LAN_WR_RST>.
     Found 1-bit register for signal <LAN_WRH_S>.
     Found 1-bit register for signal <LAN_WRL_S>.
+    Found 1-bit register for signal <lancp>.
     Found 1-bit register for signal <ROM_OE_S>.
     Found 3-bit register for signal <SHUT_UP>.
     Summary:
 	inferred   1 Finite State Machine(s).
-	inferred  17 D-type flip-flop(s).
+	inferred  18 D-type flip-flop(s).
 	inferred   1 Adder/Subtractor(s).
 	inferred   6 Comparator(s).
 	inferred   1 Xor(s).
@@ -184,8 +185,8 @@ HDL Synthesis Report
 Macro Statistics
 # Adders/Subtractors                                   : 1
  2-bit adder                                           : 1
-# Registers                                            : 30
- 1-bit register                                        : 24
+# Registers                                            : 31
+ 1-bit register                                        : 25
  2-bit register                                        : 2
  4-bit register                                        : 1
  8-bit register                                        : 3
@@ -227,8 +228,8 @@ Macro Statistics
 # FSMs                                                 : 1
 # Adders/Subtractors                                   : 1
  2-bit adder                                           : 1
-# Registers                                            : 17
- Flip-Flops                                            : 17
+# Registers                                            : 18
+ Flip-Flops                                            : 18
 # Comparators                                          : 3
  8-bit comparator equal                                : 3
 
@@ -273,19 +274,19 @@ Design Statistics
 # IOs                              : 116
 
 Cell Usage :
-# BELS                             : 659
-#      AND2                        : 224
-#      AND3                        : 16
-#      AND4                        : 2
+# BELS                             : 645
+#      AND2                        : 220
+#      AND3                        : 13
+#      AND4                        : 3
 #      GND                         : 1
-#      INV                         : 214
-#      OR2                         : 158
+#      INV                         : 207
+#      OR2                         : 157
 #      OR3                         : 17
 #      OR4                         : 1
 #      XOR2                        : 26
-# FlipFlops/Latches                : 59
+# FlipFlops/Latches                : 60
 #      FD                          : 11
-#      FDC                         : 5
+#      FDC                         : 6
 #      FDCE                        : 6
 #      FDP                         : 4
 #      FDPE                        : 33
@@ -298,11 +299,11 @@ Cell Usage :
 
 
 Total REAL time to Xst completion: 9.00 secs
-Total CPU time to Xst completion: 8.40 secs
+Total CPU time to Xst completion: 8.59 secs
  
 --> 
 
-Total memory usage is 340316 kilobytes
+Total memory usage is 4534760 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    8 (   0 filtered)
