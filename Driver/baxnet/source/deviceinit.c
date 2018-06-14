@@ -24,8 +24,8 @@
 #define DEVICEEXTRA
 #endif
 
-const BYTE DeviceVersionString[] = "$VER: " xstr(DEVICENAME) " " xstr(DEVICEVERSION) "." xstr(DEVICEREVISION) xstr(DEVICEEXTRA) " (" xstr(DEVICEDATE) ")";
-const BYTE DeviceName[] = xstr(DEVICENAME);
+const char DeviceVersionString[] = "$VER: " xstr(DEVICENAME) " " xstr(DEVICEVERSION) "." xstr(DEVICEREVISION) xstr(DEVICEEXTRA) " (" xstr(DEVICEDATE) ")";
+const char DeviceName[] = xstr(DEVICENAME);
 
 
 const APTR DeviceFunctions[] = {
@@ -52,12 +52,12 @@ struct DeviceInitData
 	ULONG end_initlist;
 } DeviceInitializers =
 {
-	INITBYTE(     STRUCTOFFSET( Node,  ln_Type),      NT_DEVICE),
-	0x80, (UBYTE) STRUCTOFFSET( Node,  ln_Name),      (ULONG) &DeviceName[0],
-	INITBYTE(     STRUCTOFFSET(Library,lib_Flags),    LIBF_SUMUSED|LIBF_CHANGED ),
-	INITWORD(     STRUCTOFFSET(Library,lib_Version),  DEVICEVERSION  ),
-	INITWORD(     STRUCTOFFSET(Library,lib_Revision), DEVICEREVISION ),
-	0x80, (UBYTE) STRUCTOFFSET(Library,lib_IdString), (ULONG) &DeviceVersionString[6],
+	INITBYTE(     STRUCTOFFSET( Node,  ln_Type),         NT_DEVICE),
+	0x80, (UBYTE) ((LONG)STRUCTOFFSET( Node,  ln_Name)), (ULONG) &DeviceName[0],
+	INITBYTE(     STRUCTOFFSET(Library,lib_Flags),       LIBF_SUMUSED|LIBF_CHANGED ),
+	INITWORD(     STRUCTOFFSET(Library,lib_Version),     DEVICEVERSION  ),
+	INITWORD(     STRUCTOFFSET(Library,lib_Revision),    DEVICEREVISION ),
+	0x80, (UBYTE) ((LONG)STRUCTOFFSET(Library,lib_IdString)), (ULONG) &DeviceVersionString[6],
 	(ULONG) 0
 };
 

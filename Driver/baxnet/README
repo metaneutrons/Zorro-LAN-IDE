@@ -1,0 +1,17 @@
+Short:        V2.00, SANA-II network drivers for several adapters 
+Author:       Henryk Richter
+Uploader:     henryk.richter@gmx.net
+Type:         driver/net
+Architecture: m68k-amigaos
+Requires:     OS 2.04+
+
+This package contains network drivers for the following hardware:
+- ZII LAN IDE CP (matze, scrat and buggs @a1k.org)
+  OSS Zorro-II card with ENC624J600 ethernet controller, autoboot
+  IDE and Clockport
+- Vampire500/600 with ENC28J60 module connected to the SD-card slot
+- Vampire500V2+ with ENC28J60 module connected to the expansion port
+
+Full source code is included (GPL). Please refer to README.sdnet and
+README.enc for installation and operation instructions
+

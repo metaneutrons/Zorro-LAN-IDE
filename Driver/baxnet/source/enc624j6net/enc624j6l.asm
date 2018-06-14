@@ -109,6 +109,7 @@ ENC_BOARDID		EQU	123	;ZII-IDE-LAN-CP
 	XDEF	_enc624j6l_DisableInterrupt
 	XDEF	_enc624j6l_EnableGlobalInterrupt
 	XDEF	_enc624j6l_DisableGlobalInterrupt
+	XDEF	_enc624j6l_broadcast_multicast_filter
 
 	;
 	; System includes
@@ -544,17 +545,7 @@ _enc624j6l_Init:
 	WRITEREG ERXST,a0,d0		;set RX start pointer (end will be $5fff)
 	WRITEREG PNextPacket,a0,d0	;set user read pointer
 
-	;Multicast,Broadcast,Unicast(self),MagicPacket,correct CRC,filter runts
-	;"not me" Unicast == |ERXFCON_NOTMEEN
-	moveq	#PIO_INIT_MULTI_CAST,d0
-	and	d1,d0
-	beq.s	.no_multicast
-	move	#ERXFCON_MCEN|ERXFCON_BCEN|ERXFCON_UCEN|ERXFCON_MPEN|ERXFCON_CRCEN|ERXFCON_RUNTEN,d0
-	bra.s	.setfilter
-.no_multicast
-	move	#ERXFCON_BCEN|ERXFCON_UCEN|ERXFCON_MPEN|ERXFCON_CRCEN|ERXFCON_RUNTEN,d0
-.setfilter
-	WRITEREG ERXFCON,a0,d0 ;set filter TODO: pattern matching stuff
+	bsr	_enc624j6l_broadcast_multicast_filter ;in: A0/D1, out: D0
 
 	move	#RXSTOP_INIT&$fffe,d0
 	WRITEREG ERXTAIL,a0,d0 ;tail pointer in buffer = rx-2, wraparound
@@ -603,6 +594,41 @@ _enc624j6l_Init:
 .err:
 	rts
 
+
+
+;---------------------------------------------------------------------------------------
+;
+; apply RX filtering
+;
+; in: A0 - board base
+;     D1 - init flags
+;out: D0 >0  = OK
+;        <=0 = FAIL
+_enc624j6l_broadcast_multicast_filter:
+	move.l	a0,d0
+	beq.s	.rts
+
+	;Multicast,Broadcast,Unicast(self),MagicPacket,correct CRC,filter runts
+	;"not me" Unicast == |ERXFCON_NOTMEEN
+	moveq	#PIO_INIT_PROMISC,d0
+	and	d1,d0
+	beq.s	.no_promisc
+	move    #ERXFCON_NOTMEEN|ERXFCON_MCEN|ERXFCON_BCEN|ERXFCON_UCEN|ERXFCON_MPEN|ERXFCON_CRCEN|ERXFCON_RUNTEN,d0
+	bra.s	.setfilter
+.no_promisc:
+	moveq	#PIO_INIT_MULTI_CAST,d0
+	and	d1,d0
+	beq.s	.no_multicast
+	move	#ERXFCON_MCEN|ERXFCON_BCEN|ERXFCON_UCEN|ERXFCON_MPEN|ERXFCON_CRCEN|ERXFCON_RUNTEN,d0
+	bra.s	.setfilter
+.no_multicast:
+	move	#ERXFCON_BCEN|ERXFCON_UCEN|ERXFCON_MPEN|ERXFCON_CRCEN|ERXFCON_RUNTEN,d0
+.setfilter:
+	WRITEREG ERXFCON,a0,d0 ;set filter TODO: pattern matching stuff
+
+	moveq	#1,d0
+.rts:
+	rts
 
 ;---------------------------------------------------------------------------------------
 ;
@@ -1300,6 +1326,7 @@ _enc624j6l_TransmitFrame:
 	move.l	a0,d1		;no base PTR
 	beq.w	.err		;exit
 
+
 		; this check moved to server.c -> hw.c -> enc624j6l_CheckLinkChange()
 		; instead of checking with every TX frame, do it before going to sleep
 	ifne	_OPT_CHECKLINK_TX
@@ -1311,7 +1338,8 @@ _enc624j6l_TransmitFrame:
 		bne.s	.linkchg			;jump to parameter adjust
 .linkchgdone:						;.linkchg returns here with another branch
 
-	endc
+	endc	;_OPT_CHECKLINK_TX
+
 
 	move.l	a1,d1		;no send frame ?
 	beq.w	.err		;exit

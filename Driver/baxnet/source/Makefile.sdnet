@@ -1,15 +1,16 @@
 ###############################################################################
 #
-# VAMPIREGFX makefile for vbcc
+# SDNet and V2EXPETH build instructions
 #
 # author: Henryk Richter <henryk.richter@gmx.net>
 # 
 # concept:
 #
 # tools required:
-#  - vbcc, defaulting to m68k-amigaos
-#  - vlink
-#  - vasm
+#  - vbcc or m68k-amigaos-gcc (Default: gcc)
+#  - vlink or GNU ld
+#  - vasm (vasmm68k_mot)
+#  - system headers (default: /opt/amigaos-68k/os-include, see Common.mk)
 #
 # porting:
 #
@@ -22,18 +23,26 @@
 DEVICEVERSION=1
 DEVICEREVISION=91
 DEVICEDATE=06.06.2018
-ASMOBJECTS = $(SUBDIR)/enc624j6l.o $(SUBDIR)/intervaltimer.o
-SUBDIR=enc624j6net
+DEVICEEXTRA=Beta
+ASMOBJECTS = $(SUBDIR)/vampuuid.o $(SUBDIR)/intervaltimer.o $(SUBDIR)/enc28j60.o $(SUBDIR)/enc28j60l.o
+SUBDIR=sdnet
 
-DEVICEID=enc624j6net.device
+# two flavours of the same code base may be build with this setup
+# leave DEVICEID2 empty to disable second build
+DEVICEID=sdnet.device
 DEFINES = # -DPROTO_V2EXPNET
 ASMDEFS = # -DPROTO_V2EXPNET
+CPU = 68020
 
+DEVICEID2=v2expeth.device
+DEFINES2 = -DPROTO_V2EXPNET
+ASMDEFS2 = -DPROTO_V2EXPNET
+CPU2 = 68020
 
 ###############################################################################
 # import generic ruleset
 # 
 ###############################################################################
-include Common.mk
 
+include Common.mk
 

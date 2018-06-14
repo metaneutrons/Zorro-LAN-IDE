@@ -35,7 +35,8 @@
 #define ASM
 #define ASMR(x) register
 #define ASMREG(x) __asm("" #x "")
-#define SAVEDS __saveds
+//#define SAVEDS __saveds
+#define SAVEDS
 #define STRUCTOFFSET OFFSET /* exec/initializers.h */
 #define INLINE static inline 
 
@@ -54,7 +55,7 @@
 
 #else /* __VBCC__ */
 
-#error "Compiler not supported yet in asminterface.h"
+#error "Compiler not supported yet in compiler.h"
 
 #endif /* __VBCC__ */
 #endif /* __GNUC__ */
