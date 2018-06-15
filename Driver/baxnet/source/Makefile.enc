@@ -1,47 +1,49 @@
 ###############################################################################
 #
-# SDNet and V2EXPETH build instructions
+# VAMPIREGFX makefile for vbcc
 #
 # author: Henryk Richter <henryk.richter@gmx.net>
 # 
 # concept:
 #
 # tools required:
-#  - vbcc or m68k-amigaos-gcc (Default: gcc)
-#  - vlink or GNU ld
-#  - vasm (vasmm68k_mot)
-#  - system headers (default: /opt/amigaos-68k/os-include, see Common.mk)
+#  - vbcc, defaulting to m68k-amigaos
+#  - vlink
+#  - vasm
 #
 # porting:
 #
 ###############################################################################
 
 ###############################################################################
-# Name, version
+# Date, version, extra objects to build
 # 
 ###############################################################################
 DEVICEVERSION=1
-DEVICEREVISION=91
-DEVICEDATE=06.06.2018
-DEVICEEXTRA=Beta
-ASMOBJECTS = $(SUBDIR)/vampuuid.o $(SUBDIR)/intervaltimer.o $(SUBDIR)/enc28j60.o $(SUBDIR)/enc28j60l.o
-SUBDIR=sdnet
+DEVICEREVISION=92
+DEVICEDATE=10.06.2018
+SUBDIR=enc624j6net
+ASMOBJECTS = $(SUBDIR)/enc624j6l.o $(SUBDIR)/intervaltimer.o
 
-# two flavours of the same code base may be build with this setup
-# leave DEVICEID2 empty to disable second build
-DEVICEID=sdnet.device
+###############################################################################
+# Devices to build (1 or 2, keep DEVICEID2 empty if only one build is desired)
+#
+###############################################################################
+
+DEVICEID=enc624j6net.device
 DEFINES = # -DPROTO_V2EXPNET
 ASMDEFS = # -DPROTO_V2EXPNET
+CPU = 68020
 
-DEVICEID2=v2expeth.device
-DEFINES2 = -DPROTO_V2EXPNET
-ASMDEFS2 = -DPROTO_V2EXPNET
-
+DEVICEID2=enc624j6net.device_68000
+DEFINES2 = # -DPROTO_V2EXPNET
+ASMDEFS2 = # -DPROTO_V2EXPNET
+CPU2 = 68000
 
 ###############################################################################
 # import generic ruleset
 # 
 ###############################################################################
-
 include Common.mk
+
 

@@ -223,6 +223,19 @@ ASM SAVEDS int enc624j6l_TransmitFrame( ASMR(a0) void *board           ASMREG(a0
 */
 ASM SAVEDS int enc624j6l_SetOnline( ASMR(a0) void *board           ASMREG(a0) );
 
+/*
+  Purpose: set up RX filtering
+
+  input:   board      - mmapped board base address
+           flags      - broadcast,promiscous, multicast
+
+  output:  <0  - error
+           >=0 - OK
+*/
+ASM SAVEDS int enc624j6l_broadcast_multicast_filter( 
+                               ASMR(a0) void *board         ASMREG(a0),
+                               ASMR(d1) unsigned long flags ASMREG(d1) );
+
 
 /*
   Purpose: disable RX/TX, power down
