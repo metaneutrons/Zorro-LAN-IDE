@@ -21,8 +21,8 @@
 # 
 ###############################################################################
 DEVICEVERSION=1
-DEVICEREVISION=91
-DEVICEDATE=06.06.2018
+DEVICEREVISION=92
+DEVICEDATE=27.06.2018
 DEVICEEXTRA=Beta
 ASMOBJECTS = $(SUBDIR)/vampuuid.o $(SUBDIR)/intervaltimer.o $(SUBDIR)/enc28j60.o $(SUBDIR)/enc28j60l.o
 SUBDIR=sdnet

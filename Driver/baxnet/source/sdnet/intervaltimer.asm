@@ -50,7 +50,7 @@ CALLEXEC	macro
 		jsr	_LVO\1(a6)
 		endm
 
-	section	code,text
+	;section	code,text
 
 	ifne	DO_TEST
 
@@ -325,7 +325,7 @@ _StopIntervalTimer:
 		rts
 
 
-		section data,data
+		;section data,data
 dosbase:	dc.l	0
 stdout:		dc.l	0
 timerbase:	ds.b	IVT_Size

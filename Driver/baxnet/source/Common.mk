@@ -42,9 +42,8 @@ ifeq ($(compiler_vcc),1)
 CCX  = vc
 LINK = vlink -bamigahunk -x -s -mrel -Cvbcc -Bstatic -nostdlib #-Rshort 
 #LINK = $(CCX) -nostdlib
-CFLAGS  = -Os -+ -sc -c99 -cpu=68020
-CFLAGS2 = -Os -+ -sc -c99 -cpu=68020
-
+CFLAGS  = -Os -+ -sc -c99 -cpu=$(CPU)
+CFLAGS2 = -Os -+ -sc -c99 -cpu=$(CPU2)
 
 else
 
