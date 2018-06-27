@@ -176,6 +176,10 @@ TIMER/K/N,MULTICAST/S
 Changelog:
 ----------
 
+1.92  - workaround for linker issue, version bump
+
+1.91  - minor cleanups
+
 1.90  - first Beta of completely rewritten driver
       - support for concurrent IP stacks
       - faster handling of statistics
