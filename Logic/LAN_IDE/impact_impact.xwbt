@@ -1,0 +1,8 @@
+INTSTYLE=impact
+INFILE=C:\Users\Matze\Amiga\Hardwarehacks\Zorro-LAN-IDE\Logic\LAN_IDE\impact.xsl
+OUTFILE=C:\Users\Matze\Amiga\Hardwarehacks\Zorro-LAN-IDE\Logic\LAN_IDE\impact.xsl
+FAMILY=Single
+PART=Single
+WORKINGDIR=C:\Users\Matze\Amiga\Hardwarehacks\Zorro-LAN-IDE\Logic\LAN_IDE
+LICENSE=iMPACT
+USER_INFO=iMPACT
