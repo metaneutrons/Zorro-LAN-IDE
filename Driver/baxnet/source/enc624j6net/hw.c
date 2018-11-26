@@ -324,10 +324,24 @@ ASM SAVEDS LONG hw_check_link_change( ASMR(a0) DEVBASEP                  ASMREG(
 
 ASM SAVEDS LONG hw_change_multicast(  ASMR(a0) DEVBASEP                  ASMREG(a0),
                                       ASMR(a0) ULONG unit                ASMREG(d0),
-                                      ASMR(a1) struct List *mclist       ASMREG(a1) )
+                                      ASMR(a1) struct List *mcastlist    ASMREG(a1) )
 {
-
 	/* TODO: implement Multicast hashing */
+	APTR boardbase = db->db_Units[unit].duh_BASE;
+	ULONG flags;
+
+	flags = PIO_INIT_BROAD_CAST;
+
+	if( db->db_Units[0].du_Flags & DUF_PROMISC )
+	    flags |= PIO_INIT_PROMISC;
+
+	/* list non-empty ? (kludge right now, can be done more fine grained) */
+	if( mcastlist->lh_Head->ln_Succ )
+	     flags |= PIO_INIT_MULTI_CAST;
+
+	enc624j6l_broadcast_multicast_filter(boardbase, flags );/* flags & (PIO_INIT_BROAD_CAST|PIO_INIT_MULTI_CAST) ); */
+
+
 
 	return	1;
 }

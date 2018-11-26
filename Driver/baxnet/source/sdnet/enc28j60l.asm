@@ -638,6 +638,7 @@ _enc28j60l_ReadBuffer:
 	movem.l	d3-d5,-(sp)
 	;CSDELAY
 	lea.l	SDCARD_DATA_W,a0	;SPI_OUT
+
 	move.b	#ENC28J60_READ_BUF_MEM,(a0)
 	move.b	#_OPT_READ_CONST,d4	;_OPT_READ_CONST
 	move.b	(a0),d3	;wait		;write and read register are the same on Vampire
@@ -662,118 +663,6 @@ _enc28j60l_ReadBuffer:
 	SPI_DISABLE
 
 	rts
-
-	ifne	0
-; Read a number of Bytes from the ENC28J60
-; note: ENC28J60 Read pointer assumed to be written already
-;A1 = Ptr
-;D0 = Size
-_enc28j60l_ReadBuffer_complicated:
-
-	SPI_ENABLE
-	movem.l	d3-d5,-(sp)
-	;CSDELAY
-	lea.l	SDCARD_DATA_W,a0	;SPI_OUT
-	move.b	#ENC28J60_READ_BUF_MEM,(a0)
-	moveq	#7,d1
-	and.l	d0,d1
-	lsr.l	#3,d0
-	move.b	#_OPT_READ_CONST,d4	;_OPT_READ_CONST
-
-	move.b	(a0),d3	;wait		;write and read register are the same on Vampire
-
-	tst.l	d0
-	beq.s	.nomain
-
-	;CSDELAY
-
-	ifne	1
-	;----------------------- NEW --------------------------
-
-	rept	4
-	 move.b	d4,(a0)			;provide clock (0xff here)
-	 lsl.l	#8,d5
-	 move.b	(a0),d5
-	endr
-	bra.s	.loop_enter
-.loop:
- 	move.b	(a0),d5
-
-	move.b	d4,(a0)			;provide clock (0xff here)
-	move.l	d5,(a1)+
-	move.b	(a0),d5
-
-	rept	3
-	 move.b	d4,(a0)			;provide clock (0xff here)
-	 lsl.l	#8,d5
-	 move.b	(a0),d5
-	endr
-
-.loop_enter:
-	  move.b	d4,(a0)			;provide clock (0xff here)
-	 move.l	d5,(a1)+	
-	  move.b	(a0),d5
-
-	rept	2
-	  move.b	d4,(a0)			;provide clock (0xff here)
-	  lsl.l		#8,d5
-	  move.b	(a0),d5
-	endr
-
-	  move.b	d4,(a0)			;provide clock (0xff here)
-	  lsl.l		#8,d5
-
-	subq.l	#1,d0
-	bne.s	.loop
-
- 	move.b	(a0),d5
-	move.l	d5,(a1)+
-
-	;----------------------- NEW --------------------------
-	else
-	;----------------------- OLD --------------------------
-.loop:
-	rept	4
-	 move.b	d4,(a0)			;provide clock (0xff here)
-	 lsl.l	#8,d5
-	 move.b	(a0),d5
-	endr
-
-	  move.b	d4,(a0)			;provide clock (0xff here)
-	 move.l	d5,(a1)+	
-	  move.b	(a0),d5
-
-	rept	3
-	  move.b	d4,(a0)			;provide clock (0xff here)
-	  lsl.l		#8,d5
-	  move.b	(a0),d5
-	endr
-
-	  move.l	d5,(a1)+
-	  
-	subq.l	#1,d0
-	bne.s	.loop
-
-	;----------------------- OLD --------------------------
-	endc	
-
-.nomain:
-	tst.l	d1
-.tail:
-	beq.s	.notail
-	 move.b	d4,(a0)			;provide clock (0xff here)
-	 move.b	(a0),(a1)+		;read data being shifted in
-	subq.l	#1,d1
-	bra.s	.tail
-.notail:
-
-	movem.l	(sp)+,d3-d5
-
-	;CSDELAY
-	SPI_DISABLE
-
-	rts
-	endc
 
 ; Write a number of Bytes to the ENC28J60
 ;
@@ -801,8 +690,6 @@ _enc28j60l_WriteBuffer:
 	;-> 1st byte is control byte
 	move.b	#$f,(a0) ;1=Override, 2=CRCGEN, 4=PADDING, 8=HUGE ENABLE
 
-	ifne	1
-
 .loopwb:
 	move.b	(a1)+,d1
 	move.b	(a0),d0
@@ -813,49 +700,6 @@ _enc28j60l_WriteBuffer:
 	bne.s	.loopwb
 
 	move.b	(a0),d0	;last wait
-
-	else
-
-	moveq	#7,d1	;
-	and.l	d4,d1	;tail bytes
-	lsr.l	#3,d4	;8 bytes written in one run
-
-	move.b	(a0),d0  ;wait
-	
-loopwb$
-	; 8 bytes in one run, avoiding subq/bne overhead
-	move.b	(a1)+,(a0)
-	move.b	(a0),d0	;wait
-	move.b	(a1)+,(a0)
-	move.b	(a0),d0	;wait
-	move.b	(a1)+,(a0)
-	move.b	(a0),d0	;wait
-	move.b	(a1)+,(a0)
-	move.b	(a0),d0	;wait
-	move.b	(a1)+,(a0)
-	move.b	(a0),d0	;wait
-	move.b	(a1)+,(a0)
-	move.b	(a0),d0	;wait
-	move.b	(a1)+,(a0)
-	move.b	(a0),d0	;wait
-	move.b	(a1)+,(a0)
-	move.b	(a0),d0	;wait
-
-	subq.l	#1,d4
-	bne.s	loopwb$
-
-	; leftover bytes ?
-	tst.l	d1
-looptail$
-	beq.s	notail$
-	move.b	(a1)+,(a0)
-	move.b	(a0),d0	;wait
-	subq.l	#1,d1
-	bra.s	looptail$
-notail$
-
-	endc
-
 
 	movem.l	(sp)+,d3-d5		;restore registers before SPI_DISABLE
 

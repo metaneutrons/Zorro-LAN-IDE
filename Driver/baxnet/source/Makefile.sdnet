@@ -21,8 +21,8 @@
 # 
 ###############################################################################
 DEVICEVERSION=1
-DEVICEREVISION=91
-DEVICEDATE=06.06.2018
+DEVICEREVISION=92
+DEVICEDATE=27.06.2018
 DEVICEEXTRA=Beta
 ASMOBJECTS = $(SUBDIR)/vampuuid.o $(SUBDIR)/intervaltimer.o $(SUBDIR)/enc28j60.o $(SUBDIR)/enc28j60l.o
 SUBDIR=sdnet
@@ -32,11 +32,12 @@ SUBDIR=sdnet
 DEVICEID=sdnet.device
 DEFINES = # -DPROTO_V2EXPNET
 ASMDEFS = # -DPROTO_V2EXPNET
+CPU = 68020
 
 DEVICEID2=v2expeth.device
 DEFINES2 = -DPROTO_V2EXPNET
 ASMDEFS2 = -DPROTO_V2EXPNET
-
+CPU2 = 68020
 
 ###############################################################################
 # import generic ruleset

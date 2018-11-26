@@ -28,8 +28,8 @@ ASM LONG LibNull( void )
 	return 0;
 }
 
-extern const BYTE DeviceName[];
-extern const BYTE DeviceVersionString[];
+extern const char DeviceName[];
+extern const char DeviceVersionString[];
 extern const APTR DeviceInitTab[];
 
 const struct Resident _00RomTag = {
@@ -40,8 +40,8 @@ const struct Resident _00RomTag = {
 	DEVICEVERSION,
 	NT_DEVICE,
 	0,
-	(BYTE*)DeviceName,
-	(BYTE*)DeviceVersionString+6,
+	(char*)DeviceName,
+	(char*)DeviceVersionString+6,
 	(APTR)DeviceInitTab
 };
 #endif

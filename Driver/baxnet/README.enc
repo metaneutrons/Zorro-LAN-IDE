@@ -1,0 +1,118 @@
+ENC624J6Net - A SANA-II driver for the Scratze card
+
+ENC624J6Net Copyright (C) 2018 Henryk Richter <henryk.richter@gmx.net>
+
+This driver is supposed to support ENC624J600 based ethernet
+on the ZII LAN IDE CP card designed by Matze (a1k.org) and Scrat (a1k.org).
+
+Please see at the end of the file for information about licensing 
+conditions.
+
+
+Installation:
+-------------
+
+Installation of the driver is straightforward. 
+Just copy the enc624j6net.device to devs:networks and enable 
+the interface in your favorite  TCP/IP stack as usual. There is a version
+for MC68020 or later (enc624j6net.device) and another version for 
+68000 (enc624j6net.device_68000). Choose the right one.
+
+So far, successful tests have been done with the free AmiTCP/IP 3.0b2, 
+AmiTCP4.0-4.2, Genesis, MiamiDX and RoadShow. 
+
+The Zorro board itself should be visible in early startup with manufacturer 
+ID 2588 and card ID 123. 
+
+
+
+Configuration options
+---------------------
+
+No special configuration of the driver is necessary for normal operation. 
+The configuration options outlined below are documented for tuning purposes.
+
+The config to be placed in ENVARC:sana2/enc624j6net.config and consists
+of a single line with parameters (much like CLI parameters).
+
+PRIORITY=PRI/K/N,BPS/K/N,MTU/K/N,FULLDUPLEX/S,FLOWCONTROL/S,TIMER/K/N,MULTICAST/S
+
+ FULLDUPLEX     - change Ethernet module into full duplex mode, 
+                  caution: requires manual configuration of duplex mode
+                           on the switch, too.
+                  note: this switch should not be enabled in normal cases.
+                        The module feeatures autoconfiguration that determines
+                        speed and duplex automatically.
+
+ PRIORITY       - server task priority (default 1)
+
+ BPS            - bit per seconds for statistics purposes
+
+ MTU            - maximum transmission unit (default 1500) 
+
+ MULTICAST      - obsolete, kept for config file backwards compatibility with 
+                  old driver
+
+ FLOWCONTROL    - enable automatic flow control that throttles incoming
+                  data when the hardware buffer gets full
+
+ example (useful for DSL via PPPoE with AmiTCP):
+  echo "MTU=1492 PRIORITY=6" >ENVARC:sana2/enc624j6net.config  
+
+
+Changelog:
+----------
+
+1.91  - first Beta of completely rewritten driver
+      - support for concurrent IP stacks
+      - faster handling of statistics
+      - multiple board support where applicable
+      - workaround for Shapeshifter network plugin bug
+      - GCC or VBCC as compiler (cross or native compilation)
+      - faster lowlevel read/write
+
+
+Compilation / Development Notes
+-------------------------------
+
+Either VBCC or GCC (tested with version 2.95 only) can be used. General
+options for compiler usage can be found in Common.mk. Also, you might want
+to adapt the paths to your setup (PREFX,SYSINC). In addition to the regular
+NDK, the sana2.h is expected in the devices/ subdir of the includes. sana2.h
+may be found in the AmiTCP or Roadshow SDK, respectively.
+
+Call
+
+ make -f Makefile.enc
+
+for building the device. 
+
+VBCC note: When calling the GNU Make port supplied with ADE/GG natively on AmigaOS3, 
+please make sure that "vc" is within the search path of "/bin/sh".
+
+Conceptually, the driver was meant to support multiple hardware targets. Therefore,
+it features a SANA-II frontend (device.c,deviceheader.c,deviceinit.c), a main
+server running in a task (server.c) and several hardware backends. A new hardware
+backend requires customized implementation of hw.c and hwprivate.h, along with
+additional hardware-specfic code, if needed. The device unit structure reserves
+three LONGS and three pointers for exclusive use by the hardware instance. Additional
+data for the hardware can be auto-allocated at device initialization time, if necessary.
+See "struct HWData" in hwprivate.h of existing backends.
+
+
+License:
+--------
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+

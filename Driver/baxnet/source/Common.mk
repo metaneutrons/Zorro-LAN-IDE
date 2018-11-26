@@ -18,15 +18,17 @@
 #  instead of the traditional os-include
 #
 ###############################################################################
+# debug = 1 will include string debugging for terminal/sushi/sashimi
 debug = 0
-compiler_vcc = 1
+# compiler_vcc = 1 will trigger VBCC, else GCC
+compiler_vcc = 0
 
 ###############################################################################
 # prefix for system includes (ASM)
 # 
 ###############################################################################
 PREFX  = /opt/amigaos-68k/
-PREFX = gg:
+#PREFX = gg:
 SYSINC = $(PREFX)os-include
 
 ###############################################################################
@@ -40,19 +42,22 @@ ifeq ($(compiler_vcc),1)
 CCX  = vc
 LINK = vlink -bamigahunk -x -s -mrel -Cvbcc -Bstatic -nostdlib #-Rshort 
 #LINK = $(CCX) -nostdlib
-CFLAGS  = -Os -+ -sc -c99 -cpu=68020
+CFLAGS  = -Os -+ -sc -c99 -cpu=$(CPU)
+CFLAGS2 = -Os -+ -sc -c99 -cpu=$(CPU2)
 
 else
 
 # GCC
 CCX  = m68k-amigaos-gcc
 LINK = $(CCX) -nostartfiles -s 
-CFLAGS  = -O3 -s -m68060 -Wall -noixemul -mregparm=4 -fomit-frame-pointer -msoft-float -noixemul
+CFLAGS  = -O3 -s -m$(CPU) -Wall -noixemul -mregparm=4 -fomit-frame-pointer -msoft-float -noixemul
+CFLAGS2 = -O3 -s -m$(CPU2) -Wall -noixemul -mregparm=4 -fomit-frame-pointer -msoft-float -noixemul
 
 endif
 
 VASM = vasmm68k_mot
-VASMFORMAT = -m68020 -Fhunk -nowarn=2064 -quiet -I$(SYSINC)
+VASMFORMAT  = -m$(CPU) -Fhunk -nowarn=2064 -quiet -I$(SYSINC)
+VASMFORMAT2 = -m$(CPU2) -Fhunk -nowarn=2064 -quiet -I$(SYSINC)
 
 # unused here
 #HOST = $(shell uname)
@@ -71,7 +76,7 @@ IPATH =
 # 
 ###############################################################################
 ifeq ($(compiler_vcc),1)
-
+# skip quotes with VCC, the AmigaOS native version doesn't like them
 DEFINES += -DDEVICEVERSION=$(DEVICEVERSION) -DDEVICEREVISION=$(DEVICEREVISION)
 DEFINES += -DDEVICEDATE=$(DEVICEDATE) -DDEVICENAME="$(DEVICEID)"
 DEFINES += -DDEVICEEXTRA=$(DEVICEEXTRA)
@@ -98,13 +103,15 @@ ASMDEFS2 += -DDEVICEVERSION=$(DEVICEVERSION) -DDEVICEREVISION=$(DEVICEREVISION)
 
 endif
 
+
 ###############################################################################
 #
 # debug 
 # 
 ###############################################################################
 ifeq ($(debug),1)
-CFLAGS += -DDEBUG -g
+CFLAGS  += -DDEBUG -g
+CFLAGS2 += -DDEBUG -g
 LINKLIBS = -L$(PREFX)/lib -ldebug
 endif
 
@@ -114,8 +121,8 @@ endif
 # 
 ###############################################################################
 
-CFLAGS += -I.
-CFLAGS += -I$(SUBDIR)
+CFLAGS  += -I. -I$(SUBDIR)
+CFLAGS2 += -I. -I$(SUBDIR)
 LDFLAGS = 
 
 ###############################################################################
@@ -143,6 +150,11 @@ clean:
 	rm -f $(OBJECTS) $(OBJECTS2)
 	rm -f $(DEVICEID) $(DEVICEID2)
 
+# not for cross compile :-)
+install: $(DEVICEID) $(DEVICEID2)
+	copy $(DEVICEID) $(DEVICEID2) DEVS:Networks
+
+
 #sdnet:	 $(DEVICEID) 
 #expnet: $(DEVICEID2)
 
@@ -164,9 +176,9 @@ $(DEVICEID2) : $(OBJECTS2)
 	$(LINK) $(LDFLAGS) -o $@ $(OBJECTS2) $(LINKLIBS) 
 
 %.2o : %.c 
-	$(CCX) -c $(CFLAGS) $(DEFINES2) $(IPATH) $< -o $@
+	$(CCX) -c $(CFLAGS2) $(DEFINES2) $(IPATH) $< -o $@
 
 %.2o : %.asm
-	${VASM} $(VASMFORMAT) $(ASMDEFS2) -o $@ $<
+	${VASM} $(VASMFORMAT2) $(ASMDEFS2) -o $@ $<
 
 
