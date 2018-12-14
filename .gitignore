@@ -98,3 +98,7 @@ Driver/enc624j6net/clean.bat
 *.s#2
 *.l#1
 *.s#5
+
+*.html
+
+Logic/LAN_IDE/_ngo/
