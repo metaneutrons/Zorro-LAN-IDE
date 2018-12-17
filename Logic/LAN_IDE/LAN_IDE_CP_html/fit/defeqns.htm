@@ -6,259 +6,183 @@
 ********** Mapped Logic **********
 </td></tr><tr><td>
 </td></tr><tr><td>
-$OpTx$FX_DC$23 <= (DS0 AND DS1);
+$OpTx$FX_DC$17 <= (NOT RW AND NOT Z3_ADR(2) AND Z3_ADR_1 AND NOT Z3_ADR_0 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(6) AND autoconfig AND NOT Z3_ADR(3) AND Z3_ADR(4) AND NOT Z3_ADR(5) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$8);
 </td></tr><tr><td>
 </td></tr><tr><td>
-$OpTx$FX_DC$24 <= (UDS AND LDS);
+$OpTx$FX_DC$19 <= (NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd9);
 </td></tr><tr><td>
 </td></tr><tr><td>
-$OpTx$FX_DC$25 <= ($OpTx$FX_DC$23 AND $OpTx$FX_DC$24);
+$OpTx$FX_DC$26 <= (NOT LAN_SM_FSM_FFd7 AND NOT LAN_SM_FSM_FFd5 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd8 AND NOT LAN_SM_FSM_FFd10 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd6 AND NOT LAN_SM_FSM_FFd1 AND NOT LAN_SM_FSM_FFd11 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	$OpTx$FX_DC$19);
 </td></tr><tr><td>
 </td></tr><tr><td>
-$OpTx$FX_DC$268 <= (NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd3);
+$OpTx$FX_DC$34 <= ((NOT lan_adr)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR ($OpTx$FX_DC$6 AND $OpTx$FX_DC$36));
 </td></tr><tr><td>
 </td></tr><tr><td>
-$OpTx$FX_DC$325 <= ((NOT LAN_SM_FSM_FFd1 AND NOT BUF_LAN_SM_FSM_FFd4__$INT AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT BUF_LAN_RD_S)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_SM_FSM_FFd1 AND BUF_LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT BUF_LAN_RD_S));
+$OpTx$FX_DC$35 <= (RW AND lan_adr AND NOT $OpTx$FX_DC$8);
 </td></tr><tr><td>
 </td></tr><tr><td>
-$OpTx$FX_DC$326 <= ((NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$23)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$24));
+$OpTx$FX_DC$36 <= (DS1 AND DS0);
 </td></tr><tr><td>
 </td></tr><tr><td>
-$OpTx$FX_DC$42 <= (NOT FCS AND NOT Z3_ADR(2) AND NOT Z3_ADR_0 AND Z3_ADR_1 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(6) AND autoconfig AND NOT RW AND NOT Z3_ADR(3) AND Z3_ADR(4) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$25);
+$OpTx$FX_DC$38 <= (NOT RW AND Z3_ADR(13) AND NOT $OpTx$FX_DC$34);
 </td></tr><tr><td>
 </td></tr><tr><td>
-$OpTx$FX_DC$49 <= ((NOT RESET)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT FCS AND lan_adr AND NOT RW AND NOT Z3_A_LOW AND NOT $OpTx$FX_DC$25));
+$OpTx$FX_DC$41 <= (NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd8);
 </td></tr><tr><td>
 </td></tr><tr><td>
-$OpTx$FX_DC$61 <= ((NOT RESET)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT FCS AND lan_adr AND NOT RW AND NOT Z3_A_LOW AND NOT $OpTx$FX_DC$25));
+$OpTx$FX_DC$6 <= (UDS AND LDS);
 </td></tr><tr><td>
 </td></tr><tr><td>
-$OpTx$FX_DC$66 <= (lan_adr AND NOT RW AND Z3_ADR(13) AND NOT $OpTx$FX_DC$25);
+$OpTx$FX_DC$7 <= ((LAN_SM_FSM_FFd3)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_SM_FSM_FFd12 AND $OpTx$FX_DC$6));
 </td></tr><tr><td>
-FDCPE_A8: FDCPE port map (A_I(8),A(8),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(8) <= ((NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	A(8).PIN AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(16).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(8) AND NOT $OpTx$FX_DC$326)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(8).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(0).PIN));
+</td></tr><tr><td>
+$OpTx$FX_DC$8 <= ((FCS)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR ($OpTx$FX_DC$6 AND $OpTx$FX_DC$36));
+</td></tr><tr><td>
+</td></tr><tr><td>
+$OpTx$FX_SC$43 <= (LAN_SM_FSM_FFd12 AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$34);
+</td></tr><tr><td>
+</td></tr><tr><td>
+$OpTx$INV$4 <= ((NOT Z3)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (SHUT_UP)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(12).PIN AND NOT LAN_BASEADR(12))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT D(12).PIN AND LAN_BASEADR(12))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(15).PIN AND NOT LAN_BASEADR(15))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(0).EXP)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT D(9).PIN AND LAN_BASEADR(9))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(11).PIN AND NOT LAN_BASEADR(11))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT D(11).PIN AND LAN_BASEADR(11))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(10).PIN AND NOT LAN_BASEADR(10))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT D(10).PIN AND LAN_BASEADR(10))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(9).PIN AND NOT LAN_BASEADR(9))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(8).PIN AND NOT LAN_BASEADR(8))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT D(8).PIN AND LAN_BASEADR(8)));
+</td></tr><tr><td>
+</td></tr><tr><td>
+$OpTx$INV$5 <= ((EXP22_.EXP)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(20).PIN AND NOT LAN_BASEADR(4))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT A(20).PIN AND LAN_BASEADR(4))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(19).PIN AND NOT LAN_BASEADR(3))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT A(19).PIN AND LAN_BASEADR(3))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT A(18).PIN AND LAN_BASEADR(2))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(14).PIN AND NOT LAN_BASEADR(14))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(5) AND NOT A(21).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_BASEADR(5) AND A(21).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(7) AND NOT A(23).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_BASEADR(7) AND A(23).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(18).PIN AND NOT LAN_BASEADR(2))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(17).PIN AND NOT LAN_BASEADR(1))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT A(17).PIN AND LAN_BASEADR(1))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(16).PIN AND NOT LAN_BASEADR(0))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT A(16).PIN AND LAN_BASEADR(0)));
+</td></tr><tr><td>
+FDCPE_A8: FDCPE port map (A_I(8),A(8),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd5);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(8) <= ((dq_swap AND DQ(8).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(0).PIN));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(8) <= A_I(8) when A_OE(8) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(8) <= (NOT FCS AND lan_adr AND RW AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(8) <= (RW AND lan_adr AND NOT $OpTx$FX_DC$8);
 </td></tr><tr><td>
-FDCPE_A9: FDCPE port map (A_I(9),A(9),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(9) <= ((lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(9).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(17).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(9).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(9) AND NOT $OpTx$FX_DC$326)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(1).PIN));
+FDCPE_A9: FDCPE port map (A_I(9),A(9),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd5);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(9) <= ((dq_swap AND DQ(9).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(1).PIN));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(9) <= A_I(9) when A_OE(9) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(9) <= (NOT FCS AND lan_adr AND RW AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(9) <= (RW AND lan_adr AND NOT $OpTx$FX_DC$8);
 </td></tr><tr><td>
-FDCPE_A10: FDCPE port map (A_I(10),A(10),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(10) <= ((lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(10).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(18).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(10).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(10) AND NOT $OpTx$FX_DC$326)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(2).PIN));
+FDCPE_A10: FDCPE port map (A_I(10),A(10),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd5);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(10) <= ((dq_swap AND DQ(10).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(2).PIN));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(10) <= A_I(10) when A_OE(10) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(10) <= (NOT FCS AND lan_adr AND RW AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(10) <= (RW AND lan_adr AND NOT $OpTx$FX_DC$8);
 </td></tr><tr><td>
-FDCPE_A11: FDCPE port map (A_I(11),A(11),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(11) <= ((NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(11).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(19).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(11) AND NOT $OpTx$FX_DC$326)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(11).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(3).PIN));
+FDCPE_A11: FDCPE port map (A_I(11),A(11),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd5);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(11) <= ((dq_swap AND DQ(11).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(3).PIN));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(11) <= A_I(11) when A_OE(11) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(11) <= (NOT FCS AND lan_adr AND RW AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(11) <= (RW AND lan_adr AND NOT $OpTx$FX_DC$8);
 </td></tr><tr><td>
-FDCPE_A12: FDCPE port map (A_I(12),A(12),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(12) <= ((lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(20).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(12).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(12) AND NOT $OpTx$FX_DC$326)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(12).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(4).PIN));
+FDCPE_A12: FDCPE port map (A_I(12),A(12),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd5);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(12) <= ((dq_swap AND DQ(12).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(4).PIN));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(12) <= A_I(12) when A_OE(12) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(12) <= (NOT FCS AND lan_adr AND RW AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(12) <= (RW AND lan_adr AND NOT $OpTx$FX_DC$8);
 </td></tr><tr><td>
-FDCPE_A13: FDCPE port map (A_I(13),A(13),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(13) <= ((lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(21).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(13).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(13) AND NOT $OpTx$FX_DC$326)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(13).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(5).PIN));
+FDCPE_A13: FDCPE port map (A_I(13),A(13),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd5);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(13) <= ((dq_swap AND DQ(13).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(5).PIN));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(13) <= A_I(13) when A_OE(13) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(13) <= (NOT FCS AND lan_adr AND RW AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(13) <= (RW AND lan_adr AND NOT $OpTx$FX_DC$8);
 </td></tr><tr><td>
-FDCPE_A14: FDCPE port map (A_I(14),A(14),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(14) <= ((lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(22).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(14).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(14) AND NOT $OpTx$FX_DC$326)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(14).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(6).PIN));
+FDCPE_A14: FDCPE port map (A_I(14),A(14),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd5);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(14) <= ((dq_swap AND DQ(14).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(6).PIN));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(14) <= A_I(14) when A_OE(14) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(14) <= (NOT FCS AND lan_adr AND RW AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(14) <= (RW AND lan_adr AND NOT $OpTx$FX_DC$8);
 </td></tr><tr><td>
-FDCPE_A15: FDCPE port map (A_I(15),A(15),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(15) <= ((NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND A(15).PIN AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(23).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(15) AND NOT $OpTx$FX_DC$326)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(15).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(7).PIN));
+FDCPE_A15: FDCPE port map (A_I(15),A(15),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd5);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(15) <= ((dq_swap AND DQ(15).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(7).PIN));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(15) <= A_I(15) when A_OE(15) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(15) <= (NOT FCS AND lan_adr AND RW AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(15) <= (RW AND lan_adr AND NOT $OpTx$FX_DC$8);
 </td></tr><tr><td>
-FDCPE_A16: FDCPE port map (A_I(16),A(16),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(16) <= ((NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(16).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	A(8).PIN AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(16) AND NOT $OpTx$FX_DC$326)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(0).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(8).PIN));
+FDCPE_A16: FDCPE port map (A_I(16),A(16),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd5);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(16) <= ((dq_swap AND DQ(0).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(8).PIN));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(16) <= A_I(16) when A_OE(16) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(16) <= (NOT FCS AND lan_adr AND RW AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(16) <= (RW AND lan_adr AND NOT $OpTx$FX_DC$8);
 </td></tr><tr><td>
-FDCPE_A17: FDCPE port map (A_I(17),A(17),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(17) <= ((lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(9).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(17).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(17) AND NOT $OpTx$FX_DC$326)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(1).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(9).PIN));
+FDCPE_A17: FDCPE port map (A_I(17),A(17),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd5);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(17) <= ((dq_swap AND DQ(1).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(9).PIN));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(17) <= A_I(17) when A_OE(17) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(17) <= (NOT FCS AND lan_adr AND RW AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(17) <= (RW AND lan_adr AND NOT $OpTx$FX_DC$8);
 </td></tr><tr><td>
-FDCPE_A18: FDCPE port map (A_I(18),A(18),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(18) <= ((NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(18).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(10).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(18) AND NOT $OpTx$FX_DC$326)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(2).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(10).PIN));
+FDCPE_A18: FDCPE port map (A_I(18),A(18),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd5);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(18) <= ((dq_swap AND DQ(2).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(10).PIN));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(18) <= A_I(18) when A_OE(18) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(18) <= (NOT FCS AND lan_adr AND RW AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(18) <= (RW AND lan_adr AND NOT $OpTx$FX_DC$8);
 </td></tr><tr><td>
-FDCPE_A19: FDCPE port map (A_I(19),A(19),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(19) <= ((lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(11).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(19).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(19) AND NOT $OpTx$FX_DC$326)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(3).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(11).PIN));
+FDCPE_A19: FDCPE port map (A_I(19),A(19),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd5);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(19) <= ((dq_swap AND DQ(3).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(11).PIN));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(19) <= A_I(19) when A_OE(19) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(19) <= (NOT FCS AND lan_adr AND RW AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(19) <= (RW AND lan_adr AND NOT $OpTx$FX_DC$8);
 </td></tr><tr><td>
-FDCPE_A20: FDCPE port map (A_I(20),A(20),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(20) <= ((lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(12).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(20).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(20) AND NOT $OpTx$FX_DC$326)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(4).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(12).PIN));
+FDCPE_A20: FDCPE port map (A_I(20),A(20),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd5);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(20) <= ((dq_swap AND DQ(4).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(12).PIN));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(20) <= A_I(20) when A_OE(20) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(20) <= (NOT FCS AND lan_adr AND RW AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(20) <= (RW AND lan_adr AND NOT $OpTx$FX_DC$8);
 </td></tr><tr><td>
-FDCPE_A21: FDCPE port map (A_I(21),A(21),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(21) <= ((lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(13).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(21).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(21) AND NOT $OpTx$FX_DC$326)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(5).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(13).PIN));
+FDCPE_A21: FDCPE port map (A_I(21),A(21),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd5);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(21) <= ((dq_swap AND DQ(5).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(13).PIN));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(21) <= A_I(21) when A_OE(21) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(21) <= (NOT FCS AND lan_adr AND RW AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(21) <= (RW AND lan_adr AND NOT $OpTx$FX_DC$8);
 </td></tr><tr><td>
-FDCPE_A22: FDCPE port map (A_I(22),A(22),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(22) <= ((lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(14).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(22).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(22) AND NOT $OpTx$FX_DC$326)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(6).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(14).PIN));
+FDCPE_A22: FDCPE port map (A_I(22),A(22),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd5);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(22) <= ((dq_swap AND DQ(6).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(14).PIN));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(22) <= A_I(22) when A_OE(22) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(22) <= (NOT FCS AND lan_adr AND RW AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(22) <= (RW AND lan_adr AND NOT $OpTx$FX_DC$8);
 </td></tr><tr><td>
-FDCPE_A23: FDCPE port map (A_I(23),A(23),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(23) <= ((lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND A(15).PIN AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_adr AND NOT Z3_ADR(13) AND A(23).PIN AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(23) AND NOT $OpTx$FX_DC$326)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(7).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND DQ(15).PIN));
+FDCPE_A23: FDCPE port map (A_I(23),A(23),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd5);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(23) <= ((dq_swap AND DQ(7).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(15).PIN));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A(23) <= A_I(23) when A_OE(23) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(23) <= (NOT FCS AND lan_adr AND RW AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A_OE(23) <= (RW AND lan_adr AND NOT $OpTx$FX_DC$8);
 </td></tr><tr><td>
 FTCPE_AUTO_CONFIG_DONE_CYCLE: FTCPE port map (AUTO_CONFIG_DONE_CYCLE,AUTO_CONFIG_DONE_CYCLE_T,CLK_EXT,NOT RESET,'0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AUTO_CONFIG_DONE_CYCLE_T <= (NOT AUTO_CONFIG_DONE_CYCLE AND NOT FCS AND NOT Z3_ADR(2) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Z3_ADR_1 AND NOT Z3_ADR(6) AND autoconfig AND NOT RW AND NOT Z3_ADR(3) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AUTO_CONFIG_DONE_CYCLE_T <= (NOT RW AND NOT AUTO_CONFIG_DONE_CYCLE AND NOT Z3_ADR(2) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Z3_ADR_1 AND NOT Z3_ADR(6) AND autoconfig AND NOT Z3_ADR(3) AND Z3_ADR(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$8);
 </td></tr><tr><td>
 </td></tr><tr><td>
 A_LAN(0) <= NOT ((RESET AND NOT Z3_A_LOW));
@@ -305,37 +229,21 @@ A_LAN(12) <= NOT ((RESET AND NOT Z3_ADR(11)));
 A_LAN(13) <= NOT ((RESET AND NOT Z3_ADR(12)));
 </td></tr><tr><td>
 </td></tr><tr><td>
-BUF_LAN_D_INIT(1)__$INT <= ((LAN_RST_SM_FSM_FFd3 AND NOT LAN_RST_SM_FSM_FFd1)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_RST_SM_FSM_FFd3 AND LAN_RST_SM_FSM_FFd2));
+BUF_LAN_SM_FSM_FFd9 <= (NOT RW AND LAN_SM_FSM_FFd12 AND lan_adr AND NOT Z3_ADR(13) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6);
 </td></tr><tr><td>
 </td></tr><tr><td>
-BUF_LAN_RD_S <= ((LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd1)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1));
+BUF_LAN_SM_RST <= (NOT FCS AND RESET);
 </td></tr><tr><td>
 </td></tr><tr><td>
-BUF_LAN_SM_FSM_FFd2 <= ((LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd3)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_SM_FSM_FFd2 AND $OpTx$FX_DC$23)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND lan_adr AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$24));
-</td></tr><tr><td>
-</td></tr><tr><td>
-BUF_LAN_SM_FSM_FFd4__$INT <= ((NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND $OpTx$FX_DC$23 AND $OpTx$FX_DC$24)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd3)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_SM_FSM_FFd2 AND LAN_SM_FSM_FFd3)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_SM_FSM_FFd3 AND $OpTx$FX_DC$23)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND NOT lan_adr)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND Z3_ADR(13)));
-</td></tr><tr><td>
-</td></tr><tr><td>
-BUF_autoconfig <= (D(15).PIN AND D(10).PIN AND D(11).PIN AND D(12).PIN AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	D(13).PIN AND D(14).PIN AND D(8).PIN AND D(9).PIN AND Z3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT A(18).PIN AND NOT A(17).PIN AND NOT A(16).PIN AND NOT A(22).PIN AND NOT A(21).PIN AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT A(19).PIN AND NOT A(20).PIN AND NOT A(23).PIN AND NOT CFIN AND CFOUT);
+BUF_lan_adr <= ((D(13).PIN AND LAN_BASEADR(13) AND LAN_BASEADR(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	A(22).PIN AND NOT $OpTx$INV$4 AND NOT $OpTx$INV$5)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(13).PIN AND LAN_BASEADR(13) AND NOT LAN_BASEADR(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT A(22).PIN AND NOT $OpTx$INV$4 AND NOT $OpTx$INV$5)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT D(13).PIN AND NOT LAN_BASEADR(13) AND LAN_BASEADR(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	A(22).PIN AND NOT $OpTx$INV$4 AND NOT $OpTx$INV$5)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT D(13).PIN AND NOT LAN_BASEADR(13) AND NOT LAN_BASEADR(6) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT A(22).PIN AND NOT $OpTx$INV$4 AND NOT $OpTx$INV$5));
 </td></tr><tr><td>
 FDCPE_CFOUT: FDCPE port map (CFOUT,CFOUT_D,CLK_EXT,'0',NOT RESET,FCS);
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CFOUT_D <= (NOT AUTO_CONFIG_DONE_CYCLE AND AUTOBOOT_OFF);
@@ -350,309 +258,386 @@ CP_RD <= '1';
 CP_WE <= '1';
 </td></tr><tr><td>
 </td></tr><tr><td>
-D_I(0) <= NOT ((NOT Z3_DATA(16) AND Z3_DATA(7)/Z3_DATA(7)_TRST));
+D_I(0) <= NOT ((NOT Z3_DATA(16) AND $OpTx$FX_DC$35));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D(0) <= D_I(0) when D_OE(0) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(0) <= (RW AND NOT SLAVE AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(0) <= D_9_IOBUFE/D_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-D_I(1) <= NOT ((NOT Z3_DATA(17) AND Z3_DATA(7)/Z3_DATA(7)_TRST));
+D_I(1) <= NOT ((NOT Z3_DATA(17) AND $OpTx$FX_DC$35));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D(1) <= D_I(1) when D_OE(1) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(1) <= (RW AND NOT SLAVE AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(1) <= D_9_IOBUFE/D_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-D_I(2) <= NOT ((NOT Z3_DATA(18) AND Z3_DATA(7)/Z3_DATA(7)_TRST));
+D_I(2) <= NOT ((NOT Z3_DATA(18) AND $OpTx$FX_DC$35));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D(2) <= D_I(2) when D_OE(2) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(2) <= (RW AND NOT SLAVE AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(2) <= D_9_IOBUFE/D_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-D_I(3) <= NOT ((NOT Z3_DATA(19) AND Z3_DATA(7)/Z3_DATA(7)_TRST));
+D_I(3) <= NOT ((NOT Z3_DATA(19) AND $OpTx$FX_DC$35));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D(3) <= D_I(3) when D_OE(3) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(3) <= (RW AND NOT SLAVE AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(3) <= D_9_IOBUFE/D_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-D_I(4) <= NOT ((NOT Z3_DATA(20) AND Z3_DATA(7)/Z3_DATA(7)_TRST));
+D_I(4) <= NOT ((NOT Z3_DATA(20) AND $OpTx$FX_DC$35));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D(4) <= D_I(4) when D_OE(4) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(4) <= (RW AND NOT SLAVE AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(4) <= D_9_IOBUFE/D_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-D_I(5) <= NOT ((NOT Z3_DATA(21) AND Z3_DATA(7)/Z3_DATA(7)_TRST));
+D_I(5) <= NOT ((NOT Z3_DATA(21) AND $OpTx$FX_DC$35));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D(5) <= D_I(5) when D_OE(5) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(5) <= (RW AND NOT SLAVE AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(5) <= D_9_IOBUFE/D_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-D_I(6) <= NOT ((NOT Z3_DATA(22) AND Z3_DATA(7)/Z3_DATA(7)_TRST));
+D_I(6) <= NOT ((NOT Z3_DATA(22) AND $OpTx$FX_DC$35));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D(6) <= D_I(6) when D_OE(6) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(6) <= (RW AND NOT SLAVE AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(6) <= D_9_IOBUFE/D_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-D_I(7) <= NOT ((NOT Z3_DATA(23) AND Z3_DATA(7)/Z3_DATA(7)_TRST));
+D_I(7) <= NOT ((NOT Z3_DATA(23) AND $OpTx$FX_DC$35));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D(7) <= D_I(7) when D_OE(7) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(7) <= (RW AND NOT SLAVE AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(7) <= D_9_IOBUFE/D_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-D_I(8) <= ((Z3_DATA(24) AND Z3_DATA(7)/Z3_DATA(7)_TRST)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Dout1(0) AND NOT Z3_DATA(7)/Z3_DATA(7)_TRST));
+D_I(8) <= ((Z3_DATA(24) AND $OpTx$FX_DC$35)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Dout1(0) AND NOT $OpTx$FX_DC$35));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D(8) <= D_I(8) when D_OE(8) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(8) <= (RW AND NOT SLAVE AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(8) <= D_9_IOBUFE/D_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-D_I(9) <= ((Z3_DATA(25) AND Z3_DATA(7)/Z3_DATA(7)_TRST)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Dout1(1) AND NOT Z3_DATA(7)/Z3_DATA(7)_TRST));
+D_I(9) <= ((Z3_DATA(25) AND $OpTx$FX_DC$35)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Dout1(1) AND NOT $OpTx$FX_DC$35));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D(9) <= D_I(9) when D_OE(9) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(9) <= (RW AND NOT SLAVE AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(9) <= D_9_IOBUFE/D_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-D_I(10) <= ((Z3_DATA(26) AND Z3_DATA(7)/Z3_DATA(7)_TRST)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Dout1(2) AND NOT Z3_DATA(7)/Z3_DATA(7)_TRST));
+D_I(10) <= ((Z3_DATA(26) AND $OpTx$FX_DC$35)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Dout1(2) AND NOT $OpTx$FX_DC$35));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D(10) <= D_I(10) when D_OE(10) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(10) <= (RW AND NOT SLAVE AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(10) <= D_9_IOBUFE/D_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-D_I(11) <= ((Z3_DATA(27) AND Z3_DATA(7)/Z3_DATA(7)_TRST)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Dout1(3) AND NOT Z3_DATA(7)/Z3_DATA(7)_TRST));
+D_I(11) <= ((Z3_DATA(27) AND $OpTx$FX_DC$35)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Dout1(3) AND NOT $OpTx$FX_DC$35));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D(11) <= D_I(11) when D_OE(11) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(11) <= (RW AND NOT SLAVE AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(11) <= D_9_IOBUFE/D_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-D_I(12) <= ((Z3_DATA(28) AND Z3_DATA(7)/Z3_DATA(7)_TRST)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Dout1(4) AND NOT Z3_DATA(7)/Z3_DATA(7)_TRST));
+D_I(12) <= ((Z3_DATA(28) AND $OpTx$FX_DC$35)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Dout1(4) AND NOT $OpTx$FX_DC$35));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D(12) <= D_I(12) when D_OE(12) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(12) <= (RW AND NOT SLAVE AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(12) <= D_9_IOBUFE/D_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-D_I(13) <= ((Z3_DATA(29) AND Z3_DATA(7)/Z3_DATA(7)_TRST)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Dout1(5) AND NOT Z3_DATA(7)/Z3_DATA(7)_TRST));
+D_I(13) <= ((Z3_DATA(29) AND $OpTx$FX_DC$35)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Dout1(5) AND NOT $OpTx$FX_DC$35));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D(13) <= D_I(13) when D_OE(13) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(13) <= (RW AND NOT SLAVE AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(13) <= D_9_IOBUFE/D_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-D_I(14) <= ((Z3_DATA(30) AND Z3_DATA(7)/Z3_DATA(7)_TRST)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Dout1(6) AND NOT Z3_DATA(7)/Z3_DATA(7)_TRST));
+D_I(14) <= ((Z3_DATA(30) AND $OpTx$FX_DC$35)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Dout1(6) AND NOT $OpTx$FX_DC$35));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D(14) <= D_I(14) when D_OE(14) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(14) <= (RW AND NOT SLAVE AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(14) <= D_9_IOBUFE/D_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-D_I(15) <= ((Z3_DATA(31) AND Z3_DATA(7)/Z3_DATA(7)_TRST)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Dout1(7) AND NOT Z3_DATA(7)/Z3_DATA(7)_TRST));
+D_I(15) <= ((Z3_DATA(31) AND $OpTx$FX_DC$35)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Dout1(7) AND NOT $OpTx$FX_DC$35));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D(15) <= D_I(15) when D_OE(15) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(15) <= (RW AND NOT SLAVE AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D_OE(15) <= D_9_IOBUFE/D_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-DQ_I(0) <= ((A(8) AND NOT $OpTx$FX_DC$49)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (RESET AND lan_adr AND NOT RW AND NOT Z3_A_LOW AND Z3_DATA(16) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_rdy/lan_rdy_RSTF AND NOT $OpTx$FX_DC$25));
+DQ_I(0) <= (RESET AND DQ_DATA(0));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ(0) <= DQ_I(0) when DQ_OE(0) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(0) <= DQ_14_IOBUFE/DQ_14_IOBUFE_TRST;
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(0) <= DQ_9_IOBUFE/DQ_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-DQ_I(1) <= ((A(9) AND NOT $OpTx$FX_DC$61)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT RESET AND LAN_D_INIT(1))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (RESET AND lan_adr AND NOT RW AND NOT Z3_A_LOW AND Z3_DATA(17) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_rdy/lan_rdy_RSTF AND NOT $OpTx$FX_DC$25));
+DQ_I(1) <= ((RESET AND DQ_DATA(1))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT RESET AND LAN_D_INIT(1)));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ(1) <= DQ_I(1) when DQ_OE(1) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(1) <= DQ_14_IOBUFE/DQ_14_IOBUFE_TRST;
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(1) <= DQ_9_IOBUFE/DQ_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-DQ_I(2) <= ((A(10) AND NOT $OpTx$FX_DC$49)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (RESET AND lan_adr AND NOT RW AND NOT Z3_A_LOW AND Z3_DATA(18) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_rdy/lan_rdy_RSTF AND NOT $OpTx$FX_DC$25));
+DQ_I(2) <= (RESET AND DQ_DATA(2));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ(2) <= DQ_I(2) when DQ_OE(2) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(2) <= DQ_11_IOBUFE/DQ_11_IOBUFE_TRST;
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(2) <= DQ_9_IOBUFE/DQ_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-DQ_I(3) <= ((A(11) AND NOT $OpTx$FX_DC$49)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (RESET AND lan_adr AND NOT RW AND NOT Z3_A_LOW AND Z3_DATA(19) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_rdy/lan_rdy_RSTF AND NOT $OpTx$FX_DC$25));
+DQ_I(3) <= (RESET AND DQ_DATA(3));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ(3) <= DQ_I(3) when DQ_OE(3) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(3) <= DQ_14_IOBUFE/DQ_14_IOBUFE_TRST;
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(3) <= DQ_9_IOBUFE/DQ_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-DQ_I(4) <= ((A(12) AND NOT $OpTx$FX_DC$61)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT RESET AND LAN_D_INIT(1))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (RESET AND lan_adr AND NOT RW AND NOT Z3_A_LOW AND Z3_DATA(20) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_rdy/lan_rdy_RSTF AND NOT $OpTx$FX_DC$25));
+DQ_I(4) <= ((RESET AND DQ_DATA(4))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT RESET AND LAN_D_INIT(1)));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ(4) <= DQ_I(4) when DQ_OE(4) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(4) <= DQ_14_IOBUFE/DQ_14_IOBUFE_TRST;
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(4) <= DQ_9_IOBUFE/DQ_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-DQ_I(5) <= ((A(13) AND NOT $OpTx$FX_DC$49)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (RESET AND lan_adr AND NOT RW AND NOT Z3_A_LOW AND Z3_DATA(21) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_rdy/lan_rdy_RSTF AND NOT $OpTx$FX_DC$25));
+DQ_I(5) <= (RESET AND DQ_DATA(5));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ(5) <= DQ_I(5) when DQ_OE(5) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(5) <= DQ_14_IOBUFE/DQ_14_IOBUFE_TRST;
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(5) <= DQ_9_IOBUFE/DQ_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-DQ_I(6) <= ((A(14) AND NOT $OpTx$FX_DC$49)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (RESET AND lan_adr AND NOT RW AND NOT Z3_A_LOW AND Z3_DATA(22) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_rdy/lan_rdy_RSTF AND NOT $OpTx$FX_DC$25));
+DQ_I(6) <= (RESET AND DQ_DATA(6));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ(6) <= DQ_I(6) when DQ_OE(6) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(6) <= DQ_14_IOBUFE/DQ_14_IOBUFE_TRST;
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(6) <= DQ_9_IOBUFE/DQ_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-DQ_I(7) <= ((A(15) AND NOT $OpTx$FX_DC$49)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (RESET AND lan_adr AND NOT RW AND NOT Z3_A_LOW AND Z3_DATA(23) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_rdy/lan_rdy_RSTF AND NOT $OpTx$FX_DC$25));
+DQ_I(7) <= (RESET AND DQ_DATA(7));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ(7) <= DQ_I(7) when DQ_OE(7) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(7) <= DQ_14_IOBUFE/DQ_14_IOBUFE_TRST;
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(7) <= DQ_9_IOBUFE/DQ_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-DQ_I(8) <= ((A(16) AND NOT $OpTx$FX_DC$49)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (RESET AND lan_adr AND NOT RW AND NOT Z3_A_LOW AND Z3_DATA(24) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_rdy/lan_rdy_RSTF AND NOT $OpTx$FX_DC$25));
+DQ_I(8) <= ((RESET AND DQ_DATA(8))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT RESET AND LAN_D_INIT(8)));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ(8) <= DQ_I(8) when DQ_OE(8) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(8) <= DQ_11_IOBUFE/DQ_11_IOBUFE_TRST;
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(8) <= DQ_9_IOBUFE/DQ_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-DQ_I(9) <= ((A(17) AND NOT $OpTx$FX_DC$61)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT RESET AND LAN_D_INIT(9))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (RESET AND lan_adr AND NOT RW AND NOT Z3_A_LOW AND Z3_DATA(25) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_rdy/lan_rdy_RSTF AND NOT $OpTx$FX_DC$25));
+DQ_I(9) <= ((RESET AND DQ_DATA(9))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT RESET AND LAN_D_INIT(1)));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ(9) <= DQ_I(9) when DQ_OE(9) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(9) <= DQ_14_IOBUFE/DQ_14_IOBUFE_TRST;
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(9) <= DQ_9_IOBUFE/DQ_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-DQ_I(10) <= ((A(18) AND NOT $OpTx$FX_DC$61)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT RESET AND LAN_D_INIT(10))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (RESET AND lan_adr AND NOT RW AND NOT Z3_A_LOW AND Z3_DATA(26) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_rdy/lan_rdy_RSTF AND NOT $OpTx$FX_DC$25));
+DQ_I(10) <= ((RESET AND DQ_DATA(10))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT RESET AND LAN_D_INIT(8)));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ(10) <= DQ_I(10) when DQ_OE(10) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(10) <= DQ_14_IOBUFE/DQ_14_IOBUFE_TRST;
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(10) <= DQ_9_IOBUFE/DQ_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-DQ_I(11) <= ((A(19) AND NOT $OpTx$FX_DC$61)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT RESET AND LAN_D_INIT(10))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (RESET AND lan_adr AND NOT RW AND NOT Z3_A_LOW AND Z3_DATA(27) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_rdy/lan_rdy_RSTF AND NOT $OpTx$FX_DC$25));
+DQ_I(11) <= ((RESET AND DQ_DATA(11))
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT RESET AND LAN_D_INIT(8)));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ(11) <= DQ_I(11) when DQ_OE(11) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(11) <= DQ_11_IOBUFE/DQ_11_IOBUFE_TRST;
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(11) <= DQ_9_IOBUFE/DQ_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-DQ_I(12) <= ((A(20) AND NOT $OpTx$FX_DC$49)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (RESET AND lan_adr AND NOT RW AND NOT Z3_A_LOW AND Z3_DATA(28) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_rdy/lan_rdy_RSTF AND NOT $OpTx$FX_DC$25));
+DQ_I(12) <= (RESET AND DQ_DATA(12));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ(12) <= DQ_I(12) when DQ_OE(12) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(12) <= DQ_14_IOBUFE/DQ_14_IOBUFE_TRST;
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(12) <= DQ_9_IOBUFE/DQ_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-DQ_I(13) <= ((A(21) AND NOT $OpTx$FX_DC$49)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (RESET AND lan_adr AND NOT RW AND NOT Z3_A_LOW AND Z3_DATA(29) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_rdy/lan_rdy_RSTF AND NOT $OpTx$FX_DC$25));
+DQ_I(13) <= (RESET AND DQ_DATA(13));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ(13) <= DQ_I(13) when DQ_OE(13) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(13) <= DQ_11_IOBUFE/DQ_11_IOBUFE_TRST;
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(13) <= DQ_9_IOBUFE/DQ_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-DQ_I(14) <= ((A(22) AND NOT $OpTx$FX_DC$49)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (RESET AND lan_adr AND NOT RW AND NOT Z3_A_LOW AND Z3_DATA(30) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_rdy/lan_rdy_RSTF AND NOT $OpTx$FX_DC$25));
+DQ_I(14) <= (RESET AND DQ_DATA(14));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ(14) <= DQ_I(14) when DQ_OE(14) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(14) <= DQ_14_IOBUFE/DQ_14_IOBUFE_TRST;
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(14) <= DQ_9_IOBUFE/DQ_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-DQ_I(15) <= ((A(23) AND NOT $OpTx$FX_DC$49)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (RESET AND lan_adr AND NOT RW AND NOT Z3_A_LOW AND Z3_DATA(31) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	lan_rdy/lan_rdy_RSTF AND NOT $OpTx$FX_DC$25));
+DQ_I(15) <= (RESET AND DQ_DATA(15));
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ(15) <= DQ_I(15) when DQ_OE(15) = '1' else 'Z';
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(15) <= DQ_14_IOBUFE/DQ_14_IOBUFE_TRST;
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_OE(15) <= DQ_9_IOBUFE/DQ_9_IOBUFE_TRST;
 </td></tr><tr><td>
 </td></tr><tr><td>
-DQ_11_IOBUFE/DQ_11_IOBUFE_TRST <= ((NOT RESET)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr AND NOT RW AND lan_rdy/lan_rdy_RSTF AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$25));
+DQ_9_IOBUFE/DQ_9_IOBUFE_TRST <= ((NOT RESET)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr AND NOT $OpTx$FX_DC$8 AND NOT $OpTx$FX_DC$35));
 </td></tr><tr><td>
+FDCPE_DQ_DATA0: FDCPE port map (DQ_DATA(0),DQ_DATA_D(0),CLK_EXT,'0',LAN_SM_RST);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_DATA_D(0) <= ((D(0).PIN AND NOT dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (DQ_DATA(0) AND NOT $OpTx$FX_DC$26)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(16).PIN AND dq_swap AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND A(8).PIN AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(8).PIN AND dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6));
 </td></tr><tr><td>
-DQ_14_IOBUFE/DQ_14_IOBUFE_TRST <= ((NOT RESET)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr AND NOT RW AND lan_rdy/lan_rdy_RSTF AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$25));
+FDCPE_DQ_DATA1: FDCPE port map (DQ_DATA(1),DQ_DATA_D(1),CLK_EXT,'0',LAN_SM_RST);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_DATA_D(1) <= ((D(1).PIN AND NOT dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (DQ_DATA(1) AND NOT $OpTx$FX_DC$26)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(17).PIN AND dq_swap AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND A(9).PIN AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(9).PIN AND dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6));
+</td></tr><tr><td>
+FDCPE_DQ_DATA2: FDCPE port map (DQ_DATA(2),DQ_DATA_D(2),CLK_EXT,'0',LAN_SM_RST);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_DATA_D(2) <= ((D(2).PIN AND NOT dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (DQ_DATA(2) AND NOT $OpTx$FX_DC$26)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(18).PIN AND dq_swap AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND A(10).PIN AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(10).PIN AND dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6));
+</td></tr><tr><td>
+FDCPE_DQ_DATA3: FDCPE port map (DQ_DATA(3),DQ_DATA_D(3),CLK_EXT,'0',LAN_SM_RST);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_DATA_D(3) <= ((D(3).PIN AND NOT dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (DQ_DATA(3) AND NOT $OpTx$FX_DC$26)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(19).PIN AND dq_swap AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND A(11).PIN AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(11).PIN AND dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6));
+</td></tr><tr><td>
+FDCPE_DQ_DATA4: FDCPE port map (DQ_DATA(4),DQ_DATA_D(4),CLK_EXT,'0',LAN_SM_RST);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_DATA_D(4) <= ((D(12).PIN AND dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(4).PIN AND NOT dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (DQ_DATA(4) AND NOT $OpTx$FX_DC$26)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(20).PIN AND dq_swap AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND A(12).PIN AND $OpTx$FX_DC$7));
+</td></tr><tr><td>
+FDCPE_DQ_DATA5: FDCPE port map (DQ_DATA(5),DQ_DATA_D(5),CLK_EXT,'0',LAN_SM_RST);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_DATA_D(5) <= ((D(5).PIN AND NOT dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (DQ_DATA(5) AND NOT $OpTx$FX_DC$26)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (dq_swap AND A(21).PIN AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND A(13).PIN AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(13).PIN AND dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6));
+</td></tr><tr><td>
+FDCPE_DQ_DATA6: FDCPE port map (DQ_DATA(6),DQ_DATA_D(6),CLK_EXT,'0',LAN_SM_RST);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_DATA_D(6) <= ((D(6).PIN AND NOT dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (DQ_DATA(6) AND NOT $OpTx$FX_DC$26)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (dq_swap AND A(22).PIN AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND A(14).PIN AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(14).PIN AND dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6));
+</td></tr><tr><td>
+FDCPE_DQ_DATA7: FDCPE port map (DQ_DATA(7),DQ_DATA_D(7),CLK_EXT,'0',LAN_SM_RST);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_DATA_D(7) <= ((D(15).PIN AND dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(7).PIN AND NOT dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (DQ_DATA(7) AND NOT $OpTx$FX_DC$26)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (dq_swap AND A(23).PIN AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND A(15).PIN AND $OpTx$FX_DC$7));
+</td></tr><tr><td>
+FDCPE_DQ_DATA8: FDCPE port map (DQ_DATA(8),DQ_DATA_D(8),CLK_EXT,'0',LAN_SM_RST);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_DATA_D(8) <= ((D(8).PIN AND NOT dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (DQ_DATA(8) AND NOT $OpTx$FX_DC$26)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(16).PIN AND NOT dq_swap AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (dq_swap AND A(8).PIN AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(0).PIN AND dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6));
+</td></tr><tr><td>
+FDCPE_DQ_DATA9: FDCPE port map (DQ_DATA(9),DQ_DATA_D(9),CLK_EXT,'0',LAN_SM_RST);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_DATA_D(9) <= ((D(9).PIN AND NOT dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (DQ_DATA(9) AND NOT $OpTx$FX_DC$26)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(17).PIN AND NOT dq_swap AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (dq_swap AND A(9).PIN AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(1).PIN AND dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6));
+</td></tr><tr><td>
+FDCPE_DQ_DATA10: FDCPE port map (DQ_DATA(10),DQ_DATA_D(10),CLK_EXT,'0',LAN_SM_RST);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_DATA_D(10) <= ((D(10).PIN AND NOT dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (DQ_DATA(10) AND NOT $OpTx$FX_DC$26)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(18).PIN AND NOT dq_swap AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (dq_swap AND A(10).PIN AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(2).PIN AND dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6));
+</td></tr><tr><td>
+FDCPE_DQ_DATA11: FDCPE port map (DQ_DATA(11),DQ_DATA_D(11),CLK_EXT,'0',LAN_SM_RST);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_DATA_D(11) <= ((D(11).PIN AND NOT dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(3).PIN AND dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (DQ_DATA(11) AND NOT $OpTx$FX_DC$26)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(19).PIN AND NOT dq_swap AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (dq_swap AND A(11).PIN AND $OpTx$FX_DC$7));
+</td></tr><tr><td>
+FDCPE_DQ_DATA12: FDCPE port map (DQ_DATA(12),DQ_DATA_D(12),CLK_EXT,'0',LAN_SM_RST);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_DATA_D(12) <= ((D(12).PIN AND NOT dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (DQ_DATA(12) AND NOT $OpTx$FX_DC$26)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (A(20).PIN AND NOT dq_swap AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (dq_swap AND A(12).PIN AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(4).PIN AND dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6));
+</td></tr><tr><td>
+FDCPE_DQ_DATA13: FDCPE port map (DQ_DATA(13),DQ_DATA_D(13),CLK_EXT,'0',LAN_SM_RST);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_DATA_D(13) <= ((D(13).PIN AND NOT dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (DQ_DATA(13) AND NOT $OpTx$FX_DC$26)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (dq_swap AND A(13).PIN AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND A(21).PIN AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(5).PIN AND dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6));
+</td></tr><tr><td>
+FDCPE_DQ_DATA14: FDCPE port map (DQ_DATA(14),DQ_DATA_D(14),CLK_EXT,'0',LAN_SM_RST);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_DATA_D(14) <= ((D(14).PIN AND NOT dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(6).PIN AND dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (DQ_DATA(14) AND NOT $OpTx$FX_DC$26)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (dq_swap AND A(14).PIN AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND A(22).PIN AND $OpTx$FX_DC$7));
+</td></tr><tr><td>
+FDCPE_DQ_DATA15: FDCPE port map (DQ_DATA(15),DQ_DATA_D(15),CLK_EXT,'0',LAN_SM_RST);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DQ_DATA_D(15) <= ((D(15).PIN AND NOT dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (DQ_DATA(15) AND NOT $OpTx$FX_DC$26)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (dq_swap AND A(15).PIN AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND A(23).PIN AND $OpTx$FX_DC$7)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(7).PIN AND dq_swap AND LAN_SM_FSM_FFd12 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6));
 </td></tr><tr><td>
 </td></tr><tr><td>
 DTACK_I <= '0';
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DTACK <= DTACK_I when DTACK_OE = '1' else 'Z';
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DTACK_OE <= N0$BUF7/N0$BUF7_TRST;
 </td></tr><tr><td>
+</td></tr><tr><td>
+D_9_IOBUFE/D_9_IOBUFE_TRST <= (($OpTx$FX_DC$35)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (RW AND autoconfig AND NOT $OpTx$FX_DC$8));
+</td></tr><tr><td>
 FDCPE_Dout10: FDCPE port map (Dout1(0),Dout1_D(0),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dout1_D(0) <= (NOT FCS AND NOT Z3_ADR(2) AND Z3_ADR_0 AND NOT Z3_ADR_1 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	autoconfig AND NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dout1_D(0) <= (NOT Z3_ADR(2) AND NOT Z3_ADR_1 AND Z3_ADR_0 AND autoconfig AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$8);
 </td></tr><tr><td>
 FDCPE_Dout11: FDCPE port map (Dout1(1),Dout1_D(1),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dout1_D(1) <= ((NOT FCS AND NOT Z3_ADR(2) AND NOT Z3_ADR_0 AND autoconfig AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT FCS AND NOT Z3_ADR(2) AND NOT Z3_ADR_1 AND autoconfig AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT FCS AND NOT Z3_ADR_0 AND NOT Z3_ADR_1 AND autoconfig AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$25));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dout1_D(1) <= ((NOT Z3_ADR(2) AND NOT Z3_ADR_1 AND autoconfig AND NOT Z3_ADR(3) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$8)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Z3_ADR(2) AND NOT Z3_ADR_0 AND autoconfig AND NOT Z3_ADR(3) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$8)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Z3_ADR_1 AND NOT Z3_ADR_0 AND autoconfig AND NOT Z3_ADR(3) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$8));
 </td></tr><tr><td>
 FDCPE_Dout12: FDCPE port map (Dout1(2),Dout1_D(2),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dout1_D(2) <= ((NOT FCS AND Z3_ADR(2) AND Z3_ADR_0 AND NOT Z3_ADR_1 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	autoconfig AND NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT FCS AND NOT Z3_ADR(2) AND NOT Z3_ADR_0 AND NOT Z3_ADR_1 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	autoconfig AND NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$25));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dout1_D(2) <= ((Z3_ADR(2) AND NOT Z3_ADR_1 AND Z3_ADR_0 AND autoconfig AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$8)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Z3_ADR(2) AND NOT Z3_ADR_1 AND NOT Z3_ADR_0 AND autoconfig AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$8));
 </td></tr><tr><td>
 FDCPE_Dout13: FDCPE port map (Dout1(3),Dout1_D(3),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dout1_D(3) <= (NOT FCS AND NOT Z3_ADR_1 AND autoconfig AND NOT Z3_ADR(3) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$25);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dout1_D(3) <= (NOT Z3_ADR_1 AND autoconfig AND NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$8);
 </td></tr><tr><td>
 FDCPE_Dout14: FDCPE port map (Dout1(4),Dout1_D(4),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dout1_D(4) <= ((NOT FCS AND NOT Z3_ADR(2) AND Z3_ADR_0 AND NOT Z3_ADR_1 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	autoconfig AND NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT FCS AND NOT Z3_ADR(2) AND NOT Z3_ADR_0 AND NOT Z3_ADR(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	autoconfig AND NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT FCS AND Z3_ADR_0 AND NOT Z3_ADR_1 AND NOT Z3_ADR(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	autoconfig AND NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$25));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dout1_D(4) <= ((NOT Z3_ADR(2) AND NOT Z3_ADR_1 AND Z3_ADR_0 AND autoconfig AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$8)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Z3_ADR(2) AND NOT Z3_ADR_0 AND NOT Z3_ADR(6) AND autoconfig AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$8)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Z3_ADR_1 AND Z3_ADR_0 AND NOT Z3_ADR(6) AND autoconfig AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$8));
 </td></tr><tr><td>
 FDCPE_Dout15: FDCPE port map (Dout1(5),Dout1_D(5),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dout1_D(5) <= ((NOT FCS AND NOT Z3_ADR(2) AND NOT Z3_ADR_1 AND autoconfig AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT FCS AND NOT Z3_ADR(2) AND NOT Z3_ADR_0 AND Z3_ADR(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	autoconfig AND NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT FCS AND NOT Z3_ADR_0 AND NOT Z3_ADR_1 AND Z3_ADR(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	autoconfig AND NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$25));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dout1_D(5) <= ((NOT Z3_ADR(2) AND NOT Z3_ADR_1 AND autoconfig AND NOT Z3_ADR(3) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$8)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Z3_ADR(2) AND NOT Z3_ADR_0 AND Z3_ADR(6) AND autoconfig AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$8)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Z3_ADR_1 AND NOT Z3_ADR_0 AND Z3_ADR(6) AND autoconfig AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$8));
 </td></tr><tr><td>
 FDCPE_Dout16: FDCPE port map (Dout1(6),Dout1_D(6),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dout1_D(6) <= ((NOT FCS AND NOT Z3_ADR(2) AND NOT Z3_ADR_0 AND NOT Z3_ADR_1 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dout1_D(6) <= ((NOT Z3_ADR(2) AND NOT Z3_ADR_1 AND NOT Z3_ADR_0 AND autoconfig AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$8)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT Z3_ADR(2) AND NOT Z3_ADR_1 AND NOT Z3_ADR(6) AND autoconfig AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$8)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Z3_ADR(2) AND NOT Z3_ADR_1 AND Z3_ADR_0 AND Z3_ADR(6) AND 
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	autoconfig AND NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT FCS AND NOT Z3_ADR(2) AND NOT Z3_ADR_1 AND NOT Z3_ADR(6) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	autoconfig AND NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT FCS AND Z3_ADR(2) AND Z3_ADR_0 AND NOT Z3_ADR_1 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Z3_ADR(6) AND autoconfig AND NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$25));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$8));
 </td></tr><tr><td>
 FDCPE_Dout17: FDCPE port map (Dout1(7),Dout1_D(7),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dout1_D(7) <= (NOT FCS AND NOT Z3_ADR_1 AND Z3_ADR(6) AND autoconfig AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(3) AND NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$25);
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
-</td></tr><tr><td>
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dout1_D(7) <= (NOT Z3_ADR_1 AND Z3_ADR(6) AND autoconfig AND NOT Z3_ADR(3) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$8);
 </td></tr><tr><td>
 </td></tr><tr><td>
 </td></tr><tr><td>
@@ -700,71 +685,76 @@ INT_OUT_I <= '0';
 </td></tr><tr><td>
 FDCPE_LAN_A_INIT3: FDCPE port map (LAN_A_INIT(3),'0',CLK_EXT,'0',RESET);
 </td></tr><tr><td>
-FDCPE_LAN_A_INIT6: FDCPE port map (LAN_A_INIT(6),BUF_LAN_D_INIT(1)__$INT,CLK_EXT,'0',RESET);
+FDCPE_LAN_A_INIT6: FDCPE port map (LAN_A_INIT(6),NOT LAN_RST_SM_FSM_FFd1,CLK_EXT,'0',RESET);
 </td></tr><tr><td>
 FDCPE_LAN_BASEADR0: FDCPE port map (LAN_BASEADR(0),LAN_BASEADR_D(0),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(0) <= ((D(0).PIN AND $OpTx$FX_DC$42)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(0) AND NOT $OpTx$FX_DC$42));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(0) <= ((D(0).PIN AND $OpTx$FX_DC$17)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(0) AND NOT $OpTx$FX_DC$17));
 </td></tr><tr><td>
 FDCPE_LAN_BASEADR1: FDCPE port map (LAN_BASEADR(1),LAN_BASEADR_D(1),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(1) <= ((D(1).PIN AND $OpTx$FX_DC$42)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(1) AND NOT $OpTx$FX_DC$42));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(1) <= ((D(1).PIN AND $OpTx$FX_DC$17)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(1) AND NOT $OpTx$FX_DC$17));
 </td></tr><tr><td>
 FDCPE_LAN_BASEADR2: FDCPE port map (LAN_BASEADR(2),LAN_BASEADR_D(2),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(2) <= ((D(2).PIN AND $OpTx$FX_DC$42)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(2) AND NOT $OpTx$FX_DC$42));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(2) <= ((D(2).PIN AND $OpTx$FX_DC$17)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(2) AND NOT $OpTx$FX_DC$17));
 </td></tr><tr><td>
 FDCPE_LAN_BASEADR3: FDCPE port map (LAN_BASEADR(3),LAN_BASEADR_D(3),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(3) <= ((D(3).PIN AND $OpTx$FX_DC$42)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(3) AND NOT $OpTx$FX_DC$42));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(3) <= ((D(3).PIN AND $OpTx$FX_DC$17)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(3) AND NOT $OpTx$FX_DC$17));
 </td></tr><tr><td>
 FDCPE_LAN_BASEADR4: FDCPE port map (LAN_BASEADR(4),LAN_BASEADR_D(4),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(4) <= ((D(4).PIN AND $OpTx$FX_DC$42)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(4) AND NOT $OpTx$FX_DC$42));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(4) <= ((D(4).PIN AND $OpTx$FX_DC$17)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(4) AND NOT $OpTx$FX_DC$17));
 </td></tr><tr><td>
 FDCPE_LAN_BASEADR5: FDCPE port map (LAN_BASEADR(5),LAN_BASEADR_D(5),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(5) <= ((D(5).PIN AND $OpTx$FX_DC$42)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(5) AND NOT $OpTx$FX_DC$42));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(5) <= ((D(5).PIN AND $OpTx$FX_DC$17)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(5) AND NOT $OpTx$FX_DC$17));
 </td></tr><tr><td>
 FDCPE_LAN_BASEADR6: FDCPE port map (LAN_BASEADR(6),LAN_BASEADR_D(6),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(6) <= ((D(6).PIN AND $OpTx$FX_DC$42)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(6) AND NOT $OpTx$FX_DC$42));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(6) <= ((D(6).PIN AND $OpTx$FX_DC$17)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(6) AND NOT $OpTx$FX_DC$17));
 </td></tr><tr><td>
 FDCPE_LAN_BASEADR7: FDCPE port map (LAN_BASEADR(7),LAN_BASEADR_D(7),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(7) <= ((D(7).PIN AND $OpTx$FX_DC$42)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(7) AND NOT $OpTx$FX_DC$42));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(7) <= ((D(7).PIN AND $OpTx$FX_DC$17)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(7) AND NOT $OpTx$FX_DC$17));
 </td></tr><tr><td>
 FDCPE_LAN_BASEADR8: FDCPE port map (LAN_BASEADR(8),LAN_BASEADR_D(8),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(8) <= ((D(8).PIN AND $OpTx$FX_DC$42)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(8) AND NOT $OpTx$FX_DC$42));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(8) <= ((D(8).PIN AND $OpTx$FX_DC$17)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(8) AND NOT $OpTx$FX_DC$17));
 </td></tr><tr><td>
 FDCPE_LAN_BASEADR9: FDCPE port map (LAN_BASEADR(9),LAN_BASEADR_D(9),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(9) <= ((D(9).PIN AND $OpTx$FX_DC$42)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(9) AND NOT $OpTx$FX_DC$42));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(9) <= ((D(9).PIN AND $OpTx$FX_DC$17)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(9) AND NOT $OpTx$FX_DC$17));
 </td></tr><tr><td>
 FDCPE_LAN_BASEADR10: FDCPE port map (LAN_BASEADR(10),LAN_BASEADR_D(10),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(10) <= ((D(10).PIN AND $OpTx$FX_DC$42)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(10) AND NOT $OpTx$FX_DC$42));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(10) <= ((D(10).PIN AND $OpTx$FX_DC$17)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(10) AND NOT $OpTx$FX_DC$17));
 </td></tr><tr><td>
 FDCPE_LAN_BASEADR11: FDCPE port map (LAN_BASEADR(11),LAN_BASEADR_D(11),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(11) <= ((D(11).PIN AND $OpTx$FX_DC$42)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(11) AND NOT $OpTx$FX_DC$42));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(11) <= ((D(11).PIN AND $OpTx$FX_DC$17)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(11) AND NOT $OpTx$FX_DC$17));
 </td></tr><tr><td>
 FDCPE_LAN_BASEADR12: FDCPE port map (LAN_BASEADR(12),LAN_BASEADR_D(12),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(12) <= ((D(12).PIN AND $OpTx$FX_DC$42)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(12) AND NOT $OpTx$FX_DC$42));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(12) <= ((D(12).PIN AND $OpTx$FX_DC$17)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(12) AND NOT $OpTx$FX_DC$17));
 </td></tr><tr><td>
 FDCPE_LAN_BASEADR13: FDCPE port map (LAN_BASEADR(13),LAN_BASEADR_D(13),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(13) <= ((D(13).PIN AND $OpTx$FX_DC$42)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(13) AND NOT $OpTx$FX_DC$42));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(13) <= ((D(13).PIN AND $OpTx$FX_DC$17)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(13) AND NOT $OpTx$FX_DC$17));
 </td></tr><tr><td>
-FDCPE_LAN_BASEADR14: FDCPE port map (LAN_BASEADR(14),LAN_BASEADR_D(14),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(14) <= ((D(14).PIN AND $OpTx$FX_DC$42)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(14) AND NOT $OpTx$FX_DC$42));
+FTCPE_LAN_BASEADR14: FTCPE port map (LAN_BASEADR(14),LAN_BASEADR_T(14),CLK_EXT,'0',NOT RESET);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_T(14) <= ((D(14).PIN AND NOT LAN_BASEADR(14) AND $OpTx$FX_DC$17)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT D(14).PIN AND NOT RW AND LAN_BASEADR(14) AND NOT Z3_ADR(2) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Z3_ADR_1 AND NOT Z3_ADR_0 AND NOT Z3_ADR(6) AND autoconfig AND NOT Z3_ADR(3) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	Z3_ADR(4) AND NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$8)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT RW AND LAN_BASEADR(14) AND NOT Z3_ADR(2) AND Z3_ADR_1 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR_0 AND NOT Z3_ADR(6) AND autoconfig AND NOT Z3_ADR(3) AND Z3_ADR(4) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(5) AND NOT $OpTx$FX_DC$8 AND NOT $OpTx$FX_DC$17));
 </td></tr><tr><td>
 FDCPE_LAN_BASEADR15: FDCPE port map (LAN_BASEADR(15),LAN_BASEADR_D(15),CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(15) <= ((D(15).PIN AND $OpTx$FX_DC$42)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(15) AND NOT $OpTx$FX_DC$42));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_BASEADR_D(15) <= ((D(15).PIN AND $OpTx$FX_DC$17)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_BASEADR(15) AND NOT $OpTx$FX_DC$17));
 </td></tr><tr><td>
 </td></tr><tr><td>
 LAN_CFG_I(1) <= '0';
@@ -791,110 +781,110 @@ LAN_CS <= ((RESET AND lan_adr)
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT RESET AND LAN_CS_RST));
 </td></tr><tr><td>
 FDCPE_LAN_CS_RST: FDCPE port map (LAN_CS_RST,LAN_CS_RST_D,CLK_EXT,RESET,'0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_CS_RST_D <= LAN_RST_SM_FSM_FFd1
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	 XOR 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_CS_RST_D <= BUF_LAN_D_INIT(1)__$INT;
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_CS_RST_D <= (NOT LAN_RST_SM_FSM_FFd2 AND NOT LAN_RST_SM_FSM_FFd3);
 </td></tr><tr><td>
-FDCPE_LAN_D_INIT1: FDCPE port map (LAN_D_INIT(1),BUF_LAN_D_INIT(1)__$INT,CLK_EXT,RESET,'0');
+FDCPE_LAN_D_INIT1: FDCPE port map (LAN_D_INIT(1),LAN_RST_SM_FSM_FFd1,CLK_EXT,RESET,'0');
 </td></tr><tr><td>
-FDCPE_LAN_D_INIT9: FDCPE port map (LAN_D_INIT(9),'1',CLK_EXT,RESET,'0');
-</td></tr><tr><td>
-FDCPE_LAN_D_INIT10: FDCPE port map (LAN_D_INIT(10),BUF_LAN_D_INIT(1)__$INT,CLK_EXT,RESET,'0');
+FDCPE_LAN_D_INIT8: FDCPE port map (LAN_D_INIT(8),NOT LAN_RST_SM_FSM_FFd1,CLK_EXT,RESET,'0');
 </td></tr><tr><td>
 FDCPE_LAN_INT_ENABLE: FDCPE port map (LAN_INT_ENABLE,LAN_INT_ENABLE_D,CLK_EXT,NOT RESET,'0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_INT_ENABLE_D <= ((D(15).PIN AND $OpTx$FX_DC$66)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_INT_ENABLE AND NOT $OpTx$FX_DC$66));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_INT_ENABLE_D <= ((D(15).PIN AND $OpTx$FX_DC$38)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_INT_ENABLE AND NOT $OpTx$FX_DC$38));
 </td></tr><tr><td>
 FDCPE_LAN_IRQ_D0: FDCPE port map (LAN_IRQ_D0,LAN_INT,CLK_EXT,'0',NOT RESET);
 </td></tr><tr><td>
 FDCPE_LAN_IRQ_OUT: FDCPE port map (LAN_IRQ_OUT,LAN_IRQ_OUT_D,CLK_EXT,'0',NOT RESET);
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_IRQ_OUT_D <= ((NOT LAN_INT AND LAN_IRQ_D0)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_INT_ENABLE AND NOT D(14).PIN AND NOT LAN_INT AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	$OpTx$FX_DC$66)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT D(14).PIN AND LAN_INT_ENABLE AND NOT LAN_INT AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	$OpTx$FX_DC$38)
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_INT_ENABLE AND NOT LAN_IRQ_OUT AND NOT LAN_INT AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$66));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$38));
 </td></tr><tr><td>
 </td></tr><tr><td>
-LAN_RD <= (LAN_RD_S AND lan_rdy/lan_rdy_RSTF);
+LAN_RD <= (LAN_RD_S AND BUF_LAN_SM_RST);
 </td></tr><tr><td>
-FDCPE_LAN_RD_S: FDCPE port map (LAN_RD_S,BUF_LAN_RD_S,CLK_EXT,NOT lan_rdy/lan_rdy_RSTF,'0');
+FDCPE_LAN_RD_S: FDCPE port map (LAN_RD_S,LAN_RD_S_D,CLK_EXT,LAN_SM_RST,'0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_RD_S_D <= ((NOT RW AND NOT LAN_SM_FSM_FFd10 AND NOT LAN_SM_FSM_FFd6 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd11)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_SM_FSM_FFd10 AND NOT LAN_SM_FSM_FFd6 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd11 AND NOT $OpTx$FX_SC$43));
 </td></tr><tr><td>
-FDCPE_LAN_RST_SM_FSM_FFd1: FDCPE port map (LAN_RST_SM_FSM_FFd1,LAN_RST_SM_FSM_FFd1_D,CLK_EXT,RESET,'0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_RST_SM_FSM_FFd1_D <= ((NOT LAN_RST_SM_FSM_FFd3)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_RST_SM_FSM_FFd2 AND LAN_RST_SM_FSM_FFd1));
+FTCPE_LAN_RST_SM_FSM_FFd1: FTCPE port map (LAN_RST_SM_FSM_FFd1,LAN_RST_SM_FSM_FFd1_T,CLK_EXT,RESET,'0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_RST_SM_FSM_FFd1_T <= (NOT LAN_RST_SM_FSM_FFd1 AND LAN_RST_SM_FSM_FFd2 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_RST_SM_FSM_FFd3);
 </td></tr><tr><td>
 FDCPE_LAN_RST_SM_FSM_FFd2: FDCPE port map (LAN_RST_SM_FSM_FFd2,LAN_RST_SM_FSM_FFd2_D,CLK_EXT,RESET,'0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_RST_SM_FSM_FFd2_D <= ((BUF_LAN_D_INIT(1)__$INT)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_RST_SM_FSM_FFd3 AND NOT LAN_RST_SM_FSM_FFd2));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_RST_SM_FSM_FFd2_D <= ((NOT LAN_RST_SM_FSM_FFd1 AND LAN_RST_SM_FSM_FFd3)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_RST_SM_FSM_FFd2 AND NOT LAN_RST_SM_FSM_FFd3));
 </td></tr><tr><td>
 FDCPE_LAN_RST_SM_FSM_FFd3: FDCPE port map (LAN_RST_SM_FSM_FFd3,LAN_RST_SM_FSM_FFd3_D,CLK_EXT,RESET,'0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_RST_SM_FSM_FFd3_D <= ((LAN_RST_SM_FSM_FFd1 AND NOT BUF_LAN_D_INIT(1)__$INT)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_RST_SM_FSM_FFd2 AND NOT LAN_RST_SM_FSM_FFd1 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	BUF_LAN_D_INIT(1)__$INT));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_RST_SM_FSM_FFd3_D <= LAN_RST_SM_FSM_FFd1
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	 XOR 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_RST_SM_FSM_FFd3_D <= LAN_RST_SM_FSM_FFd2;
 </td></tr><tr><td>
-FTCPE_LAN_SM_FSM_FFd1: FTCPE port map (LAN_SM_FSM_FFd1,LAN_SM_FSM_FFd1_T,CLK_EXT,NOT lan_rdy/lan_rdy_RSTF,'0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_SM_FSM_FFd1_T <= (NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND lan_adr AND NOT RW AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25);
+FDCPE_LAN_SM_FSM_FFd1: FDCPE port map (LAN_SM_FSM_FFd1,LAN_SM_FSM_FFd1_D,CLK_EXT,LAN_SM_RST,'0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_SM_FSM_FFd1_D <= (NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd1);
 </td></tr><tr><td>
-FDCPE_LAN_SM_FSM_FFd2: FDCPE port map (LAN_SM_FSM_FFd2,BUF_LAN_SM_FSM_FFd2,CLK_EXT,NOT lan_rdy/lan_rdy_RSTF,'0');
+FDCPE_LAN_SM_FSM_FFd10: FDCPE port map (LAN_SM_FSM_FFd10,LAN_SM_FSM_FFd10_D,CLK_EXT,LAN_SM_RST,'0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_SM_FSM_FFd10_D <= ((LAN_SM_FSM_FFd6)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (RW AND $OpTx$FX_DC$6 AND $OpTx$FX_SC$43));
 </td></tr><tr><td>
-FDCPE_LAN_SM_FSM_FFd3: FDCPE port map (LAN_SM_FSM_FFd3,LAN_SM_FSM_FFd3_D,CLK_EXT,NOT lan_rdy/lan_rdy_RSTF,'0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_SM_FSM_FFd3_D <= ((NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3 AND NOT $OpTx$FX_DC$23)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1));
+FDCPE_LAN_SM_FSM_FFd11: FDCPE port map (LAN_SM_FSM_FFd11,LAN_SM_FSM_FFd11_D,CLK_EXT,LAN_SM_RST,'0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_SM_FSM_FFd11_D <= (LAN_SM_FSM_FFd12 AND lan_adr AND NOT Z3_ADR(13) AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$6 AND NOT BUF_LAN_SM_FSM_FFd9);
 </td></tr><tr><td>
-FDCPE_LAN_SM_FSM_FFd4: FDCPE port map (LAN_SM_FSM_FFd4,BUF_LAN_SM_FSM_FFd4__$INT,CLK_EXT,NOT lan_rdy/lan_rdy_RSTF,'0');
+FTCPE_LAN_SM_FSM_FFd12: FTCPE port map (LAN_SM_FSM_FFd12,LAN_SM_FSM_FFd12_T,CLK_EXT,'0',LAN_SM_RST);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_SM_FSM_FFd12_T <= (LAN_SM_FSM_FFd12 AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$34);
+</td></tr><tr><td>
+FDCPE_LAN_SM_FSM_FFd2: FDCPE port map (LAN_SM_FSM_FFd2,LAN_SM_FSM_FFd8,CLK_EXT,LAN_SM_RST,'0');
+</td></tr><tr><td>
+FDCPE_LAN_SM_FSM_FFd3: FDCPE port map (LAN_SM_FSM_FFd3,LAN_SM_FSM_FFd3_D,CLK_EXT,LAN_SM_RST,'0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_SM_FSM_FFd3_D <= ((LAN_SM_FSM_FFd4)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_SM_FSM_FFd3 AND $OpTx$FX_DC$36));
+</td></tr><tr><td>
+FDCPE_LAN_SM_FSM_FFd4: FDCPE port map (LAN_SM_FSM_FFd4,LAN_SM_FSM_FFd9,CLK_EXT,LAN_SM_RST,'0');
+</td></tr><tr><td>
+FDCPE_LAN_SM_FSM_FFd5: FDCPE port map (LAN_SM_FSM_FFd5,LAN_SM_FSM_FFd5_D,CLK_EXT,LAN_SM_RST,'0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_SM_FSM_FFd5_D <= (NOT LAN_SM_FSM_FFd5 AND NOT LAN_SM_FSM_FFd10);
+</td></tr><tr><td>
+FDCPE_LAN_SM_FSM_FFd6: FDCPE port map (LAN_SM_FSM_FFd6,LAN_SM_FSM_FFd6_D,CLK_EXT,LAN_SM_RST,'0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_SM_FSM_FFd6_D <= (LAN_SM_FSM_FFd7 AND NOT $OpTx$FX_DC$36);
+</td></tr><tr><td>
+FDCPE_LAN_SM_FSM_FFd7: FDCPE port map (LAN_SM_FSM_FFd7,LAN_SM_FSM_FFd7_D,CLK_EXT,LAN_SM_RST,'0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_SM_FSM_FFd7_D <= ((LAN_SM_FSM_FFd11)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_SM_FSM_FFd7 AND $OpTx$FX_DC$36));
+</td></tr><tr><td>
+FDCPE_LAN_SM_FSM_FFd8: FDCPE port map (LAN_SM_FSM_FFd8,LAN_SM_FSM_FFd8_D,CLK_EXT,LAN_SM_RST,'0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_SM_FSM_FFd8_D <= ((LAN_SM_FSM_FFd3 AND NOT $OpTx$FX_DC$36)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT RW AND NOT BUF_LAN_SM_FSM_FFd9 AND $OpTx$FX_SC$43));
+</td></tr><tr><td>
+FDCPE_LAN_SM_FSM_FFd9: FDCPE port map (LAN_SM_FSM_FFd9,BUF_LAN_SM_FSM_FFd9,CLK_EXT,LAN_SM_RST,'0');
+</td></tr><tr><td>
+FDCPE_LAN_SM_RST: FDCPE port map (LAN_SM_RST,BUF_LAN_SM_RST,CLK_EXT,'0','0');
 </td></tr><tr><td>
 </td></tr><tr><td>
-LAN_WRH <= ((LAN_WR_RST AND NOT lan_rdy/lan_rdy_RSTF)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_WRH_S AND lan_rdy/lan_rdy_RSTF));
+LAN_WRH <= ((LAN_WR_RST AND NOT BUF_LAN_SM_RST)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_WRH_S AND BUF_LAN_SM_RST));
 </td></tr><tr><td>
-FDCPE_LAN_WRH_S: FDCPE port map (LAN_WRH_S,LAN_WRH_S_D,CLK_EXT,NOT lan_rdy/lan_rdy_RSTF,'0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_WRH_S_D <= ((LAN_SM_FSM_FFd2 AND LAN_SM_FSM_FFd1 AND NOT LDS AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$268)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_SM_FSM_FFd2 AND LAN_SM_FSM_FFd1 AND NOT DS0 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$268));
+FDCPE_LAN_WRH_S: FDCPE port map (LAN_WRH_S,LAN_WRH_S_D,CLK_EXT,LAN_SM_RST,'0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_WRH_S_D <= ((NOT LDS AND NOT $OpTx$FX_DC$19)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT DS0 AND NOT $OpTx$FX_DC$41));
 </td></tr><tr><td>
 </td></tr><tr><td>
-LAN_WRL <= ((LAN_WR_RST AND NOT lan_rdy/lan_rdy_RSTF)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_WRL_S AND lan_rdy/lan_rdy_RSTF));
+LAN_WRL <= ((LAN_WR_RST AND NOT BUF_LAN_SM_RST)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_WRL_S AND BUF_LAN_SM_RST));
 </td></tr><tr><td>
-FDCPE_LAN_WRL_S: FDCPE port map (LAN_WRL_S,LAN_WRL_S_D,CLK_EXT,NOT lan_rdy/lan_rdy_RSTF,'0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_WRL_S_D <= ((LAN_SM_FSM_FFd2 AND LAN_SM_FSM_FFd1 AND NOT UDS AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$268)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_SM_FSM_FFd2 AND LAN_SM_FSM_FFd1 AND NOT DS1 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$268));
+FDCPE_LAN_WRL_S: FDCPE port map (LAN_WRL_S,LAN_WRL_S_D,CLK_EXT,LAN_SM_RST,'0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_WRL_S_D <= ((NOT UDS AND NOT $OpTx$FX_DC$19)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT DS1 AND NOT $OpTx$FX_DC$41));
 </td></tr><tr><td>
 FDCPE_LAN_WR_RST: FDCPE port map (LAN_WR_RST,LAN_WR_RST_D,CLK_EXT,RESET,'0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_WR_RST_D <= ((LAN_RST_SM_FSM_FFd3 AND LAN_RST_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_RST_SM_FSM_FFd1)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (LAN_RST_SM_FSM_FFd3 AND NOT LAN_RST_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_RST_SM_FSM_FFd1));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAN_WR_RST_D <= (LAN_RST_SM_FSM_FFd2 AND LAN_RST_SM_FSM_FFd3);
 </td></tr><tr><td>
 </td></tr><tr><td>
 MTACK_I <= '0';
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MTACK <= MTACK_I when MTACK_OE = '1' else 'Z';
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MTACK_OE <= '0';
-</td></tr><tr><td>
-</td></tr><tr><td>
-Mcompar_lan_adr_sw_cmp_eq0001_AEB_or0000/Mcompar_lan_adr_sw_cmp_eq0001_AEB_or0000_D2 <= ((EXP23_.EXP)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(15).PIN AND NOT LAN_BASEADR(15))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT D(15).PIN AND LAN_BASEADR(15))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(10).PIN AND NOT LAN_BASEADR(10))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT D(10).PIN AND LAN_BASEADR(10))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(11).PIN AND NOT LAN_BASEADR(11))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (EXP22_.EXP)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT D(12).PIN AND LAN_BASEADR(12))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(13).PIN AND NOT LAN_BASEADR(13))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT D(13).PIN AND LAN_BASEADR(13))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(14).PIN AND NOT LAN_BASEADR(14))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT D(14).PIN AND LAN_BASEADR(14))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT D(11).PIN AND LAN_BASEADR(11))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(8).PIN AND NOT LAN_BASEADR(8))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT D(8).PIN AND LAN_BASEADR(8))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(9).PIN AND NOT LAN_BASEADR(9))
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT D(9).PIN AND LAN_BASEADR(9)));
 </td></tr><tr><td>
 </td></tr><tr><td>
 N0$BUF7/N0$BUF7_TRST <= ((NOT FCS AND autoconfig)
@@ -919,256 +909,138 @@ ROM_B(1) <= '1';
 </td></tr><tr><td>
 ROM_OE <= '1';
 </td></tr><tr><td>
-FTCPE_SHUT_UP: FTCPE port map (SHUT_UP,SHUT_UP_T,CLK_EXT,'0',NOT RESET);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SHUT_UP_T <= (NOT FCS AND NOT Z3_ADR(2) AND NOT Z3_ADR_0 AND Z3_ADR_1 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(6) AND autoconfig AND NOT RW AND NOT Z3_ADR(3) AND Z3_ADR(4) AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(5) AND SHUT_UP AND NOT $OpTx$FX_DC$25);
+FDCPE_SHUT_UP: FDCPE port map (SHUT_UP,SHUT_UP_D,CLK_EXT,'0',NOT RESET);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SHUT_UP_D <= (SHUT_UP AND NOT $OpTx$FX_DC$17);
 </td></tr><tr><td>
 </td></tr><tr><td>
 SLAVE <= ((FCS)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT autoconfig AND NOT lan_adr));
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr AND NOT autoconfig));
 </td></tr><tr><td>
-FDCPE_Z3_ADR2: FDCPE port map (Z3_ADR(2),A(4),NOT FCS,'0',NOT lan_adr_sw/lan_adr_sw_RSTF);
+FDCPE_Z3_ADR2: FDCPE port map (Z3_ADR(2),A(4),NOT FCS,'0',NOT lan_adr/lan_adr_RSTF);
 </td></tr><tr><td>
-FDCPE_Z3_ADR3: FDCPE port map (Z3_ADR(3),A(5),NOT FCS,'0',NOT lan_adr_sw/lan_adr_sw_RSTF);
+FDCPE_Z3_ADR3: FDCPE port map (Z3_ADR(3),A(5),NOT FCS,'0',NOT lan_adr/lan_adr_RSTF);
 </td></tr><tr><td>
-FDCPE_Z3_ADR4: FDCPE port map (Z3_ADR(4),A(6),NOT FCS,'0',NOT lan_adr_sw/lan_adr_sw_RSTF);
+FDCPE_Z3_ADR4: FDCPE port map (Z3_ADR(4),A(6),NOT FCS,'0',NOT lan_adr/lan_adr_RSTF);
 </td></tr><tr><td>
-FDCPE_Z3_ADR5: FDCPE port map (Z3_ADR(5),A(7),NOT FCS,'0',NOT lan_adr_sw/lan_adr_sw_RSTF);
+FDCPE_Z3_ADR5: FDCPE port map (Z3_ADR(5),A(7),NOT FCS,'0',NOT lan_adr/lan_adr_RSTF);
 </td></tr><tr><td>
-FDCPE_Z3_ADR6: FDCPE port map (Z3_ADR(6),A(8).PIN,NOT FCS,'0',NOT lan_adr_sw/lan_adr_sw_RSTF);
+FDCPE_Z3_ADR6: FDCPE port map (Z3_ADR(6),A(8).PIN,NOT FCS,'0',NOT lan_adr/lan_adr_RSTF);
 </td></tr><tr><td>
-FDCPE_Z3_ADR7: FDCPE port map (Z3_ADR(7),A(9).PIN,NOT FCS,'0',NOT lan_adr_sw/lan_adr_sw_RSTF);
+FDCPE_Z3_ADR7: FDCPE port map (Z3_ADR(7),A(9).PIN,NOT FCS,'0',NOT lan_adr/lan_adr_RSTF);
 </td></tr><tr><td>
-FDCPE_Z3_ADR8: FDCPE port map (Z3_ADR(8),A(10).PIN,NOT FCS,'0',NOT lan_adr_sw/lan_adr_sw_RSTF);
+FDCPE_Z3_ADR8: FDCPE port map (Z3_ADR(8),A(10).PIN,NOT FCS,'0',NOT lan_adr/lan_adr_RSTF);
 </td></tr><tr><td>
-FDCPE_Z3_ADR9: FDCPE port map (Z3_ADR(9),A(11).PIN,NOT FCS,'0',NOT lan_adr_sw/lan_adr_sw_RSTF);
+FDCPE_Z3_ADR9: FDCPE port map (Z3_ADR(9),A(11).PIN,NOT FCS,'0',NOT lan_adr/lan_adr_RSTF);
 </td></tr><tr><td>
-FDCPE_Z3_ADR10: FDCPE port map (Z3_ADR(10),A(12).PIN,NOT FCS,'0',NOT lan_adr_sw/lan_adr_sw_RSTF);
+FDCPE_Z3_ADR10: FDCPE port map (Z3_ADR(10),A(12).PIN,NOT FCS,'0',NOT lan_adr/lan_adr_RSTF);
 </td></tr><tr><td>
-FDCPE_Z3_ADR11: FDCPE port map (Z3_ADR(11),A(13).PIN,NOT FCS,'0',NOT lan_adr_sw/lan_adr_sw_RSTF);
+FDCPE_Z3_ADR11: FDCPE port map (Z3_ADR(11),A(13).PIN,NOT FCS,'0',NOT lan_adr/lan_adr_RSTF);
 </td></tr><tr><td>
-FDCPE_Z3_ADR12: FDCPE port map (Z3_ADR(12),A(14).PIN,NOT FCS,'0',NOT lan_adr_sw/lan_adr_sw_RSTF);
+FDCPE_Z3_ADR12: FDCPE port map (Z3_ADR(12),A(14).PIN,NOT FCS,'0',NOT lan_adr/lan_adr_RSTF);
 </td></tr><tr><td>
-FDCPE_Z3_ADR13: FDCPE port map (Z3_ADR(13),A(15).PIN,NOT FCS,'0',NOT lan_adr_sw/lan_adr_sw_RSTF);
+FDCPE_Z3_ADR13: FDCPE port map (Z3_ADR(13),A(15).PIN,NOT FCS,'0',NOT lan_adr/lan_adr_RSTF);
 </td></tr><tr><td>
-FDCPE_Z3_ADR_0: FDCPE port map (Z3_ADR_0,A(2),NOT FCS,'0',NOT lan_adr_sw/lan_adr_sw_RSTF);
+FDCPE_Z3_ADR_0: FDCPE port map (Z3_ADR_0,A(2),NOT FCS,'0',NOT lan_adr/lan_adr_RSTF);
 </td></tr><tr><td>
-FDCPE_Z3_ADR_1: FDCPE port map (Z3_ADR_1,A(3),NOT FCS,'0',NOT lan_adr_sw/lan_adr_sw_RSTF);
+FDCPE_Z3_ADR_1: FDCPE port map (Z3_ADR_1,A(3),NOT FCS,'0',NOT lan_adr/lan_adr_RSTF);
 </td></tr><tr><td>
-FDCPE_Z3_A_LOW: FDCPE port map (Z3_A_LOW,Z3_A_LOW_D,CLK_EXT,NOT lan_rdy/lan_rdy_RSTF,'0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_A_LOW_D <= ((LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$23)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd3 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd1)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd3 AND lan_adr AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$23 AND $OpTx$FX_DC$24));
+FDCPE_Z3_A_LOW: FDCPE port map (Z3_A_LOW,Z3_A_LOW_D,CLK_EXT,LAN_SM_RST,'0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_A_LOW_D <= ((NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd8 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd10 AND NOT LAN_SM_FSM_FFd6 AND NOT $OpTx$FX_DC$6 AND $OpTx$FX_DC$36)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd8 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd10 AND NOT LAN_SM_FSM_FFd6 AND $OpTx$FX_DC$36 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_SC$43)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_SM_FSM_FFd7 AND NOT LAN_SM_FSM_FFd2 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd8 AND NOT LAN_SM_FSM_FFd10 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd6 AND NOT $OpTx$FX_DC$6)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_SM_FSM_FFd7 AND NOT LAN_SM_FSM_FFd2 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd8 AND NOT LAN_SM_FSM_FFd10 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd6 AND NOT $OpTx$FX_SC$43));
 </td></tr><tr><td>
+FDCPE_Z3_DATA16: FDCPE port map (Z3_DATA(16),Z3_DATA_D(16),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd7);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(16) <= ((dq_swap AND DQ(8).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(0).PIN));
 </td></tr><tr><td>
-Z3_DATA(7)/Z3_DATA(7)_TRST <= (NOT FCS AND lan_adr AND RW AND NOT $OpTx$FX_DC$25);
+FDCPE_Z3_DATA17: FDCPE port map (Z3_DATA(17),Z3_DATA_D(17),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd7);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(17) <= ((dq_swap AND DQ(9).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(1).PIN));
 </td></tr><tr><td>
-FDCPE_Z3_DATA16: FDCPE port map (Z3_DATA(16),Z3_DATA_D(16),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(16) <= ((lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(8).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(0).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(0).PIN AND NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(8).PIN AND lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Z3_DATA(16) AND NOT $OpTx$FX_DC$325));
+FDCPE_Z3_DATA18: FDCPE port map (Z3_DATA(18),Z3_DATA_D(18),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd7);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(18) <= ((dq_swap AND DQ(10).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(2).PIN));
 </td></tr><tr><td>
-FDCPE_Z3_DATA17: FDCPE port map (Z3_DATA(17),Z3_DATA_D(17),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(17) <= ((D(9).PIN AND lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Z3_DATA(17) AND NOT $OpTx$FX_DC$325)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(9).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(1).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(1).PIN AND NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25));
+FDCPE_Z3_DATA19: FDCPE port map (Z3_DATA(19),Z3_DATA_D(19),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd7);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(19) <= ((dq_swap AND DQ(11).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(3).PIN));
 </td></tr><tr><td>
-FDCPE_Z3_DATA18: FDCPE port map (Z3_DATA(18),Z3_DATA_D(18),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(18) <= ((D(10).PIN AND lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Z3_DATA(18) AND NOT $OpTx$FX_DC$325)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(10).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(2).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(2).PIN AND NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25));
+FDCPE_Z3_DATA20: FDCPE port map (Z3_DATA(20),Z3_DATA_D(20),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd7);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(20) <= ((dq_swap AND DQ(12).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(4).PIN));
 </td></tr><tr><td>
-FDCPE_Z3_DATA19: FDCPE port map (Z3_DATA(19),Z3_DATA_D(19),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(19) <= ((D(11).PIN AND lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Z3_DATA(19) AND NOT $OpTx$FX_DC$325)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(11).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(3).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(3).PIN AND NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25));
+FDCPE_Z3_DATA21: FDCPE port map (Z3_DATA(21),Z3_DATA_D(21),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd7);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(21) <= ((dq_swap AND DQ(13).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(5).PIN));
 </td></tr><tr><td>
-FDCPE_Z3_DATA20: FDCPE port map (Z3_DATA(20),Z3_DATA_D(20),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(20) <= ((D(12).PIN AND lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(4).PIN AND NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Z3_DATA(20) AND NOT $OpTx$FX_DC$325)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(12).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(4).PIN));
+FDCPE_Z3_DATA22: FDCPE port map (Z3_DATA(22),Z3_DATA_D(22),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd7);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(22) <= ((dq_swap AND DQ(14).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(6).PIN));
 </td></tr><tr><td>
-FDCPE_Z3_DATA21: FDCPE port map (Z3_DATA(21),Z3_DATA_D(21),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(21) <= ((lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(13).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(13).PIN AND lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(5).PIN AND NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Z3_DATA(21) AND NOT $OpTx$FX_DC$325)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(5).PIN));
+FDCPE_Z3_DATA23: FDCPE port map (Z3_DATA(23),Z3_DATA_D(23),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd7);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(23) <= ((dq_swap AND DQ(15).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(7).PIN));
 </td></tr><tr><td>
-FDCPE_Z3_DATA22: FDCPE port map (Z3_DATA(22),Z3_DATA_D(22),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(22) <= ((D(14).PIN AND lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Z3_DATA(22) AND NOT $OpTx$FX_DC$325)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(14).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(6).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(6).PIN AND NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25));
+FDCPE_Z3_DATA24: FDCPE port map (Z3_DATA(24),Z3_DATA_D(24),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd7);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(24) <= ((dq_swap AND DQ(0).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(8).PIN));
 </td></tr><tr><td>
-FDCPE_Z3_DATA23: FDCPE port map (Z3_DATA(23),Z3_DATA_D(23),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(23) <= ((D(15).PIN AND lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Z3_DATA(23) AND NOT $OpTx$FX_DC$325)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(15).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(7).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(7).PIN AND NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25));
+FDCPE_Z3_DATA25: FDCPE port map (Z3_DATA(25),Z3_DATA_D(25),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd7);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(25) <= ((dq_swap AND DQ(1).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(9).PIN));
 </td></tr><tr><td>
-FDCPE_Z3_DATA24: FDCPE port map (Z3_DATA(24),Z3_DATA_D(24),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(24) <= ((D(0).PIN AND lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Z3_DATA(24) AND NOT $OpTx$FX_DC$325)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(0).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(8).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(8).PIN AND NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25));
+FDCPE_Z3_DATA26: FDCPE port map (Z3_DATA(26),Z3_DATA_D(26),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd7);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(26) <= ((dq_swap AND DQ(2).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(10).PIN));
 </td></tr><tr><td>
-FDCPE_Z3_DATA25: FDCPE port map (Z3_DATA(25),Z3_DATA_D(25),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(25) <= ((D(1).PIN AND lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Z3_DATA(25) AND NOT $OpTx$FX_DC$325)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(1).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(9).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(9).PIN AND NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25));
+FDCPE_Z3_DATA27: FDCPE port map (Z3_DATA(27),Z3_DATA_D(27),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd7);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(27) <= ((dq_swap AND DQ(3).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(11).PIN));
 </td></tr><tr><td>
-FDCPE_Z3_DATA26: FDCPE port map (Z3_DATA(26),Z3_DATA_D(26),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(26) <= ((D(10).PIN AND NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(2).PIN AND lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Z3_DATA(26) AND NOT $OpTx$FX_DC$325)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(2).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(10).PIN));
+FDCPE_Z3_DATA28: FDCPE port map (Z3_DATA(28),Z3_DATA_D(28),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd7);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(28) <= ((dq_swap AND DQ(4).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(12).PIN));
 </td></tr><tr><td>
-FDCPE_Z3_DATA27: FDCPE port map (Z3_DATA(27),Z3_DATA_D(27),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(27) <= ((D(11).PIN AND NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(3).PIN AND lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Z3_DATA(27) AND NOT $OpTx$FX_DC$325)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(3).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(11).PIN));
+FDCPE_Z3_DATA29: FDCPE port map (Z3_DATA(29),Z3_DATA_D(29),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd7);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(29) <= ((dq_swap AND DQ(5).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(13).PIN));
 </td></tr><tr><td>
-FDCPE_Z3_DATA28: FDCPE port map (Z3_DATA(28),Z3_DATA_D(28),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(28) <= ((D(4).PIN AND lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Z3_DATA(28) AND NOT $OpTx$FX_DC$325)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(4).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(12).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(12).PIN AND NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25));
+FDCPE_Z3_DATA30: FDCPE port map (Z3_DATA(30),Z3_DATA_D(30),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd7);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(30) <= ((dq_swap AND DQ(6).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(14).PIN));
 </td></tr><tr><td>
-FDCPE_Z3_DATA29: FDCPE port map (Z3_DATA(29),Z3_DATA_D(29),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(29) <= ((D(5).PIN AND lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Z3_DATA(29) AND NOT $OpTx$FX_DC$325)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(5).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(13).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(13).PIN AND NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25));
+FDCPE_Z3_DATA31: FDCPE port map (Z3_DATA(31),Z3_DATA_D(31),CLK_EXT,'0',LAN_SM_RST,LAN_SM_FSM_FFd7);
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(31) <= ((dq_swap AND DQ(7).PIN)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT dq_swap AND DQ(15).PIN));
 </td></tr><tr><td>
-FDCPE_Z3_DATA30: FDCPE port map (Z3_DATA(30),Z3_DATA_D(30),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(30) <= ((D(14).PIN AND NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(6).PIN AND lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Z3_DATA(30) AND NOT $OpTx$FX_DC$325)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(6).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(14).PIN));
+FDCPE_autoconfig: FDCPE port map (autoconfig,autoconfig_D,NOT FCS,NOT lan_adr/lan_adr_RSTF,'0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;autoconfig_D <= (Z3 AND D(9).PIN AND D(8).PIN AND D(14).PIN AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	D(13).PIN AND D(12).PIN AND D(11).PIN AND D(10).PIN AND D(15).PIN AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT CFIN AND NOT A(20).PIN AND NOT A(19).PIN AND NOT A(18).PIN AND NOT A(17).PIN AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT A(16).PIN AND NOT A(23).PIN AND NOT A(22).PIN AND NOT A(21).PIN AND CFOUT);
 </td></tr><tr><td>
-FDCPE_Z3_DATA31: FDCPE port map (Z3_DATA(31),Z3_DATA_D(31),CLK_EXT,'0',NOT lan_rdy/lan_rdy_RSTF);
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z3_DATA_D(31) <= ((D(7).PIN AND lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Z3_DATA(31) AND NOT $OpTx$FX_DC$325)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(7).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd1 AND DQ(15).PIN)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (D(15).PIN AND NOT lan_adr_sw AND NOT LAN_SM_FSM_FFd4 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND lan_adr AND NOT Z3_ADR(13) AND NOT $OpTx$FX_DC$25));
+FDCPE_dq_swap: FDCPE port map (dq_swap,dq_swap_D,NOT FCS,NOT lan_adr/lan_adr_RSTF,'0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dq_swap_D <= ((NOT A(13).PIN AND BUF_lan_adr)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT A(14).PIN AND BUF_lan_adr));
 </td></tr><tr><td>
-FDCPE_autoconfig: FDCPE port map (autoconfig,BUF_autoconfig,NOT FCS,NOT lan_adr_sw/lan_adr_sw_RSTF,'0');
-</td></tr><tr><td>
-FDCPE_lan_adr: FDCPE port map (lan_adr,lan_adr_D,NOT FCS,NOT lan_adr_sw/lan_adr_sw_RSTF,'0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lan_adr_D <= (Z3 AND NOT SHUT_UP AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Mcompar_lan_adr_sw_cmp_eq0001_AEB_or0000/Mcompar_lan_adr_sw_cmp_eq0001_AEB_or0000_D2 AND NOT BUF_autoconfig);
-</td></tr><tr><td>
-FDCPE_lan_adr_sw: FDCPE port map (lan_adr_sw,lan_adr_sw_D,NOT FCS,NOT lan_adr_sw/lan_adr_sw_RSTF,'0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lan_adr_sw_D <= ((Z3 AND NOT SHUT_UP AND NOT A(13).PIN AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Mcompar_lan_adr_sw_cmp_eq0001_AEB_or0000/Mcompar_lan_adr_sw_cmp_eq0001_AEB_or0000_D2 AND NOT BUF_autoconfig)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (Z3 AND NOT SHUT_UP AND NOT A(14).PIN AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT Mcompar_lan_adr_sw_cmp_eq0001_AEB_or0000/Mcompar_lan_adr_sw_cmp_eq0001_AEB_or0000_D2 AND NOT BUF_autoconfig));
+FDCPE_lan_adr: FDCPE port map (lan_adr,BUF_lan_adr,NOT FCS,NOT lan_adr/lan_adr_RSTF,'0');
 </td></tr><tr><td>
 </td></tr><tr><td>
-lan_adr_sw/lan_adr_sw_RSTF <= (RESET AND BERR);
+lan_adr/lan_adr_RSTF <= (RESET AND BERR);
 </td></tr><tr><td>
-FDCPE_lan_rdy: FDCPE port map (lan_rdy,lan_rdy_D,CLK_EXT,NOT lan_rdy/lan_rdy_RSTF,'0');
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lan_rdy_D <= ((NOT LAN_SM_FSM_FFd4 AND LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	$OpTx$FX_DC$23)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd3)
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd2 AND 
-<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	LAN_SM_FSM_FFd1));
-</td></tr><tr><td>
-</td></tr><tr><td>
-lan_rdy/lan_rdy_RSTF <= (RESET AND NOT FCS);
+FDCPE_lan_rdy: FDCPE port map (lan_rdy,lan_rdy_D,CLK_EXT,LAN_SM_RST,'0');
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lan_rdy_D <= ((NOT LAN_SM_FSM_FFd5 AND NOT LAN_SM_FSM_FFd1 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT $OpTx$FX_DC$36)
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	OR (NOT LAN_SM_FSM_FFd7 AND NOT LAN_SM_FSM_FFd5 AND 
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	NOT LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1));
 </td></tr><tr><td>
 Register Legend:
 <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FDCPE (Q,D,C,CLR,PRE,CE); 
