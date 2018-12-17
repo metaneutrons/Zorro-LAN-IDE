@@ -244,7 +244,7 @@ begin
 			end if;
 			
 			--lan base
-			if(Z3='1' and (D(15 downto 8) & A(23 downto 16)) = LAN_BASEADR and SHUT_UP='0' )then	
+			if(Z3='1' and (D(15 downto 8) & A(23 downto 16)) = x"4000" and SHUT_UP='0' )then	
 				if(A(14 downto 13)<"11")then
 					dq_swap  <= '1';
 				end if;
@@ -279,7 +279,7 @@ begin
 	lan_rst_gen: process (CLK_EXT)
 	begin
 		if rising_edge(CLK_EXT) then			
-			if(FCS ='1' or reset = '0') then
+			if(FCS ='1' or reset = '0' or Z3_DS = '1') then
 				LAN_SM_RST <='1';
 			else
 				LAN_SM_RST <='0';
@@ -314,17 +314,17 @@ begin
 					-- this is a quite complex thing for a cpld 
 					-- so I have to move this out of the cycle start condition and prepare it for every loop 
 					if(UDS='0' or LDS='0')then
-						if(dq_swap='0') then
+						--if(dq_swap='0') then
 							DQ_DATA(15 downto 0) <= Z3_DATA_IN(31 downto 16);
-						else
-							DQ_DATA(15 downto 0) <= Z3_DATA_IN(23 downto 16) & Z3_DATA_IN(31 downto 24);
-						end if;	
+						--else
+						--	DQ_DATA(15 downto 0) <= Z3_DATA_IN(23 downto 16) & Z3_DATA_IN(31 downto 24);
+						--end if;	
 					else
-						if(dq_swap='0') then
+						--if(dq_swap='0') then
 							DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  0);
-						else
-							DQ_DATA(15 downto 0) <= Z3_DATA_IN( 7 downto  0) & Z3_DATA_IN(15 downto  8);
-						end if;
+						--else
+						--	DQ_DATA(15 downto 0) <= Z3_DATA_IN( 7 downto  0) & Z3_DATA_IN(15 downto  8);
+						--end if;
 					end if;
 					if(lan_adr = '1' and Z3_DS = '0' and Z3_ADR(15) = '0' )then --cycle start!
 						
@@ -339,23 +339,10 @@ begin
 								LAN_SM <= wait_read_lower;
 							end if;
 						else
-					
 							-- determine bushalf
 							if(UDS='0' or LDS='0')then
-								-- prepare the data for write
-								if(dq_swap='0') then
-									DQ_DATA(15 downto 0) <= Z3_DATA_IN(31 downto 16);
-								else
-									DQ_DATA(15 downto 0) <= Z3_DATA_IN(23 downto 16) & Z3_DATA_IN(31 downto 24);
-								end if;	
 								LAN_SM <= start_write_upper;
 							else
-								-- prepare the data for write
-								if(dq_swap='0') then
-									DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  0);
-								else
-									DQ_DATA(15 downto 0) <= Z3_DATA_IN( 7 downto  0) & Z3_DATA_IN(15 downto  8);
-								end if;
 								Z3_A_LOW		<= '1';
 								LAN_SM <= start_write_lower;
 							end if;
@@ -369,11 +356,11 @@ begin
 					LAN_SM<=end_read_upper;
 				when end_read_upper=>
 					--fetch data 
-					if(dq_swap='0') then
+					--if(dq_swap='0') then
 						Z3_DATA(31 downto 16) <= DQ;
-					else
-						Z3_DATA(31 downto 16) <= DQ(7 downto 0) & DQ(15 downto 8);
-					end if;
+					--else
+					--	Z3_DATA(31 downto 16) <= DQ(7 downto 0) & DQ(15 downto 8);
+					--end if;
 					if(DS1='1' and DS0='1')then -- no lower half
 						lan_rdy <='1';
 						LAN_SM <= end_read_upper;  -- stay here until cylce end
@@ -391,11 +378,11 @@ begin
 					LAN_SM<=end_read_lower;
 				when end_read_lower=>
 					--fetch data 
-					if(dq_swap='0') then
+					--if(dq_swap='0') then
 						Z3_DATA(15 downto 0) <= DQ;
-					else
-						Z3_DATA(15 downto 0) <= DQ(7 downto 0) & DQ(15 downto 8);
-					end if;
+					--else
+					--	Z3_DATA(15 downto 0) <= DQ(7 downto 0) & DQ(15 downto 8);
+					--end if;
 					lan_rdy <='1';
 					LAN_SM<=end_read_lower; -- stay here until cylce end
 				when start_write_upper=>
@@ -404,17 +391,14 @@ begin
 					LAN_WRL_S   <= not UDS;
 					LAN_SM <= wait_write_upper;
 				when wait_write_upper=>
-					-- swapped LDS/UDS here: ENC624 is little endian
-					LAN_WRH_S   <= not LDS;
-					LAN_WRL_S   <= not UDS;
 					LAN_SM<=end_write_upper;
 				when end_write_upper=>
 					-- prepare the data for write
-					if(dq_swap='0') then
+					--if(dq_swap='0') then
 						DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto 0);
-					else
-						DQ_DATA(15 downto 0) <= Z3_DATA_IN(7 downto 0) & Z3_DATA_IN(15 downto 8);
-					end if;
+					--else
+					--	DQ_DATA(15 downto 0) <= Z3_DATA_IN(7 downto 0) & Z3_DATA_IN(15 downto 8);
+					--end if;
 				
 					if(DS1='1' and DS0='1')then -- no lower half
 						lan_rdy <='1';
@@ -431,9 +415,6 @@ begin
 					LAN_SM <= wait_write_lower;
 				when wait_write_lower=>
 					Z3_A_LOW		<= '1';
-					-- swapped DS0/DS1 here: ENC624 is little endian
-					LAN_WRH_S   <= not DS0;
-					LAN_WRL_S   <= not DS1;
 					LAN_SM<=end_write_lower;
 				when end_write_lower=>
 					lan_rdy <='1';
