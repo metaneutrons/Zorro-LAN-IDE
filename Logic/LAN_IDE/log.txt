@@ -110,6 +110,42 @@ CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_C
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/autoconfig\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/autoconfig\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/autoconfig\/$1I55 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr\/$1I55 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap\/$1I55 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/SHUT_UP\/Q prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDPE"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/SHUT_UP\/Q prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
@@ -515,30 +551,6 @@ CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_0\/X_ZERO prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDPE"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_0\/X_ZERO prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/autoconfig\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/autoconfig\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/autoconfig\/$1I55 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr\/$1I55 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
@@ -2126,707 +2138,1251 @@ CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_I
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<31>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_0_mux00001 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<31>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_0_mux00002 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<31>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_0_mux00003 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<31>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_0_mux00004 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<31>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_1_mux00001 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<31>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_1_mux00002 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<31>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_1_mux00003 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<31>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_1_mux00004 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<31>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_10_mux00001 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<31>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_10_mux00002 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<31>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_10_mux00003 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<30>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_10_mux00004 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<30>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_2_mux00001 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<30>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_2_mux00002 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<30>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_2_mux00003 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<30>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_2_mux00004 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<30>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_11_mux00001 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<30>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_11_mux00002 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<30>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_11_mux00003 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<30>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_11_mux00004 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<30>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_3_mux00001 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<30>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_3_mux00002 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<29>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_3_mux00003 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<29>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_3_mux00004 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<29>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<31>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<29>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<31>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<29>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<31>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<29>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<31>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<29>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<31>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<29>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<31>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<29>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<31>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<29>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<31>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<29>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<31>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<28>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<31>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<28>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<31>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<28>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<31>12 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<28>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<31>13 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<28>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<31>14 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<28>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<31>15 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<28>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<31>16 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<28>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<31>17 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<28>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<31>18 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<28>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<30>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<28>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<30>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<27>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<30>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<27>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<30>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<27>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<30>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<27>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<30>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<27>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<30>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<27>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<30>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<27>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<30>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<27>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<30>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<27>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<30>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<27>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<30>12 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<27>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<30>13 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<26>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<30>14 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<26>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<30>15 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<26>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<30>16 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<26>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<30>17 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<26>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<30>18 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<26>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<29>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<26>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<29>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<26>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<29>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<26>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<29>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<26>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<29>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<26>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<29>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<25>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<29>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<25>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<29>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<25>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<29>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<25>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<29>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<25>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<29>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<25>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<29>12 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<25>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<29>13 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<25>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<29>14 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<25>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<29>15 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<25>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<29>16 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<25>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<29>17 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<24>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<29>18 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<24>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<28>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<24>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<28>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<24>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<28>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<24>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<28>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<24>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<28>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<24>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<28>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<24>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<28>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<24>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<28>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<24>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<28>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<24>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<28>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<23>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<28>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<23>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<28>12 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<23>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<28>13 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<23>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<28>14 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<23>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<28>15 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<23>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<28>16 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<23>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<28>17 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<23>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<28>18 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<23>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<27>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<23>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<27>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<23>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<27>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<22>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<27>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<22>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<27>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<22>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<27>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<22>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<27>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<22>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<27>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<22>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<27>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<22>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<27>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<22>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<27>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<22>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<27>12 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<22>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<27>13 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<22>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<27>14 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<21>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<27>15 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<21>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<27>16 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<21>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<27>17 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<21>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<27>18 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<21>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<26>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<21>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<26>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<21>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<26>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<21>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<26>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<21>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<26>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<21>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<26>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<21>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<26>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<20>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<26>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<20>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<26>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<20>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<26>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<20>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<26>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<20>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<26>12 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<20>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<26>13 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<20>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<26>14 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<20>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<26>15 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<20>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<26>16 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<20>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<26>17 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<20>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<26>18 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<19>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<25>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<19>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<25>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<19>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<25>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<19>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<25>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<19>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<25>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<19>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<25>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<19>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<25>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<19>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<25>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<19>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<25>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<19>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<25>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<19>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<25>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<18>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<25>12 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<18>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<25>13 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<18>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<25>14 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<18>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<25>15 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<18>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<25>16 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<18>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<25>17 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<18>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<25>18 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<18>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<24>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<18>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<24>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<18>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<24>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<18>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<24>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<17>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<24>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<17>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<24>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<17>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<24>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<17>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<24>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<17>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<24>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<17>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<24>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<17>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<24>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<17>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<24>12 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<17>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<24>13 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<17>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<24>14 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<17>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<24>15 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<16>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<24>16 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<16>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<24>17 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<16>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<24>18 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<16>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<23>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<16>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<23>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<16>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<23>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<16>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<23>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<16>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<23>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<16>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<23>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<16>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<23>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0001<16>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<23>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<23>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<23>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<23>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<23>12 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<23>13 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<23>14 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<23>15 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<23>16 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<23>17 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<23>18 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<22>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<22>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<22>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<22>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<22>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<22>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<22>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<22>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<22>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<22>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<22>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<22>12 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<22>13 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<22>14 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<22>15 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<22>16 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<22>17 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<22>18 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<21>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<21>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<21>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<21>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<21>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<21>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<21>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<21>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<21>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<21>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<21>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<21>12 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<21>13 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<21>14 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<21>15 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<21>16 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<21>17 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<21>18 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<20>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<20>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<20>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<20>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<20>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<20>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<20>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<20>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<20>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<20>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<20>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<20>12 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<20>13 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<20>14 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<20>15 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<20>16 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<20>17 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<20>18 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<19>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<19>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<19>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<19>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<19>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<19>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<19>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<19>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<19>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<19>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<19>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<19>12 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<19>13 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<19>14 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<19>15 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<19>16 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<19>17 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<19>18 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<18>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<18>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<18>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<18>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<18>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<18>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<18>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<18>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<18>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<18>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<18>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<18>12 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<18>13 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<18>14 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<18>15 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<18>16 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<18>17 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<18>18 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<17>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<17>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<17>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<17>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<17>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<17>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<17>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<17>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<17>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<17>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<17>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<17>12 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<17>13 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<17>14 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<17>15 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<17>16 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<17>17 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<17>18 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<16>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR8"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<16>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<16>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<16>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<16>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<16>6 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<16>7 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<16>8 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<16>9 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<16>10 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<16>11 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<16>12 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<16>13 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<16>14 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<16>15 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<16>16 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<16>17 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_mux0003<16>18 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
@@ -2847,6 +3403,166 @@ CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_W
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_WRL_S_mux00015 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_12_mux00001 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_12_mux00002 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_12_mux00003 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_12_mux00004 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_4_mux00001 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_4_mux00002 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_4_mux00003 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_4_mux00004 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_13_mux00001 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_13_mux00002 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_13_mux00003 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_13_mux00004 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_5_mux00001 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_5_mux00002 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_5_mux00003 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_5_mux00004 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_14_mux00001 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_14_mux00002 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_14_mux00003 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_14_mux00004 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_6_mux00001 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_6_mux00002 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_6_mux00003 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_6_mux00004 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_15_mux00001 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_15_mux00002 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_15_mux00003 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_15_mux00004 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_7_mux00001 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_7_mux00002 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_7_mux00003 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_7_mux00004 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_8_mux00001 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_8_mux00002 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_8_mux00003 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_8_mux00004 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_9_mux00001 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_9_mux00002 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_9_mux00003 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_DATA_9_mux00004 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
@@ -3414,95 +4130,95 @@ CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/AUTO_
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and00001 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and00001 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and00002 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and00002 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and00003 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and00003 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and00004 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and00004 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and00005 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and00005 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and00006 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and00006 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and00007 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and00007 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and00008 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and00008 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and00009 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and00009 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and000010 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and000010 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and000011 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and000011 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and000012 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and000012 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and000013 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and000013 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and000014 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and000014 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and000015 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and000015 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and000016 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and000016 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and000017 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and000017 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and000018 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and000018 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and000019 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND4"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and000019 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND4"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and000020 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND8"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and000020 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND8"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and000021 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and000021 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and000022 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and000022 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/lan_adr_and000023 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_and000023 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
@@ -3647,6 +4363,22 @@ CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/AUTO_
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/AUTO_CONFIG_DONE_CYCLE_not00013 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_mux00021 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_mux00022 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_mux00023 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/dq_swap_mux00024 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
@@ -3934,26 +4666,6 @@ CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Dout1
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Dout1_mux0003<4>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Dout1_mux0003<4>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Dout1_mux0003<4>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Dout1_mux0003<4>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Dout1_mux0003<4>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Dout1_mux0003<5>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
@@ -3971,6 +4683,26 @@ CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Dout1
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Dout1_mux0003<5>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR4"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Dout1_mux0003<4>1 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Dout1_mux0003<4>2 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Dout1_mux0003<4>3 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Dout1_mux0003<4>4 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Dout1_mux0003<4>5 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
@@ -5534,12 +6266,12 @@ WARNING:Cpld:1007 - Removing unused input(s) 'MTCR'.  The input(s) are unused
 Considering device XC95288XL-10-TQ144.
 Multi-level logic optimization...
 Timespec optimization
-Density optimization...............   
+Density optimization...................................   
 Timespec driven global resource optimizationAll paths with TIMESPECs have been optimized.
 
 General global resource optimization........
 Re-checking device resources ...
-Mapping a total of 192 equations into 16 function blocks...........................................................................
+Mapping a total of 193 equations into 16 function blocks........................................................................................................
 
 Design LAN_IDE_CP has been optimized and fit into device XC95288XL-10-TQ144.
 Creating NGA for simulation.
