@@ -7,7 +7,7 @@
 
   <Properties>
     <property name="Synthesize - XST:Optimization Goal" value="Speed"/>
-    <property name="Synthesize - XST:FSM Encoding Algorithm" value="Auto"/>
+    <property name="Synthesize - XST:FSM Encoding Algorithm" value="Gray"/>
     <property name="Synthesize - XST:Safe Implementation" value="No"/>
   </Properties>
 

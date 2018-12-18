@@ -5,6 +5,9 @@
      behavior or data corruption.  It is strongly advised that
      users do not edit the contents of this file. -->
 <messages>
+<msg type="info" file="Xst" num="2679" delta="new" >Register &lt;<arg fmt="%s" index="1">DQ_SWAP</arg>&gt; in unit &lt;<arg fmt="%s" index="2">LAN_IDE_CP</arg>&gt; has a constant value of <arg fmt="%s" index="3">0</arg> during circuit operation. The register is replaced by logic.
+</msg>
+
 <msg type="info" file="Xst" num="2561" delta="old" >Always blocking tristate driving signal &lt;<arg fmt="%s" index="1">A</arg>&gt; in unit &lt;<arg fmt="%s" index="2">LAN_IDE_CP</arg>&gt; is removed.
 </msg>
 
@@ -45,9 +48,6 @@
 </msg>
 
 <msg type="warning" file="Xst" num="647" delta="old" >Input &lt;<arg fmt="%s" index="1">C1</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-</msg>
-
-<msg type="warning" file="Xst" num="646" delta="old" >Signal &lt;<arg fmt="%s" index="1">LAN_BASEADR</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 </msg>
 
 <msg type="info" file="Xst" num="1799" delta="old" >State <arg fmt="%s" index="1">start_read_upper</arg> is never reached in FSM &lt;<arg fmt="%s" index="2">LAN_SM</arg>&gt;.

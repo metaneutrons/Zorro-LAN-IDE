@@ -3,28 +3,31 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pn" timeStamp="Mon Dec 17 23:59:14 2018">
+<application name="pn" timeStamp="Tue Dec 18 11:57:26 2018">
 <section name="Project Information" visible="false">
-<property name="ProjectID" value="0" type="project"/>
+<property name="ProjectID" value="A2E624B6ED1449CD92F77DE849BF7B51" type="project"/>
 <property name="ProjectIteration" value="0" type="project"/>
 <property name="ProjectFile" value="C:/Users/Matze/Amiga/Hardwarehacks/Zorro-LAN-IDE/Logic/LAN_IDE/LAN_IDE.xise" type="project"/>
-<property name="ProjectCreationTimestamp" value="YYYY-MM-DDTHH:MM:SS" type="project"/>
+<property name="ProjectCreationTimestamp" value="2018-12-18T11:26:25" type="project"/>
 </section>
 <section name="Project Statistics" visible="true">
 <property name="PROP_Enable_Message_Filtering" value="false" type="design"/>
+<property name="PROP_FitterReportFormat" value="HTML" type="process"/>
 <property name="PROP_LastAppliedGoal" value="Balanced" type="design"/>
 <property name="PROP_LastAppliedStrategy" value="area;C:/Users/Matze/Amiga/Hardwarehacks/Zorro-LAN-IDE/Logic/LAN_IDE/area.xds" type="design"/>
 <property name="PROP_ManualCompileOrderImp" value="false" type="design"/>
 <property name="PROP_PropSpecInProjFile" value="Store all values" type="design"/>
 <property name="PROP_Simulator" value="ISim (VHDL/Verilog)" type="design"/>
+<property name="PROP_SynthFsmEncode" value="Gray" type="process"/>
 <property name="PROP_SynthTopFile" value="changed" type="process"/>
 <property name="PROP_Top_Level_Module_Type" value="HDL" type="design"/>
 <property name="PROP_UseSmartGuide" value="false" type="design"/>
 <property name="PROP_UserBrowsedStrategyFiles" value="C:/Users/Matze/Amiga/Hardwarehacks/Zorro-LAN-IDE/Logic/LAN_IDE/area.xds" type="process"/>
-<property name="PROP_intProjectCreationTimestamp" value="YYYY-MM-DDTHH:MM:SS" type="design"/>
-<property name="PROP_intWbtProjectID" value="0" type="design"/>
-<property name="PROP_intWorkingDirLocWRTProjDir" value="UnableToCalculate" type="design"/>
-<property name="PROP_intWorkingDirUsed" value="Unknown" type="design"/>
+<property name="PROP_UserConstraintEditorPreference" value="Text Editor" type="process"/>
+<property name="PROP_intProjectCreationTimestamp" value="2018-12-18T11:26:25" type="design"/>
+<property name="PROP_intWbtProjectID" value="A2E624B6ED1449CD92F77DE849BF7B51" type="design"/>
+<property name="PROP_intWorkingDirLocWRTProjDir" value="Same" type="design"/>
+<property name="PROP_intWorkingDirUsed" value="No" type="design"/>
 <property name="PROP_lockPinsUcfFile" value="changed" type="process"/>
 <property name="PROP_AutoTop" value="true" type="design"/>
 <property name="PROP_DevFamily" value="XC9500XL CPLDs" type="design"/>
