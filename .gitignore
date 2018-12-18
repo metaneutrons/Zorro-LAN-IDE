@@ -102,3 +102,7 @@ Driver/enc624j6net/clean.bat
 *.html
 
 Logic/LAN_IDE/_ngo/
+
+Driver/baxnet/source/make\.bat
+
+Driver/baxnet/source/vasm\.exe

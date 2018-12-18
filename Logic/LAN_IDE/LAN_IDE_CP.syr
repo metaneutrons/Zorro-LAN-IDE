@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.14 secs
+Total CPU time to Xst completion: 0.13 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.15 secs
+Total CPU time to Xst completion: 0.13 secs
  
 --> Reading design: LAN_IDE_CP.prj
 
@@ -120,8 +120,8 @@ INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     Found finite state machine <FSM_0> for signal <LAN_SM>.
     -----------------------------------------------------------------------
     | States             | 12                                             |
-    | Transitions        | 24                                             |
-    | Inputs             | 8                                              |
+    | Transitions        | 21                                             |
+    | Inputs             | 5                                              |
     | Outputs            | 12                                             |
     | Clock              | CLK_EXT                   (rising_edge)        |
     | Reset              | LAN_SM_RST                (positive)           |
@@ -377,18 +377,18 @@ Design Statistics
 # IOs                              : 116
 
 Cell Usage :
-# BELS                             : 1069
-#      AND2                        : 360
-#      AND3                        : 53
-#      AND4                        : 6
+# BELS                             : 1039
+#      AND2                        : 351
+#      AND3                        : 51
+#      AND4                        : 5
 #      AND8                        : 4
 #      GND                         : 1
-#      INV                         : 398
+#      INV                         : 381
 #      OR2                         : 200
 #      OR3                         : 11
 #      OR4                         : 17
 #      VCC                         : 1
-#      XOR2                        : 18
+#      XOR2                        : 17
 # FlipFlops/Latches                : 115
 #      FD                          : 1
 #      FDC                         : 18
@@ -404,11 +404,11 @@ Cell Usage :
 
 
 Total REAL time to Xst completion: 9.00 secs
-Total CPU time to Xst completion: 9.09 secs
+Total CPU time to Xst completion: 8.37 secs
  
 --> 
 
-Total memory usage is 4534800 kilobytes
+Total memory usage is 4534784 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   51 (   0 filtered)

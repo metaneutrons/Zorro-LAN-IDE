@@ -240,7 +240,7 @@ begin
 			if(Z3='1' and (D(15 downto 8)& A(23 downto 16)) = x"FF00" and AUTO_CONFIG_DONE = '0' and CFIN='0')then
 				AUTOCONFIG_ACCESS 	<= '1';
 			else
-			AUTOCONFIG_ACCESS 	<= '0';
+				AUTOCONFIG_ACCESS 	<= '0';
 			end if;
 			
 			--lan base
@@ -268,15 +268,26 @@ begin
 			CONFIG_READY <='0';
 		elsif rising_edge(CLK_EXT) then
 			LAN_IRQ_D0 <= LAN_INT;
-			if(LAN_INT ='0' and LAN_IRQ_D0 ='1') then
-				LAN_IRQ_OUT <='0';
-			elsif(LAN_INT ='1' or LAN_INT_ENABLE = '0')then
+			
+			--set/deassert the LAN-interrupt bit
+			if(	LAN_INT ='1' --or --no interupt 
+					--(LAN_ACCESS = '1' and FCS ='0' and UDS ='0' and RW='0' and 
+					--	Z3_ADR(15)='1' and Z3_DATA_IN(30)='1') --deassert via bus controll
+				)then
 				LAN_IRQ_OUT <='1';
-			elsif(LAN_ACCESS = '1' and Z3_DS ='0' and RW='0' and Z3_ADR(15)='1') then 
-				LAN_IRQ_OUT		<= Z3_DATA_IN(30); --controll lan irq
+			elsif(
+					(LAN_INT ='0' and LAN_IRQ_D0 = '1' ) --or --falling edge
+					--(LAN_ACCESS = '1' and FCS ='0' and UDS ='0' and RW='0' and 
+					--	Z3_ADR(15)='1' and Z3_DATA_IN(30)='0' and LAN_INT_ENABLE ='1') --set via bus controll
+				) then
+				LAN_IRQ_OUT <='0';
 			end if;
-			if(LAN_ACCESS = '1' and Z3_DS ='0' and RW='0' and Z3_ADR(15)='1') then --enable if a write to A15 occured
-				LAN_INT_ENABLE <= Z3_DATA_IN(31);
+			
+			--set int enable and config ready flogs
+			if(LAN_ACCESS = '1' and FCS ='0' and RW='0' and Z3_ADR(15)='1') then --enable if a write to A15 occured
+				if(UDS ='0')then 
+					LAN_INT_ENABLE <= Z3_DATA_IN(31); --this controlls the output bit
+				end if;
 				CONFIG_READY <='1';
 			end if;
 		end if;
@@ -286,7 +297,7 @@ begin
 	lan_rst_gen: process (CLK_EXT)
 	begin
 		if rising_edge(CLK_EXT) then			
-			if(FCS ='1' or reset = '0' or Z3_DS = '1') then
+			if(FCS ='1' or reset = '0' or Z3_DS = '1' or LAN_ACCESS = '0' or Z3_ADR(15) = '1' ) then
 				LAN_SM_RST <='1';
 			else
 				LAN_SM_RST <='0';
@@ -315,7 +326,7 @@ begin
 			LAN_READY <='0';
 			case LAN_SM is
 				when nop=>
-				
+					--cycle start!
 				
 					-- prepare the data for write
 					-- this is a quite complex thing for a cpld 
@@ -327,35 +338,31 @@ begin
 							DQ_DATA(15 downto 0) <= Z3_DATA_IN(23 downto 16) & Z3_DATA_IN(31 downto 24);
 						end if;	
 					else
+						Z3_A_LOW		<= '1';
 						if(DQ_SWAP='0') then
 							DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  0);
 						else
 							DQ_DATA(15 downto 0) <= Z3_DATA_IN( 7 downto  0) & Z3_DATA_IN(15 downto  8);
 						end if;
 					end if;
-					if(LAN_ACCESS = '1' and Z3_DS = '0' and Z3_ADR(15) = '0' )then --cycle start!
+
 						
-						if(RW='1')then --read from MSB
-							-- determine bushalf
-							if(UDS='0' or LDS='0')then
-								LAN_SM <= wait_read_upper;
-								LAN_RD_S		<= '1';
-							else
-								Z3_A_LOW		<= '1';
-								LAN_RD_S		<= '1';
-								LAN_SM <= wait_read_lower;
-							end if;
-						else
-							-- determine bushalf
-							if(UDS='0' or LDS='0')then
-								LAN_SM <= start_write_upper;
-							else
-								Z3_A_LOW		<= '1';
-								LAN_SM <= start_write_lower;
-							end if;
+					if(RW='1')then --read from MSB
+						-- determine bushalf
+						if(UDS='0' or LDS='0')then
+							LAN_SM <= wait_read_upper;
+							LAN_RD_S		<= '1';
+						else		
+							LAN_RD_S		<= '1';
+							LAN_SM <= wait_read_lower;
 						end if;
 					else
-						LAN_SM <= nop;
+						-- determine bushalf
+						if(UDS='0' or LDS='0')then
+							LAN_SM <= start_write_upper;
+						else
+							LAN_SM <= start_write_lower;
+						end if;
 					end if;
 				when start_read_upper=>
 					LAN_RD_S		<= '1';

@@ -530,7 +530,7 @@ _enc624j6l_Init:
 	moveq	#ECON1_RXEN,d0		;no RX, my dear (yet)
 	CLRREG	ECON1,a0,d0		;
 
-	;33.333Mhz clock out frequency (see defines above)
+	;set clock out frequency (see defines above)
 	move.w	#CLOCK_DEF_CLR,d0	;clr mask
 	CLRREG	ECON2,a0,d0
 	move.w	#CLOCK_DEF_SET,d0	;set mask
