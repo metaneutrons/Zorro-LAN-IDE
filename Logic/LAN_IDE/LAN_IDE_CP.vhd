@@ -229,27 +229,31 @@ begin
 		if(DECODE_RESET ='0')then
 			AUTOCONFIG_ACCESS 	<= '0';
 			LAN_ACCESS 		<= '0';
-			DQ_SWAP  <= '0';
+			DQ_SWAP  <= '1';
 			Z3_ADR <= (others => '1'); 
 		elsif(falling_edge(FCS))then		
-			--default values
-			AUTOCONFIG_ACCESS 	<= '0';
-			LAN_ACCESS 		<= '0';
-			DQ_SWAP  <= '0';
+
 			Z3_ADR(15 downto 2) <= A(15 downto 2);-- latch the whole address for the whole cycle
 			
 			--use D(15 downto 8)& A(23 downto 16) = A(31 downto 16) for quick response
 			--AUTOCONFIG_ACCESS
 			if(Z3='1' and (D(15 downto 8)& A(23 downto 16)) = x"FF00" and AUTO_CONFIG_DONE = '0' and CFIN='0')then
 				AUTOCONFIG_ACCESS 	<= '1';
+			else
+			AUTOCONFIG_ACCESS 	<= '0';
 			end if;
 			
 			--lan base
 			if(Z3='1' and (D(15 downto 8) & A(23 downto 16)) = LAN_BASEADR and SHUT_UP='0' )then	
-				--if(A(14 downto 13)<"11")then
-				--	DQ_SWAP  <= '1';
-				--end if;
+				if(A(14 downto 13)<"11")then
+					DQ_SWAP  <= '1';
+				else
+					DQ_SWAP  <= '0';
+				end if;
 				LAN_ACCESS 		<= '1';
+			else
+				LAN_ACCESS 		<= '0';
+				DQ_SWAP  <= '1';
 			end if;		
 		end if;				
 	end process ADDRESS_DECODE;

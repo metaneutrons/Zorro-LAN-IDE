@@ -10,7 +10,7 @@ Total CPU time to Xst completion: 0.14 secs
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.14 secs
+Total CPU time to Xst completion: 0.15 secs
  
 --> Reading design: LAN_IDE_CP.prj
 
@@ -91,7 +91,6 @@ Analyzing hierarchy for entity <LAN_IDE_CP> in library <work> (architecture <beh
 *                            HDL Analysis                               *
 =========================================================================
 Analyzing Entity <LAN_IDE_CP> in library <work> (Architecture <behavioral>).
-INFO:Xst:2679 - Register <DQ_SWAP> in unit <LAN_IDE_CP> has a constant value of 0 during circuit operation. The register is replaced by logic.
 Entity <LAN_IDE_CP> analyzed. Unit <LAN_IDE_CP> generated.
 
 
@@ -177,9 +176,11 @@ INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     Found 1-bit register for signal <CONFIG_READY>.
     Found 8-bit register for signal <D_OUT>.
     Found 16-bit register for signal <DQ_DATA>.
+    Found 1-bit register for signal <DQ_SWAP>.
+    Found 2-bit comparator less for signal <DQ_SWAP$cmp_lt0000> created at line 248.
     Found 14-bit register for signal <LAN_A_INIT>.
     Found 1-bit register for signal <LAN_ACCESS>.
-    Found 16-bit comparator equal for signal <LAN_ACCESS$cmp_eq0000> created at line 248.
+    Found 16-bit comparator equal for signal <LAN_ACCESS$cmp_eq0000> created at line 247.
     Found 16-bit register for signal <LAN_BASEADR>.
     Found 1-bit register for signal <LAN_CS_RST>.
     Found 16-bit register for signal <LAN_D_INIT>.
@@ -199,8 +200,8 @@ INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     Summary:
 	inferred   2 Finite State Machine(s).
 	inferred   1 ROM(s).
-	inferred  48 D-type flip-flop(s).
-	inferred   1 Comparator(s).
+	inferred  49 D-type flip-flop(s).
+	inferred   2 Comparator(s).
 	inferred  57 Tristate(s).
 Unit <LAN_IDE_CP> synthesized.
 
@@ -211,13 +212,14 @@ HDL Synthesis Report
 Macro Statistics
 # ROMs                                                 : 1
  16x8-bit ROM                                          : 1
-# Registers                                            : 55
- 1-bit register                                        : 49
+# Registers                                            : 56
+ 1-bit register                                        : 50
  14-bit register                                       : 2
  16-bit register                                       : 3
  8-bit register                                        : 1
-# Comparators                                          : 1
+# Comparators                                          : 2
  16-bit comparator equal                               : 1
+ 2-bit comparator less                                 : 1
 # Tristates                                            : 27
  1-bit tristate buffer                                 : 25
  16-bit tristate buffer                                : 2
@@ -289,8 +291,8 @@ Macro Statistics
 # FSMs                                                 : 2
 # ROMs                                                 : 1
  16x8-bit ROM                                          : 1
-# Registers                                            : 48
- Flip-Flops                                            : 48
+# Registers                                            : 49
+ Flip-Flops                                            : 49
 # Comparators                                          : 1
  16-bit comparator equal                               : 1
 
@@ -327,14 +329,14 @@ INFO:Xst:2261 - The FF/Latch <LAN_D_INIT_1> in Unit <LAN_IDE_CP> is equivalent t
 Optimizing unit <LAN_IDE_CP> ...
   implementation constraint: INIT=s	 : D_OUT_7
   implementation constraint: INIT=s	 : D_OUT_6
-  implementation constraint: INIT=s	 : D_OUT_0
-  implementation constraint: INIT=s	 : D_OUT_1
-  implementation constraint: INIT=s	 : D_OUT_2
-  implementation constraint: INIT=s	 : D_OUT_3
-  implementation constraint: INIT=s	 : D_OUT_4
   implementation constraint: INIT=s	 : D_OUT_5
   implementation constraint: INIT=s	 : LAN_A_INIT_3
+  implementation constraint: INIT=s	 : D_OUT_4
+  implementation constraint: INIT=s	 : D_OUT_3
   implementation constraint: INIT=s	 : LAN_A_INIT_6
+  implementation constraint: INIT=s	 : D_OUT_2
+  implementation constraint: INIT=s	 : D_OUT_1
+  implementation constraint: INIT=s	 : D_OUT_0
   implementation constraint: INIT=r	 : LAN_D_INIT_1
   implementation constraint: INIT=r	 : LAN_D_INIT_8
   implementation constraint: INIT=r	 : LAN_RST_SM_FSM_FFd1
@@ -375,23 +377,23 @@ Design Statistics
 # IOs                              : 116
 
 Cell Usage :
-# BELS                             : 825
-#      AND2                        : 247
+# BELS                             : 1069
+#      AND2                        : 360
 #      AND3                        : 53
 #      AND4                        : 6
 #      AND8                        : 4
 #      GND                         : 1
-#      INV                         : 316
-#      OR2                         : 151
+#      INV                         : 398
+#      OR2                         : 200
 #      OR3                         : 11
 #      OR4                         : 17
 #      VCC                         : 1
 #      XOR2                        : 18
-# FlipFlops/Latches                : 114
+# FlipFlops/Latches                : 115
 #      FD                          : 1
 #      FDC                         : 18
 #      FDCE                        : 4
-#      FDP                         : 41
+#      FDP                         : 42
 #      FDPE                        : 50
 # IO Buffers                       : 109
 #      IBUF                        : 19
@@ -402,13 +404,13 @@ Cell Usage :
 
 
 Total REAL time to Xst completion: 9.00 secs
-Total CPU time to Xst completion: 8.71 secs
+Total CPU time to Xst completion: 9.09 secs
  
 --> 
 
-Total memory usage is 4534768 kilobytes
+Total memory usage is 4534800 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   51 (   0 filtered)
-Number of infos    :   11 (   0 filtered)
+Number of infos    :   10 (   0 filtered)
 
