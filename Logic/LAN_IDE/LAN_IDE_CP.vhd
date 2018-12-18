@@ -287,6 +287,8 @@ begin
 			if(LAN_ACCESS = '1' and FCS ='0' and RW='0' and Z3_ADR(15)='1') then --enable if a write to A15 occured
 				if(UDS ='0')then 
 					LAN_INT_ENABLE <= Z3_DATA_IN(31); --this controlls the output bit
+				elsif(DS1 ='0')then
+					LAN_INT_ENABLE <= Z3_DATA_IN(15); --this controlls the output bit
 				end if;
 				CONFIG_READY <='1';
 			end if;
@@ -370,6 +372,9 @@ begin
 				when wait_read_upper=>
 					LAN_RD_S		<= '1';
 					LAN_SM<=end_read_upper;
+					if(DS1='1' and DS0='1')then -- no lower half
+						LAN_READY <='1';
+					end if;
 				when end_read_upper=>
 					--fetch data 
 					if(DQ_SWAP='0') then
@@ -391,6 +396,7 @@ begin
 				when wait_read_lower=>
 					Z3_A_LOW		<= '1';
 					LAN_RD_S		<= '1';
+					LAN_READY <='1';
 					LAN_SM<=end_read_lower;
 				when end_read_lower=>
 					--fetch data 
@@ -408,6 +414,9 @@ begin
 					LAN_SM <= wait_write_upper;
 				when wait_write_upper=>
 					LAN_SM<=end_write_upper;
+					if(DS1='1' and DS0='1')then -- no lower half
+						LAN_READY <='1';
+					end if;
 				when end_write_upper=>
 					-- prepare the data for write
 					if(DQ_SWAP='0') then
@@ -431,6 +440,7 @@ begin
 					LAN_SM <= wait_write_lower;
 				when wait_write_lower=>
 					Z3_A_LOW		<= '1';
+					LAN_READY <='1';
 					LAN_SM<=end_write_lower;
 				when end_write_lower=>
 					LAN_READY <='1';
