@@ -826,7 +826,7 @@ _enc624j6l_DisableInterrupt:
 
 	moveq	#0,d0			;magic trick: the board enables Interrupts
 	lea	$4000(a0),a0
-	move.w	d0,$4002(a0)
+	move.w	d0,($4000,a0)
 	lea	-$4000(a0),a0
 	
 	;WRITEREG $8000,a0,d0		;only with this "sesame"

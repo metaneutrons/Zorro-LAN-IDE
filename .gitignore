@@ -106,3 +106,9 @@ Logic/LAN_IDE/_ngo/
 Driver/baxnet/source/make\.bat
 
 Driver/baxnet/source/vasm\.exe
+
+*.2o
+
+Driver/baxnet/source/Makefile
+
+Driver/baxnet/source/vc\.cfg

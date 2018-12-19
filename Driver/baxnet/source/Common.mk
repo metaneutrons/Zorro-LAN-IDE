@@ -21,15 +21,15 @@
 # debug = 1 will include string debugging for terminal/sushi/sashimi
 debug = 0
 # compiler_vcc = 1 will trigger VBCC, else GCC
-compiler_vcc = 0
+compiler_vcc = 1
 
 ###############################################################################
 # prefix for system includes (ASM)
 # 
 ###############################################################################
-PREFX  = /opt/amigaos-68k/
+PREFX  = c:/Users/Matze/Amiga/development/VBCC/
 #PREFX = gg:
-SYSINC = $(PREFX)os-include
+SYSINC = $(PREFX)NDK39/Include/include_i
 
 ###############################################################################
 #
@@ -68,7 +68,7 @@ VASMFORMAT2 = -m$(CPU2) -Fhunk -nowarn=2064 -quiet -I$(SYSINC)
 # 
 ###############################################################################
 
-IPATH =
+IPATH = /cygdrive/c/Users/Matze/Amiga/Hardwarehacks/Zorro-LAN-IDE/Driver/baxnet/source
 
 ###############################################################################
 #
@@ -112,7 +112,7 @@ endif
 ifeq ($(debug),1)
 CFLAGS  += -DDEBUG -g
 CFLAGS2 += -DDEBUG -g
-LINKLIBS = -L$(PREFX)/lib -ldebug
+LINKLIBS = -L$(PREFX)targets/m68k-amigaos/lib -ldebug
 endif
 
 ###############################################################################

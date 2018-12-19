@@ -334,32 +334,32 @@ begin
 					-- prepare the data for write
 					-- this is a quite complex thing for a cpld 
 					-- so I have to move this out of the cycle start condition and prepare it for every loop 
-					if(Z3_DS(3 downto 2) = "00")then
+					if(Z3_DS(3 downto 2) < "11")then
 						if(DQ_SWAP='0') then
 							DQ_DATA(15 downto 0) <= Z3_DATA_IN(31 downto 16);
 						else
 							DQ_DATA(15 downto 0) <= Z3_DATA_IN(23 downto 16) & Z3_DATA_IN(31 downto 24);
 						end if;
-					elsif(Z3_DS(3 downto 2) = "10")then
-						DQ_DATA(15 downto 0) <= Z3_DATA_IN(23 downto 16) & Z3_DATA_IN(23 downto 16);
-					elsif(Z3_DS(3 downto 2) = "01")then
-						DQ_DATA(15 downto 0) <= Z3_DATA_IN(31 downto 24) & Z3_DATA_IN(31 downto 24);
+					--elsif(Z3_DS(3 downto 2) = "10")then
+					--	DQ_DATA(15 downto 0) <= Z3_DATA_IN(23 downto 16) & Z3_DATA_IN(23 downto 16);
+					--elsif(Z3_DS(3 downto 2) = "01")then
+					--	DQ_DATA(15 downto 0) <= Z3_DATA_IN(31 downto 24) & Z3_DATA_IN(31 downto 24);
 					else -- lower word!
 						Z3_A_LOW		<= '1';
 						
-						if(Z3_DS(1 downto 0) = "00")then
+						--if(Z3_DS(1 downto 0) < "11")then
 							if(DQ_SWAP='0') then
 								DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  0);
 							else
 								DQ_DATA(15 downto 0) <= Z3_DATA_IN( 7 downto  0) & Z3_DATA_IN(15 downto  8);
 							end if;
-						elsif(Z3_DS(1 downto 0) = "10")then
-								DQ_DATA(15 downto 0) <= Z3_DATA_IN( 7 downto  0) & Z3_DATA_IN( 7 downto  0);						
-						elsif(Z3_DS(1 downto 0) = "01")then
-								DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  8) & Z3_DATA_IN(15 downto  8);
-						else --"11"
-							DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  0);
-						end if;
+						--elsif(Z3_DS(1 downto 0) = "10")then
+						--		DQ_DATA(15 downto 0) <= Z3_DATA_IN( 7 downto  0) & Z3_DATA_IN( 7 downto  0);						
+						--elsif(Z3_DS(1 downto 0) = "01")then
+						--		DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  8) & Z3_DATA_IN(15 downto  8);
+						--else --"11"
+						--	DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  0);
+						--end if;
 					end if;	
 						
 					if(RW='1')then --read from MSB
@@ -426,19 +426,19 @@ begin
 					LAN_SM<=end_write_upper;
 				when end_write_upper=>
 					-- prepare the data for write
-					if(Z3_DS(1 downto 0) = "00")then
+					--if(Z3_DS(1 downto 0) = "00")then
 						if(DQ_SWAP='0') then
 							DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  0);
 						else
 							DQ_DATA(15 downto 0) <= Z3_DATA_IN( 7 downto  0) & Z3_DATA_IN(15 downto  8);
 						end if;
-					elsif(Z3_DS(1 downto 0) = "10")then
-							DQ_DATA(15 downto 0) <= Z3_DATA_IN( 7 downto  0) & Z3_DATA_IN( 7 downto  0);						
-					elsif(Z3_DS(1 downto 0) = "01")then
-							DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  8) & Z3_DATA_IN(15 downto  8);
-					else --"11"
-							DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  0);
-					end if;
+					--elsif(Z3_DS(1 downto 0) = "10")then
+					--		DQ_DATA(15 downto 0) <= Z3_DATA_IN( 7 downto  0) & Z3_DATA_IN( 7 downto  0);						
+					--elsif(Z3_DS(1 downto 0) = "01")then
+					--		DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  8) & Z3_DATA_IN(15 downto  8);
+					--else --"11"
+					--		DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  0);
+					--end if;
 				
 					if(Z3_DS(1 downto 0) = "11")then -- no lower half
 						LAN_READY <='1';
