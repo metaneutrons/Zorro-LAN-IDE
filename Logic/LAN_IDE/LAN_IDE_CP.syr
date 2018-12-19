@@ -3,14 +3,14 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 --> Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.13 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.14 secs
  
 --> Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.13 secs
+Total REAL time to Xst completion: 1.00 secs
+Total CPU time to Xst completion: 0.14 secs
  
 --> Reading design: LAN_IDE_CP.prj
 
@@ -388,16 +388,16 @@ Design Statistics
 # IOs                              : 116
 
 Cell Usage :
-# BELS                             : 917
-#      AND2                        : 220
+# BELS                             : 903
+#      AND2                        : 216
 #      AND3                        : 77
 #      AND4                        : 5
 #      AND8                        : 4
 #      GND                         : 1
-#      INV                         : 271
-#      OR2                         : 293
+#      INV                         : 268
+#      OR2                         : 287
 #      OR3                         : 8
-#      OR4                         : 4
+#      OR4                         : 3
 #      OR8                         : 16
 #      VCC                         : 1
 #      XOR2                        : 17
@@ -416,11 +416,11 @@ Cell Usage :
 
 
 Total REAL time to Xst completion: 9.00 secs
-Total CPU time to Xst completion: 8.30 secs
+Total CPU time to Xst completion: 8.66 secs
  
 --> 
 
-Total memory usage is 4534768 kilobytes
+Total memory usage is 4534828 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   51 (   0 filtered)

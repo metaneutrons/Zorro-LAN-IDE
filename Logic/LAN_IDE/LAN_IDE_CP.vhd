@@ -325,7 +325,7 @@ begin
 			LAN_RD_S		<= '0';
 			LAN_WRH_S	<= '0';
 			LAN_WRL_S	<= '0';
-			Z3_A_LOW		<= DQ_SWAP;
+			Z3_A_LOW		<= '0';
 			LAN_READY 	<= '0';
 			case LAN_SM is
 				when nop=>
@@ -345,7 +345,7 @@ begin
 					elsif(Z3_DS(3 downto 2) = "01")then
 						DQ_DATA(15 downto 0) <= Z3_DATA_IN(31 downto 24) & Z3_DATA_IN(31 downto 24);
 					else -- lower word!
-						Z3_A_LOW		<= not DQ_SWAP;
+						Z3_A_LOW		<= '1';
 						
 						if(Z3_DS(1 downto 0) = "00")then
 							if(DQ_SWAP='0') then
@@ -396,15 +396,15 @@ begin
 						LAN_READY <='1';
 						LAN_SM <= end_read_upper;  -- stay here until cylce end
 					else
-						Z3_A_LOW		<= not DQ_SWAP;
+						Z3_A_LOW		<= '1';
 						LAN_SM <= start_read_lower;
 					end if;
 				when start_read_lower=>
-					Z3_A_LOW		<= not DQ_SWAP;
+					Z3_A_LOW		<= '1';
 					LAN_RD_S		<= '1';
 					LAN_SM <= wait_read_lower;
 				when wait_read_lower=>
-					Z3_A_LOW		<= not DQ_SWAP;
+					Z3_A_LOW		<= '1';
 					LAN_RD_S		<= '1';
 					LAN_READY 	<= '1';
 					LAN_SM<=end_read_lower;
@@ -444,17 +444,17 @@ begin
 						LAN_READY <='1';
 						LAN_SM <= end_write_upper;  -- stay here until cylce end
 					else
-						Z3_A_LOW		<= not DQ_SWAP;
+						Z3_A_LOW		<= '1';
 						LAN_SM <= start_write_lower;
 					end if;
 				when start_write_lower=>
-					Z3_A_LOW		<= not DQ_SWAP;
+					Z3_A_LOW		<= '1';
 					-- swapped DS0/DS1 here: ENC624 is little endian
 					LAN_WRH_S   <= not Z3_DS(0);
 					LAN_WRL_S   <= not Z3_DS(1);
 					LAN_SM <= wait_write_lower;
 				when wait_write_lower=>
-					Z3_A_LOW		<= not DQ_SWAP;
+					Z3_A_LOW		<= '1';
 					LAN_READY <='1';
 					LAN_SM<=end_write_lower;
 				when end_write_lower=>

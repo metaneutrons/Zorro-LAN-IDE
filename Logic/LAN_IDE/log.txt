@@ -3240,6 +3240,34 @@ CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/AUTOC
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00041 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR4"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00042 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00043 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00044 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00045 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00046 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00047 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_SM_RST_or00001 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
@@ -3293,90 +3321,6 @@ CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_I
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_INT_ENABLE_not00018 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00041 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR4"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00042 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00043 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00044 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00045 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR4"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00046 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00047 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00048 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND3"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00049 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux000410 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux000411 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux000412 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux000413 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux000414 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux000415 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux000416 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux000417 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux000418 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux000419 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux000420 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux000421 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
@@ -7023,13 +6967,13 @@ WARNING:Cpld:1007 - Removing unused input(s) 'MTCR'.  The input(s) are unused
    after optimization. Please verify functionality via simulation.
 Considering device XC95288XL-10-TQ144.
 Multi-level logic optimization...
-Timespec optimization..
-Density optimization........................................   
+Timespec optimization.
+Density optimization..........................................   
 Timespec driven global resource optimizationAll paths with TIMESPECs have been optimized.
 
 General global resource optimization........
 Re-checking device resources ...
-Mapping a total of 221 equations into 16 function blocks.................................................................................................................
+Mapping a total of 220 equations into 16 function blocks.................................................................................................................
 
 Design LAN_IDE_CP has been optimized and fit into device XC95288XL-10-TQ144.
 Creating NGA for simulation.
