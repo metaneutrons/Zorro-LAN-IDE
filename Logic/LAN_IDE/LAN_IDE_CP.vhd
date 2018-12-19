@@ -132,9 +132,10 @@ architecture Behavioral of LAN_IDE_CP is
 	signal Z3_DATA_IN:STD_LOGIC_VECTOR(31 downto 0);
 	signal Z3_DATA:STD_LOGIC_VECTOR(31 downto 0);
 	signal DQ_DATA:STD_LOGIC_VECTOR(15 downto 0);
-	signal Z3_DS:STD_LOGIC;
+	signal Z3_DS:STD_LOGIC_VECTOR(3 downto 0);
 	signal Z3_A_LOW:STD_LOGIC;
 	signal LAN_SM_RST:STD_LOGIC;
+
 	
 	signal LAN_CS_RST: std_logic;
 	signal LAN_WR_RST: std_logic;
@@ -160,7 +161,7 @@ begin
 	Z3_DATA_IN <= D(15 downto 0) & A(23 downto 8);
 	DECODE_RESET <= BERR and reset;
 	
-	Z3_DS <= UDS and LDS and DS1 and DS0;
+	Z3_DS <= UDS & LDS & DS1 & DS0;
 	clock_init: process(reset,CLK_EXT)
 	begin
 		if(reset='1')then
@@ -271,13 +272,13 @@ begin
 			
 			--set/deassert the LAN-interrupt bit
 			if(	LAN_INT ='1' --or --no interupt 
-					--(LAN_ACCESS = '1' and FCS ='0' and UDS ='0' and RW='0' and 
+					--(LAN_ACCESS = '1' and FCS ='0' and Z3_DS(3) ='0' and RW='0' and 
 					--	Z3_ADR(15)='1' and Z3_DATA_IN(30)='1') --deassert via bus controll
 				)then
 				LAN_IRQ_OUT <='1';
 			elsif(
 					(LAN_INT ='0' and LAN_IRQ_D0 = '1' ) --or --falling edge
-					--(LAN_ACCESS = '1' and FCS ='0' and UDS ='0' and RW='0' and 
+					--(LAN_ACCESS = '1' and FCS ='0' and Z3_DS(3) ='0' and RW='0' and 
 					--	Z3_ADR(15)='1' and Z3_DATA_IN(30)='0' and LAN_INT_ENABLE ='1') --set via bus controll
 				) then
 				LAN_IRQ_OUT <='0';
@@ -285,9 +286,9 @@ begin
 			
 			--set int enable and config ready flogs
 			if(LAN_ACCESS = '1' and FCS ='0' and RW='0' and Z3_ADR(15)='1') then --enable if a write to A15 occured
-				if(UDS ='0')then 
+				if(Z3_DS(3) ='0')then 
 					LAN_INT_ENABLE <= Z3_DATA_IN(31); --this controlls the output bit
-				elsif(DS1 ='0')then
+				elsif(Z3_DS(2) ='0')then
 					LAN_INT_ENABLE <= Z3_DATA_IN(15); --this controlls the output bit
 				end if;
 				CONFIG_READY <='1';
@@ -298,8 +299,8 @@ begin
 	--clock this signal to avoid glitches due to short resets
 	lan_rst_gen: process (CLK_EXT)
 	begin
-		if rising_edge(CLK_EXT) then			
-			if(FCS ='1' or reset = '0' or Z3_DS = '1' or LAN_ACCESS = '0' or Z3_ADR(15) = '1' ) then
+		if falling_edge(CLK_EXT) then			
+			if(FCS ='1' or reset = '0' or Z3_DS = "1111" or LAN_ACCESS = '0' or Z3_ADR(15) = '1' ) then
 				LAN_SM_RST <='1';
 			else
 				LAN_SM_RST <='0';
@@ -316,7 +317,7 @@ begin
 			LAN_WRH_S	<= '0';
 			LAN_WRL_S	<= '0';
 			Z3_A_LOW		<= '0';
-			LAN_READY <='0';
+			LAN_READY 	<= '0';
 			Z3_DATA(31 downto 0) <= x"FFFFFFFF";
 			DQ_DATA(15 downto 0) <= x"FFFF";
 		elsif rising_edge(CLK_EXT) then			
@@ -324,8 +325,8 @@ begin
 			LAN_RD_S		<= '0';
 			LAN_WRH_S	<= '0';
 			LAN_WRL_S	<= '0';
-			Z3_A_LOW		<= '0';
-			LAN_READY <='0';
+			Z3_A_LOW		<= DQ_SWAP;
+			LAN_READY 	<= '0';
 			case LAN_SM is
 				when nop=>
 					--cycle start!
@@ -333,25 +334,37 @@ begin
 					-- prepare the data for write
 					-- this is a quite complex thing for a cpld 
 					-- so I have to move this out of the cycle start condition and prepare it for every loop 
-					if(UDS='0' or LDS='0')then
+					if(Z3_DS(3 downto 2) = "00")then
 						if(DQ_SWAP='0') then
 							DQ_DATA(15 downto 0) <= Z3_DATA_IN(31 downto 16);
 						else
 							DQ_DATA(15 downto 0) <= Z3_DATA_IN(23 downto 16) & Z3_DATA_IN(31 downto 24);
-						end if;	
-					else
-						Z3_A_LOW		<= '1';
-						if(DQ_SWAP='0') then
-							DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  0);
-						else
-							DQ_DATA(15 downto 0) <= Z3_DATA_IN( 7 downto  0) & Z3_DATA_IN(15 downto  8);
 						end if;
-					end if;
-
+					elsif(Z3_DS(3 downto 2) = "10")then
+						DQ_DATA(15 downto 0) <= Z3_DATA_IN(23 downto 16) & Z3_DATA_IN(23 downto 16);
+					elsif(Z3_DS(3 downto 2) = "01")then
+						DQ_DATA(15 downto 0) <= Z3_DATA_IN(31 downto 24) & Z3_DATA_IN(31 downto 24);
+					else -- lower word!
+						Z3_A_LOW		<= not DQ_SWAP;
+						
+						if(Z3_DS(1 downto 0) = "00")then
+							if(DQ_SWAP='0') then
+								DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  0);
+							else
+								DQ_DATA(15 downto 0) <= Z3_DATA_IN( 7 downto  0) & Z3_DATA_IN(15 downto  8);
+							end if;
+						elsif(Z3_DS(1 downto 0) = "10")then
+								DQ_DATA(15 downto 0) <= Z3_DATA_IN( 7 downto  0) & Z3_DATA_IN( 7 downto  0);						
+						elsif(Z3_DS(1 downto 0) = "01")then
+								DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  8) & Z3_DATA_IN(15 downto  8);
+						else --"11"
+							DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  0);
+						end if;
+					end if;	
 						
 					if(RW='1')then --read from MSB
 						-- determine bushalf
-						if(UDS='0' or LDS='0')then
+						if(Z3_DS(3 downto 2) < "11")then
 							LAN_SM <= wait_read_upper;
 							LAN_RD_S		<= '1';
 						else		
@@ -360,7 +373,7 @@ begin
 						end if;
 					else
 						-- determine bushalf
-						if(UDS='0' or LDS='0')then
+						if(Z3_DS(3 downto 2) < "11")then
 							LAN_SM <= start_write_upper;
 						else
 							LAN_SM <= start_write_lower;
@@ -372,9 +385,6 @@ begin
 				when wait_read_upper=>
 					LAN_RD_S		<= '1';
 					LAN_SM<=end_read_upper;
-					if(DS1='1' and DS0='1')then -- no lower half
-						LAN_READY <='1';
-					end if;
 				when end_read_upper=>
 					--fetch data 
 					if(DQ_SWAP='0') then
@@ -382,21 +392,21 @@ begin
 					else
 						Z3_DATA(31 downto 16) <= DQ(7 downto 0) & DQ(15 downto 8);
 					end if;
-					if(DS1='1' and DS0='1')then -- no lower half
+					if(Z3_DS(1 downto 0) = "11")then -- no lower half
 						LAN_READY <='1';
 						LAN_SM <= end_read_upper;  -- stay here until cylce end
 					else
-						Z3_A_LOW		<= '1';
+						Z3_A_LOW		<= not DQ_SWAP;
 						LAN_SM <= start_read_lower;
 					end if;
 				when start_read_lower=>
-					Z3_A_LOW		<= '1';
+					Z3_A_LOW		<= not DQ_SWAP;
 					LAN_RD_S		<= '1';
 					LAN_SM <= wait_read_lower;
 				when wait_read_lower=>
-					Z3_A_LOW		<= '1';
+					Z3_A_LOW		<= not DQ_SWAP;
 					LAN_RD_S		<= '1';
-					LAN_READY <='1';
+					LAN_READY 	<= '1';
 					LAN_SM<=end_read_lower;
 				when end_read_lower=>
 					--fetch data 
@@ -408,38 +418,43 @@ begin
 					LAN_READY <='1';
 					LAN_SM<=end_read_lower; -- stay here until cylce end
 				when start_write_upper=>
-					-- swapped LDS/UDS here: ENC624 is little endian
-					LAN_WRH_S   <= not LDS;
-					LAN_WRL_S   <= not UDS;
+					-- swapped DS3/DS2 here: ENC624 is little endian
+					LAN_WRH_S   <= not Z3_DS(2);
+					LAN_WRL_S   <= not Z3_DS(3);
 					LAN_SM <= wait_write_upper;
 				when wait_write_upper=>
 					LAN_SM<=end_write_upper;
-					if(DS1='1' and DS0='1')then -- no lower half
-						LAN_READY <='1';
-					end if;
 				when end_write_upper=>
 					-- prepare the data for write
-					if(DQ_SWAP='0') then
-						DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto 0);
-					else
-						DQ_DATA(15 downto 0) <= Z3_DATA_IN(7 downto 0) & Z3_DATA_IN(15 downto 8);
+					if(Z3_DS(1 downto 0) = "00")then
+						if(DQ_SWAP='0') then
+							DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  0);
+						else
+							DQ_DATA(15 downto 0) <= Z3_DATA_IN( 7 downto  0) & Z3_DATA_IN(15 downto  8);
+						end if;
+					elsif(Z3_DS(1 downto 0) = "10")then
+							DQ_DATA(15 downto 0) <= Z3_DATA_IN( 7 downto  0) & Z3_DATA_IN( 7 downto  0);						
+					elsif(Z3_DS(1 downto 0) = "01")then
+							DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  8) & Z3_DATA_IN(15 downto  8);
+					else --"11"
+							DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  0);
 					end if;
 				
-					if(DS1='1' and DS0='1')then -- no lower half
+					if(Z3_DS(1 downto 0) = "11")then -- no lower half
 						LAN_READY <='1';
 						LAN_SM <= end_write_upper;  -- stay here until cylce end
 					else
-						Z3_A_LOW		<= '1';
+						Z3_A_LOW		<= not DQ_SWAP;
 						LAN_SM <= start_write_lower;
 					end if;
 				when start_write_lower=>
-					Z3_A_LOW		<= '1';
+					Z3_A_LOW		<= not DQ_SWAP;
 					-- swapped DS0/DS1 here: ENC624 is little endian
-					LAN_WRH_S   <= not DS0;
-					LAN_WRL_S   <= not DS1;
+					LAN_WRH_S   <= not Z3_DS(0);
+					LAN_WRL_S   <= not Z3_DS(1);
 					LAN_SM <= wait_write_lower;
 				when wait_write_lower=>
-					Z3_A_LOW		<= '1';
+					Z3_A_LOW		<= not DQ_SWAP;
 					LAN_READY <='1';
 					LAN_SM<=end_write_lower;
 				when end_write_lower=>
@@ -465,7 +480,7 @@ begin
 			D_OUT<=x"FF";
 			if(FCS='1')then
 				AUTO_CONFIG_DONE <= AUTO_CONFIG_DONE_CYCLE or not AUTOBOOT_OFF ;
-			elsif(AUTOCONFIG_ACCESS= '1' and Z3_DS='0' ) then		
+			elsif(AUTOCONFIG_ACCESS= '1' and Z3_DS(3)='0' ) then		
 				case Z3_ADR(8 downto 2) is
 					when "0000000"	=> D_OUT <= "10000001" ; --Z3, No mem, no Rom, single, board, 64kb 
 					when "1000000"	=> D_OUT <= "00010001" ; --Z3, No mem, no Rom, single, board, 64kb 
@@ -505,18 +520,18 @@ begin
 								 Z3_ADR(14 downto 2) & Z3_A_LOW; 
 	
 	--signal assignment
-	D(15 downto 0)	<=	Z3_DATA(31 downto 16) 	when RW='1' and Z3_DS ='0' and FCS='0' and LAN_ACCESS ='1' else		
-							D_OUT	& x"FF" 				when RW='1' and Z3_DS ='0' and FCS='0' and AUTOCONFIG_ACCESS ='1' else
+	D(15 downto 0)	<=	Z3_DATA(31 downto 16) 	when RW='1' and Z3_DS <"1111" and FCS='0' and LAN_ACCESS ='1' else		
+							D_OUT	& x"FF" 				when RW='1' and Z3_DS <"1111" and FCS='0' and AUTOCONFIG_ACCESS ='1' else
 							(others => 'Z');
 
-	A(23 downto 8)	<=	Z3_DATA(15 downto  0) 	when RW='1' and Z3_DS ='0' and FCS='0' and LAN_ACCESS ='1' else			
+	A(23 downto 8)	<=	Z3_DATA(15 downto  0) 	when RW='1' and Z3_DS <"1111" and FCS='0' and LAN_ACCESS ='1' else			
 							(others => 'Z');
 			
 	A(7 downto 1) <= (others => 'Z');
 
 	--defined lancp signal that matches both LAN and CP addresses
 	DQ <=	LAN_D_INIT 					when reset='0' else
-			DQ_DATA(15 downto  0)	when RW='0' and FCS='0' and Z3_DS ='0' and LAN_ACCESS ='1' else
+			DQ_DATA(15 downto  0)	when RW='0' and FCS='0' and Z3_DS <"1111" and LAN_ACCESS ='1' else
 			(others => 'Z');
 
 	INT_OUT <= '0' when LAN_IRQ_OUT = '0' and LAN_INT_ENABLE = '1' else
@@ -526,7 +541,7 @@ begin
 	SLAVE <= '0' when FCS='0' and (AUTOCONFIG_ACCESS  = '1' or LAN_ACCESS = '1') else '1';	
 	CFOUT <= '0' when AUTO_CONFIG_DONE='1' else '1';
 	
-	OVR <= 'Z';
+	OVR <= '0' when FCS='0' and (AUTOCONFIG_ACCESS  = '1' or LAN_ACCESS = '1') else 'Z'; --is Cache inhibit ob Z3!
 
 	DTACK <= '0' when FCS='0' and (LAN_READY = '1' or AUTOCONFIG_ACCESS ='1' or CONFIG_READY='1') else 'Z';
 
