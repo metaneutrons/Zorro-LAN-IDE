@@ -5,7 +5,7 @@
     The structure and the elements are likely to change over the next few releases.
     This means code written to parse this file will need to be revisited each subsequent release.-->
 
-  <application stringID="Xst" timeStamp="Wed Dec 19 19:06:30 2018">
+  <application stringID="Xst" timeStamp="Thu Dec 20 17:35:56 2018">
     <section stringID="User_Env">
       <table stringID="User_EnvVar">
         <column stringID="variable"/>
@@ -122,15 +122,15 @@
           <item dataType="int" stringID="XST_AND4" value="5"/>
           <item dataType="int" stringID="XST_GND" value="1"/>
           <item dataType="int" stringID="XST_INV" value="220"/>
-          <item dataType="int" stringID="XST_OR2" value="191"/>
+          <item dataType="int" stringID="XST_OR2" value="190"/>
           <item dataType="int" stringID="XST_VCC" value="1"/>
           <item dataType="int" stringID="XST_XOR2" value="17"/>
         </item>
         <item dataType="int" stringID="XST_FLIPFLOPSLATCHES" value="123">
           <item dataType="int" stringID="XST_FD" value="1"/>
-          <item dataType="int" stringID="XST_FDC" value="25"/>
+          <item dataType="int" stringID="XST_FDC" value="24"/>
           <item dataType="int" stringID="XST_FDCE" value="4"/>
-          <item dataType="int" stringID="XST_FDP" value="43"/>
+          <item dataType="int" stringID="XST_FDP" value="44"/>
           <item dataType="int" stringID="XST_FDPE" value="50"/>
         </item>
         <item dataType="int" stringID="XST_IO_BUFFERS" value="109">

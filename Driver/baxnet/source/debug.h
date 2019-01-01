@@ -11,6 +11,7 @@
 #define _INC_DEBUG_H
 
 #ifdef DEBUG
+#include <clib/exec_protos.h>
 extern void KPrintF(char *, ...), KGetChar(void);
 
 #define D(_x_) do { KPrintF("%s:%ld:",__FILE__,__LINE__); KPrintF _x_; } while(0)

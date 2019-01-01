@@ -19,7 +19,7 @@
 #
 ###############################################################################
 # debug = 1 will include string debugging for terminal/sushi/sashimi
-debug = 0
+debug = 1
 # compiler_vcc = 1 will trigger VBCC, else GCC
 compiler_vcc = 1
 
@@ -68,7 +68,7 @@ VASMFORMAT2 = -m$(CPU2) -Fhunk -nowarn=2064 -quiet -I$(SYSINC)
 # 
 ###############################################################################
 
-IPATH = /cygdrive/c/Users/Matze/Amiga/Hardwarehacks/Zorro-LAN-IDE/Driver/baxnet/source
+IPATH = 
 
 ###############################################################################
 #

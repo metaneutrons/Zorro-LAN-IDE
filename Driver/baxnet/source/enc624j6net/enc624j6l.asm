@@ -21,9 +21,9 @@
 ;	incdir	Temp:Amiga/src/Zorro-LAN-IDE.git/Driver/enc624j6net/
 	include "enc624j6net/registers.i"
 	include "enc624j6net/macros.i"
-
+  include	lvo/exec_lib.i
 ; enable debugging code block
-DEBUG	EQU	0
+DEBUG	EQU	1
 ;
 ADD_4RX	EQU	1	;add 4 to valid RX size (fake CRC), fixes shapeshifter RAW treatment
 

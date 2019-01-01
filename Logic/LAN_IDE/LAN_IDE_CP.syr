@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.13 secs
+Total CPU time to Xst completion: 0.16 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.13 secs
+Total CPU time to Xst completion: 0.16 secs
  
 --> Reading design: LAN_IDE_CP.prj
 
@@ -395,17 +395,17 @@ Cell Usage :
 #      AND8                        : 4
 #      GND                         : 1
 #      INV                         : 220
-#      OR2                         : 191
-#      OR3                         : 24
+#      OR2                         : 190
+#      OR3                         : 25
 #      OR4                         : 3
 #      OR8                         : 16
 #      VCC                         : 1
 #      XOR2                        : 17
 # FlipFlops/Latches                : 123
 #      FD                          : 1
-#      FDC                         : 25
+#      FDC                         : 24
 #      FDCE                        : 4
-#      FDP                         : 43
+#      FDP                         : 44
 #      FDPE                        : 50
 # IO Buffers                       : 109
 #      IBUF                        : 19
@@ -415,12 +415,12 @@ Cell Usage :
 =========================================================================
 
 
-Total REAL time to Xst completion: 8.00 secs
-Total CPU time to Xst completion: 8.51 secs
+Total REAL time to Xst completion: 9.00 secs
+Total CPU time to Xst completion: 9.22 secs
  
 --> 
 
-Total memory usage is 4534800 kilobytes
+Total memory usage is 4534788 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   51 (   0 filtered)

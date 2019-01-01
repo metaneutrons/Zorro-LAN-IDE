@@ -74,18 +74,6 @@ CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_W
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW\/$1I55 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_WR_RST\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
@@ -1036,258 +1024,6 @@ CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_I
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_SM_RST\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_SM_RST\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_SM_RST\/$1I43 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_0\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_0\/Q\/FDCP prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_0\/Q\/FDCP prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_0\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_0\/Q\/X_ONE prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_0\/Q\/X_ONE prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_0\/$1I41 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_0\/$1I41 prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_0\/$1I41 prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_1\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_1\/Q\/FDCP prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_1\/Q\/FDCP prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_1\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_1\/Q\/X_ONE prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_1\/Q\/X_ONE prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_1\/$1I41 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_1\/$1I41 prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_1\/$1I41 prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_2\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_2\/Q\/FDCP prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_2\/Q\/FDCP prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_2\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_2\/Q\/X_ONE prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_2\/Q\/X_ONE prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_2\/$1I41 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_2\/$1I41 prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_2\/$1I41 prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_3\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_3\/Q\/FDCP prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_3\/Q\/FDCP prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_3\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_3\/Q\/X_ONE prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_3\/Q\/X_ONE prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_3\/$1I41 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_3\/$1I41 prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_3\/$1I41 prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_4\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_4\/Q\/FDCP prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_4\/Q\/FDCP prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_4\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_4\/Q\/X_ONE prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_4\/Q\/X_ONE prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_4\/$1I41 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_4\/$1I41 prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_4\/$1I41 prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_5\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_5\/Q\/FDCP prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_5\/Q\/FDCP prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_5\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_5\/Q\/X_ONE prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_5\/Q\/X_ONE prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_5\/$1I41 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_5\/$1I41 prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_5\/$1I41 prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_6\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_6\/Q\/FDCP prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_6\/Q\/FDCP prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_6\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_6\/Q\/X_ONE prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_6\/Q\/X_ONE prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_6\/$1I41 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_6\/$1I41 prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_6\/$1I41 prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_7\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_7\/Q\/FDCP prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_7\/Q\/FDCP prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_7\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_7\/Q\/X_ONE prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_7\/Q\/X_ONE prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_7\/$1I41 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_7\/$1I41 prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_7\/$1I41 prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_3\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_3\/Q\/FDCP prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_3\/Q\/FDCP prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_3\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_3\/Q\/X_ONE prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_3\/Q\/X_ONE prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_3\/$1I41 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_3\/$1I41 prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_3\/$1I41 prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_6\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_6\/Q\/FDCP prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_6\/Q\/FDCP prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_6\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_6\/Q\/X_ONE prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_6\/Q\/X_ONE prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_6\/$1I41 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_6\/$1I41 prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_6\/$1I41 prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
-
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
-
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_15\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_15\/Q\/FDCP prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
@@ -1573,6 +1309,276 @@ CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_0\/$1I41 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/DQ_DATA_0\/$1I41 prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW\/Q\/FDCP prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW\/Q\/X_ONE prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW\/$1I41 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW\/$1I41 prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_SM_RST\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_SM_RST\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_SM_RST\/$1I43 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_0\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_0\/Q\/FDCP prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_0\/Q\/FDCP prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_0\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_0\/Q\/X_ONE prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_0\/Q\/X_ONE prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_0\/$1I41 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_0\/$1I41 prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_0\/$1I41 prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_1\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_1\/Q\/FDCP prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_1\/Q\/FDCP prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_1\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_1\/Q\/X_ONE prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_1\/Q\/X_ONE prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_1\/$1I41 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_1\/$1I41 prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_1\/$1I41 prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_2\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_2\/Q\/FDCP prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_2\/Q\/FDCP prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_2\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_2\/Q\/X_ONE prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_2\/Q\/X_ONE prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_2\/$1I41 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_2\/$1I41 prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_2\/$1I41 prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_3\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_3\/Q\/FDCP prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_3\/Q\/FDCP prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_3\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_3\/Q\/X_ONE prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_3\/Q\/X_ONE prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_3\/$1I41 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_3\/$1I41 prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_3\/$1I41 prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_4\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_4\/Q\/FDCP prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_4\/Q\/FDCP prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_4\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_4\/Q\/X_ONE prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_4\/Q\/X_ONE prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_4\/$1I41 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_4\/$1I41 prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_4\/$1I41 prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_5\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_5\/Q\/FDCP prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_5\/Q\/FDCP prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_5\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_5\/Q\/X_ONE prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_5\/Q\/X_ONE prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_5\/$1I41 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_5\/$1I41 prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_5\/$1I41 prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_6\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_6\/Q\/FDCP prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_6\/Q\/FDCP prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_6\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_6\/Q\/X_ONE prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_6\/Q\/X_ONE prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_6\/$1I41 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_6\/$1I41 prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_6\/$1I41 prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_7\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_7\/Q\/FDCP prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_7\/Q\/FDCP prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_7\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_7\/Q\/X_ONE prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_7\/Q\/X_ONE prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_7\/$1I41 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_7\/$1I41 prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/D_OUT_7\/$1I41 prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_3\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_3\/Q\/FDCP prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_3\/Q\/FDCP prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_3\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_3\/Q\/X_ONE prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_3\/Q\/X_ONE prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_3\/$1I41 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_3\/$1I41 prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_3\/$1I41 prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_6\/Q\/FDCP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_6\/Q\/FDCP prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_6\/Q\/FDCP prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_6\/Q\/X_ONE prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "FDCP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_6\/Q\/X_ONE prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_6\/Q\/X_ONE prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_6\/$1I41 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "GND"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_6\/$1I41 prop_name=INIT prop_terse=XDM_PROPERTY_STRING "INIT" "1"
+
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/LAN_A_INIT_6\/$1I41 prop_name=FPGAINIT prop_terse=XDM_PROPERTY_INT32 "FPGAINIT" 1
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
@@ -3840,15 +3846,15 @@ CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00022 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00022 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00023 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00023 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00024 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "INV"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00024 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "AND2"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
@@ -3856,7 +3862,7 @@ CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
-CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00026 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR2"
+CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP/Z3_A_LOW_mux00026 prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "OR3"
 
 CS: block property: block_name=/LAN_IDE_CP/EXPANDED_FlattenFull/LAN_IDE_CP prop_name=TYPE prop_terse=XDM_PROPERTY_STRING "TYPE" "LAN_IDE_CP"
 
@@ -6397,7 +6403,7 @@ Timespec driven global resource optimizationAll paths with TIMESPECs have been o
 
 General global resource optimization........
 Re-checking device resources ...
-Mapping a total of 215 equations into 16 function blocks...........................................................................
+Mapping a total of 215 equations into 16 function blocks.............................................................................
 
 Design LAN_IDE_CP has been optimized and fit into device XC95288XL-10-TQ144.
 Creating NGA for simulation.
