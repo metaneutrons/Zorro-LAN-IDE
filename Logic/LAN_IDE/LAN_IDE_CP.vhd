@@ -284,14 +284,20 @@ begin
 				LAN_IRQ_OUT <='0';
 			end if;
 			
-			--set int enable and config ready flogs
+			--bus acknowledge if a access to A15=1 occurred
+			if(LAN_ACCESS = '1' and FCS ='0' and Z3_ADR(15)='1') then 
+				CONFIG_READY <='1';
+			else
+				CONFIG_READY <='0';
+			end if;
+			
+			--set int enable and config ready flags
 			if(LAN_ACCESS = '1' and FCS ='0' and RW='0' and Z3_ADR(15)='1') then --enable if a write to A15 occured
 				if(Z3_DS(3) ='0')then 
 					LAN_INT_ENABLE <= Z3_DATA_IN(31); --this controlls the output bit
 				elsif(Z3_DS(2) ='0')then
 					LAN_INT_ENABLE <= Z3_DATA_IN(15); --this controlls the output bit
 				end if;
-				CONFIG_READY <='1';
 			end if;
 		end if;
 	end process lan_int_proc;
@@ -300,7 +306,7 @@ begin
 	lan_rst_gen: process (CLK_EXT)
 	begin
 		if falling_edge(CLK_EXT) then			
-			if(FCS ='1' or reset = '0' or Z3_DS = "1111" or LAN_ACCESS = '0' or Z3_ADR(15) = '1' ) then
+			if(FCS ='1' or reset = '0' or Z3_DS = "1111" or LAN_ACCESS = '0' or BERR = '0' or Z3_ADR(15)='1') then
 				LAN_SM_RST <='1';
 			else
 				LAN_SM_RST <='0';
@@ -316,7 +322,7 @@ begin
 			LAN_RD_S		<= '0';
 			LAN_WRH_S	<= '0';
 			LAN_WRL_S	<= '0';
-			Z3_A_LOW		<= '1';
+			Z3_A_LOW		<= '0';
 			LAN_READY 	<= '0';
 			Z3_DATA(31 downto 0) <= x"FFFFFFFF";
 			DQ_DATA(15 downto 0) <= x"FFFF";
@@ -325,7 +331,7 @@ begin
 			LAN_RD_S		<= '0';
 			LAN_WRH_S	<= '0';
 			LAN_WRL_S	<= '0';
-			Z3_A_LOW		<= '1';
+			Z3_A_LOW		<= '0';
 			LAN_READY 	<= '0';
 			case LAN_SM is
 				when nop=>
@@ -340,40 +346,27 @@ begin
 						else
 							DQ_DATA(15 downto 0) <= Z3_DATA_IN(23 downto 16) & Z3_DATA_IN(31 downto 24);
 						end if;
-					--elsif(Z3_DS(3 downto 2) = "10")then
-					--	DQ_DATA(15 downto 0) <= Z3_DATA_IN(23 downto 16) & Z3_DATA_IN(23 downto 16);
-					--elsif(Z3_DS(3 downto 2) = "01")then
-					--	DQ_DATA(15 downto 0) <= Z3_DATA_IN(31 downto 24) & Z3_DATA_IN(31 downto 24);
-					else -- lower word!
-						Z3_A_LOW		<= '0';
-						
-						--if(Z3_DS(1 downto 0) < "11")then
-							if(DQ_SWAP='0') then
-								DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  0);
-							else
-								DQ_DATA(15 downto 0) <= Z3_DATA_IN( 7 downto  0) & Z3_DATA_IN(15 downto  8);
-							end if;
-						--elsif(Z3_DS(1 downto 0) = "10")then
-						--		DQ_DATA(15 downto 0) <= Z3_DATA_IN( 7 downto  0) & Z3_DATA_IN( 7 downto  0);						
-						--elsif(Z3_DS(1 downto 0) = "01")then
-						--		DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  8) & Z3_DATA_IN(15 downto  8);
-						--else --"11"
-						--	DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  0);
-						--end if;
+					else -- lower word!			
+						Z3_A_LOW		<= '1';						
+						if(DQ_SWAP='0') then
+							DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  0);
+						else
+							DQ_DATA(15 downto 0) <= Z3_DATA_IN( 7 downto  0) & Z3_DATA_IN(15 downto  8);
+						end if;
 					end if;	
 						
 					if(RW='1')then --read from MSB
-						-- determine bushalf
-						if(Z3_DS(3 downto 2) < "11")then
-							LAN_SM <= wait_read_upper;
+						
+						if(Z3_DS(3 downto 2) < "11")then --determine bushalf
 							LAN_RD_S		<= '1';
+							LAN_SM <= wait_read_upper;
 						else		
 							LAN_RD_S		<= '1';
 							LAN_SM <= wait_read_lower;
 						end if;
 					else
-						-- determine bushalf
-						if(Z3_DS(3 downto 2) < "11")then
+						
+						if(Z3_DS(3 downto 2) < "11")then -- determine bushalf
 							LAN_SM <= start_write_upper;
 						else
 							LAN_SM <= start_write_lower;
@@ -396,15 +389,15 @@ begin
 						LAN_READY <='1';
 						LAN_SM <= end_read_upper;  -- stay here until cylce end
 					else
-						Z3_A_LOW		<= '0';
+						Z3_A_LOW		<= '1';
 						LAN_SM <= start_read_lower;
 					end if;
 				when start_read_lower=>
-					Z3_A_LOW		<= '0';
+					Z3_A_LOW		<= '1';
 					LAN_RD_S		<= '1';
 					LAN_SM <= wait_read_lower;
 				when wait_read_lower=>
-					Z3_A_LOW		<= '0';
+					Z3_A_LOW		<= '1';
 					LAN_RD_S		<= '1';
 					LAN_READY 	<= '1';
 					LAN_SM<=end_read_lower;
@@ -426,35 +419,27 @@ begin
 					LAN_SM<=end_write_upper;
 				when end_write_upper=>
 					-- prepare the data for write
-					--if(Z3_DS(1 downto 0) = "00")then
-						if(DQ_SWAP='0') then
-							DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  0);
-						else
-							DQ_DATA(15 downto 0) <= Z3_DATA_IN( 7 downto  0) & Z3_DATA_IN(15 downto  8);
-						end if;
-					--elsif(Z3_DS(1 downto 0) = "10")then
-					--		DQ_DATA(15 downto 0) <= Z3_DATA_IN( 7 downto  0) & Z3_DATA_IN( 7 downto  0);						
-					--elsif(Z3_DS(1 downto 0) = "01")then
-					--		DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  8) & Z3_DATA_IN(15 downto  8);
-					--else --"11"
-					--		DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  0);
-					--end if;
-				
+					if(DQ_SWAP='0') then
+						DQ_DATA(15 downto 0) <= Z3_DATA_IN(15 downto  0);
+					else
+						DQ_DATA(15 downto 0) <= Z3_DATA_IN( 7 downto  0) & Z3_DATA_IN(15 downto  8);
+					end if;
+									
 					if(Z3_DS(1 downto 0) = "11")then -- no lower half
 						LAN_READY <='1';
 						LAN_SM <= end_write_upper;  -- stay here until cylce end
 					else
-						Z3_A_LOW		<= '0';
+						Z3_A_LOW		<= '1';
 						LAN_SM <= start_write_lower;
 					end if;
 				when start_write_lower=>
-					Z3_A_LOW		<= '0';
+					Z3_A_LOW		<= '1';
 					-- swapped DS0/DS1 here: ENC624 is little endian
 					LAN_WRH_S   <= not Z3_DS(0);
 					LAN_WRL_S   <= not Z3_DS(1);
 					LAN_SM <= wait_write_lower;
 				when wait_write_lower=>
-					Z3_A_LOW		<= '0';
+					Z3_A_LOW		<= '1';
 					LAN_READY <='1';
 					LAN_SM<=end_write_lower;
 				when end_write_lower=>

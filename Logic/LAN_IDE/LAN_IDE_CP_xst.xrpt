@@ -5,7 +5,7 @@
     The structure and the elements are likely to change over the next few releases.
     This means code written to parse this file will need to be revisited each subsequent release.-->
 
-  <application stringID="Xst" timeStamp="Thu Dec 20 17:35:56 2018">
+  <application stringID="Xst" timeStamp="Wed Jan 02 11:10:16 2019">
     <section stringID="User_Env">
       <table stringID="User_EnvVar">
         <column stringID="variable"/>
@@ -71,7 +71,7 @@
       <item DEFAULT="MAINTAIN" stringID="XST_CASE" value="Maintain"/>
       <item DEFAULT="YES" label="-verilog2001" stringID="XST_VERILOG2001" value="YES"/>
       <item DEFAULT="YES" label="-fsm_extract" stringID="XST_FSMEXTRACT" value="YES"/>
-      <item DEFAULT="AUTO" label="-fsm_encoding" stringID="XST_FSMENCODING" value="Auto"/>
+      <item DEFAULT="AUTO" label="-fsm_encoding" stringID="XST_FSMENCODING" value="Gray"/>
       <item DEFAULT="NO" label="-safe_implementation" stringID="XST_SAFEIMPLEMENTATION" value="No"/>
       <item DEFAULT="YES" stringID="XST_MUXEXTRACT" value="Yes"/>
       <item DEFAULT="YES" label="-resource_sharing" stringID="XST_RESOURCESHARING" value="YES"/>
@@ -116,21 +116,21 @@
         <item stringID="XST_IOS" value="116"/>
       </section>
       <section stringID="XST_CELL_USAGE">
-        <item dataType="int" stringID="XST_BELS" value="759">
-          <item dataType="int" stringID="XST_AND2" value="249"/>
-          <item dataType="int" stringID="XST_AND3" value="28"/>
-          <item dataType="int" stringID="XST_AND4" value="5"/>
+        <item dataType="int" stringID="XST_BELS" value="1038">
+          <item dataType="int" stringID="XST_AND2" value="344"/>
+          <item dataType="int" stringID="XST_AND3" value="50"/>
+          <item dataType="int" stringID="XST_AND4" value="7"/>
           <item dataType="int" stringID="XST_GND" value="1"/>
-          <item dataType="int" stringID="XST_INV" value="220"/>
-          <item dataType="int" stringID="XST_OR2" value="190"/>
+          <item dataType="int" stringID="XST_INV" value="382"/>
+          <item dataType="int" stringID="XST_OR2" value="205"/>
           <item dataType="int" stringID="XST_VCC" value="1"/>
           <item dataType="int" stringID="XST_XOR2" value="17"/>
         </item>
-        <item dataType="int" stringID="XST_FLIPFLOPSLATCHES" value="123">
+        <item dataType="int" stringID="XST_FLIPFLOPSLATCHES" value="115">
           <item dataType="int" stringID="XST_FD" value="1"/>
-          <item dataType="int" stringID="XST_FDC" value="24"/>
-          <item dataType="int" stringID="XST_FDCE" value="4"/>
-          <item dataType="int" stringID="XST_FDP" value="44"/>
+          <item dataType="int" stringID="XST_FDC" value="19"/>
+          <item dataType="int" stringID="XST_FDCE" value="3"/>
+          <item dataType="int" stringID="XST_FDP" value="42"/>
           <item dataType="int" stringID="XST_FDPE" value="50"/>
         </item>
         <item dataType="int" stringID="XST_IO_BUFFERS" value="109">
