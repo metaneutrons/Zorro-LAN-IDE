@@ -1,7 +1,7 @@
 Release 8.1i - Fit P.20131013
 Copyright(c) 1995-2003 Xilinx Inc. All rights reserved
 
- 1- 2-2019 11:11AM
+ 1- 2-2019 10:08PM
 
 NOTE: This file is designed to be imported into a spreadsheet program
 such as Microsoft Excel for viewing, printing and sorting. The pipe '|'
@@ -74,7 +74,7 @@ P53|A<7>|I|I/O|INPUT|||||||||
 P54|A<2>|I|I/O|INPUT|||||||||
 P55|VCC||VCCIO||||||||||
 P56|A<8>|I/O|I/O|BIDIR|||||||||
-P57|TIE||I/O||||||||||
+P57|A<1>|I|I/O|INPUT|||||||||
 P58|A<9>|I/O|I/O|BIDIR|||||||||
 P59|A<10>|I/O|I/O|BIDIR|||||||||
 P60|A<11>|I/O|I/O|BIDIR|||||||||
@@ -92,12 +92,12 @@ P71|CP_RD|O|I/O|OUTPUT|||||||||
 P72|GND||GND||||||||||
 P73|VCC||VCCIO||||||||||
 P74|A<15>|I/O|I/O|BIDIR|||||||||
-P75|AUTOBOOT_OFF|I|I/O|INPUT|||||||||
+P75|TIE||I/O||||||||||
 P76|LAN_WRL|O|I/O|OUTPUT|||||||||
 P77|FCS|I|I/O|INPUT|||||||||
 P78|DS1|I|I/O|INPUT|||||||||
 P79|Z3|I|I/O|INPUT|||||||||
-P80|TIE||I/O||||||||||
+P80|AS|I|I/O|INPUT|||||||||
 P81|UDS|I|I/O|INPUT|||||||||
 P82|LDS|I|I/O|INPUT|||||||||
 P83|RW|I|I/O|INPUT|||||||||
@@ -119,8 +119,8 @@ P98|BERR|I|I/O|INPUT|||||||||
 P99|GND||GND||||||||||
 P100|OVR|O|I/O|OUTPUT|||||||||
 P101|TIE||I/O||||||||||
-P102|TIE||I/O||||||||||
-P103|TIE||I/O||||||||||
+P102|C3|I|I/O|INPUT|||||||||
+P103|C1|I|I/O|INPUT|||||||||
 P104|CFIN|I|I/O|INPUT|||||||||
 P105|CFOUT|O|I/O|OUTPUT|||||||||
 P106|SLAVE|O|I/O|OUTPUT|||||||||

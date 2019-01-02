@@ -17,7 +17,6 @@ Checking Constraint Associations...
 Done...
 
 Checking expanded design ...
-WARNING:NgdBuild:470 - bidirect pad net 'A<1>' has no legal driver
 
 Partition Implementation Status
 -------------------------------
@@ -28,12 +27,12 @@ Partition Implementation Status
 
 NGDBUILD Design Results Summary:
   Number of errors:     0
-  Number of warnings:   1
+  Number of warnings:   0
 
-Total memory usage is 4418728 kilobytes
+Total memory usage is 4418724 kilobytes
 
 Writing NGD file "LAN_IDE_CP.ngd" ...
-Total REAL time to NGDBUILD completion:  5 sec
+Total REAL time to NGDBUILD completion:  6 sec
 Total CPU time to NGDBUILD completion:   5 sec
 
 Writing NGDBUILD log file "LAN_IDE_CP.bld"...
