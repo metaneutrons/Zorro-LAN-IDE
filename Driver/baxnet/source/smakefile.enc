@@ -1,0 +1,169 @@
+###############################################################################
+#
+# SAS/C Makefile for ENC624J6net
+#
+# author: Henryk Richter <henryk.richter@gmx.net>
+#
+# tools required:
+#  working SAS/C installation (sc:, sc:include and sc:netinclude assigned, 
+#                              "sc", "smake" and "slink in path)
+#  vasm in path (vasmm68k_mot)
+#
+# call:
+#  smake -f smakefile.enc
+#
+###############################################################################
+
+###############################################################################
+# Name, version
+# 
+###############################################################################
+#DEVICEVERSION=1
+#DEVICEREVISION=95
+#DEVICEDATE=08.09.2018
+#DEVICEEXTRA=Beta
+
+SUBDIR=enc624j6net
+ASMOBJECTS = $(SUBDIR)/enc624j6l.o$(TYPE) $(SUBDIR)/intervaltimer.o$(TYPE)
+
+
+# more than one flavour of the same code base may be build with this setup
+# arguments passed down recursively (example):
+#DEVICEID=v2expeth.device
+#DEFINES1 = -DPROTO_V2EXPNET
+#ASMDEFS  = -DPROTO_V2EXPNET
+#CPU = 68020
+
+
+###############################################################################
+#
+# common.smk (SAS/C variant of common.mk)
+#
+# author: Henryk Richter <henryk.richter@gmx.net>
+# 
+# note: when switching between different hardware targets, don`t forget
+#       "make clean" in between
+###############################################################################
+# debug = 1 will include string debugging for terminal/sushi/sashimi
+# not enabled yet in SAS/C makefile
+debug = 0
+
+###############################################################################
+# prefix for system includes (ASM)
+# 
+###############################################################################
+PREFX  = sc:
+SYSINC = $(PREFX)include
+
+
+###############################################################################
+#
+# compiler executables and support calls
+# 
+###############################################################################
+RM	= delete force quiet
+CC	= sc
+LD      = slink
+MAKE    = smake
+CFLAGS	= NOVER NOICONS nostackcheck math=standard strmerge strsect=code parameters=regs data=near opt optsize
+LDFLAGS	= NOICONS SC SD ND
+
+VASM = vasmm68k_mot
+VASMFORMAT = -m$(CPU) -Fhunk -nowarn=2064 -quiet -I$(SYSINC)
+
+
+###############################################################################
+#
+# paths to the local includes 
+# 
+###############################################################################
+
+IPATH =
+
+###############################################################################
+#
+# compile-level feature definitions
+# 
+###############################################################################
+
+# see all: target for defaults in $(DEFINES) 
+DEFINES = $(DEFINES1) CPU=$(CPU)
+#DEFINES = $(DEFINES) DEFINE DEVICEVERSION=$(DEVICEVERSION)
+#DEFINES = $(DEFINES) DEFINE DEVICEREVISION=$(DEVICEREVISION)
+#DEFINES = $(DEFINES) DEFINE DEVICEDATE=$(DEVICEDATE)
+DEFINES = $(DEFINES) DEFINE NEWSTYLE=1
+DEFINES = $(DEFINES) DEFINE HAVE_VERSION_H=1
+DEFINES = $(DEFINES) DEFINE DEVICENAME=$(DEVICEID)
+#DEFINES = $(DEFINES) DEFINE DEVICEEXTRA=$(DEVICEEXTRA)
+ASMDEFS = $(ASMDEFS1) 
+#-DDEVICEVERSION=$(DEVICEVERSION) -DDEVICEREVISION=$(DEVICEREVISION)
+
+###############################################################################
+#
+# debug 
+# 
+###############################################################################
+#ifeq ($(debug),1)
+#CFLAGS  += -DDEBUG -g
+#CFLAGS2 += -DDEBUG -g
+#LINKLIBS = -L$(PREFX)/lib -ldebug
+#endif
+
+###############################################################################
+#
+# compiler flags and optimization levels
+# 
+###############################################################################
+
+CFLAGS  = $(CFLAGS) INCLUDEDIR="" INCLUDEDIR=$(SUBDIR) $(DEFINES)
+
+###############################################################################
+#
+# objects to build 
+# 
+###############################################################################
+# ASM based alternative to deviceheader.o would be romtag.o
+
+OBJECTS = deviceheader.o$(TYPE) deviceinit.o$(TYPE) device.o$(TYPE) \
+          server.o$(TYPE) $(SUBDIR)/hw.o$(TYPE)
+
+OBJECTS = $(OBJECTS) $(ASMOBJECTS)
+
+BUILDDEPS = device.h server.h hw.h macros.h compiler.h
+
+###############################################################################
+#
+# rules and commands
+# 
+###############################################################################
+
+.asm.o$(TYPE): $(BUILDDEPS) $*.asm
+	$(VASM) $(VASMFORMAT) $(ASMDEFS) -o $@ $*.asm
+
+.c.o$(TYPE): $(BUILDDEPS) $*.c
+	 $(CC) $(CFLAGS) OBJECTNAME $@ $*.c
+
+all:	
+	$(MAKE) -f smakefile.enc TYPE=20 enc624j6net.device DEVICEID=enc624j6net.device CPU=68020
+	$(MAKE) -f smakefile.enc TYPE=00 enc624j6net.device_68000 DEVICEID=enc624j6net.device CPU=68000
+
+enc624j6net.device: $(OBJECTS)
+	-$(LD) $(OBJECTS) LIB sc:lib/sc.lib $(LDFLAGS) TO $(DEVICEID)
+
+enc624j6net.device_68000: $(OBJECTS)
+	-$(LD) $(OBJECTS) LIB sc:lib/sc.lib $(LDFLAGS) TO $(DEVICEID)_68000
+
+clean:
+	-$(RM) enc624j6net.device enc624j6net.device_68000 \#?.o00 *.o20 $(SUBDIR)/\#?.o00 $(SUBDIR)/\#?.o20
+
+install:
+	copy enc624j6net.device DEVS:Networks
+
+
+
+# dependencies
+device.o$(TYPE): device.c device.h server.h hw.h macros.h compiler.h
+server.o$(TYPE): server.c device.h server.h hw.h macros.h compiler.h
+deviceinit.o$(TYPE): deviceinit.c device.h server.h hw.h macros.h compiler.h
+deviceheader.o$(TYPE): deviceheader.c device.h server.h hw.h macros.h compiler.h
+

@@ -18,10 +18,11 @@
 ; - RXSTART_INIT = $0c00 -> currently $2000 due to previous location bug
 ; 
 
-;	incdir	Temp:Amiga/src/Zorro-LAN-IDE.git/Driver/enc624j6net/
+	incdir	src:baxnet/trunk/source/
+	;Temp:Amiga/src/Zorro-LAN-IDE.git/Driver/enc624j6net/
 	include "enc624j6net/registers.i"
 	include "enc624j6net/macros.i"
-  include	lvo/exec_lib.i
+
 ; enable debugging code block
 DEBUG	EQU	1
 ;
@@ -34,7 +35,7 @@ ADD_4RX	EQU	1	;add 4 to valid RX size (fake CRC), fixes shapeshifter RAW treatme
 PSTART_INIT	EQU	$0BF0	; 16 Bytes private storage for driver
 PSTOP_INIT	EQU	$0BFF	; (see below for definitions)
 
-RXSTART_INIT   EQU     $2000  ; start of RX buffer, room for 14 packets
+RXSTART_INIT   EQU     $0C00  ; start of RX buffer, room for 14 packets
 RXSTOP_INIT    EQU     $5fff  ; end of RX buffer
                     
 TXSTART_INIT   EQU     $0000  ; start of TX buffer, room for 2 packets
@@ -109,8 +110,9 @@ ENC_BOARDID		EQU	123	;ZII-IDE-LAN-CP
 	XDEF	_enc624j6l_DisableInterrupt
 	XDEF	_enc624j6l_EnableGlobalInterrupt
 	XDEF	_enc624j6l_DisableGlobalInterrupt
-	XDEF	_enc624j6l_broadcast_multicast_filter
+	XDEF	_enc624j6l_bc_mc_filter
 
+	XDEF	_enc624j6l_ReadPHY
 	;
 	; System includes
 	;
@@ -219,6 +221,11 @@ opendos:
 	bsr	_enc624j6l_Init
 	tst.l	d0
 	ble	error
+
+	move.l	_boardbase(pc),a0
+;	moveq	#PHSTAT1,d0		;AUTONEG DONE, forced speeds/duplex
+	moveq	#PHSTAT3,d0		;AUTONEG DONE, forced speeds/duplex
+	bsr	_enc624j6l_ReadPHY
 
 	;---------- transmit test stuff ---------------
 	moveq	#100,d2
@@ -530,7 +537,7 @@ _enc624j6l_Init:
 	moveq	#ECON1_RXEN,d0		;no RX, my dear (yet)
 	CLRREG	ECON1,a0,d0		;
 
-	;set clock out frequency (see defines above)
+	;33.333Mhz clock out frequency (see defines above)
 	move.w	#CLOCK_DEF_CLR,d0	;clr mask
 	CLRREG	ECON2,a0,d0
 	move.w	#CLOCK_DEF_SET,d0	;set mask
@@ -545,7 +552,7 @@ _enc624j6l_Init:
 	WRITEREG ERXST,a0,d0		;set RX start pointer (end will be $5fff)
 	WRITEREG PNextPacket,a0,d0	;set user read pointer
 
-	bsr	_enc624j6l_broadcast_multicast_filter ;in: A0/D1, out: D0
+	bsr	_enc624j6l_bc_mc_filter ;in: A0/D1, out: D0
 
 	move	#RXSTOP_INIT&$fffe,d0
 	WRITEREG ERXTAIL,a0,d0 ;tail pointer in buffer = rx-2, wraparound
@@ -604,7 +611,7 @@ _enc624j6l_Init:
 ;     D1 - init flags
 ;out: D0 >0  = OK
 ;        <=0 = FAIL
-_enc624j6l_broadcast_multicast_filter:
+_enc624j6l_bc_mc_filter:
 	move.l	a0,d0
 	beq.s	.rts
 
@@ -826,7 +833,7 @@ _enc624j6l_DisableInterrupt:
 
 	moveq	#0,d0			;magic trick: the board enables Interrupts
 	lea	$4000(a0),a0
-	move.w	d0,($4000,a0)
+	move.w	d0,$4000(a0)	;was $4002
 	lea	-$4000(a0),a0
 	
 	;WRITEREG $8000,a0,d0		;only with this "sesame"
@@ -892,14 +899,18 @@ _enc624j6l_IntServer_List:
 	bra.s	.intdis_loop
 .boardsdone:
 
-	ifne	1
+	;faster: get from extended Driver board list instead from ZII/ZIII card
+	ifne	1		
 
-	move.l	(a6)+,d0	;Sigtask
+	move.l	(a6)+,d0	;SigTask
 	beq.s	.rts
-	move.l	d0,a1
-	
+
+	move.l	(a6)+,d1	;SigBit
+	move.l	d0,a1		;SigTask
+
+	move.l	(a6)+,a6	;ExecBase
 	moveq	#0,d0
-	move.l	(a6)+,d1	;Sigbit
+
 	bset	d1,d0
 
 	else
@@ -915,10 +926,11 @@ _enc624j6l_IntServer_List:
 	READREG	PSigBit,a0,d1		;get signal bit
 	bset	d1,d0			;signal mask
 
+	move.l	4.w,a6
+
 	endc
 
-	move.l	4.w,a6
-	jsr		_LVOSignal(a6)
+	jsr	_LVOSignal(a6)
 
 .rts
 	move.l	(sp)+,a6
@@ -1083,8 +1095,9 @@ _enc624j6l_HaveRecv:
 	move.l	a0,d0
 	beq.s	.err
 
-	READREG	ESTAT,a0,d0
-	and.l	#$ff,d0	;ESTAT_PKTCNT7...ESTAT_PKTCNT0
+	moveq	#0,d0
+	READREG	ESTAT,a0,d1
+	move.b	d1,d0	;ESTAT_PKTCNT7...ESTAT_PKTCNT0
 .rts:
 	rts
 .err:	moveq	#-1,d0
@@ -1112,8 +1125,9 @@ _enc624j6l_RecvFrame:		;
 	move.l	a0,d1
 	beq	.err
 
-	READREG	ESTAT,a0,d0	;number of pending frames
-	and.l	#$ff,d0		;clear out count (ESTAT_PKTCNT7...ESTAT_PKTCNT0)
+	moveq	#0,d0
+	READREG	ESTAT,a0,d2	;number of pending frames
+	move.b	d2,d0		;clear out count (ESTAT_PKTCNT7...ESTAT_PKTCNT0)
 	beq	.rts		;nothing in buffer, return sheer emptiness
 	;at least one frame in buffer
 
@@ -1280,12 +1294,6 @@ _enc624j6l_RecvFrame:		;
 	bge.s	.rts
 
 	moveq	#0,d0
-
-;	cmp.l	#$d8803977,6(a3)
-;	beq	.rts
-;	moveq	#0,d0
-;	clr.l	6(a3)
-
 .rts:
 	movem.l	(sp)+,d2-d7/a1-a3
 	rts
@@ -1319,7 +1327,7 @@ _enc624j6l_RecvFrame:		;
 ;  notes:  
 ;
 _enc624j6l_TransmitFrame:
-	movem.l	d2-d4/a2,-(sp)
+	movem.l	d2-d5/a2,-(sp)
 
 	;---------------- parameter check -------------------------------------
 
@@ -1344,13 +1352,6 @@ _enc624j6l_TransmitFrame:
 	move.l	a1,d1		;no send frame ?
 	beq.w	.err		;exit
 
-	move.w	d0,d4		;still need length later
-	addq	#7,d0		;round up
-	asr.w	#3,d0		;size/8 = words
-	subq.w	#1,d0		;dbf...
-	blt.w	.err		;size<2 ? bail out
-
-
 	;------ double-buffered frame copy to send buffer ---------------------
 	READREG PNextTX,a0,d2	;"last written, maybe still pending frame"
 	and.w	#PSwapTX,d2	;sanity, leave only desired bits
@@ -1358,6 +1359,40 @@ _enc624j6l_TransmitFrame:
 	WRITEREG PNextTX,a0,d2	;remember pointer (d2 also for ETXST later)
 
 	lea	(a0,d2.w),a2	;write pointer for frame
+
+	ifeq	_OPT_BUFFER_SWAP
+
+	;faster TX when buffer swapping is not necessary
+	move.l	d0,d4		;remember length
+	moveq	#63,d5		;
+	and.l	d5,d0		;remainder of 64 byte copy loop
+	move.l	d4,d5		;length in bytes
+	asr.w	#6,d5		;64 byte blocks
+	subq.w	#1,d5		;dbf
+	blt.s	.smallcopy
+	bra.s	.largecopy_start
+
+.largecopy:
+	move.l	d1,(a2)+
+.largecopy_start:
+	rept	15
+	move.l	(a1)+,(a2)+	;save to SRAM
+	endr
+	move.l	(a1)+,d1
+	dbf		d5,.largecopy
+
+	move.l	d1,(a2)+
+	bra.s	.smallcopy
+		
+	endc	;_OPT_BUFFER_SWAP
+
+	move.w	d0,d4		;still need length later
+.smallcopy:
+	addq	#7,d0		;round up
+	asr.w	#3,d0		;size/8 = words
+	subq.w	#1,d0		;dbf...
+	blt.w	.err		;size<2 ? bail out
+
 	swap	d4
 	move.w	#8,d4
 .txcopy:
@@ -1375,13 +1410,15 @@ _enc624j6l_TransmitFrame:
 	 swap	d3
 	 move.l	d1,(a2)+	;save to SRAM
  	 move.l	d3,(a2)+	;save to SRAM
- 	else
+ 	else	;_OPT_BUFFER_SWAP
 	 move.l	(a1)+,(a2)+	;save to SRAM
 	 move.l	(a1)+,(a2)+	;save to SRAM 	
-	endc
+	endc	;_OPT_BUFFER_SWAP
 
 	dbf	d0,.txcopy
+
 	swap	d4
+
 
 	;---------------- wait on last frame ----------------------------------
 	move	#200,d3
@@ -1410,7 +1447,7 @@ _enc624j6l_TransmitFrame:
 	SETREG	ECON1,a0,d1		;
 
 .err:
-	movem.l	(sp)+,d2-d4/a2
+	movem.l	(sp)+,d2-d5/a2
 	rts
 
 	ifne	_OPT_CHECKLINK_TX
@@ -1422,7 +1459,61 @@ _enc624j6l_TransmitFrame:
 		bra.s	.linkchgdone
 
 	endc
+	
+;---------------------------------------------------------------------------------------
+;
+; read PHY register (16 Bit)
+;
+;  input:  A0 - APTR   mmapped board base address
+;          D0 - LONG   Phy register (5 valid bits)
+;
+;  output: LONG D0 <0  - error (bad register index)
+;                      - 16 Bit PHY reg contents
+;
+;  trash:   -
+;
+;  notes:  
+;;
+;
+;
+_enc624j6l_ReadPHY:
+	moveq	#31,d1
+	cmp.l	d1,d0
+	bhi.w	.err
 
+	bset	#8,d0		;$100 + PHY_REG
+	WRITEREG MIREGADR,a0,d0	;set PHY register address
+	moveq	#1,d0
+	WRITEREG MICMD,a0,d0	;read command
+	
+	moveq	#25,d0			;25 us delay (at least)
+	bsr	_enc624j6l_UMinDelay	;
+
+	moveq	#100,d1
+.waitloop:
+	READREG	MISTAT,a0,d0
+	btst	#0,d0
+	beq.s	.notbusy
+
+	tst.b	$BFE301		;1 CIA access = 1.4 us
+	subq.w	#1,d1		;>165 us exceeded ? -> something is wrong, SPEC says 25.6 us
+	blt.s	.notbusy	;error
+
+	bra.s	.waitloop
+.notbusy
+	moveq	#0,d0
+	WRITEREG MICMD,a0,d0	;cancel read command
+
+	tst.w	d1		;did we run into timeout ?
+	blt.s	.err		;yes, we don't have anything worthwhile
+
+	READREG	MIRD,a0,d1
+	moveq	#0,d0
+	move.w	d1,d0
+	rts
+.err:
+	moveq	#-1,d0
+	rts
 ;------------------------------------------------------------------------------------------------
 ;------------------------------------------------------------------------------------------------
 ;

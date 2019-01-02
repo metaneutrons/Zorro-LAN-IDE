@@ -27,9 +27,54 @@
 #include <dos/dostags.h>
 #include <utility/tagitem.h>
 #include <exec/lists.h>
+#ifdef HAVE_VERSION_H
+#include "version.h"
+#endif
+/* NSD support is optional */
+#ifdef NEWSTYLE
+#include <devices/newstyle.h>
+#include <devices/sana2devqueryext.h> /* new extension, code can be built without this include (but also without ext query then...) */
+
+const UWORD dev_supportedcmds[] = {
+	NSCMD_DEVICEQUERY,
+	CMD_READ,
+	CMD_WRITE,
+	S2_READORPHAN,
+	S2_BROADCAST,
+	S2_MULTICAST,
+	S2_ONEVENT,
+	S2_ONLINE,
+	S2_OFFLINE,
+	S2_CONFIGINTERFACE,
+	S2_GETSTATIONADDRESS,
+	S2_DEVICEQUERY,
+	S2_TRACKTYPE,
+	S2_UNTRACKTYPE,
+	S2_GETTYPESTATS,
+	S2_GETGLOBALSTATS,
+	S2_ADDMULTICASTADDRESS,
+	S2_DELMULTICASTADDRESS,
+#ifdef S2_DEVICEQUERYEXT
+	S2_DEVICEQUERYEXT,
+#endif
+	0
+};
+
+const struct NSDeviceQueryResult NSDQueryAnswer = {
+	0,
+	16, /* up to SupportedCommands (inclusive) */
+	NSDEVTYPE_SANA2,
+	0,  /* subtype */
+	(UWORD*)dev_supportedcmds
+};
+#endif
+
 #include "device.h"
 #include "hw.h"
 #include "macros.h"
+
+
+
 
 
 ASM SAVEDS struct Device *DevInit( ASMR(d0) DEVBASEP                  ASMREG(d0), 
@@ -151,8 +196,11 @@ ASM SAVEDS LONG DevOpen( ASMR(a1) struct IOSana2Req *ioreq           ASMREG(a1),
 			                                        (struct TagItem *)ioreq->ios2_BufferManagement)));
 				dbm->dbm_CopyFromBuffer = (BMCALL)((void (*)())(GetTagData(S2_CopyFromBuff, 0,
 				                                (struct TagItem *)ioreq->ios2_BufferManagement)));
-#if 0
-				dbm->dbm_CopyToBuffer32 = (0);	/* DEBUG */
+
+				/* v1.95: disable CopyToBuffer32 due to problems with MiamiDX */
+				/* MiamiDX requires byte count to be a multiple of 4 */
+#if 1
+				dbm->dbm_CopyToBuffer32 = (0);
 				dbm->dbm_CopyFromBuffer32 = (0);
 #else
 				dbm->dbm_CopyToBuffer32 = (BMCALL)((void (*)())(GetTagData(S2_CopyToBuff32, 0,
@@ -236,7 +284,13 @@ ASM SAVEDS BPTR DevClose(   ASMR(a1) struct IOSana2Req *ioreq        ASMREG(a1),
 		db->db_Units[unit].du_OpenCount--;
 
 	ReleaseSemaphore( &db->db_Units[unit].du_Sem );
-	
+
+	/* clear flags */
+	if( !(db->db_Units[unit].du_OpenCount) )
+	{
+		db->db_Units[unit].du_Flags &= ~(DUF_EXCLUSIVE|DUF_PROMISC);
+	}
+
 	/* give server time to offline down the hardware */
 	if( (db->db_ServerProc) &&
 	   !(db->db_Units[unit].du_OpenCount) &&
@@ -517,6 +571,31 @@ ASM SAVEDS VOID DevBeginIO( ASMR(a1) struct IOSana2Req *ioreq        ASMREG(a1),
 			ioreq->ios2_Req.io_Error = S2ERR_NO_ERROR;
 			ioreq->ios2_WireError    = S2WERR_GENERIC_ERROR;
 			break;
+#ifndef NSCMD_DEVICEQUERY
+#warning "Building without NSD support"
+#else
+		case NSCMD_DEVICEQUERY:
+			{
+			 struct IOStdReq *stdrq = (struct IOStdReq *)ioreq;
+
+			 if( (!stdrq->io_Data) || (stdrq->io_Length < sizeof( NSDQueryAnswer ) ) )
+			 {
+				ioreq->ios2_Req.io_Error = IOERR_BADLENGTH;
+			 }
+			 else
+			 {
+				CopyMem( (void*)&NSDQueryAnswer, stdrq->io_Data, sizeof( NSDQueryAnswer ) );
+				stdrq->io_Actual = sizeof( NSDQueryAnswer ); 
+				ioreq->ios2_Req.io_Error = 0;
+			 }
+			}
+			break;
+		/* query contents may ask for live data: handle in server.c */
+		case S2_DEVICEQUERYEXT:
+			dbForwardIO( db, ioreq );
+			ioreq = (0);
+			break;
+#endif
 
 		case CMD_RESET:
 		case CMD_UPDATE:
@@ -525,7 +604,8 @@ ASM SAVEDS VOID DevBeginIO( ASMR(a1) struct IOSana2Req *ioreq        ASMREG(a1),
 		case CMD_START:
 		case CMD_FLUSH:
 			ioreq->ios2_Req.io_Error = IOERR_NOCMD;
-			ioreq->ios2_WireError = S2WERR_GENERIC_ERROR;
+			/* we might not get a SANA-II request at this point, don't assume anything about struct */
+			/* ioreq->ios2_WireError = S2WERR_GENERIC_ERROR; */
 			break;
 
 		case S2_ADDMULTICASTADDRESS:

@@ -15,10 +15,20 @@
 #include <dos/dostags.h>
 #include <devices/timer.h>
 
+#ifdef HAVE_VERSION_H
+#include "version.h"
+#endif
+
 #include "device.h"
 #include "hw.h"
 #include "macros.h"
 #include "server.h"
+
+#ifdef NEWSTYLE
+#include <devices/newstyle.h>
+#include <devices/sana2devqueryext.h> /* new extension, code can be built without this include (but also without ext query then...) */
+static LONG server_queryext( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq );
+#endif
 
 
 /* (avoid external link libraries) this call is not time critical */
@@ -292,6 +302,7 @@ static LONG server_Config( DEVBASEP )
 	return SERR_OK;
 }
 
+
 static LONG CMPeqMAC( BYTE *a, BYTE *b )
 {
  LONG i;
@@ -302,6 +313,7 @@ static LONG CMPeqMAC( BYTE *a, BYTE *b )
  }
  return 1;
 }
+
 
 static LONG server_changeMulticast( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq, ULONG add_del )
 {
@@ -431,7 +443,20 @@ static LONG server_HandleS2Commands( DEVBASEP )
 					ioreq->ios2_WireError    = S2WERR_GENERIC_ERROR;
 				}
 				break;
-
+#ifdef S2_DEVICEQUERYEXT
+			case S2_DEVICEQUERYEXT:
+				if( server_queryext( db, unit, ioreq ) )
+				{
+					ioreq->ios2_Req.io_Error = S2ERR_NO_ERROR;
+					ioreq->ios2_WireError    = S2WERR_GENERIC_ERROR;
+				}
+				else
+				{
+					ioreq->ios2_Req.io_Error = S2ERR_BAD_ARGUMENT;
+					ioreq->ios2_WireError = S2WERR_GENERIC_ERROR;
+				}
+				break;
+#endif
 			default: /* shouldn't happen */
 				ioreq->ios2_Req.io_Error = S2ERR_NOT_SUPPORTED;
 				ioreq->ios2_WireError = S2WERR_GENERIC_ERROR;
@@ -444,6 +469,90 @@ static LONG server_HandleS2Commands( DEVBASEP )
 	return SERR_OK;
 }
 
+#ifdef S2_DEVICEQUERYEXT
+const char server_vendorstring[] = HW_VENDOR;
+const char server_productstring[] = HW_PRODUCT;
+static LONG server_queryext( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq )
+{
+	struct TagItem *tlist;
+	ULONG tval,tval2;
+	LONG  len;
+	struct S2DevQueryExtParam *s2qep;
+	ULONG  *lgp;
+
+	tlist = (struct TagItem*)ioreq->ios2_Data;
+
+	/* 3*4 Bytes needed for one Tag + TAG_DONE */
+	if( (ioreq->ios2_DataLength < 12) || (!tlist) )
+		return 0;
+
+	tval = GetTagData( S2_DevQueryExtVendorName, 0, tlist );
+	if( tval )
+	{
+		s2qep = (struct S2DevQueryExtParam *)tval;
+
+		len  = min( s2qep->Length, sizeof(server_vendorstring) );
+		CopyMem( (void*)server_vendorstring, s2qep->Data, len );
+		s2qep->Actual = len;
+	}
+
+	tval = GetTagData( S2_DevQueryExtProductName, 0, tlist );
+	if( tval )
+	{
+		s2qep = (struct S2DevQueryExtParam *)tval;
+
+		len  = min( s2qep->Length, sizeof(server_productstring) );
+		CopyMem( (void*)server_productstring, s2qep->Data, len );
+		s2qep->Actual = len;
+	}
+
+
+	tval = GetTagData( S2_DevQueryExtLinkStatus, 0, tlist );
+	tval2 = GetTagData( S2_DevQueryExtLinkSpeed, 0, tlist );
+	if( (tval) || (tval2) )
+	{
+		/* ask hardware about link/speed status */
+		len = hw_get_mac_status(db, unit);
+		if( len != HW_MAC_INVALID )
+		{
+			if( tval ) /* S2_DevQueryExtLinkStatus */
+			{
+				s2qep = (struct S2DevQueryExtParam *)tval;
+				if( s2qep->Length >= 4 )
+				{
+					lgp  = (ULONG*)s2qep->Data;
+					*lgp = (len & HW_MAC_LINK_UP) ? S2_DEVQUERYEXT_LINK_UP : S2_DEVQUERYEXT_LINK_DOWN;
+					s2qep->Actual = 4;
+				}
+			}
+			if( tval2 ) /* S2_DevQueryExtLinkSpeed */
+			{
+				s2qep = (struct S2DevQueryExtParam *)tval2;
+				if( s2qep->Length >= 4 )
+				{
+					lgp  = (ULONG*)s2qep->Data;
+
+					tval = S2_DEVQUERYEXT_SPEED_UNDEFINED;
+					if( len & HW_MAC_LINK_UP)
+					{
+						if( HW_MAC_ISACTIVE(len,HW_MACB_SPEED10) )
+							tval = S2_DEVQUERYEXT_SPEED_10M;
+						if( HW_MAC_ISACTIVE(len,HW_MACB_SPEED100) )
+							tval = S2_DEVQUERYEXT_SPEED_100M;
+						if( HW_MAC_ISACTIVE(len,HW_MACB_SPEED1000) )
+							tval = S2_DEVQUERYEXT_SPEED_1000M;
+					}
+					*lgp = tval;
+					s2qep->Actual = 4;
+				}
+			}
+		}
+	}
+
+	return 1;
+}
+
+#endif
 
 
 /* error conditions sent via EventQueue */
@@ -505,7 +614,7 @@ LONG server_writeerror( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq, LONG cod
 /* note: entering here with locked semaphore */
 static LONG write_frame( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq )
 {
-	LONG ret = SERR_OK;
+	LONG ret;/* = SERR_OK;*/
 	UBYTE *copy_ptr,*frame;
 	ULONG framesize;
 	struct db_BufferManagement *dbm;
@@ -644,6 +753,7 @@ static void server_read_frame( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq, U
 
 	dbm = (struct db_BufferManagement *)ioreq->ios2_BufferManagement;
 	D(("ReadFrm IO %lx, DBM %lx frm %lx frmsz %ld\n",(ULONG)ioreq,(ULONG)dbm,(ULONG)frame,framesize));
+
 	if(!(*dbm->dbm_CopyToBuffer32)(ioreq->ios2_Data, frame, framesize ))
  	{
 		if(!(*dbm->dbm_CopyToBuffer)(ioreq->ios2_Data, frame, framesize ))
@@ -757,7 +867,7 @@ end:
 VOID SAVEDS ServerTask(void)
 {
  struct ServerMsg *msg;
- ULONG wmask,gotmask,spcmask,portsigmask,recvmask,i=0,action;
+ ULONG wmask,gotmask,spcmask,portsigmask,recvmask,i,action;
  struct IOSana2Req*wr;
  struct DevUnit *curunit;
  DEVBASEP = (0); /* Don`t call Libraries until server_startup() succeeds! */

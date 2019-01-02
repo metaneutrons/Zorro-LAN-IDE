@@ -20,6 +20,41 @@ struct devbase;
 #define DEVBASEP DEVBASETYPE *db
 #endif
 
+/* states for each NIC speed */
+#define HW_MAC_ISACTIVE(_status_,_spd_) ( ((_status_)>>(_spd_)) & 3 ) /* returns 0 if inactive, 0...3 if active */
+#define HW_MAC_OFF       0 /* this speed is inactive */
+#define HW_MAC_ON        1 /* on, half duplex */ 
+#define HW_MAC_ON_FDX    2 /* on, full duplex */
+#define HW_MAC_ON_FDX_FC 3 /* on, full duplex, flow-control */
+
+/*
+  MAC definitions 
+  (flag Mask)
+  -> conceptually, this layout can be used for current
+     running mode as well as autonegotiation capabilities 
+     masks for local NIC and peer
+  -> is fiber optic Ethernet relevant for us Amigans?
+*/
+#define HW_MAC_INVALID        (-1) /* no info available      */
+#define HW_MAC_LINK_UP        1 /* link is up                */
+#define HW_MAC_AUTONEGOTIATION 2 /* autonegotiation enabled   */
+
+/* two bits each to handle the four different states per speed */
+#define HW_MACB_SPEED10      2  /* bit for 10 MBit/s mask    */
+#define HW_MACB_SPEED100     4  /* bit for 100 MBit/s mask   */
+#define HW_MACB_SPEED100T2   6  /* bit for 100 MBit/s mask (100BaseT2) */
+#define HW_MACB_SPEED100T4   8  /* bit for 100 MBit/s mask (100BaseT4) */
+#define HW_MACB_SPEED1000    10 /* ... */
+#define HW_MACB_SPEED2500    12
+#define HW_MACB_SPEED5000    14
+#define HW_MACB_SPEED10000   16 /* Am I optimistic ? */
+#define HW_MACB_SPEEDS_END   18 /* this is the next free bit */
+#define HW_MAC_SPEEDSMASK    ((1<<HW_MACB_SPEEDS_END)-4)
+#define HW_MAC_NEXTSPEED(_a_) ( (_a_)+2 )
+
+
+
+
 
 /* find number of boards (stateless) */
 ASM SAVEDS LONG hw_Find_Boards( ASMR(a0) DEVBASEP                  ASMREG(a0) );
@@ -75,9 +110,11 @@ ASM SAVEDS LONG hw_check_link_change( ASMR(a0) DEVBASEP                  ASMREG(
                                       ASMR(d0) ULONG unit                ASMREG(d0) );
 
 ASM SAVEDS LONG hw_change_multicast(  ASMR(a0) DEVBASEP                  ASMREG(a0),
-                                      ASMR(a0) ULONG unit                ASMREG(d0),
+                                      ASMR(d0) ULONG unit                ASMREG(d0),
                                       ASMR(a1) struct List *             ASMREG(a1) );
 
+ASM SAVEDS LONG hw_get_mac_status(    ASMR(a0) DEVBASEP                  ASMREG(a0),
+                                      ASMR(d0) ULONG unit                ASMREG(d0) );
 
 /* kept this global for now: Z-II/Z-III boards share the same interrupt */
 ASM SAVEDS ULONG hw_recv_sigmask( ASMR(a0) DEVBASEP                  ASMREG(a0) );

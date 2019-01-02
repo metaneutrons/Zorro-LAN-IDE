@@ -15,6 +15,9 @@
 #include <exec/nodes.h>
 #include <exec/initializers.h>
 #include <exec/libraries.h>
+#ifdef HAVE_VERSION_H
+#include "version.h"
+#endif
 #include "compiler.h"
 #include "device.h"
 
@@ -32,7 +35,7 @@ extern const char DeviceName[];
 extern const char DeviceVersionString[];
 extern const APTR DeviceInitTab[];
 
-const struct Resident _00RomTag = {
+static const struct Resident _00RomTag = {
 	RTC_MATCHWORD,
 	( struct Resident* ) &_00RomTag,
 	( struct Resident* ) &_00RomTag + 1,

@@ -42,6 +42,7 @@
 /* status flags */
 #define PIO_STATUS_VERSION      0
 #define PIO_STATUS_LINK_UP      1 
+#define PIO_STATUS_FULLDPX      2
 
 /* control ids */
 #define PIO_CONTROL_FLOW        0

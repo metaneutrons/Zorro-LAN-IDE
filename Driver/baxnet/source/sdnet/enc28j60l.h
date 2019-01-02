@@ -13,6 +13,49 @@
 #include "compiler.h"
 
 /*
+  Purpose: interrupt service routine ( after EnableInterrupt() )
+  
+  This function will signal the task passed at EnableInterrupt time with
+  the given sigbit when at least one frame is pending.
+
+  input:   -
+  output:  -  
+*/
+ASM SAVEDS void enc28j60l_IntServer_List( void );
+
+/*
+  Purpose: enable HW interrupt 
+
+  input:   board      - mmapped board base address
+           SigTask    - task to signal upon interrupt (or NULL)
+	   SigBit     - Signal bit to send upon interrupt (or -1)
+	   IntMask    - ENC HW interrupts to enable (set 0, for now) = RX PACKET only
+
+  output:  <0  - error
+           >=0 - OK
+
+  notes:    
+*/
+ASM SAVEDS int enc28j60l_EnableInterrupt( ASMR(a0) void *board        ASMREG(a0),
+                                          ASMR(a1) void* SigTask      ASMREG(a1),
+                                          ASMR(d0) int   SigBit       ASMREG(d0),
+                                          ASMR(d1) unsigned int IntMask ASMREG(d1) );
+
+
+/*
+  Purpose: disable HW interrupt 
+
+  input:   board      - mmapped board base address
+
+  output:  <0  - error
+           >=0 - OK
+
+  notes:    
+*/
+ASM SAVEDS int enc28j60l_DisableInterrupt( ASMR(a0) void *board        ASMREG(a0) );
+
+
+/*
   Purpose: prepare SPI for use
   input:   -
   output:  success/failure

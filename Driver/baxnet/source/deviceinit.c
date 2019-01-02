@@ -12,6 +12,10 @@
 #include <dos/dostags.h>
 #include <utility/tagitem.h>
 #include <exec/lists.h>
+
+#ifdef HAVE_VERSION_H
+#include "version.h"
+#endif
 #include "device.h"
 #include "hw.h"
 #include "macros.h"
@@ -24,7 +28,8 @@
 #define DEVICEEXTRA
 #endif
 
-const char DeviceVersionString[] = "$VER: " xstr(DEVICENAME) " " xstr(DEVICEVERSION) "." xstr(DEVICEREVISION) xstr(DEVICEEXTRA) " (" xstr(DEVICEDATE) ")";
+static const char _DeviceVersionString[] = "$VER: " xstr(DEVICENAME) " " xstr(DEVICEVERSION) "." xstr(DEVICEREVISION) xstr(DEVICEEXTRA) " (" xstr(DEVICEDATE) ")";
+const char *DeviceVersionString = (const char *)_DeviceVersionString;
 const char DeviceName[] = xstr(DEVICENAME);
 
 
@@ -57,7 +62,7 @@ struct DeviceInitData
 	INITBYTE(     STRUCTOFFSET(Library,lib_Flags),       LIBF_SUMUSED|LIBF_CHANGED ),
 	INITWORD(     STRUCTOFFSET(Library,lib_Version),     DEVICEVERSION  ),
 	INITWORD(     STRUCTOFFSET(Library,lib_Revision),    DEVICEREVISION ),
-	0x80, (UBYTE) ((LONG)STRUCTOFFSET(Library,lib_IdString)), (ULONG) &DeviceVersionString[6],
+	0x80, (UBYTE) ((LONG)STRUCTOFFSET(Library,lib_IdString)), (ULONG) &_DeviceVersionString[6],
 	(ULONG) 0
 };
 

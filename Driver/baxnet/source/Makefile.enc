@@ -19,9 +19,9 @@
 # Date, version, extra objects to build
 # 
 ###############################################################################
-DEVICEVERSION=1
-DEVICEREVISION=92
-DEVICEDATE=10.06.2018
+#DEVICEVERSION=1
+#DEVICEREVISION=95
+#DEVICEDATE=08.09.2018
 SUBDIR=enc624j6net
 ASMOBJECTS = $(SUBDIR)/enc624j6l.o $(SUBDIR)/intervaltimer.o
 

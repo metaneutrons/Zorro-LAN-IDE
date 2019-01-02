@@ -337,7 +337,7 @@ u08 enc28j60_init(const u08 macaddr[6], u08 flags)
  
   SetBank(EIR);
   writeOp(ENC28J60_BIT_FIELD_CLR, EIR, EIR_DMAIF|EIR_LINKIF|EIR_TXIF|EIR_TXERIF|EIR_RXERIF|EIR_PKTIF);
-  writeOp(ENC28J60_BIT_FIELD_SET, EIE, EIE_INTIE|EIE_PKTIE|EIE_LINKIE|EIE_TXIE|EIE_TXERIE|EIE_RXERIE);
+  writeOp(ENC28J60_BIT_FIELD_SET, EIE, EIE_INTIE|EIE_PKTIE); /* |EIE_LINKIE|EIE_TXIE|EIE_TXERIE|EIE_RXERIE); */
 
   writeOp(ENC28J60_BIT_FIELD_SET, ECON1, ECON1_RXEN);
 
@@ -441,6 +441,9 @@ u08 enc28j60_status(u08 status_id, u08 *value)
     case PIO_STATUS_LINK_UP:
       *value = (readPhyByte(PHSTAT2) >> 2) & 1;
       return PIO_OK;
+    case PIO_STATUS_FULLDPX:
+      *value = (readRegByte(MACON3) & MACON3_FULDPX) ? 1 : 0;/*  + (((u16)readRegByte(MACON1+3))<<8); */
+      return PIO_OK;
     default:
       *value = 0;
       return PIO_NOT_FOUND;
@@ -469,6 +472,13 @@ u08 enc28j60_send(const u08 *data, u16 size)
   }
 
   /* write buffer */
+#if 0
+  if(0)
+  { u08* d = (u08*)data;
+    d[size]=0;
+    size=(size+1)&0xfffe;  
+  }
+#endif
   enc28j60l_WriteBuffer( (u08*)data, size, TXSTART_INIT );
 
   /*  initiate send */
@@ -559,6 +569,14 @@ u08 enc28j60_recv(u08 *data, u16 max_size, u16 *got_size)
 
   /*  read packet */
   readBuf(len, data);
+#if 0
+  {
+  	data[len]=0;
+  	data[len+1]=0;
+  	data[len+2]=0;
+  	data[len+3]=0;
+  }
+#endif
 
   next_pkt();
   return result;

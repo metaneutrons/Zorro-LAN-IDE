@@ -738,7 +738,7 @@ begin
 				CP_RD_S		<= not RW;
 				CP_WE_S		<= RW;
 			end if;				
-			CP_WE_QUIRK <= CP_WE_S;
+			CP_WE_QUIRK <= CP_WE_S; --the clockport write must be low exactly one 7MHz cycle!
 		end if;
 	end process cp_rw_gen;
 	

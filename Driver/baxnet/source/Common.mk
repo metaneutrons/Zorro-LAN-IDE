@@ -19,7 +19,7 @@
 #
 ###############################################################################
 # debug = 1 will include string debugging for terminal/sushi/sashimi
-debug = 1
+debug = 0
 # compiler_vcc = 1 will trigger VBCC, else GCC
 compiler_vcc = 1
 

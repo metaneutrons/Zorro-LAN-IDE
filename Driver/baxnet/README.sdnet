@@ -2,8 +2,9 @@ SDNet - A SANA-II driver for ENC28J60 10BaseT ethernet modules
 
 Copyright (C) 2016-2018 Henryk Richter <henryk.richter@gmx.net>
 
-This driver is supposed to support ENC28J60 modules hooked up to the MicroSD
-slot of Vampire 500/600 cards or the expansion port of Vampire 500V2+ cards.
+This driver is supposed to support ENC28J60 modules hooked up to the 
+MicroSD slot of Vampire 500/600 cards (sdnet.device) or the 
+expansion port of Vampire 500V2+ cards (v2expeth.device).
 
 
 Installation:
@@ -24,14 +25,14 @@ in the ROM of Vampire Cards since the Gold2.5 release.
 Also, make sure that the Vampire SD Card driver (sagasd.device) is not present
 in the system or at least inactive when using sdnet.device. Both pieces of 
 software bang the same hardware registers. v2expeth.device may be used safely
-in conjunction with the SD card driver.
+in conjunction with the SD card driver. 
 
 
 Vampire500 Expansion port Hardware
 -----------------------------------
 
 Please see http://wiki.apollo-accelerators.com/doku.php/expansionport for 
-guidance.
+cabling guidance.
 
 
 MicroSD Slot Hardware:
@@ -67,7 +68,7 @@ looking at the connectors) to the ENC28J60 module:
  |  2  ----          /CS  --------------------  /CS
  |  1  ----         /INT  --   __________   -- /INT
  ------    -------------    \_| 3.3 kOhm |_/
-       \___|                  `----------Â´
+       \___|                  `----------´
 
 As there is a myriad of ENC28J60 modules available, the naming scheme on
 a particular board might differ. Please be aware the some of the boards
@@ -151,13 +152,16 @@ NOSPECIALSTATS/S,PRIORITY=PRI/K/N,BPS/K/N,MTU/K/N,FULLDUPLEX/S,SPISPEED/K/N,
 TIMER/K/N,MULTICAST/S
 
  SPISPEED       - SPI clock divider (1-10, default 2), controls maximum
-                  clock of SPI bus. Actual I/O clock is Core_Clock/(3+SPISPEED).
+                  clock of SPI bus. Actual I/O clock is Core_Clock/(2+SPISPEED).
 
  FULLDUPLEX     - change Ethernet module into full duplex mode, 
-                  caution: requires manual configuration of duplex mode
-		           on the switch, too.
+                  caution: requires MANUAL configuration of duplex mode
+		           on the SWITCH, TOO! Otherwise you get a heavy
+		           amount of collisions and bad performance!
 
- PRIORITY       - server task priority (default 1)
+ PRIORITY       - server task priority (default 1). It depends on the TCP/IP stack
+                  whether a priority higher than 1 gives performance benefits. I'd
+		  suggest to leave the setting at default, at least for Roadshow. 
 
  BPS            - bit per seconds for statistics purposes
 
@@ -169,12 +173,28 @@ TIMER/K/N,MULTICAST/S
  MULTICAST      - obsolete, kept for config file backwards compatibility with 
                   old driver
 
- example (useful for DSL via PPPoE on x11 core with AmiTCP):
+ INTERRUPT      - (V2EXPETH ONLY!), from Gold 2.10 release and v2expeth.device
+                  1.94 onwards, you can enable the interrupts and avoid polling.
+                  It is suggested to disable the timer in that case.
+                  See below for an example
+
+ example1 (useful for DSL via PPPoE on x11 core with AmiTCP):
   echo "MTU=1492 SPISPEED=1 PRIORITY=6" >ENVARC:sana2/sdnet.config  
+
+ example2 (V500 expansion port, Gold 2.10 or later, interrupt driven):
+  echo "TIMER=0 INTERRUPT SPISPEED=1" >ENVARC:sana2/v2expeth.config
 
 
 Changelog:
 ----------
+
+1.95  - workaround for MiamiDX bugs, 32 Bit Buffer copy routines could not be
+        used safely with it.
+
+1.94  - implemented interrupts for modules connected to V500v2+ expansion port 
+
+1.93  - minor restructuring, SAS/C makefile added
+      - smaller binaries (functionally identical)
 
 1.92  - workaround for linker issue, version bump
 

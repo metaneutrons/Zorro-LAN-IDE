@@ -6,6 +6,9 @@
 ; Note: This code is in some places intentionally saving more registers than 
 ;       required by the AmigaOS ABI.
 ;
+        ifnd    _LVOSignal
+_LVOSignal      EQU     -324
+	endc
 
 ; enable debugging code block
 DEBUG	EQU	0
@@ -32,6 +35,12 @@ _OPT_SHORT_DELAY	EQU	1	;small delays by a single CIA read
 	XDEF	_enc28j60l_Shutdown
 	XDEF	_enc28j60l_SetSPISpeed
 
+	ifd	PROTO_V2EXPNET
+	; interrupt stuff, used only with V2EXPETH right now
+	XDEF	_enc28j60l_IntServer_List
+	XDEF	_enc28j60l_EnableInterrupt
+	XDEF	_enc28j60l_DisableInterrupt
+	endc
 ;
 ;
 ; hardware support functions without SPI register banging
@@ -300,6 +309,7 @@ SDCARD_DATA_R             EQU   $00DE0010
 SDCARD_CFG_W              EQU   $00DE0014
 SDCARD_STATUS_R           EQU   $00DE0016
 SDCARD_CFG_SPEED          EQU	$00DE001C
+SDCARD_INT_ENABLE         EQU	$00DE0018
 	else	;PROTO_V2EXPNET
 	; PROTO_SDNET
 SDCARD_DATA_W             EQU   $00DE0000
@@ -307,6 +317,7 @@ SDCARD_DATA_R             EQU   $00DE0000
 SDCARD_CFG_W              EQU   $00DE0004
 SDCARD_STATUS_R           EQU   $00DE0006
 SDCARD_CFG_SPEED          EQU	$00DE000C
+SDCARD_INT_ENABLE         EQU	$00DE0008
 	endc	;PROTO_V2EXPNET
 
 SDCARD_SPEED              EQU   $20		;this one is obsolete
@@ -999,6 +1010,107 @@ skip$
 rts$
 	rts
 
+	;-----------------------------------------------------------------------
+	ifd	PROTO_V2EXPNET
+
+;---------------------------------------------------------------------------------------
+;
+; Hardware interrupt service routine for a list of boards
+;
+; In: A1 - is_data = board base address list
+;
+; Out:   -
+;
+; Notes: - assumes that init() was called before
+;        - process list of board addresses and check for active interrupt(s)
+;          list layout:
+;           ULONG enableflag
+;           APTR  board1,
+;           APTR  board2,...
+;           APTR  (0)
+;           APTR  sigtask
+;           ULONG sigbit
+; 
+_enc28j60l_IntServer_List:
+	movem.l	d3/a6,-(sp)
+
+	move.l	a1,d0				;no pointer supplied ? -> return
+	beq.s	.rts
+	move.l	a1,a6
+
+	tst.l	(a1)+				;interrupt processing enabled ?
+	beq.s	.rts_disable			;
+
+	moveq	#0,d1
+.boardloop:
+	move.l	(a1)+,d0			;next entry from list
+	beq.s	.done				;	
+	move.l	d0,a0				;current board
+
+	move.b	#EPKTCNT,d0
+	bsr	_enc28j60l_ReadRegByte
+	or.b	d0,d1
+
+	bra.s	.boardloop
+.done:
+	tst.w	d1
+	beq.s	.rts
+
+	clr.l	(a6)+				;disable interrupt processing further on
+
+	; clear EIE_INTIE in all active boards directly from here
+.intdis_loop:
+	move.l	(a6)+,d0
+	beq.s	.boardsdone
+
+	move.w	#$0000,SDCARD_INT_ENABLE
+	;
+	;move.w	#ENC28J60_BIT_FIELD_CLR,d3
+	;moveq	#EIE,d0
+	;moveq	#EIE_INTIE|EIE_PKTIE,d1
+	;bsr	_enc28j60l_WriteOp
+
+	bra.s	.intdis_loop
+.boardsdone:
+
+	move.l	(a6)+,d0	;Sigtask
+	beq.s	.rts
+	move.l	d0,a1
+	
+	moveq	#0,d0
+	move.l	(a6)+,d1	;Sigbit
+	bset	d1,d0
+
+	move.l	4.w,a6
+	jsr	_LVOSignal(a6)
+
+.rts:
+	movem.l	(sp)+,d3/a6
+	moveq	#0,d0		;set Z flag
+	rts
+.rts_disable:			;
+	move.w	#$0000,SDCARD_INT_ENABLE
+	bra.s	.rts
+
+
+	; TODO: enable/disable interrupt on board
+_enc28j60l_EnableInterrupt:
+	move.w	#$8000,SDCARD_INT_ENABLE
+	rts
+
+_enc28j60l_DisableInterrupt:
+	move.w	#$0000,SDCARD_INT_ENABLE
+	rts
+
+	endc	;ifd	PROTO_V2EXPNET
+	;-----------------------------------------------------------------------
+
+
+
+	; DEBUG
+	;ifd	PROTO_V2EXPNET
+	;dc.b	"exp net variant built."
+	;endc
 
 
 ;	section	data,data

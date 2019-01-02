@@ -232,7 +232,7 @@ ASM SAVEDS int enc624j6l_SetOnline( ASMR(a0) void *board           ASMREG(a0) );
   output:  <0  - error
            >=0 - OK
 */
-ASM SAVEDS int enc624j6l_broadcast_multicast_filter( 
+ASM SAVEDS int enc624j6l_bc_mc_filter( 
                                ASMR(a0) void *board         ASMREG(a0),
                                ASMR(d1) unsigned long flags ASMREG(d1) );
 
@@ -325,6 +325,19 @@ ASM SAVEDS void enc624j6l_IntServer_List( void );
            
 */
 ASM SAVEDS int enc624j6l_CheckLinkChange( ASMR(a0) void *board ASMREG(a0) );
+
+/*
+  Purpose: read PHY register
+
+  input:   board      - mmapped board base address
+           flags      - broadcast,promiscous, multicast
+
+  output:  <0  - error
+           >=0 - OK
+*/
+ASM SAVEDS int enc624j6l_ReadPHY( 
+                               ASMR(a0) void *board           ASMREG(a0),
+                               ASMR(d0) unsigned long phyreg  ASMREG(d0) );
 
 
 

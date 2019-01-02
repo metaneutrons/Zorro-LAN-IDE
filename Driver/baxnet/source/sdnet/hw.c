@@ -16,6 +16,8 @@
 #include <vampire/vampire.h>
 #include "vampuuid.h"
 #include "enc28j60.h"
+#include <hardware/intbits.h>
+#include "enc28j60l.h"
 
 #ifndef PROTO_V2EXPNET
 #define PORTID V_SDPORT
@@ -27,6 +29,9 @@ extern const BYTE DeviceName[];
 
 /* use generic board fields in current unit */
 #define hw_allocated du_hwl0
+#define duh_online   du_hwl1
+#define duh_BASE     du_hwp0
+
 
 #define HW_INTERVALDEF 10000
 #define HW_DEFSPI 2
@@ -57,6 +62,21 @@ extern const BYTE DeviceName[];
     hw_config_init()    - set defaults for HW
     hw_config_update()  - update config of HW
 */
+
+#ifdef PROTO_V2EXPNET
+#define USE_INTERRUPT
+
+/* used only if interrupts are in play (currently V2ExpETH) */
+void myhw_ControlInterrupts( DEVBASEP );
+const BYTE intname[] = "v2expeth SanaII driver";
+#define HW_INTSOURCE INTB_PORTS /* Int 2 */
+
+#else
+
+#define myhw_ControlInterrupts( _a_ )
+
+#endif
+
 
 const BYTE vres_name[] = V_VAMPIRENAME;
 
@@ -156,12 +176,25 @@ ASM SAVEDS LONG hw_Setup( ASMR(a0) DEVBASEP                  ASMREG(a0) )
 	LONG ret = 0;
 	struct HWData *hwd = &db->db_hwdat;
 
+
+#ifdef USE_INTERRUPT
+	hwd->IntSig = AllocSignal(-1);
+	hwd->hwd_Interrupt.is_Data = (0);
+#ifdef PROTO_V2EXPNET
+	db->db_Units[0].duh_BASE = (void*)0xDE0010;
+#else
+	db->db_Units[0].duh_BASE = (void*)0xDE0000;
+#endif
+#else
 	hwd->IntSig = -1;
+#endif
 
 	if( InitIntervalTimer( &hwd->ivtimer ) > 0 )
 	{
 		hwd->SigMask = hwd->ivtimer.IVT_SigMask;
-
+#ifdef USE_INTERRUPT
+		hwd->SigMask |= (1<<(hwd->IntSig));
+#endif
 		ret = 1;
 	}
 
@@ -172,6 +205,9 @@ ASM SAVEDS LONG hw_Setup( ASMR(a0) DEVBASEP                  ASMREG(a0) )
 ASM SAVEDS void hw_Shutdown(  ASMR(a0) DEVBASEP                  ASMREG(a0) )
 {
 	struct HWData *hwd = &db->db_hwdat;
+
+	db->db_Units[0].duh_online = 0;
+	myhw_ControlInterrupts( db );
 
 	if( hwd->IntSig >= 0 )
 		FreeSignal( hwd->IntSig );
@@ -206,8 +242,14 @@ ASM SAVEDS LONG hw_Attach( ASMR(a0) DEVBASEP                  ASMREG(a0),
 		ret = 0;
 	else
 	{
+		db->db_Units[0].duh_online = 1; /* used for int server and interval timer setup */
+
 		enc28j60_SetSPISpeed( hwd->spispeed );
-		StartIntervalTimer( &hwd->ivtimer, hwd->timervalue );
+
+		myhw_ControlInterrupts( db );
+
+		if( hwd->timervalue > 0 )
+			StartIntervalTimer( &hwd->ivtimer, hwd->timervalue );
 	}
 
 	return ret;
@@ -220,7 +262,13 @@ ASM SAVEDS void hw_Detach( ASMR(a0) DEVBASEP                  ASMREG(a0),
 	if( !unit )
 	{
 		struct HWData *hwd = &db->db_hwdat;
+
+		db->db_Units[unit].duh_online = 0; /* used for int server and interval timer setup */
+		myhw_ControlInterrupts( db );    /* start and/or stop (based on duh_online) */
+
 		StopIntervalTimer( &hwd->ivtimer );
+
+		myhw_ControlInterrupts( db );    /* start and/or stop (based on duh_online) */
 		enc28j60_exit();
 	}
 }
@@ -235,6 +283,7 @@ ASM SAVEDS void hw_ConfigInit(   ASMR(a0) DEVBASEP                  ASMREG(a0) )
 	hwd->fullduplex = 0;
 	hwd->spispeed   = HW_DEFSPI; /* default (see above) */
         hwd->multicast  = 0;
+	hwd->interrupt  = 0;	/* def: don`t enable interrupt */
 
 #if 0
 	USHORT i;
@@ -262,6 +311,8 @@ ASM SAVEDS void hw_ConfigUpdate( ASMR(a0) DEVBASEP                  ASMREG(a0),
 		hwd->spispeed = *args->spispeed;
 	if( args->multicast )
 		hwd->multicast = 1;
+	if( args->interrupt )
+		hwd->interrupt = 1;
 }
 
 
@@ -270,6 +321,12 @@ ASM SAVEDS LONG hw_send_frame( ASMR(a0) DEVBASEP                  ASMREG(a0),
 			       ASMR(a1) UBYTE *frame              ASMREG(a1),
                                ASMR(d1) ULONG  framesize          ASMREG(d1) )
 {
+#ifdef USE_INTERRUPT
+	struct HWData *hwd = &db->db_hwdat;
+
+	hwd->hwd_act_boards[0] = (void*)(0); /* disable interrupt processing */
+#endif
+
    enc28j60_send( frame, framesize );
    return 1;
 }
@@ -278,7 +335,21 @@ ASM SAVEDS LONG hw_send_frame( ASMR(a0) DEVBASEP                  ASMREG(a0),
 ASM SAVEDS LONG hw_recv_pending( ASMR(a0) DEVBASEP                  ASMREG(a0),
                                  ASMR(d0) ULONG unit                ASMREG(d0) )
 {
+#ifdef USE_INTERRUPT
+	LONG   ret;
+	struct HWData *hwd = &db->db_hwdat;
+	void *tmp = hwd->hwd_act_boards[0];
+
+	hwd->hwd_act_boards[0] = (void*)(0); /* disable interrupt processing */
+
+	ret = (LONG)enc28j60_has_recv();
+
+	hwd->hwd_act_boards[0] = tmp; /* restore interrupt processing enable flag */
+
+	return ret;
+#else
 	return (LONG)enc28j60_has_recv();
+#endif
 }
 
 
@@ -288,9 +359,14 @@ ASM SAVEDS LONG hw_recv_frame( ASMR(a0) DEVBASEP                  ASMREG(a0),
 {
    volatile SHORT sz;
    LONG ret;
+#ifdef USE_INTERRUPT
+   struct HWData *hwd = &db->db_hwdat;
+
+   hwd->hwd_act_boards[0] = (void*)(0); /* disable interrupt processing */
+#endif
 
    /* important: don't call this without enc28j60_has_recv() > 0 check */
-   if( PIO_OK != enc28j60_recv( frame, 1518, (short*)&sz ) )
+   if( PIO_OK != enc28j60_recv( frame, 1518, (unsigned short*)&sz ) )
         ret = 0;
    else 
    	ret = (LONG)sz;
@@ -311,9 +387,43 @@ ASM SAVEDS ULONG hw_recv_sigmask( ASMR(a0) DEVBASEP                  ASMREG(a0) 
 ASM SAVEDS LONG hw_check_link_change( ASMR(a0) DEVBASEP                  ASMREG(a0),
                                       ASMR(d0) ULONG unit                ASMREG(d0) )
 {
+#ifdef USE_INTERRUPT
+	struct HWData *hwd = &db->db_hwdat;
+
+	if( hwd->hwd_Interrupt.is_Data ) /* interrupt running ? */
+	{
+		hwd->hwd_act_boards[0] = (void*)(1); /* re-enable interrupt processing */
+		/* re-enable interrupt when server goes to sleep */
+		enc28j60l_EnableInterrupt( db->db_Units[unit].duh_BASE, FindTask(0), (int)hwd->IntSig, 0 );
+	}
+#endif
 	return 0;
 }
 
+/* obtain running parameters of Ethernet MAC: link up/down, Speed, Duplex */
+/* note:                                                                  */
+/*    if this call is unsupported then return HW_MAC_INVALID              */
+ASM SAVEDS LONG hw_get_mac_status(    ASMR(a0) DEVBASEP                  ASMREG(a0),
+                                      ASMR(d0) ULONG unit                ASMREG(d0) )
+{
+	LONG ret = 0; /* def: link down */
+	UBYTE status;
+
+	enc28j60_status( PIO_STATUS_LINK_UP, &status );
+	if( status )
+	{
+		ret = HW_MAC_LINK_UP; /* LINK_UP may be redundant */
+
+		enc28j60_status( PIO_STATUS_FULLDPX, &status );
+		if( status )
+			ret |= HW_MAC_ON_FDX<<HW_MACB_SPEED10;
+		else
+			ret |= HW_MAC_ON<<HW_MACB_SPEED10;
+	}
+
+	return ret;
+
+}
 
 /* process the list of multicast addresses for an appropriate
    filtering list on the hardware
@@ -323,7 +433,7 @@ ASM SAVEDS LONG hw_check_link_change( ASMR(a0) DEVBASEP                  ASMREG(
    filter with hashes etc.
 */
 ASM SAVEDS LONG hw_change_multicast(  ASMR(a0) DEVBASEP                  ASMREG(a0),
-                                      ASMR(a0) ULONG unit                ASMREG(d0),
+                                      ASMR(d0) ULONG unit                ASMREG(d0),
                                       ASMR(a1) struct List *mcastlist    ASMREG(a1) )
 {
 	u08 flags;
@@ -341,3 +451,78 @@ ASM SAVEDS LONG hw_change_multicast(  ASMR(a0) DEVBASEP                  ASMREG(
 
 	return 1;
 }
+
+#ifdef USE_INTERRUPT
+/* relies on hwd_online */
+void myhw_ControlInterrupts( DEVBASEP ) 
+{
+	struct HWData *hwd = &db->db_hwdat;
+	LONG i,flag;
+	
+	if( !hwd->interrupt )
+		return;
+
+	flag = 0;
+	for( i=0 ; i < db->db_NBoards ; i++ )
+	{
+		if( db->db_Units[i].duh_online )
+		{
+			hwd->hwd_act_boards[flag+1] = db->db_Units[i].duh_BASE;
+			flag++;
+		}
+	}
+	hwd->hwd_act_boards[flag+1] = (0);                   /* NULL-terminate */
+	hwd->hwd_act_boards[flag+2] = (APTR)FindTask(0);     /* append task    */
+	hwd->hwd_act_boards[flag+3] = (APTR)hwd->IntSig;     /* append sigbit  */
+
+	if( flag )	/* determine on/off switch */
+	{
+		/* at least 1 board is online */
+		hwd->hwd_act_boards[0] = (void*)(1); /* enable interrupt processing */
+
+		if(  hwd->hwd_Interrupt.is_Data )
+			flag = 0; /* no change */
+		else	flag = 1; /* start interrupt */
+	}
+	else
+	{
+		hwd->hwd_act_boards[0] = 0; /* disable interrupt processing */
+
+		if( hwd->hwd_Interrupt.is_Data )
+			flag = -1; /* stop interrupt */
+		else	flag =  0; /* no change */
+	}
+
+	/* flag is >0 = start, <0 = stop or 0 = no change */
+	if( flag > 0 )
+	{
+	        hwd->hwd_Interrupt.is_Code = (void(*)())enc28j60l_IntServer_List;
+	        hwd->hwd_Interrupt.is_Data = &hwd->hwd_act_boards[0];
+	        hwd->hwd_Interrupt.is_Node.ln_Type = NT_INTERRUPT;
+	        hwd->hwd_Interrupt.is_Node.ln_Pri = 51;
+	        hwd->hwd_Interrupt.is_Node.ln_Name = (char*)intname;
+	        AddIntServer( HW_INTSOURCE, &hwd->hwd_Interrupt );
+	}
+
+	for( i=0 ; i < db->db_NBoards ; i++ )
+	{
+			if( db->db_Units[i].duh_online )
+			{
+				enc28j60l_EnableInterrupt( db->db_Units[i].duh_BASE, FindTask(0), (int)hwd->IntSig, 0 );
+			}
+			else
+			{
+		                enc28j60l_DisableInterrupt( db->db_Units[i].duh_BASE );
+			}
+	}
+
+	if( flag < 0 )
+	{
+                hwd->hwd_Interrupt.is_Data = (0);
+                RemIntServer( HW_INTSOURCE, &hwd->hwd_Interrupt );
+		hwd->hwd_Interrupt.is_Code = (0);
+	}
+
+}
+#endif
+

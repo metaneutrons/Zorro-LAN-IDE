@@ -12,6 +12,6 @@ This package contains network drivers for the following hardware:
 - Vampire500/600 with ENC28J60 module connected to the SD-card slot
 - Vampire500V2+ with ENC28J60 module connected to the expansion port
 
-Full source code is included (GPL). Please refer to README.sdnet and
+Full source code is included. Please refer to README.sdnet and
 README.enc for installation and operation instructions
 

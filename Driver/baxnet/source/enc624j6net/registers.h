@@ -439,6 +439,17 @@
 #define EIDLED_REVID1    (1<<1)
 #define EIDLED_REVID0    (1)
 
+/* ; PHY REGISTERS */
+#define	PHCON1	0
+#define PHSTAT1	1
+#define PHANA	4
+#define PHANLPA	5
+#define PHANE	6
+#define PHCON2	0x11
+#define PHSTAT2	0x1b
+#define PHSTAT3	0x1f
+
+
 /*  PHCON1 bits --------- */
 #define PHCON1_PRST	    (1<<15)
 #define PHCON1_PLOOPBK    (1<<14)

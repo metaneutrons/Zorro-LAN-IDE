@@ -3,7 +3,7 @@
 
   (C) 2018 Henryk Richter <henryk.richter@gmx.net>
 
-  SDNet hardware interface to device
+  Matze-Scrat-Buggs ZII card hardware interface to device
 
 
 */
@@ -73,6 +73,8 @@ void myhw_ControlIntervalTimer( DEVBASEP );
 
     hw_config_init()    - set defaults for HW
     hw_config_update()  - update config of HW
+
+    hw_get_mac_status()	- running parameters
 */
 
 const BYTE exp_name[] = "expansion.library";
@@ -85,11 +87,10 @@ ASM SAVEDS LONG hw_Find_Boards( ASMR(a0) DEVBASEP                  ASMREG(a0) )
  struct Library *ExpansionBase;
  struct ConfigDev *cfg = (0);
 
- if( (ExpansionBase = OpenLibrary( exp_name, 37 )) )
+ if( (ExpansionBase = OpenLibrary( (BYTE*)exp_name, 37 )) )
  {
-	/* TODO: check for expansion port, i.e. distinguish V500/V600 */
 	/* TODO: actually verify that we have a module here */
-	ret = 1;
+	/* ret = 1; */
 
 	for( i=0 ; i < MAX_UNITS ; i++ )
 	{
@@ -322,8 +323,64 @@ ASM SAVEDS LONG hw_check_link_change( ASMR(a0) DEVBASEP                  ASMREG(
 	return 1; /* don't signal panic to the outside, everything is under control */
 }
 
+/* obtain running parameters of Ethernet MAC: link up/down, Speed, Duplex */
+ASM SAVEDS LONG hw_get_mac_status(    ASMR(a0) DEVBASEP                  ASMREG(a0),
+                                      ASMR(d0) ULONG unit                ASMREG(d0) )
+{
+	struct HWData *hwd = &db->db_hwdat;
+	APTR boardbase     = db->db_Units[unit].duh_BASE;
+
+	LONG ret;
+    LONG phstat3;
+    LONG phstat1;
+    LONG phcon1;
+
+    enc624j6l_ReadPHY( boardbase, PHSTAT1 );
+    phstat3 = enc624j6l_ReadPHY( boardbase, PHSTAT3 );
+    phcon1  = enc624j6l_ReadPHY( boardbase, PHCON1 );
+    phstat1 = enc624j6l_ReadPHY( boardbase, PHSTAT1 ); /* read again to see whether link is established */
+	if( ( phstat1 < 0 ) || ( phstat3 < 0 ) )
+		return HW_MAC_INVALID; /* no valid data found */
+
+	/* a) check Link */
+	ret = 0;
+	if( phstat1 & PHSTAT1_LLSTAT )
+	{
+		ret |= HW_MAC_LINK_UP;
+		
+/*		if( phstat1 & PHSTAT1_ANDONE ) */ /* autonegotiation successful */
+		if( phcon1  & PHCON1_ANEN ) /* autonegotiation enabled */
+		 ret |= HW_MAC_AUTONEGOTIATION;
+
+	    phstat3 = (phstat3>>2)&7; /* get active Speed/Duplex */
+		switch( phstat3 )
+		{
+			case 6:	
+				if( hwd->flowcontrol )
+					ret |= (HW_MAC_ON_FDX_FC<<HW_MACB_SPEED100);
+				else
+					ret |= (HW_MAC_ON_FDX<<HW_MACB_SPEED100);
+				break;
+			case 5:	
+				if( hwd->flowcontrol )
+					ret |= (HW_MAC_ON_FDX_FC<<HW_MACB_SPEED10);
+				else
+					ret |= (HW_MAC_ON_FDX<<HW_MACB_SPEED10);
+				break;
+			case 2:	ret |= (HW_MAC_ON<<HW_MACB_SPEED100);
+				break;
+			case 1:	ret |= (HW_MAC_ON<<HW_MACB_SPEED10);
+				break;
+			default: break;
+		}		
+	}
+
+	return ret;
+
+}
+
 ASM SAVEDS LONG hw_change_multicast(  ASMR(a0) DEVBASEP                  ASMREG(a0),
-                                      ASMR(a0) ULONG unit                ASMREG(d0),
+                                      ASMR(d0) ULONG unit                ASMREG(d0),
                                       ASMR(a1) struct List *mcastlist    ASMREG(a1) )
 {
 	/* TODO: implement Multicast hashing */
@@ -339,7 +396,7 @@ ASM SAVEDS LONG hw_change_multicast(  ASMR(a0) DEVBASEP                  ASMREG(
 	if( mcastlist->lh_Head->ln_Succ )
 	     flags |= PIO_INIT_MULTI_CAST;
 
-	enc624j6l_broadcast_multicast_filter(boardbase, flags );/* flags & (PIO_INIT_BROAD_CAST|PIO_INIT_MULTI_CAST) ); */
+	enc624j6l_bc_mc_filter(boardbase, flags );/* flags & (PIO_INIT_BROAD_CAST|PIO_INIT_MULTI_CAST) ); */
 
 
 
@@ -366,6 +423,7 @@ void myhw_ControlInterrupts( DEVBASEP )
 	hwd->hwd_act_boards[flag]   = (0);                   /* NULL-terminate */
 	hwd->hwd_act_boards[flag+1] = (APTR)FindTask(0);     /* append task    */
 	hwd->hwd_act_boards[flag+2] = (APTR)hwd->hwd_IntSig; /* append sigbit  */
+	hwd->hwd_act_boards[flag+3] = (APTR)db->db_SysBase;  /* append ExecBase *((APTR*)0x4); */
 
 	if( flag )	/* determine on/off switch */
 	{

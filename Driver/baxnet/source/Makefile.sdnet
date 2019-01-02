@@ -5,6 +5,8 @@
 # author: Henryk Richter <henryk.richter@gmx.net>
 # 
 # concept:
+#  this makefile is intended mainly for cross compilation,
+#  although building on AmigaOS works (see Common.mk)
 #
 # tools required:
 #  - vbcc or m68k-amigaos-gcc (Default: gcc)
@@ -13,6 +15,7 @@
 #  - system headers (default: /opt/amigaos-68k/os-include, see Common.mk)
 #
 # porting:
+#  see smakefile for native building using SAS/C
 #
 ###############################################################################
 
@@ -20,10 +23,10 @@
 # Name, version
 # 
 ###############################################################################
-DEVICEVERSION=1
-DEVICEREVISION=92
-DEVICEDATE=27.06.2018
-DEVICEEXTRA=Beta
+#DEVICEVERSION=1
+#DEVICEREVISION=95
+#DEVICEDATE=08.09.2018
+#DEVICEEXTRA=Beta
 ASMOBJECTS = $(SUBDIR)/vampuuid.o $(SUBDIR)/intervaltimer.o $(SUBDIR)/enc28j60.o $(SUBDIR)/enc28j60l.o
 SUBDIR=sdnet
 
@@ -33,11 +36,16 @@ DEVICEID=sdnet.device
 DEFINES = # -DPROTO_V2EXPNET
 ASMDEFS = # -DPROTO_V2EXPNET
 CPU = 68020
+TESTTOOL = sdnettest
 
 DEVICEID2=v2expeth.device
 DEFINES2 = -DPROTO_V2EXPNET
 ASMDEFS2 = -DPROTO_V2EXPNET
 CPU2 = 68020
+TESTTOOL2 = v2expethtest
+
+# additional housekeeping
+EXTRACLEAN = $(SUBDIR)/sdnettest.o $(SUBDIR)/sdnettest.2o
 
 ###############################################################################
 # import generic ruleset
@@ -45,4 +53,16 @@ CPU2 = 68020
 ###############################################################################
 
 include Common.mk
+
+###############################################################################
+# ruleset for test tools
+#
+###############################################################################
+
+$(TESTTOOL) : $(ASMOBJECTS) $(SUBDIR)/sdnettest.o
+	$(LINKEXE) $(LDFLAGS) -o $@ $(SUBDIR)/sdnettest.o $(ASMOBJECTS)
+
+$(TESTTOOL2) : $(ASMOBJECTS) $(SUBDIR)/sdnettest.2o
+	$(LINKEXE) $(LDFLAGS) -o $@ $(SUBDIR)/sdnettest.2o $(ASMOBJECTS)
+
 
