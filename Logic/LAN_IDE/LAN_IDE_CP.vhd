@@ -116,6 +116,10 @@ architecture Behavioral of LAN_IDE_CP is
 	signal IDE_ACCESS: STD_LOGIC;
 	signal IDE_ENABLE: STD_LOGIC;
 	signal IDE_BASEADR:STD_LOGIC_VECTOR(7 downto 0);
+	signal IDE_R_S: STD_LOGIC;
+	signal IDE_W_S: STD_LOGIC;
+	signal ROM_OE_S: STD_LOGIC;
+	
 	signal CP_ACCESS: STD_LOGIC;
 	signal CP_BASEADR:STD_LOGIC_VECTOR(7 downto 0);
 	signal LAN_ACCESS: STD_LOGIC;
@@ -144,6 +148,10 @@ architecture Behavioral of LAN_IDE_CP is
 	signal Z3_DS:STD_LOGIC_VECTOR(3 downto 0);
 	signal Z3_A_LOW:STD_LOGIC;
 	signal LAN_SM_RST:STD_LOGIC;
+
+	signal CP_RD_S: std_logic;
+	signal CP_WE_S: std_logic;
+	signal CP_WE_QUIRK: std_logic;
 
 	signal AMIGA_CLK:STD_LOGIC;
 	signal DS:STD_LOGIC;
@@ -276,7 +284,6 @@ begin
 		if(reset ='0')then
 			AUTOCONFIG_Z2_ACCESS <= '0';
 			IDE_ACCESS 				<= '0';
-			IDE_ENABLE 				<= '0';
 			CP_ACCESS				<= '0'; 
 		elsif(falling_edge(AS))then		
 			
@@ -296,7 +303,6 @@ begin
 			--IDE base
 			if(A(23 downto 16) = IDE_BASEADR and SHUT_UP_Z2(1)='0' )then	
 				IDE_ACCESS 		<= '1';
-				IDE_ENABLE		<= not RW; -- enable IDE on the first write
 			else
 				IDE_ACCESS 		<= '0';
 			end if;	
@@ -671,6 +677,7 @@ begin
 			(others => 'Z');
 
 	INT_OUT <= '0' when LAN_IRQ_OUT = '0' and LAN_INT_ENABLE = '1' else
+				  '0' when CP_IRQ = '0' else
 				  'Z';
 	
 	OWN 	<= 'Z';
@@ -685,18 +692,60 @@ begin
    MTACK <= 'Z';
 
 
-	IDE_W <= '0' 	  			when AS='0' and IDE_ACCESS='1' and RW='0' else '1';
-	IDE_R <=	not IDE_ENABLE when AS='0' and IDE_ACCESS='1' and RW='1' else '1';
-	ROM_OE<= 	 IDE_ENABLE when AS='0' and IDE_ACCESS='1' and RW='1' else '1';			
+	--ide signal generation
+	ide_rw_gen: process (reset,AMIGA_CLK)
+	begin
+		if	(reset = '0') then
+			IDE_ENABLE 	<= '1';
+			IDE_R_S		<= '1';
+			IDE_W_S		<= '1';
+			ROM_OE_S		<= '1';
+		elsif falling_edge(AMIGA_CLK) then			
+			--default values
+			IDE_R_S		<= '1';
+			IDE_W_S		<= '1';
+			ROM_OE_S		<= '1';					
+			if(IDE_ACCESS='1' and AS='0')then
+				if(RW='0')then
+					--the write goes to the hdd!
+					IDE_ENABLE  <= '0'; -- enable IDE on first read
+					IDE_W_S		<= '0';	
+				else
+					IDE_R_S		<= IDE_ENABLE; --read from IDE instead from ROM
+					ROM_OE_S		<=	not IDE_ENABLE;						
+				end if;	
+			end if;				
+		end if;
+	end process ide_rw_gen;
+
+	IDE_W <= IDE_W_S	when AS='0' else '1';
+	IDE_R <=	IDE_R_S	when AS='0' else '1';
+	ROM_OE<= ROM_OE_S	when AS='0' and AUTOBOOT_OFF ='0' else '1';			
 	IDE_CS(0)<= not(A(12));			
 	IDE_CS(1)<= not(A(13));
 	IDE_A(2 downto 0)	<= A(11 downto 9);
 	ROM_B	<= "00";
 
+
+	--cp signal generation
+	cp_rw_gen: process (AMIGA_CLK)
+	begin
+		if falling_edge(AMIGA_CLK) then			
+			--default values
+			CP_RD_S		<= '1';
+			CP_WE_S		<= '1';
+			if(CP_ACCESS = '1' and DS='0')then --datastrobe instead of AS!
+				CP_RD_S		<= not RW;
+				CP_WE_S		<= RW;
+			end if;				
+			CP_WE_QUIRK <= CP_WE_S;
+		end if;
+	end process cp_rw_gen;
+	
 	--for the future
-	CP_WE		<= '1';
-	CP_RD		<= '1';
-	CP_CS		<= '1';
+	CP_WE		<= CP_WE_S when AS='0' and CP_WE_QUIRK ='1' else '1';
+	CP_RD		<= CP_RD_S when AS='0' else '1';
+	CP_CS		<= not CP_ACCESS;
 
 end Behavioral;
 
