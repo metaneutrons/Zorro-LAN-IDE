@@ -11,6 +11,6 @@
 #define DEVICEVERSION  1
 #define DEVICEREVISION 98
 #define DEVICEEXTRA    Beta
-#define DEVICEDATE     02.01.2019
+#define DEVICEDATE     03.01.2019
 
 #endif

@@ -1,3 +1,4 @@
+;APS00001922000000000000000000000000000000000000000000000000000000000000000000000000
 ; ------------------------------------------------------------------------------
 ; | Lowlevel Access to memory mapped ENC624J600 in PSP mode                    |
 ; | Henryk Richter <henryk.richter@gmx.net>                                    |
@@ -218,6 +219,7 @@ opendos:
 
 	; Initialize board for sending/receiving
 	move.l	_boardbase(pc),a0
+	moveq	#PIO_INIT_MULTI_CAST,d1
 	bsr	_enc624j6l_Init
 	tst.l	d0
 	ble	error
@@ -1382,16 +1384,18 @@ _enc624j6l_TransmitFrame:
 	dbf		d5,.largecopy
 
 	move.l	d1,(a2)+
-	bra.s	.smallcopy
-		
-	endc	;_OPT_BUFFER_SWAP
+
+	else	;_OPT_BUFFER_SWAP
 
 	move.w	d0,d4		;still need length later
+
+	endc	;_OPT_BUFFER_SWAP
+
 .smallcopy:
 	addq	#7,d0		;round up
 	asr.w	#3,d0		;size/8 = words
 	subq.w	#1,d0		;dbf...
-	blt.w	.err		;size<2 ? bail out
+	blt.w	.copydone	;size<2 ? bail out
 
 	swap	d4
 	move.w	#8,d4
@@ -1418,7 +1422,7 @@ _enc624j6l_TransmitFrame:
 	dbf	d0,.txcopy
 
 	swap	d4
-
+.copydone
 
 	;---------------- wait on last frame ----------------------------------
 	move	#200,d3

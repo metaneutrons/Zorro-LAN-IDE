@@ -255,6 +255,8 @@ ASM SAVEDS LONG DevOpen( ASMR(a1) struct IOSana2Req *ioreq           ASMREG(a1),
 	}
 	ioreq->ios2_Req.io_Message.mn_Node.ln_Type = NT_REPLYMSG;
 
+	D(("DevOpen return code %ld\n",ret));
+
 	return ret;
 }
 
@@ -578,6 +580,8 @@ ASM SAVEDS VOID DevBeginIO( ASMR(a1) struct IOSana2Req *ioreq        ASMREG(a1),
 			{
 			 struct IOStdReq *stdrq = (struct IOStdReq *)ioreq;
 
+			 D(("NSCMD_DEVICEQUERY size %ld\n",(ULONG)stdrq->io_Length));
+
 			 if( (!stdrq->io_Data) || (stdrq->io_Length < sizeof( NSDQueryAnswer ) ) )
 			 {
 				ioreq->ios2_Req.io_Error = IOERR_BADLENGTH;
@@ -588,6 +592,7 @@ ASM SAVEDS VOID DevBeginIO( ASMR(a1) struct IOSana2Req *ioreq        ASMREG(a1),
 				stdrq->io_Actual = sizeof( NSDQueryAnswer ); 
 				ioreq->ios2_Req.io_Error = 0;
 			 }
+			 D(("NSCMD_DEVICEQUERY return %ld\n",(ULONG)ioreq->ios2_Req.io_Error));
 			}
 			break;
 		/* query contents may ask for live data: handle in server.c */
