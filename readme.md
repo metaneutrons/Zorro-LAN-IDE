@@ -56,7 +56,7 @@ You can generate Gerber-files from the brd files according to the specs of your 
 **ATTENTION: Revision 2E has not been build yet!**
 
 ## How to get the parts?
-Most parts can be found on digikey or mouser or a parts supplier of your choice. I recoment Alliance AS6C8C16-55ZIN for SRAM. 
+Most parts can be found on digikey or mouser or a parts supplier of your choice.
 A list of parts is found in the file [ZORRO-LAN-IDE-CP-V2E.txt](https://gitlab.com/MHeinrichs/Zorro-LAN-IDE/raw/master/PCB/ZORRO-LAN-IDE-CP-V2E.txt)
 
 ## How to programm the board?
