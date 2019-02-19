@@ -197,17 +197,25 @@ ASM SAVEDS LONG DevOpen( ASMR(a1) struct IOSana2Req *ioreq           ASMREG(a1),
 				dbm->dbm_CopyFromBuffer = (BMCALL)((void (*)())(GetTagData(S2_CopyFromBuff, 0,
 				                                (struct TagItem *)ioreq->ios2_BufferManagement)));
 
-				/* v1.95: disable CopyToBuffer32 due to problems with MiamiDX */
+				dbm->dbm_PacketFilter = (APTR)( GetTagData(S2_PacketFilter,0,
+				                                (struct TagItem *)ioreq->ios2_BufferManagement));
+
+				/* v1.95: disabled CopyToBuffer32 due to problems with MiamiDX */
+				/* v1.99: try identifying Miami */
 				/* MiamiDX requires byte count to be a multiple of 4 */
-#if 1
-				dbm->dbm_CopyToBuffer32 = (0);
-				dbm->dbm_CopyFromBuffer32 = (0);
-#else
-				dbm->dbm_CopyToBuffer32 = (BMCALL)((void (*)())(GetTagData(S2_CopyToBuff32, 0,
+				if( FindPort("MIAMI.1") ) /* Miami active ? */
+				{
+					dbm->dbm_CopyToBuffer32 = (0);
+					dbm->dbm_CopyFromBuffer32 = (0);
+				}
+				else
+				{
+					dbm->dbm_CopyToBuffer32 = (BMCALL)((void (*)())(GetTagData(S2_CopyToBuff32, 0,
 			                                        (struct TagItem *)ioreq->ios2_BufferManagement)));
-				dbm->dbm_CopyFromBuffer32 = (BMCALL)((void (*)())(GetTagData(S2_CopyFromBuff32, 0,
+					dbm->dbm_CopyFromBuffer32 = (BMCALL)((void (*)())(GetTagData(S2_CopyFromBuff32, 0,
 				                                (struct TagItem *)ioreq->ios2_BufferManagement)));
-#endif
+				}
+
 				if( !dbm->dbm_CopyToBuffer32 )
 					dbm->dbm_CopyToBuffer32 = dbm->dbm_CopyToBuffer;
 				if( !dbm->dbm_CopyFromBuffer32 )
@@ -254,8 +262,6 @@ ASM SAVEDS LONG DevOpen( ASMR(a1) struct IOSana2Req *ioreq           ASMREG(a1),
 		db->db_Lib.lib_OpenCnt--;
 	}
 	ioreq->ios2_Req.io_Message.mn_Node.ln_Type = NT_REPLYMSG;
-
-	D(("DevOpen return code %ld\n",ret));
 
 	return ret;
 }
@@ -580,8 +586,6 @@ ASM SAVEDS VOID DevBeginIO( ASMR(a1) struct IOSana2Req *ioreq        ASMREG(a1),
 			{
 			 struct IOStdReq *stdrq = (struct IOStdReq *)ioreq;
 
-			 D(("NSCMD_DEVICEQUERY size %ld\n",(ULONG)stdrq->io_Length));
-
 			 if( (!stdrq->io_Data) || (stdrq->io_Length < sizeof( NSDQueryAnswer ) ) )
 			 {
 				ioreq->ios2_Req.io_Error = IOERR_BADLENGTH;
@@ -592,7 +596,6 @@ ASM SAVEDS VOID DevBeginIO( ASMR(a1) struct IOSana2Req *ioreq        ASMREG(a1),
 				stdrq->io_Actual = sizeof( NSDQueryAnswer ); 
 				ioreq->ios2_Req.io_Error = 0;
 			 }
-			 D(("NSCMD_DEVICEQUERY return %ld\n",(ULONG)ioreq->ios2_Req.io_Error));
 			}
 			break;
 		/* query contents may ask for live data: handle in server.c */
@@ -749,7 +752,10 @@ static LONG dbStartServer( DEVBASEP, LONG unit )
   sv_tags[i  ].ti_Tag  = NP_Name;
   sv_tags[i++].ti_Data = (ULONG)db->db_Lib.lib_Node.ln_Name;
   sv_tags[i  ].ti_Tag  = NP_Priority;
-  sv_tags[i++].ti_Data = (ULONG)0;
+  if( FindPort("AMITCP") ) /* AmiTCP active ? */
+	  sv_tags[i++].ti_Data = (ULONG)6;
+  else
+	  sv_tags[i++].ti_Data = (ULONG)0;
   sv_tags[i  ].ti_Tag  = TAG_DONE;
 
   if( (db->db_ServerProc = CreateNewProc(sv_tags)))

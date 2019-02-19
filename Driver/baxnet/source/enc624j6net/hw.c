@@ -86,6 +86,7 @@ ASM SAVEDS LONG hw_Find_Boards( ASMR(a0) DEVBASEP                  ASMREG(a0) )
  LONG i,ret = 0;
  struct Library *ExpansionBase;
  struct ConfigDev *cfg = (0);
+ APTR boardbase;
 
  if( (ExpansionBase = OpenLibrary( (BYTE*)exp_name, 37 )) )
  {
@@ -97,8 +98,13 @@ ASM SAVEDS LONG hw_Find_Boards( ASMR(a0) DEVBASEP                  ASMREG(a0) )
 		cfg = FindConfigDev( cfg, ENC_MANUFACTURER, ENC_BOARD );
 		if( !cfg )
 			break;
-		db->db_Units[i].duh_BASE = (APTR)cfg->cd_BoardAddr;
+		boardbase = (APTR)cfg->cd_BoardAddr;
+		db->db_Units[i].duh_BASE = boardbase;
 		D(("Board at %lx\n",(ULONG)cfg->cd_BoardAddr ));
+
+		/* bring board to sane state (i.e. perform soft reset) */
+		/* if( boardbase < (APTR)0x40000000 ) */ /* debug only */
+			enc624j6l_CheckBoard( boardbase );
 	}
 	ret = i;
 	D(("%ld boards found\n",ret));

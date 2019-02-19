@@ -16496,7 +16496,7 @@ Low profile connectors, straight&lt;p&gt;
 <label x="60.96" y="157.48" size="1.27" layer="95" rot="R90"/>
 </segment>
 </net>
-<net name="LAN_CGF2" class="0">
+<net name="INT6" class="0">
 <segment>
 <pinref part="IC2" gate="G$1" pin="P$135-FB6MC02"/>
 <wire x1="58.42" y1="154.94" x2="58.42" y2="157.48" width="0.1524" layer="91"/>

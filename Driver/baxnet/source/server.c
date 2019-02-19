@@ -30,6 +30,11 @@
 static LONG server_queryext( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq );
 #endif
 
+/* the XSurf500 network panel currently claims length 0 requests
+   if the line below is not commented out, just check pointer
+*/
+#define S2QUERYEXT_NOLENGTHCHECK
+
 
 /* (avoid external link libraries) this call is not time critical */
 static void MemSet( void *a, ULONG val, ULONG size )
@@ -396,6 +401,8 @@ static LONG server_HandleS2Commands( DEVBASEP )
 		ioreq->ios2_Req.io_Error = S2ERR_NO_ERROR;
 		ioreq->ios2_WireError    = S2WERR_GENERIC_ERROR;
 
+		D(("server_HandleS2Commands: CMD %ld",(ULONG)ioreq->ios2_Req.io_Command));
+
 		switch( ioreq->ios2_Req.io_Command)
 		{
 			case S2_ONLINE:
@@ -482,9 +489,16 @@ static LONG server_queryext( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq )
 
 	tlist = (struct TagItem*)ioreq->ios2_Data;
 
+	D(("Query for %ld bytes TAGLIST %lx\n",(ULONG)ioreq->ios2_DataLength,(ULONG)tlist ));
+
+#ifdef S2QUERYEXT_NOLENGTHCHECK
+	if( !tlist )
+		return 0;
+#else
 	/* 3*4 Bytes needed for one Tag + TAG_DONE */
 	if( (ioreq->ios2_DataLength < 12) || (!tlist) )
 		return 0;
+#endif
 
 	tval = GetTagData( S2_DevQueryExtVendorName, 0, tlist );
 	if( tval )
@@ -494,6 +508,7 @@ static LONG server_queryext( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq )
 		len  = min( s2qep->Length, sizeof(server_vendorstring) );
 		CopyMem( (void*)server_vendorstring, s2qep->Data, len );
 		s2qep->Actual = len;
+		D(("Vendorname Query"));
 	}
 
 	tval = GetTagData( S2_DevQueryExtProductName, 0, tlist );
@@ -504,6 +519,7 @@ static LONG server_queryext( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq )
 		len  = min( s2qep->Length, sizeof(server_productstring) );
 		CopyMem( (void*)server_productstring, s2qep->Data, len );
 		s2qep->Actual = len;
+		D(("Productname Query"));
 	}
 
 
@@ -511,6 +527,7 @@ static LONG server_queryext( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq )
 	tval2 = GetTagData( S2_DevQueryExtLinkSpeed, 0, tlist );
 	if( (tval) || (tval2) )
 	{
+		D(("Link Status and/or Speed"));
 		/* ask hardware about link/speed status */
 		len = hw_get_mac_status(db, unit);
 		if( len != HW_MAC_INVALID )
@@ -709,6 +726,8 @@ static LONG server_writequeue( DEVBASEP, ULONG unit )
 			/* error handling */
 			server_writeerror( db, unit, ioreq, code );
 		}
+		if( hw_recv_pending(db,unit) )
+			break;
 	}
 
 	ReleaseSemaphore( &db->db_Units[unit].du_Sem );
@@ -716,6 +735,9 @@ static LONG server_writequeue( DEVBASEP, ULONG unit )
 	return SERR_OK;
 }
 
+
+typedef ULONG (* ASM PFCALL)( ASMR(a0) struct Hook * ASMREG(a0), ASMR(a2) void * ASMREG(a2), ASMR(a1) ULONG *ASMREG(a1) );
+#define PFTYPE ULONG (*)( struct Hook *,void *,ULONG * )
 
 /* note: entering here with locked semaphore */
 static void server_read_frame( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq, UBYTE *frame, ULONG framesize )
@@ -725,6 +747,8 @@ static void server_read_frame( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq, U
 
 	COPYMAC( ioreq->ios2_DstAddr, frame ); /* macro in server.h */
 	COPYMAC( ioreq->ios2_SrcAddr, frame+6 );
+
+	dbm = (struct db_BufferManagement *)ioreq->ios2_BufferManagement;
 
 	if( *frame & 1 ) /* just check Ethernet MULTICAST flag */
 	{
@@ -751,8 +775,16 @@ static void server_read_frame( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq, U
 	ioreq->ios2_Req.io_Error  = 0;
 	ioreq->ios2_WireError     = 0;
 
-	dbm = (struct db_BufferManagement *)ioreq->ios2_BufferManagement;
 	D(("ReadFrm IO %lx, DBM %lx frm %lx frmsz %ld\n",(ULONG)ioreq,(ULONG)dbm,(ULONG)frame,framesize));
+
+	if( dbm->dbm_PacketFilter ) /* Filter Packets ? */
+	{
+		struct Hook *hk = (struct Hook *)dbm->dbm_PacketFilter;
+		PFCALL dispatch = (PFCALL)hk->h_Entry;
+
+		if( !dispatch( hk, (void*)ioreq, (ULONG*)frame ) )
+			return;
+	}
 
 	if(!(*dbm->dbm_CopyToBuffer32)(ioreq->ios2_Data, frame, framesize ))
  	{

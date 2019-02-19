@@ -131,6 +131,7 @@ struct db_BufferManagement {
 	BMCALL	dbm_CopyToBuffer32;
 	BMCALL	dbm_CopyFromBuffer;
 	BMCALL	dbm_CopyToBuffer;
+	APTR	dbm_PacketFilter;	/* this is actually a Hook */
 	ULONG	dbm_ID;
 };
 

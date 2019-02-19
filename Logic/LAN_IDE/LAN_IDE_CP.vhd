@@ -124,14 +124,10 @@ architecture Behavioral of LAN_IDE_CP is
 	signal CP_BASEADR:STD_LOGIC_VECTOR(7 downto 0);
 	signal LAN_ACCESS: STD_LOGIC;
 	signal DQ_SWAP: STD_LOGIC;
-	signal D_OUT:STD_LOGIC_VECTOR(7 downto 0):=x"FF";
 	signal D_Z2_OUT:STD_LOGIC_VECTOR(3 downto 0):=x"F";
-	signal AUTO_CONFIG_DONE:STD_LOGIC;
-	signal AUTO_CONFIG_DONE_CYCLE:STD_LOGIC;
-	signal SHUT_UP:STD_LOGIC;
-	signal AUTO_CONFIG_Z2_DONE:STD_LOGIC_VECTOR(1 downto 0):="00";
-	signal AUTO_CONFIG_Z2_DONE_CYCLE:STD_LOGIC_VECTOR(1 downto 0):="00";
-	signal SHUT_UP_Z2:STD_LOGIC_VECTOR(1 downto 0):="11";
+	signal AUTO_CONFIG_Z2_DONE:STD_LOGIC_VECTOR(2 downto 0):="000";
+	signal AUTO_CONFIG_Z2_DONE_CYCLE:STD_LOGIC_VECTOR(2 downto 0):="000";
+	signal SHUT_UP_Z2:STD_LOGIC_VECTOR(2 downto 0):="111";
 	signal LAN_BASEADR:STD_LOGIC_VECTOR(15 downto 0);
 	signal LAN_INT_ENABLE: std_logic;
 	signal LAN_RD_S: std_logic;
@@ -163,8 +159,8 @@ architecture Behavioral of LAN_IDE_CP is
 	signal LAN_D_INIT:STD_LOGIC_VECTOR(15 downto 0) := x"0000";
 	constant LAN_A_CLRREG:STD_LOGIC_VECTOR(13 downto 0) :="11"&x"FF7";
 	constant LAN_A_SETREG:STD_LOGIC_VECTOR(13 downto 0) :="11"&x"FB7";
-	constant LAN_D_SET:STD_LOGIC_VECTOR(15 downto 0) :=   "0000001000010010"; --25MHz	
-	constant LAN_D_CLR:STD_LOGIC_VECTOR(15 downto 0) :=   "0000110100000000"; --25MHz
+	constant LAN_D_SET:STD_LOGIC_VECTOR(15 downto 0) :=   "0000001000010010"; --25MHz SET-MASK	
+	constant LAN_D_CLR:STD_LOGIC_VECTOR(15 downto 0) :=   "0000110100000000"; --25MHz CLEAR-MASK
 	
    Function to_std_logic(X: in Boolean) return Std_Logic is
    variable ret : std_logic;
@@ -245,27 +241,24 @@ begin
 		end if;
 	end process clock_init;
 	
-	ADDRESS_Z3_DECODE: process(reset,FCS)
+	ADDRESS_Z3_DECODE: process(AS,reset,FCS)
 	begin
-		if(reset ='0')then
+		if(--AS ='0' or 
+			reset='0')then
 			AUTOCONFIG_Z3_ACCESS 	<= '0';
 			LAN_ACCESS 		<= '0';
 			DQ_SWAP  <= '1';
 			Z3_ADR <= (others => '1'); 
+			
 		elsif(falling_edge(FCS))then		
 
 			Z3_ADR(15 downto 2) <= A(15 downto 2);-- latch the whole address for the whole cycle
 			
+			
 			--use D(15 downto 8)& A(23 downto 16) = A(31 downto 16) for quick response
-			--AUTOCONFIG_Z3_ACCESS
-			if(Z3='1' and (D(15 downto 8)& A(23 downto 16)) = x"FF00" and AUTO_CONFIG_DONE = '0' and CFIN='0')then
-				AUTOCONFIG_Z3_ACCESS 	<= '1';
-			else
-				AUTOCONFIG_Z3_ACCESS 	<= '0';
-			end if;
 			
 			--lan base
-			if(Z3='1' and (D(15 downto 8) & A(23 downto 16)) = LAN_BASEADR and SHUT_UP='0' )then	
+			if(Z3='1' and (D(15 downto 8) & A(23 downto 16)) = LAN_BASEADR and SHUT_UP_Z2(0)='0' )then	
 				if(A(14 downto 13)<"11")then
 					DQ_SWAP  <= '1';
 				else
@@ -279,15 +272,16 @@ begin
 		end if;				
 	end process ADDRESS_Z3_DECODE;
 	
-	ADDRESS_Z2_DECODE: process(reset,AS)
+	ADDRESS_Z2_DECODE: process(FCS,reset,AS)
 	begin
-		if(reset ='0')then
+		if(--FCS ='0' or 
+			reset='0')then
 			AUTOCONFIG_Z2_ACCESS <= '0';
 			IDE_ACCESS 				<= '0';
 			CP_ACCESS				<= '0'; 
 		elsif(falling_edge(AS))then		
 			
-			if(A(23 downto 16) = x"E8" and AUTO_CONFIG_Z2_DONE /= "11" and CFIN='0')then
+			if(A(23 downto 16) = x"E8" and AUTO_CONFIG_Z2_DONE /= "111" and CFIN='0')then
 				AUTOCONFIG_Z2_ACCESS 	<= '1';
 			else
 				AUTOCONFIG_Z2_ACCESS 	<= '0';
@@ -499,64 +493,19 @@ begin
 			end case;			
 		end if;
 	end process lan_rw_gen;
-		
-	
-	--AUTOCONFIG_Z3_ACCESS	
-	AUTOCONFIG_Z3_ACCESS_proc: process (reset, CLK_EXT)
-	begin
-		if	reset = '0' then
-			-- reset active ...
-			AUTO_CONFIG_DONE_CYCLE	<='0';
-			D_OUT<=x"FF";
-			SHUT_UP	<='1';
-			LAN_BASEADR<=x"FFFF";
-			AUTO_CONFIG_DONE	<='0';
-		elsif rising_edge(CLK_EXT) then -- no reset, so wait for rising edge of the clock		
-			--default value
-			D_OUT<=x"FF";
-			if(FCS='1')then
-				AUTO_CONFIG_DONE <= AUTO_CONFIG_DONE_CYCLE;
-			elsif(AUTOCONFIG_Z3_ACCESS= '1' and Z3_DS(3)='0' ) then		
-				case Z3_ADR(8 downto 2) is
-					when "0000000"	=> D_OUT <= "10000001" ; --Z3, No mem, no Rom, single, board, 64kb 
-					when "1000000"	=> D_OUT <= "00010001" ; --Z3, No mem, no Rom, single, board, 64kb 
-					when "0000001"	=> D_OUT <=	"10000100" ; --ProductID: 7B->10000100
-					when "1000001"	=> D_OUT <=	"01000100" ; --ProductID: 7B->10000100
-					when "0000010"	=> D_OUT <=	"11101101" ; --Flags
-					when "1000010"	=> D_OUT <=	"11011101" ; --Flags
-					when "0000100"	=> D_OUT <=	"11110101" ; --Ventor ID 0/1
-					when "1000100"	=> D_OUT <=	"01010101" ; --Ventor ID 0/1
-					when "0000101"	=> D_OUT <=	"11100011" ; --Ventor ID 2/3 : $0A1C: A1K.org
-					when "1000101"	=> D_OUT <=	"00110011" ; --Ventor ID 2/3 : $0A1C: A1K.org
-					when "0010001"	=>
-						if(RW='0')then
-							LAN_BASEADR(15 downto 0)	<= Z3_DATA_IN(31 downto 16); --Base address
-							SHUT_UP					<='0'; --enable board
-							AUTO_CONFIG_DONE_CYCLE	<= '1'; --done here
-						end if;
-					when "0010011"	=>
-						if(RW='0')then
-							AUTO_CONFIG_DONE_CYCLE	<= '1'; --done here
-						end if;
-					when others =>
-						--nothing
-				end case;	
-			end if;
-		end if;
-	end process AUTOCONFIG_Z3_ACCESS_proc; --- that's all
-
 
 	--autoconfig	
 	autoconfig_proc: process (reset, AMIGA_CLK)
 	begin
 		if	reset = '0' then
 			-- reset active ...
-			AUTO_CONFIG_Z2_DONE_CYCLE	<="00";
+			AUTO_CONFIG_Z2_DONE_CYCLE	<="000";
 			D_Z2_OUT<="1111";
-			SHUT_UP_Z2	<="11";
+			SHUT_UP_Z2	<="111";
 			IDE_BASEADR<=x"FF";
 			CP_BASEADR<=x"FF";
-			AUTO_CONFIG_Z2_DONE	<="00";
+			AUTO_CONFIG_Z2_DONE	<="000";
+			LAN_BASEADR<=x"FFFF";
 		elsif falling_edge(AMIGA_CLK) then -- no reset, so wait for rising edge of the clock		
 			D_Z2_OUT<="1111";
 			if(AS='1')then
@@ -565,38 +514,42 @@ begin
 				case A(6 downto 1) is
 					when "000000"	=> 
 						if(AUTO_CONFIG_Z2_DONE(0) = '0')then
+							D_Z2_OUT <= 	"1000" ; --ZII, No-System-Memory, no ROM
+						elsif(AUTO_CONFIG_Z2_DONE(1) = '0')then
 							D_Z2_OUT <= 	"1100" ; --ZII, No-System-Memory, no ROM
 						else
 							D_Z2_OUT <= 	"1101" ; --ZII, no System-Memory, (perhaps)ROM
 						end if;
 					when "000001"	=> D_Z2_OUT <=	"0001" ; --one Card, 64KB =001
 					when "000010"	=> 
-						if(AUTO_CONFIG_Z2_DONE(0) = '0')then
+						if(AUTO_CONFIG_Z2_DONE(0) = '0' or AUTO_CONFIG_Z2_DONE(1) = '0')then
 							D_Z2_OUT <=	"1000" ; --ProductID high nibble : 7->1000
 						else
 							D_Z2_OUT <=	"1111" ; --ProductID high nibble : 0->1111
 						end if;
 					when "000011"	=> 
 						if(AUTO_CONFIG_Z2_DONE(0) = '0')then
+							D_Z2_OUT <=	"0100" ; --ProductID low nibble: B->0100
+						elsif(AUTO_CONFIG_Z2_DONE(1) = '0')then
 							D_Z2_OUT <=	"0011" ; --ProductID low nibble: C->0011
 						else
 							D_Z2_OUT <=	"1001" ; --ProductID low nibble: 6->1001 
 						end if;						
 					when "001000"	=> D_Z2_OUT <=	"1111" ; --Ventor ID 0
 					when "001001"	=> 
-						if(AUTO_CONFIG_Z2_DONE(0) = '0')then
+						if(AUTO_CONFIG_Z2_DONE(0) = '0' or AUTO_CONFIG_Z2_DONE(1) = '0')then
 							D_Z2_OUT <=	"0101" ; --Ventor ID 1
 						else
 							D_Z2_OUT <=	"0111" ; --Ventor ID 1
 						end if;						
 					when "001010"	=> 
-						if(AUTO_CONFIG_Z2_DONE(0) = '0')then
+						if(AUTO_CONFIG_Z2_DONE(0) = '0' or AUTO_CONFIG_Z2_DONE(1) = '0')then
 							D_Z2_OUT <=	"1110" ; --Ventor ID 2
 						else
 							D_Z2_OUT <=	"1101" ; --Ventor ID 2
 						end if;												
 					when "001011"	=> 
-						if(AUTO_CONFIG_Z2_DONE(0) = '0')then
+						if(AUTO_CONFIG_Z2_DONE(0) = '0' or AUTO_CONFIG_Z2_DONE(1) = '0')then
 							D_Z2_OUT <=	"0011" ; --Ventor ID 3 : $0A1C: A1K.org
 						else
 							D_Z2_OUT <=	"0011" ; --Ventor ID 3 : $082C: BSC
@@ -618,19 +571,26 @@ begin
 						else
 							D_Z2_OUT <=	"1111" ; --Rom vector low byte low  nibble						
 						end if;
-					when "100000"	=> D_Z2_OUT <=	"0000" ; --Interrupt config: all zero
-					when "100001"	=> D_Z2_OUT <=	"0000" ; --Interrupt config: all zero
+					when "100010"	=>
+						if(RW='0')then
+							if(AUTO_CONFIG_Z2_DONE(1) = '0')then
+								LAN_BASEADR(15 downto 8)	<= D(15 downto 8); --Base adress
+							end if;
+						end if;	
 					when "100100"	=>
-						D_Z2_OUT <=	"1111" ;
 						if(RW='0')then
 							if(AUTO_CONFIG_Z2_DONE(0) = '0')then
-								CP_BASEADR(7 downto 0)	<= D(15 downto 8); --Base adress
+								LAN_BASEADR(7 downto 0)	<= D(15 downto 8); --Base adress
 								SHUT_UP_Z2(0)					<='0'; --enable board
 								AUTO_CONFIG_Z2_DONE_CYCLE(0)	<= '1'; --done here
-							elsif(AUTO_CONFIG_Z2_DONE(1) = '0')then									
-								IDE_BASEADR(7 downto 0)	<= D(15 downto 8); --Base adress
-								SHUT_UP_Z2(1)					<= '0'; --enable board
+							elsif(AUTO_CONFIG_Z2_DONE(1) = '0')then
+								CP_BASEADR(7 downto 0)	<= D(15 downto 8); --Base adress
+								SHUT_UP_Z2(1)					<='0'; --enable board
 								AUTO_CONFIG_Z2_DONE_CYCLE(1)	<= '1'; --done here
+							elsif(AUTO_CONFIG_Z2_DONE(2) = '0')then									
+								IDE_BASEADR(7 downto 0)	<= D(15 downto 8); --Base adress
+								SHUT_UP_Z2(2)					<= '0'; --enable board
+								AUTO_CONFIG_Z2_DONE_CYCLE(2)	<= '1'; --done here
 							end if;
 						end if;
 					when "100110"	=>
@@ -640,6 +600,8 @@ begin
 								AUTO_CONFIG_Z2_DONE_CYCLE(0)	<= '1'; --done here
 							elsif(AUTO_CONFIG_Z2_DONE(1) = '0')then									
 								AUTO_CONFIG_Z2_DONE_CYCLE(1)	<= '1'; --done here
+							elsif(AUTO_CONFIG_Z2_DONE(2) = '0')then									
+								AUTO_CONFIG_Z2_DONE_CYCLE(2)	<= '1'; --done here	
 							end if;
 						end if;
 					when others	=> D_Z2_OUT <=	"1111" ;
@@ -661,12 +623,11 @@ begin
 								 Z3_ADR(14 downto 2) & Z3_A_LOW; 
 	
 	--signal assignment
-	D(15 downto 0)	<=	Z3_DATA(31 downto 16) 	when RW='1' and Z3_DS <"1111" and FCS='0' and LAN_ACCESS ='1' else		
-							D_OUT	& x"FF" 				when RW='1' and Z3_DS <"1111" and FCS='0' and AUTOCONFIG_Z3_ACCESS ='1' else
-							D_Z2_OUT	& x"FFF" 		when RW='1'              		and  AS='0' and AUTOCONFIG_Z2_ACCESS ='1' else
+	D(15 downto 0)	<=	Z3_DATA(31 downto 16) 	when RW='1' and FCS='0' and LAN_ACCESS ='1' else		
+							D_Z2_OUT	& x"FFF" 		when RW='1' and  AS='0' and AUTOCONFIG_Z2_ACCESS ='1' else
 							(others => 'Z');
 
-	A(23 downto 8)	<=	Z3_DATA(15 downto  0) 	when RW='1' and Z3_DS <"1111" and FCS='0' and LAN_ACCESS ='1' else			
+	A(23 downto 8)	<=	Z3_DATA(15 downto  0) 	when RW='1' and FCS='0' and LAN_ACCESS ='1' else			
 							(others => 'Z');
 			
 	A(7 downto 1) <= (others => 'Z');
@@ -681,13 +642,13 @@ begin
 				  'Z';
 	
 	OWN 	<= 'Z';
-	SLAVE <= '0' when FCS='0' and (AUTOCONFIG_Z3_ACCESS  = '1' or LAN_ACCESS = '1') else 
+	SLAVE <= '0' when FCS='0' and LAN_ACCESS = '1' else 
 				'0' when  AS='0' and (AUTOCONFIG_Z2_ACCESS  = '1' or IDE_ACCESS = '1' or CP_ACCESS = '1') else '1';	
-	CFOUT <= '0' when AUTO_CONFIG_DONE='1' and AUTO_CONFIG_Z2_DONE ="11" else '1';
+	CFOUT <= '0' when AUTO_CONFIG_Z2_DONE ="111" else '1';
 	
-	OVR <= '0' when FCS='0' and (AUTOCONFIG_Z3_ACCESS  = '1' or LAN_ACCESS = '1') else 'Z'; --is Cache inhibit ob Z3!
+	OVR <= '0' when FCS='0' and LAN_ACCESS = '1' else 'Z'; --is Cache inhibit on Z3!
 
-	DTACK <= '0' when FCS='0' and (LAN_READY = '1' or AUTOCONFIG_Z3_ACCESS ='1' or CONFIG_READY='1') else 'Z';
+	DTACK <= '0' when FCS='0' and (LAN_READY = '1' or CONFIG_READY='1') else 'Z';
 
    MTACK <= 'Z';
 

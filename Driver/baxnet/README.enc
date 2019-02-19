@@ -2,8 +2,9 @@ ENC624J6Net - A SANA-II driver for the Scratze card
 
 ENC624J6Net Copyright (C) 2018 Henryk Richter <henryk.richter@gmx.net>
 
-This driver is supposed to support ENC624J600 based ethernet
-on the ZII LAN IDE CP card designed by Matze (a1k.org) and Scrat (a1k.org).
+This driver is supposed to support ENC624J600 based ethernet on the 
+ZII LAN IDE CP card designed by Matze (a1k.org), Buggs (a1k.org) 
+and Scrat (a1k.org).
 
 Please see at the end of the file for information about licensing 
 conditions.
@@ -41,7 +42,7 @@ PRIORITY=PRI/K/N,BPS/K/N,MTU/K/N,FULLDUPLEX/S,FLOWCONTROL/S,TIMER/K/N,MULTICAST/
                   caution: requires manual configuration of duplex mode
                            on the switch, too.
                   note: this switch should not be enabled in normal cases.
-                        The module feeatures autoconfiguration that determines
+                        The module features autoconfiguration that determines
                         speed and duplex automatically.
 
  PRIORITY       - server task priority (default 1)
@@ -62,6 +63,20 @@ PRIORITY=PRI/K/N,BPS/K/N,MTU/K/N,FULLDUPLEX/S,FLOWCONTROL/S,TIMER/K/N,MULTICAST/
 
 Changelog:
 ----------
+
+1.99  - fixed soft reset for ZIII firmware
+      - re-enabled 32 Bit Buffer copies (unless Miami is active)
+      - default server task priority for AmiTCP=6 (otherwise 0)
+      - tuned RX/TX balancing to make RoadShow happy
+      - added Packet Filter hook processing (needs testing)
+
+1.98  - improved TX speed
+      - precaution: soft-reset cards in detection loop to make
+        sure that no bogus settings are left over after reset
+      - optional: disable length check in Sana-II Device Query
+
+1.97  - added New Style Device (NSD) commands
+      - implemented SANA-II Device Query Extension
 
 1.93  - recompiled using SAS/C, now 1kB smaller
 

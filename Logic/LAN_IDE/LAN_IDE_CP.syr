@@ -91,6 +91,7 @@ Analyzing hierarchy for entity <LAN_IDE_CP> in library <work> (architecture <beh
 *                            HDL Analysis                               *
 =========================================================================
 Analyzing Entity <LAN_IDE_CP> in library <work> (Architecture <behavioral>).
+INFO:Xst:2679 - Register <AUTOCONFIG_Z3_ACCESS> in unit <LAN_IDE_CP> has a constant value of 0 during circuit operation. The register is replaced by logic.
 Entity <LAN_IDE_CP> analyzed. Unit <LAN_IDE_CP> generated.
 
 
@@ -111,6 +112,8 @@ Synthesizing Unit <LAN_IDE_CP>.
     Related source file is "C:/Users/Matze/Amiga/Hardwarehacks/Zorro-LAN-IDE/Logic/LAN_IDE/LAN_IDE_CP.vhd".
 WARNING:Xst:647 - Input <IDE_WAIT> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <MTCR> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <SHUT_UP_Z2<2>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:646 - Signal <AUTOCONFIG_Z3_ACCESS> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     Found finite state machine <FSM_0> for signal <LAN_SM>.
     -----------------------------------------------------------------------
@@ -140,7 +143,6 @@ INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     | Encoding           | compact                                        |
     | Implementation     | automatic                                      |
     -----------------------------------------------------------------------
-    Found 16x8-bit ROM for signal <D_OUT$mux0004>.
     Found 16-bit tristate buffer for signal <D>.
     Found 16-bit tristate buffer for signal <DQ>.
     Found 1-bit tristate buffer for signal <OWN>.
@@ -165,35 +167,31 @@ INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     Found 1-bit tristate buffer for signal <A<10>>.
     Found 1-bit tristate buffer for signal <A<9>>.
     Found 1-bit tristate buffer for signal <A<8>>.
-    Found 1-bit xor2 for signal <AMIGA_CLK$xor0000> created at line 181.
-    Found 1-bit register for signal <AUTO_CONFIG_DONE>.
-    Found 1-bit register for signal <AUTO_CONFIG_DONE_CYCLE>.
-    Found 2-bit register for signal <AUTO_CONFIG_Z2_DONE>.
-    Found 2-bit register for signal <AUTO_CONFIG_Z2_DONE_CYCLE>.
+    Found 1-bit xor2 for signal <AMIGA_CLK$xor0000> created at line 177.
+    Found 3-bit register for signal <AUTO_CONFIG_Z2_DONE>.
+    Found 3-bit register for signal <AUTO_CONFIG_Z2_DONE_CYCLE>.
     Found 1-bit register for signal <AUTOCONFIG_Z2_ACCESS>.
-    Found 1-bit register for signal <AUTOCONFIG_Z3_ACCESS>.
     Found 1-bit register for signal <CONFIG_READY>.
     Found 1-bit register for signal <CP_ACCESS>.
-    Found 8-bit comparator equal for signal <CP_ACCESS$cmp_eq0000> created at line 297.
+    Found 8-bit comparator equal for signal <CP_ACCESS$cmp_eq0000> created at line 291.
     Found 8-bit register for signal <CP_BASEADR>.
     Found 1-bit register for signal <CP_RD_S>.
     Found 1-bit register for signal <CP_WE_QUIRK>.
     Found 1-bit register for signal <CP_WE_S>.
-    Found 8-bit register for signal <D_OUT>.
     Found 4-bit register for signal <D_Z2_OUT>.
-    Found 4-bit comparator less for signal <DQ$cmp_lt0000> created at line 675.
+    Found 4-bit comparator less for signal <DQ$cmp_lt0000> created at line 636.
     Found 16-bit register for signal <DQ_DATA>.
     Found 1-bit register for signal <DQ_SWAP>.
-    Found 2-bit comparator less for signal <DQ_SWAP$cmp_lt0000> created at line 269.
+    Found 2-bit comparator less for signal <DQ_SWAP$cmp_lt0000> created at line 262.
     Found 1-bit register for signal <IDE_ACCESS>.
-    Found 8-bit comparator equal for signal <IDE_ACCESS$cmp_eq0000> created at line 304.
+    Found 8-bit comparator equal for signal <IDE_ACCESS$cmp_eq0000> created at line 298.
     Found 8-bit register for signal <IDE_BASEADR>.
     Found 1-bit register for signal <IDE_ENABLE>.
     Found 1-bit register for signal <IDE_R_S>.
     Found 1-bit register for signal <IDE_W_S>.
     Found 14-bit register for signal <LAN_A_INIT>.
     Found 1-bit register for signal <LAN_ACCESS>.
-    Found 16-bit comparator equal for signal <LAN_ACCESS$cmp_eq0000> created at line 268.
+    Found 16-bit comparator equal for signal <LAN_ACCESS$cmp_eq0000> created at line 261.
     Found 16-bit register for signal <LAN_BASEADR>.
     Found 1-bit register for signal <LAN_CS_RST>.
     Found 16-bit register for signal <LAN_D_INIT>.
@@ -202,21 +200,19 @@ INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     Found 1-bit register for signal <LAN_IRQ_OUT>.
     Found 1-bit register for signal <LAN_RD_S>.
     Found 1-bit register for signal <LAN_READY>.
-    Found 2-bit comparator less for signal <LAN_SM$cmp_lt0000> created at line 411.
+    Found 2-bit comparator less for signal <LAN_SM$cmp_lt0000> created at line 405.
     Found 1-bit register for signal <LAN_SM_RST>.
     Found 1-bit register for signal <LAN_WR_RST>.
     Found 1-bit register for signal <LAN_WRH_S>.
     Found 1-bit register for signal <LAN_WRL_S>.
     Found 1-bit register for signal <ROM_OE_S>.
-    Found 1-bit register for signal <SHUT_UP>.
-    Found 2-bit register for signal <SHUT_UP_Z2>.
+    Found 2-bit register for signal <SHUT_UP_Z2<1:0>>.
     Found 1-bit register for signal <Z3_A_LOW>.
     Found 14-bit register for signal <Z3_ADR>.
     Found 32-bit register for signal <Z3_DATA>.
     Summary:
 	inferred   2 Finite State Machine(s).
-	inferred   1 ROM(s).
-	inferred  61 D-type flip-flop(s).
+	inferred  74 D-type flip-flop(s).
 	inferred   6 Comparator(s).
 	inferred   1 Xor(s).
 	inferred  57 Tristate(s).
@@ -227,15 +223,13 @@ Unit <LAN_IDE_CP> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
-# ROMs                                                 : 1
- 16x8-bit ROM                                          : 1
-# Registers                                            : 74
- 1-bit register                                        : 64
+# Registers                                            : 85
+ 1-bit register                                        : 77
  14-bit register                                       : 2
- 16-bit register                                       : 3
- 2-bit register                                        : 1
+ 16-bit register                                       : 2
+ 3-bit register                                        : 1
  4-bit register                                        : 1
- 8-bit register                                        : 3
+ 8-bit register                                        : 2
 # Comparators                                          : 6
  16-bit comparator equal                               : 1
  2-bit comparator less                                 : 2
@@ -312,10 +306,8 @@ Advanced HDL Synthesis Report
 
 Macro Statistics
 # FSMs                                                 : 2
-# ROMs                                                 : 1
- 16x8-bit ROM                                          : 1
-# Registers                                            : 61
- Flip-Flops                                            : 61
+# Registers                                            : 74
+ Flip-Flops                                            : 74
 # Comparators                                          : 3
  16-bit comparator equal                               : 1
  8-bit comparator equal                                : 2
@@ -351,28 +343,22 @@ INFO:Xst:2261 - The FF/Latch <LAN_D_INIT_8> in Unit <LAN_IDE_CP> is equivalent t
 INFO:Xst:2261 - The FF/Latch <LAN_D_INIT_1> in Unit <LAN_IDE_CP> is equivalent to the following 2 FFs/Latches, which will be removed : <LAN_D_INIT_4> <LAN_D_INIT_9> 
 
 Optimizing unit <LAN_IDE_CP> ...
-  implementation constraint: INIT=s	 : D_OUT_4
+  implementation constraint: INIT=s	 : SHUT_UP_Z2_0
   implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_CYCLE_0
-  implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_CYCLE_1
+  implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_1
+  implementation constraint: INIT=s	 : SHUT_UP_Z2_1
   implementation constraint: INIT=s	 : D_Z2_OUT_3
   implementation constraint: INIT=s	 : LAN_A_INIT_3
   implementation constraint: INIT=s	 : D_Z2_OUT_2
   implementation constraint: INIT=s	 : LAN_A_INIT_6
   implementation constraint: INIT=s	 : D_Z2_OUT_1
   implementation constraint: INIT=s	 : D_Z2_OUT_0
-  implementation constraint: INIT=s	 : D_OUT_7
-  implementation constraint: INIT=s	 : D_OUT_6
-  implementation constraint: INIT=s	 : D_OUT_5
-  implementation constraint: INIT=s	 : D_OUT_3
+  implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_2
   implementation constraint: INIT=r	 : LAN_D_INIT_1
-  implementation constraint: INIT=s	 : D_OUT_2
-  implementation constraint: INIT=s	 : D_OUT_1
-  implementation constraint: INIT=s	 : D_OUT_0
-  implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_1
-  implementation constraint: INIT=r	 : LAN_D_INIT_8
-  implementation constraint: INIT=s	 : SHUT_UP_Z2_0
   implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_0
-  implementation constraint: INIT=s	 : SHUT_UP_Z2_1
+  implementation constraint: INIT=r	 : LAN_D_INIT_8
+  implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_CYCLE_2
+  implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_CYCLE_1
   implementation constraint: INIT=r	 : LAN_RST_SM_FSM_FFd1
   implementation constraint: INIT=r	 : LAN_RST_SM_FSM_FFd2
   implementation constraint: INIT=r	 : LAN_RST_SM_FSM_FFd3
@@ -411,23 +397,24 @@ Design Statistics
 # IOs                              : 116
 
 Cell Usage :
-# BELS                             : 1268
-#      AND2                        : 378
-#      AND3                        : 53
-#      AND4                        : 11
-#      AND8                        : 6
+# BELS                             : 1145
+#      AND2                        : 345
+#      AND3                        : 41
+#      AND4                        : 15
+#      AND5                        : 1
+#      AND8                        : 4
 #      GND                         : 1
-#      INV                         : 468
-#      OR2                         : 278
-#      OR3                         : 21
-#      OR4                         : 1
-#      XOR2                        : 51
-# FlipFlops/Latches                : 151
+#      INV                         : 419
+#      OR2                         : 250
+#      OR3                         : 17
+#      OR4                         : 2
+#      XOR2                        : 50
+# FlipFlops/Latches                : 141
 #      FD                          : 4
-#      FDC                         : 22
+#      FDC                         : 21
 #      FDCE                        : 7
-#      FDP                         : 49
-#      FDPE                        : 69
+#      FDP                         : 41
+#      FDPE                        : 68
 # IO Buffers                       : 114
 #      IBUF                        : 24
 #      IOBUFE                      : 48
@@ -436,14 +423,14 @@ Cell Usage :
 =========================================================================
 
 
-Total REAL time to Xst completion: 19.00 secs
-Total CPU time to Xst completion: 18.89 secs
+Total REAL time to Xst completion: 18.00 secs
+Total CPU time to Xst completion: 18.70 secs
  
 --> 
 
 Total memory usage is 4534828 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   46 (   0 filtered)
-Number of infos    :   10 (   0 filtered)
+Number of warnings :   48 (   0 filtered)
+Number of infos    :   11 (   0 filtered)
 

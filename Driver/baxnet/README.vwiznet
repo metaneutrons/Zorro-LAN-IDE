@@ -1,0 +1,102 @@
+VWiznet - A SANA-II driver for W5500 10/100 ethernet modules
+
+Copyright (C) 2018-2019 Henryk Richter <henryk.richter@gmx.net>
+
+This driver is supposed to support W5500 modules hooked up to the expansion
+port of Vampire 500V2+ cards.
+
+
+Installation:
+-------------
+
+Installation of the driver is straightforward. 
+Just copy vwiznet500ex.device from the bin subdirectory to devs:networks 
+and enable the interface in your favorite  TCP/IP stack as usual. So far, 
+successful tests have been done with the free AmiTCP/IP 3.0b2, AmiTCP4.0-4.2,
+Genesis, MiamiDX and RoadShow. 
+
+The minimum system requirement is the Gold 2.10 release of Apollo Core
+for Vampire 500V2+.
+
+
+
+Vampire500 Expansion port Hardware
+-----------------------------------
+
+Please see http://wiki.apollo-accelerators.com/doku.php/expansionport for 
+guidance on pinout of the expansion port. 
+
+The W5500 can be clocked way higher than the ENC28J60 that was used for
+SDNet. As a consequence of clocks beyond 25 MHz, signal integrity is of
+some concern. Therefore it is suggested to connect the module is as close
+as possible to the expansion port and use an Ethernet expansion cable
+in order to reach the edge of the computer case.
+
+An adapter PCB is in the making. That PCB plugs directly into the Vampire
+expansion port, connects readily available W5500 modules on the other
+side and contains some components to keep signal integrity in a good shape.
+
+
+
+Options 
+-------
+
+Below you find the options accepted by the driver. Please note that no special
+configuration is necessary for normal operation. What you find documented below
+is available for tuning purposes.
+
+The options template for the config files 
+ENVARC:SANA2/vwiznet500ex.config
+
+is as follows:
+
+PRIORITY=PRI/K/N,BPS/K/N,MTU/K/N,SPISPEED/K/N,TIMER/K/N,NOINTERRUPT/S
+
+ SPISPEED       - SPI clock divider (1-10, default 1), controls maximum
+                  clock of SPI bus. Actual I/O clock is Core_Clock/(3+SPISPEED).
+
+ PRIORITY       - server task priority (default 1)
+
+ BPS            - bit per seconds for statistics purposes
+
+ MTU            - maximum transmission unit (default 1500) 
+
+ NOINTERRUPT    - disable hardware interrupt and use polling instead 
+                  (default: interrupt enabled)
+
+ TIMER          - when disabling interrupt you also need to specify
+                  a timer interval in microseconds
+		  (default: 0, i.e. no timer)
+ 
+
+ example1 (useful for DSL via PPPoE, 
+           higher priority for server task = more speed with AmiTCP
+	   at the expense of multitasking friendliness):
+  echo "MTU=1492 SPISPEED=1 PRIORITY=6" >ENVARC:sana2/vwiznet500ex.config
+
+
+
+Changelog:
+----------
+
+1.99  - re-enabled 32 Bit Buffer copies (unless Miami is active)
+      - default server task priority for AmiTCP=6 (otherwise 0)
+      - tuned RX/TX balancing to make RoadShow happy
+      - added Packet Filter hook processing (needs testing)
+
+1.98  - preparations for V2 of the adapter PCB: hardware based reset
+
+1.97  - added New style device commands
+      - implemented SANA-II Device Query Extension
+
+1.96  - tuned defaults
+
+1.95  - initial build, aligned with sdnet/v2expeth version 
+
+
+
+Copyrights / License:
+---------------------
+
+Copyright (C) 2018-2019 Henryk Richter <henryk.richter@gmx.net>, all rights reserved.
+

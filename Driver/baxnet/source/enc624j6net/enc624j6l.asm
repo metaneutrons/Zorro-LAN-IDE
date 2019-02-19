@@ -1,4 +1,3 @@
-;APS00001922000000000000000000000000000000000000000000000000000000000000000000000000
 ; ------------------------------------------------------------------------------
 ; | Lowlevel Access to memory mapped ENC624J600 in PSP mode                    |
 ; | Henryk Richter <henryk.richter@gmx.net>                                    |
@@ -25,9 +24,10 @@
 	include "enc624j6net/macros.i"
 
 ; enable debugging code block
-DEBUG	EQU	1
+DEBUG	EQU	0
 ;
 ADD_4RX	EQU	1	;add 4 to valid RX size (fake CRC), fixes shapeshifter RAW treatment
+_OPT_LONGRESET	EQU	0	;in testing, don't enable
 
 ;------------- <DANGER! APPLY CHANGES HERE ALSO TO enc624j6l.h !!> ------------
 ;
@@ -365,9 +365,13 @@ _enc624j6l_CheckBoard:	;check whether board is operating correctly
 	move.l	a0,d0
 	beq	.err
 
+	move.w	#CLOCK_DEF_SET,d0	;set mask
+	SETREG	ECON2,a0,d0
+	move.w	#CLOCK_DEF_CLR,d0	;clr mask
+	CLRREG	ECON2,a0,d0
+
 	moveq	#60,d0			;let the board settle in if there was
 	bsr	_enc624j6l_UMinDelay	;a reset or POR (unlikely)
-
 
 	; ----------------- quick check for operational mode ------------------
 	move.w	#$1234,d1
@@ -377,15 +381,29 @@ _enc624j6l_CheckBoard:	;check whether board is operating correctly
 	cmp.w	d0,d1		;do we get the register back ?
 	bne.s	.err		;no -> complain
 
+	moveq	#0,d0			;magic trick: the board enables Interrupts
+	lea		$4000(a0),a0
+	move.w	d0,($4000,a0)	;0=disable interrupt
+	lea		-$4000(a0),a0
 
 	; ------------------------- reset device ------------------------------
+	move	#EIR_CRYPTEN|EIR_MODEXIF|EIR_HASHIF|EIR_AESIF|EIR_LINKIF|EIR_PRDYIF|EIR_PKTIF|EIR_DMAIF|EIR_TXIF|EIR_TXABTIF|EIR_RXABTIF|EIR_PCFULIF,d0
+	CLRREG	EIR,a0,d0
+
+;	ifne	_OPT_LONGRESET
+;	moveq	#ECON2_ETHRST,d0
+;	swap	d0
+;	move.l	d0,ECON2-2(a0)
+;	else
 	moveq	#ECON2_ETHRST,d0
-	WRITEREG ECON2,a0,d0		;reset board
+	SETREG	ECON2,a0,d0		;reset board, was: WRITEREG
+;	endc
 
 	moveq	#64-1,d1		;number of loops to test (max. 7.6 ms)
 .loop:
 	moveq	#120,d0			;wait patiently
 	bsr	_enc624j6l_UMinDelay	;
+
 
 	READREG	ESTAT,a0,d0
 	and	#(ESTAT_CLKRDY|ESTAT_RSTDONE|ESTAT_PHYRDY),d0
@@ -399,6 +417,8 @@ _enc624j6l_CheckBoard:	;check whether board is operating correctly
 	READREG	EUDAST,A0,d0
 	tst.w	d0			;should have gone to 0 after reset
 	bne.s	.err			;(see above, we've written $1234)
+
+	ifne	0
 
 	;---------- short RAM check - write phase ----------------------------
 	;---------- (device is not receiving after reset) --------------------
@@ -424,6 +444,8 @@ _enc624j6l_CheckBoard:	;check whether board is operating correctly
 	rol.l	d1
 	eor.b	#3,d1
 	dbf	d0,.rdloop
+
+	endc	;ifne 0
 
 	;---------- satisfied, return our sincere happiness -------------------
 
@@ -539,11 +561,11 @@ _enc624j6l_Init:
 	moveq	#ECON1_RXEN,d0		;no RX, my dear (yet)
 	CLRREG	ECON1,a0,d0		;
 
-	;33.333Mhz clock out frequency (see defines above)
+	;25 MHz clock out frequency (see defines in registers.i)
+	move.w	#CLOCK_DEF_SET,d0	;set mask
+	SETREG	ECON2,a0,d0		;set first, then clear to avoid case of all COCON bits 0
 	move.w	#CLOCK_DEF_CLR,d0	;clr mask
 	CLRREG	ECON2,a0,d0
-	move.w	#CLOCK_DEF_SET,d0	;set mask
-	SETREG	ECON2,a0,d0
 
 	; disable crypto engine and all interrupts
 	move	#EIR_CRYPTEN|EIR_MODEXIF|EIR_HASHIF|EIR_AESIF|EIR_LINKIF|EIR_PRDYIF|EIR_PKTIF|EIR_DMAIF|EIR_TXIF|EIR_TXABTIF|EIR_RXABTIF|EIR_PCFULIF,d0
@@ -1230,12 +1252,35 @@ _enc624j6l_RecvFrame:		;
 
 	ifne	_OPT_ADR_QUIRK
 		eor.w	#$6000,d7
-	endc
+	endc	;_OPT_ADR_QUIRK
+
 		lea	(a0,d7.w),a2		;read pointer
+	ifeq	_OPT_BUFFER_SWAP
+		move.l	d0,d2			;total bytes
+		moveq	#15,d1			;
+		 lsr.w	#4,d2			;total/16
+		 and.l	d0,d1			;remainder: max 15 bytes
+		addq	#3,d1			;remainder, rounded up to +3 bytes
+		subq	#1,d2			;dbf
+		blt.s	.nopt16_read		;less than 16 bytes -> bail out
+		bra.s	.opt16_read
+.opt16_loop:
+		move.l	d3,(a1)+
+.opt16_read:
+		rept	3
+		move.l	(a2)+,(a1)+
+		endr
+		move.l	(a2)+,d3
+		dbf	d2,.opt16_loop
+		move.l	d3,(a1)+
+.nopt16_read:
+	else	;_OPT_BUFFER_SWAP
 		moveq	#3,d1			;round bytes up
 		add	d0,d1			;byte count + 3
+	endc	;_OPT_BUFFER_SWAP
 		lsr	#2,d1			;converted to dword count = ceil(bytes/4)
 		subq	#1,d1			;longwords - 1
+		blt.s	.end_read
 .opt_read:
 	ifne	_OPT_BUFFER_SWAP
 		move.l	(a2)+,d2		;get current word
@@ -1244,11 +1289,12 @@ _enc624j6l_RecvFrame:		;
 		rol.w	#8,d2			;swap buffer to Big Endian
 		swap D2
 		move.l	d2,(a1)+
-	else
+	else	;_OPT_BUFFER_SWAP
 		move.l	(a2)+,(a1)+
-	endc
+	endc	;_OPT_BUFFER_SWAP
 		dbf	d1,.opt_read
 		bra.s	.end_read
+
 .nooptrecv:
 	endc	;_OPT_RECV
 
