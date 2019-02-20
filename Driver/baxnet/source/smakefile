@@ -154,7 +154,7 @@ v2expeth.device: $(OBJECTS)
 	-$(LD) $(OBJECTS) LIB sc:lib/sc.lib $(LDFLAGS) TO $(DEVICEID)
 
 clean:
-	-$(RM) sdnet.device v2expeth.device \#?.oex *.osd $(SUBDIR)/\#?.oex $(SUBDIR)/\#?.osd
+	-$(RM) sdnet.device v2expeth.device \#?.oex \#?.osd $(SUBDIR)/\#?.oex $(SUBDIR)/\#?.osd
 
 install:
 	copy sdnet.device v2expeth.device DEVS:Networks

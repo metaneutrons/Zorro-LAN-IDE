@@ -154,7 +154,7 @@ enc624j6net.device_68000: $(OBJECTS)
 	-$(LD) $(OBJECTS) LIB sc:lib/sc.lib $(LDFLAGS) TO $(DEVICEID)_68000
 
 clean:
-	-$(RM) enc624j6net.device enc624j6net.device_68000 \#?.o00 *.o20 $(SUBDIR)/\#?.o00 $(SUBDIR)/\#?.o20
+	-$(RM) enc624j6net.device enc624j6net.device_68000 \#?.o00 \#?.o20 $(SUBDIR)/\#?.o00 $(SUBDIR)/\#?.o20
 
 install:
 	copy enc624j6net.device DEVS:Networks

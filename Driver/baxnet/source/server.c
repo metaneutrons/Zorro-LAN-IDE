@@ -35,6 +35,10 @@ static LONG server_queryext( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq );
 */
 #define S2QUERYEXT_NOLENGTHCHECK
 
+/* this limits the number of write requests per run, also improves
+   Roadshow performance when active */
+#define ONE_WRITE_REQ
+
 
 /* (avoid external link libraries) this call is not time critical */
 static void MemSet( void *a, ULONG val, ULONG size )
@@ -684,7 +688,7 @@ static LONG server_writequeue( DEVBASEP, ULONG unit )
 
 	ObtainSemaphore( &db->db_Units[unit].du_Sem );
 
-#if 1
+#if 1 /* #ifdef ONE_WRITE_REQ */
 	/* whole queue per call */
 	for(  ioreq = (struct IOSana2Req *)db->db_Units[unit].du_WriteQueue.lh_Head;
 	     (nextio= (struct IOSana2Req *)ioreq->ios2_Req.io_Message.mn_Node.ln_Succ);
@@ -726,8 +730,10 @@ static LONG server_writequeue( DEVBASEP, ULONG unit )
 			/* error handling */
 			server_writeerror( db, unit, ioreq, code );
 		}
+#ifdef ONE_WRITE_REQ
 		if( hw_recv_pending(db,unit) )
 			break;
+#endif
 	}
 
 	ReleaseSemaphore( &db->db_Units[unit].du_Sem );

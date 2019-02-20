@@ -6,7 +6,9 @@
 ; - device in Mode 3, i.e. 16 Bit access
 ; - register addresses shifted by 1 left, i.e. register base * 2 compared
 ;   to 16 Bit mode of ENC624J600 documentation (8 Bit mode alike)
-; - some byte shuffling required - which currently is in a state of flux
+; - in initial hardware/software combinations there was some byte 
+;   shuffling required - whose consequence is encapsulation of hardware
+;   accesses in macros
 ;
 ; Note: This code is in some places intentionally saving more registers than 
 ;       required by the AmigaOS ABI.
@@ -376,8 +378,9 @@ _enc624j6l_CheckBoard:	;check whether board is operating correctly
 	; ----------------- quick check for operational mode ------------------
 	move.w	#$1234,d1
 	WRITEREG EUDAST,a0,d1	;write data
-	tst.l	4.w		;clear BUS
-	READREG	EUDAST,a0,d0
+	moveq	#0,d0
+	SETREG	EUDAST,a0,d0	;clear ENC's bus (does not change anything in its regs)
+	READREG	EUDAST,a0,d0	;
 	cmp.w	d0,d1		;do we get the register back ?
 	bne.s	.err		;no -> complain
 
@@ -1296,6 +1299,52 @@ _enc624j6l_RecvFrame:		;
 		bra.s	.end_read
 
 .nooptrecv:
+	ifeq	_OPT_BUFFER_SWAP	;1
+	;
+	;wraparound aware loop for big endian buffer
+	;
+	move.w	#RXSTOP_INIT+1,d1	;end address $6000
+	lea	(a0,d7.w),a2		;read pointer
+	sub.w	d7,d1			;minus start pointer = number of bytes until wrap
+	cmp.w	d0,d1			;
+	bhi.s	.emergency_slow		;don`t trust anyone: if d1<0 or >total_length, then branch to slow routine
+
+	move	d1,d2
+	lsr		#2,d2			;we copy long words
+	subq	#1,d2			;dbf
+	blt.s	.nowords_beforewrap	;
+.loop_beforewrap:
+	move.l	(a2)+,(a1)+
+	dbf	d2,.loop_beforewrap
+
+.nowords_beforewrap:			;
+	btst	#1,d7			;uneven longword address before wraparound ?
+	beq.s	.copy_afterwrap
+	move.w	(a2)+,(a1)+		;copy word from uneven address
+.copy_afterwrap:
+
+	move	#RXSTART_INIT,d7	;wrap
+	lea	(a0,d7.w),a2		;read pointer
+
+	move	d0,d2			;total bytes to read
+	sub.w	d1,d2			;remaining=total-copied (D1=RXSTOP_INIT+1-D7)
+	ble.s	.end_read		;done, if zero
+
+	move	d2,d1			;
+	lsr		#2,d2			;we copy long words
+	bra.s	.enter_afterwrap
+.loop_afterwrap:
+	move.l	(a2)+,(a1)+
+.enter_afterwrap:
+	dbf	d2,.loop_afterwrap
+
+	and.b	#3,d1			;btst	#1,d1			;1 byte or short remaining ?
+	beq.s	.end_read
+	move.w	(a2)+,(a1)+
+	bra.s	.end_read
+
+.emergency_slow:
+	endc	;_OPT_BUFFER_SWAP
 	endc	;_OPT_RECV
 
 	;generic loop: check for position overflows with each word
@@ -1427,7 +1476,7 @@ _enc624j6l_TransmitFrame:
 	move.l	(a1)+,(a2)+	;save to SRAM
 	endr
 	move.l	(a1)+,d1
-	dbf		d5,.largecopy
+	dbf	d5,.largecopy
 
 	move.l	d1,(a2)+
 
@@ -1479,7 +1528,7 @@ _enc624j6l_TransmitFrame:
 	;100 MBit/s frame time is max. 0.12 ms (without inter-frame spacing)
 
 	;wait 20 us via CIA
-	moveq	#120,d0
+	moveq	#20,d0
 	bsr	_enc624j6l_UMinDelay
 	dbf	d3,.txwait		;approx. 4ms max. wait
 

@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.13 secs
+Total CPU time to Xst completion: 0.14 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.13 secs
+Total CPU time to Xst completion: 0.14 secs
  
 --> Reading design: LAN_IDE_CP.prj
 
@@ -150,6 +150,7 @@ INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     Found 1-bit tristate buffer for signal <MTACK>.
     Found 1-bit tristate buffer for signal <DTACK>.
     Found 1-bit tristate buffer for signal <INT_OUT>.
+    Found 1-bit tristate buffer for signal <INT_CP_OUT>.
     Found 4-bit tristate buffer for signal <LAN_CFG>.
     Found 1-bit tristate buffer for signal <A<23>>.
     Found 1-bit tristate buffer for signal <A<22>>.
@@ -167,31 +168,31 @@ INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     Found 1-bit tristate buffer for signal <A<10>>.
     Found 1-bit tristate buffer for signal <A<9>>.
     Found 1-bit tristate buffer for signal <A<8>>.
-    Found 1-bit xor2 for signal <AMIGA_CLK$xor0000> created at line 177.
+    Found 1-bit xor2 for signal <AMIGA_CLK$xor0000> created at line 178.
     Found 3-bit register for signal <AUTO_CONFIG_Z2_DONE>.
     Found 3-bit register for signal <AUTO_CONFIG_Z2_DONE_CYCLE>.
     Found 1-bit register for signal <AUTOCONFIG_Z2_ACCESS>.
     Found 1-bit register for signal <CONFIG_READY>.
     Found 1-bit register for signal <CP_ACCESS>.
-    Found 8-bit comparator equal for signal <CP_ACCESS$cmp_eq0000> created at line 291.
+    Found 8-bit comparator equal for signal <CP_ACCESS$cmp_eq0000> created at line 292.
     Found 8-bit register for signal <CP_BASEADR>.
     Found 1-bit register for signal <CP_RD_S>.
     Found 1-bit register for signal <CP_WE_QUIRK>.
     Found 1-bit register for signal <CP_WE_S>.
     Found 4-bit register for signal <D_Z2_OUT>.
-    Found 4-bit comparator less for signal <DQ$cmp_lt0000> created at line 636.
+    Found 4-bit comparator less for signal <DQ$cmp_lt0000> created at line 645.
     Found 16-bit register for signal <DQ_DATA>.
     Found 1-bit register for signal <DQ_SWAP>.
-    Found 2-bit comparator less for signal <DQ_SWAP$cmp_lt0000> created at line 262.
+    Found 2-bit comparator less for signal <DQ_SWAP$cmp_lt0000> created at line 263.
     Found 1-bit register for signal <IDE_ACCESS>.
-    Found 8-bit comparator equal for signal <IDE_ACCESS$cmp_eq0000> created at line 298.
+    Found 8-bit comparator equal for signal <IDE_ACCESS$cmp_eq0000> created at line 299.
     Found 8-bit register for signal <IDE_BASEADR>.
     Found 1-bit register for signal <IDE_ENABLE>.
     Found 1-bit register for signal <IDE_R_S>.
     Found 1-bit register for signal <IDE_W_S>.
     Found 14-bit register for signal <LAN_A_INIT>.
     Found 1-bit register for signal <LAN_ACCESS>.
-    Found 16-bit comparator equal for signal <LAN_ACCESS$cmp_eq0000> created at line 261.
+    Found 16-bit comparator equal for signal <LAN_ACCESS$cmp_eq0000> created at line 262.
     Found 16-bit register for signal <LAN_BASEADR>.
     Found 1-bit register for signal <LAN_CS_RST>.
     Found 16-bit register for signal <LAN_D_INIT>.
@@ -200,7 +201,7 @@ INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     Found 1-bit register for signal <LAN_IRQ_OUT>.
     Found 1-bit register for signal <LAN_RD_S>.
     Found 1-bit register for signal <LAN_READY>.
-    Found 2-bit comparator less for signal <LAN_SM$cmp_lt0000> created at line 405.
+    Found 2-bit comparator less for signal <LAN_SM$cmp_lt0000> created at line 406.
     Found 1-bit register for signal <LAN_SM_RST>.
     Found 1-bit register for signal <LAN_WR_RST>.
     Found 1-bit register for signal <LAN_WRH_S>.
@@ -215,7 +216,7 @@ INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
 	inferred  74 D-type flip-flop(s).
 	inferred   6 Comparator(s).
 	inferred   1 Xor(s).
-	inferred  57 Tristate(s).
+	inferred  58 Tristate(s).
 Unit <LAN_IDE_CP> synthesized.
 
 
@@ -235,8 +236,8 @@ Macro Statistics
  2-bit comparator less                                 : 2
  4-bit comparator less                                 : 1
  8-bit comparator equal                                : 2
-# Tristates                                            : 27
- 1-bit tristate buffer                                 : 25
+# Tristates                                            : 28
+ 1-bit tristate buffer                                 : 26
  16-bit tristate buffer                                : 2
 # Xors                                                 : 1
  1-bit xor2                                            : 1
@@ -394,19 +395,19 @@ Clock Enable                       : YES
 wysiwyg                            : NO
 
 Design Statistics
-# IOs                              : 116
+# IOs                              : 117
 
 Cell Usage :
-# BELS                             : 1145
-#      AND2                        : 345
-#      AND3                        : 41
+# BELS                             : 1283
+#      AND2                        : 418
+#      AND3                        : 44
 #      AND4                        : 15
 #      AND5                        : 1
 #      AND8                        : 4
 #      GND                         : 1
-#      INV                         : 419
-#      OR2                         : 250
-#      OR3                         : 17
+#      INV                         : 451
+#      OR2                         : 277
+#      OR3                         : 20
 #      OR4                         : 2
 #      XOR2                        : 50
 # FlipFlops/Latches                : 141
@@ -415,20 +416,20 @@ Cell Usage :
 #      FDCE                        : 7
 #      FDP                         : 41
 #      FDPE                        : 68
-# IO Buffers                       : 114
+# IO Buffers                       : 115
 #      IBUF                        : 24
 #      IOBUFE                      : 48
 #      OBUF                        : 33
-#      OBUFE                       : 9
+#      OBUFE                       : 10
 =========================================================================
 
 
-Total REAL time to Xst completion: 18.00 secs
-Total CPU time to Xst completion: 18.70 secs
+Total REAL time to Xst completion: 19.00 secs
+Total CPU time to Xst completion: 19.00 secs
  
 --> 
 
-Total memory usage is 4534828 kilobytes
+Total memory usage is 4534760 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   48 (   0 filtered)

@@ -1,3 +1,4 @@
+;APS00000000000000000000000000000000000000000000000000000000000000000000000000000000
 ; ------------------------------------------------------------------------------
 ; | Flash ROM Read Serial Number                                               |
 ; | Copyright (c) 2016 APOLLO TEAM                                             |
@@ -21,6 +22,10 @@ FLASH_MISOn              EQU   $0
 ;VAMPIRE_MAGIC            EQU   ascii "Vamp"
 VAMPIRE_MAGIC            EQU   $56616D70
 
+VAMPIDREG	EQU	$DFF3FC
+V4_ID1		EQU	$DFF3F4
+V4_ID2		EQU	$DFF3F0
+
 	xdef	_vampire_UUID
 
 ;-------- Get 64 Bit unique ID --------------------
@@ -31,13 +36,23 @@ VAMPIRE_MAGIC            EQU   $56616D70
 ;      >0 - success
 _vampire_UUID:
 	movem.l	d1-a6,-(sp)	;lazy register store
+	lea	VAMPIDREG,a0
 
+	move.w	(a0),d0		;ID reg empty?
+	blt.s	v2$		;yes, try flash method
+	cmp.w	#$2FF,d0	;Core type << 8 | Clock_Multiplier
+	ble.s	v2$
+
+	move.l	V4_ID1-VAMPIDREG(a0),d0
+	move.l	V4_ID2-VAMPIDREG(a0),d1
+	bra.s	common$
+v2$
 	bsr	flashreadid
 	cmpi.b	#FLASH_ID,d0
 	bne.s	error$
 
 	bsr	flashuniqueid
-
+common$
 	move.l	d0,(a1)
 	move.l	d1,4(a1)
 

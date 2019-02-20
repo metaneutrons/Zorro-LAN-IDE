@@ -64,6 +64,12 @@ PRIORITY=PRI/K/N,BPS/K/N,MTU/K/N,FULLDUPLEX/S,FLOWCONTROL/S,TIMER/K/N,MULTICAST/
 Changelog:
 ----------
 
+2.00  - improved RX speed for buffer wraparound cases
+      - some more safety checks for boards with unresponsive
+        ENC chips (explicit card bus clear before verification of
+        chip presence)
+      - version bump
+
 1.99  - fixed soft reset for ZIII firmware
       - re-enabled 32 Bit Buffer copies (unless Miami is active)
       - default server task priority for AmiTCP=6 (otherwise 0)

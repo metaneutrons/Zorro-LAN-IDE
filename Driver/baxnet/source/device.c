@@ -162,11 +162,11 @@ ASM SAVEDS LONG DevOpen( ASMR(a1) struct IOSana2Req *ioreq           ASMREG(a1),
 		if( (db->db_Units[unit].du_OpenCount > 0) &&
 		    (flags & SANA2OPF_MINE) )
 			ok = 0;
-
+#if 0
 		if( (db->db_Units[unit].du_OpenCount > 0) &&
 		    (flags & SANA2OPF_PROM) )
 			ok = 0;
-
+#endif
 
 		if( db->db_Units[unit].du_Flags & DUF_EXCLUSIVE )
 		 	ok = 0;
@@ -215,6 +215,8 @@ ASM SAVEDS LONG DevOpen( ASMR(a1) struct IOSana2Req *ioreq           ASMREG(a1),
 					dbm->dbm_CopyFromBuffer32 = (BMCALL)((void (*)())(GetTagData(S2_CopyFromBuff32, 0,
 				                                (struct TagItem *)ioreq->ios2_BufferManagement)));
 				}
+				
+				D(("BufferMgmt CBuf32 %lx PF %lx CBuf %lx\n",(ULONG)dbm->dbm_CopyFromBuffer32,(ULONG)dbm->dbm_PacketFilter,(ULONG)dbm->dbm_CopyFromBuffer));
 
 				if( !dbm->dbm_CopyToBuffer32 )
 					dbm->dbm_CopyToBuffer32 = dbm->dbm_CopyToBuffer;

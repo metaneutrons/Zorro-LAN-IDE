@@ -59,6 +59,7 @@ entity LAN_IDE_CP is
            FCS : in  STD_LOGIC;
            RESET : in  STD_LOGIC;
            INT_OUT : out  STD_LOGIC;
+			  INT_CP_OUT : out  STD_LOGIC;
            AUTOBOOT_OFF : in  STD_LOGIC;
            ROM_B : out  STD_LOGIC_VECTOR (1 downto 0);
            ROM_OE : out  STD_LOGIC;
@@ -619,12 +620,20 @@ begin
 	LAN_CFG	<= "ZZZZ";
 	
 
-	A_LAN(13 downto 0)<=	 LAN_A_INIT when reset ='0' else
-								 Z3_ADR(14 downto 2) & Z3_A_LOW; 
+	A_LAN(13 downto 6)<=	 LAN_A_INIT(13 downto 6) when reset ='0' else
+								 Z3_ADR(14 downto 7); 	
+	A_LAN(5 downto 2) <=	 LAN_A_INIT(5 downto 2) when reset ='0' else
+								 A(5 downto 2) when CP_ACCESS='1' else --mux the clock-port adresses! 
+								 Z3_ADR(6 downto 3); 
+	A_LAN(1 downto 0)<=	 LAN_A_INIT(1 downto 0) when reset ='0' else
+								 Z3_ADR(2) & Z3_A_LOW; 
+	
+	
 	
 	--signal assignment
 	D(15 downto 0)	<=	Z3_DATA(31 downto 16) 	when RW='1' and FCS='0' and LAN_ACCESS ='1' else		
 							D_Z2_OUT	& x"FFF" 		when RW='1' and  AS='0' and AUTOCONFIG_Z2_ACCESS ='1' else
+							DQ(7 downto 0)&DQ(7 downto 0)  when RW='1' and CP_ACCESS = '1'     and AS='0' else
 							(others => 'Z');
 
 	A(23 downto 8)	<=	Z3_DATA(15 downto  0) 	when RW='1' and FCS='0' and LAN_ACCESS ='1' else			
@@ -635,12 +644,28 @@ begin
 	--defined lancp signal that matches both LAN and CP addresses
 	DQ <=	LAN_D_INIT 					when reset='0' else
 			DQ_DATA(15 downto  0)	when RW='0' and FCS='0' and Z3_DS <"1111" and LAN_ACCESS ='1' else
+			D 	when RW='0' and AS='0' and CP_ACCESS ='1' else
 			(others => 'Z');
 
+--
+--	--defined lancp signal that matches both LAN and CP addresses (and IDE for Rev2 boards)
+--	DQ <=	LAN_D_CLR when (LAN_RST_SM = wait0 or LAN_RST_SM = clr or LAN_RST_SM = clr_commit) else
+--			LAN_D_SET when (LAN_RST_SM = wait1 or LAN_RST_SM = set or LAN_RST_SM = set_commit) else
+--			D( 7 downto 0) & D( 7 downto 0)	when RW='0' and AS='0' and lancp = '1' and LDS='0' and UDS='1' else
+--			D(15 downto 8) & D(15 downto 8)	when RW='0' and AS='0' and lancp = '1' and LDS='1' and UDS='0' else
+--			D( 7 downto 0) & D(15 downto 8)	when RW='0' and AS='0' and lan_adr ='1' and lan_adr_sw ='1' else
+--			D 	when RW='0' and AS='0' and lancp ='1'
+--			else (others => 'Z');
+								
+
+
+
+
+
 	INT_OUT <= '0' when LAN_IRQ_OUT = '0' and LAN_INT_ENABLE = '1' else
-				  '0' when CP_IRQ = '0' else
 				  'Z';
-	
+	INT_CP_OUT <= '0' when CP_IRQ = '0' else
+				  'Z';
 	OWN 	<= 'Z';
 	SLAVE <= '0' when FCS='0' and LAN_ACCESS = '1' else 
 				'0' when  AS='0' and (AUTOCONFIG_Z2_ACCESS  = '1' or IDE_ACCESS = '1' or CP_ACCESS = '1') else '1';	

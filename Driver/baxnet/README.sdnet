@@ -188,6 +188,14 @@ TIMER/K/N,MULTICAST/S
 Changelog:
 ----------
 
+2.00  - parse Vampire 4 UUID for MAC auto-assignment
+      - version bump
+
+1.99  - re-enabled 32 Bit Buffer copies (unless Miami is active)
+      - default server task priority for AmiTCP=6 (otherwise 0)
+      - tuned RX/TX balancing to make RoadShow happy
+      - added Packet Filter hook processing (needs testing)
+
 1.95  - workaround for MiamiDX bugs, 32 Bit Buffer copy routines could not be
         used safely with it.
 
