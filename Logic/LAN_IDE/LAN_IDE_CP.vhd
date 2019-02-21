@@ -341,9 +341,9 @@ begin
 	end process lan_rst_gen;
 	
 	--lan signal generation: all Signals are HIGH active!
-	lan_rw_gen: process (CLK_EXT,LAN_SM_RST)
+	lan_rw_gen: process (CLK_EXT,FCS,reset,Z3_DS,LAN_ACCESS,BERR )
 	begin
-		if(LAN_SM_RST ='1' ) then
+		if(FCS ='1' or reset = '0' or Z3_DS = "1111" or LAN_ACCESS = '0' or BERR = '0') then
 			LAN_SM <=nop;
 			LAN_RD_S		<= '0';
 			LAN_WRH_S	<= '0';
@@ -625,7 +625,7 @@ begin
 	--signal assignment
 	D(15 downto 0)	<=	Z3_DATA(31 downto 16) 	when RW='1' and FCS='0' and LAN_ACCESS ='1' else		
 							D_Z2_OUT	& x"FFF" 		when RW='1' and  AS='0' and AUTOCONFIG_Z2_ACCESS ='1' else
-							DQ(15 downto 0)  when RW='1' and CP_ACCESS = '1'     and AS='0' else
+							DQ(7 downto 0)&DQ(7 downto 0)  when RW='1' and CP_ACCESS = '1'     and AS='0' else
 							(others => 'Z');
 
 	A(23 downto 8)	<=	Z3_DATA(15 downto  0) 	when RW='1' and FCS='0' and LAN_ACCESS ='1' else			

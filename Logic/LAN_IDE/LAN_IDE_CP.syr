@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.14 secs
+Total CPU time to Xst completion: 0.15 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.14 secs
+Total CPU time to Xst completion: 0.16 secs
  
 --> Reading design: LAN_IDE_CP.prj
 
@@ -111,6 +111,7 @@ Synthesizing Unit <LAN_IDE_CP>.
     Related source file is "C:/Users/Matze/Amiga/Hardwarehacks/Zorro-LAN-IDE/Logic/LAN_IDE/LAN_IDE_CP.vhd".
 WARNING:Xst:647 - Input <IDE_WAIT> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <MTCR> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <LAN_SM_RST> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     Found finite state machine <FSM_0> for signal <LAN_SM>.
     -----------------------------------------------------------------------
@@ -119,7 +120,7 @@ INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     | Inputs             | 4                                              |
     | Outputs            | 14                                             |
     | Clock              | CLK_EXT                   (rising_edge)        |
-    | Reset              | LAN_SM_RST                (positive)           |
+    | Reset              | LAN_SM$or0000             (positive)           |
     | Reset type         | asynchronous                                   |
     | Reset State        | nop                                            |
     | Power Up State     | nop                                            |
@@ -198,7 +199,6 @@ INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     Found 1-bit register for signal <LAN_RD_S>.
     Found 1-bit register for signal <LAN_READY>.
     Found 2-bit comparator less for signal <LAN_SM$cmp_lt0000> created at line 387.
-    Found 1-bit register for signal <LAN_SM_RST>.
     Found 1-bit register for signal <LAN_WR_RST>.
     Found 1-bit register for signal <LAN_WRH_S>.
     Found 1-bit register for signal <LAN_WRL_S>.
@@ -220,8 +220,8 @@ Unit <LAN_IDE_CP> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
-# Registers                                            : 85
- 1-bit register                                        : 77
+# Registers                                            : 84
+ 1-bit register                                        : 76
  14-bit register                                       : 2
  16-bit register                                       : 2
  3-bit register                                        : 1
@@ -343,8 +343,9 @@ INFO:Xst:2261 - The FF/Latch <LAN_A_INIT_3> in Unit <LAN_IDE_CP> is equivalent t
 
 Optimizing unit <LAN_IDE_CP> ...
   implementation constraint: INIT=s	 : SHUT_UP_Z2_2
-  implementation constraint: INIT=s	 : SHUT_UP_Z2_0
   implementation constraint: INIT=s	 : SHUT_UP_Z2_1
+  implementation constraint: INIT=s	 : SHUT_UP_Z2_0
+  implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_CYCLE_2
   implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_1
   implementation constraint: INIT=r	 : LAN_INT_ENABLE
   implementation constraint: INIT=s	 : D_Z2_OUT_3
@@ -354,7 +355,6 @@ Optimizing unit <LAN_IDE_CP> ...
   implementation constraint: INIT=s	 : D_Z2_OUT_1
   implementation constraint: INIT=s	 : D_Z2_OUT_0
   implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_2
-  implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_CYCLE_2
   implementation constraint: INIT=r	 : LAN_D_INIT_1
   implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_0
   implementation constraint: INIT=r	 : LAN_D_INIT_8
@@ -414,19 +414,19 @@ Cell Usage :
 # BELS                             : 1090
 #      AND2                        : 361
 #      AND3                        : 39
-#      AND4                        : 15
+#      AND4                        : 16
 #      AND5                        : 1
 #      AND8                        : 4
 #      GND                         : 1
-#      INV                         : 346
+#      INV                         : 345
 #      OR2                         : 222
 #      OR3                         : 45
 #      OR4                         : 6
 #      OR5                         : 1
 #      OR8                         : 16
 #      XOR2                        : 33
-# FlipFlops/Latches                : 154
-#      FD                          : 4
+# FlipFlops/Latches                : 153
+#      FD                          : 3
 #      FDC                         : 32
 #      FDCE                        : 7
 #      FDP                         : 42
@@ -440,13 +440,13 @@ Cell Usage :
 
 
 Total REAL time to Xst completion: 9.00 secs
-Total CPU time to Xst completion: 9.16 secs
+Total CPU time to Xst completion: 9.25 secs
  
 --> 
 
-Total memory usage is 4534788 kilobytes
+Total memory usage is 4534804 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   46 (   0 filtered)
+Number of warnings :   47 (   0 filtered)
 Number of infos    :   11 (   0 filtered)
 
