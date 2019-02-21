@@ -1,7 +1,7 @@
  
 cpldfit:  version P.20131013                        Xilinx Inc.
                                   Fitter Report
-Design Name: LAN_IDE_CP                          Date:  2-21-2019,  2:29PM
+Design Name: LAN_IDE_CP                          Date:  2-21-2019,  2:45PM
 Device Used: XC95288XL-10-TQ144
 Fitting Status: Successful
 
@@ -9,20 +9,20 @@ Fitting Status: Successful
 
 Macrocells     Product Terms    Function Block   Registers      Pins           
 Used/Tot       Used/Tot         Inps Used/Tot    Used/Tot       Used/Tot       
-221/288 ( 77%) 1194/1440 ( 83%) 571/864 ( 66%)   141/288 ( 49%) 115/117 ( 98%)
+221/288 ( 77%) 1194/1440 ( 83%) 579/864 ( 67%)   141/288 ( 49%) 115/117 ( 98%)
 
 ** Function Block Resources **
 
 Function    Mcells      FB Inps     Pterms      IO          
 Block       Used/Tot    Used/Tot    Used/Tot    Used/Tot    
-FB1          18/18*      43/54       76/90       8/ 8*
+FB1          18/18*      47/54       76/90       8/ 8*
 FB2          16/18       46/54       79/90      10/10*
 FB3           5/18       38/54       36/90       5/ 5*
 FB4          18/18*      47/54       86/90       6/ 6*
 FB5          10/18       47/54       82/90       7/ 8
 FB6          18/18*      24/54       37/90       8/ 8*
 FB7           7/18       28/54       81/90       4/ 4*
-FB8          15/18       41/54       83/90       5/ 5*
+FB8          15/18       45/54       83/90       5/ 5*
 FB9          17/18       45/54       73/90       9/ 9*
 FB10         11/18       31/54       87/90      10/10*
 FB11         17/18       29/54       78/90       7/ 7*
@@ -32,7 +32,7 @@ FB14         18/18*      19/54       46/90       7/ 8
 FB15         13/18       32/54       88/90       9/ 9*
 FB16         15/18       32/54       85/90       8/ 8*
              -----       -----       -----      -----    
-            221/288     571/864    1194/1440   115/117
+            221/288     579/864    1194/1440   115/117
 
 * - Resource is exhausted
 
@@ -189,16 +189,16 @@ A<16>                                                                           
 
 Signal                                                                                Total Total Loc     Pwr  Reg Init
 Name                                                                                  Pts   Inps          Mode State
-AUTO_CONFIG_Z2_DONE_CYCLE<2>                                                          4     16    FB1_1   STD  RESET
-AUTO_CONFIG_Z2_DONE_CYCLE<1>                                                          4     15    FB1_2   STD  RESET
+SHUT_UP_Z2<0>                                                                         4     15    FB1_1   STD  SET
+AUTO_CONFIG_Z2_DONE_CYCLE<2>                                                          4     16    FB1_2   STD  RESET
 LAN_BASEADR<9>                                                                        6     16    FB1_3   STD  RESET
-LAN_BASEADR<7>                                                                        6     16    FB1_4   STD  RESET
-LAN_BASEADR<5>                                                                        6     16    FB1_7   STD  RESET
-LAN_BASEADR<2>                                                                        6     16    FB1_9   STD  RESET
-LAN_BASEADR<1>                                                                        6     16    FB1_11  STD  RESET
-LAN_BASEADR<15>                                                                       6     16    FB1_13  STD  RESET
-LAN_BASEADR<13>                                                                       6     16    FB1_16  STD  RESET
-LAN_BASEADR<10>                                                                       6     16    FB1_18  STD  RESET
+LAN_BASEADR<8>                                                                        6     16    FB1_4   STD  RESET
+LAN_BASEADR<7>                                                                        6     16    FB1_7   STD  RESET
+LAN_BASEADR<6>                                                                        6     16    FB1_9   STD  RESET
+LAN_BASEADR<5>                                                                        6     16    FB1_11  STD  RESET
+LAN_BASEADR<4>                                                                        6     16    FB1_13  STD  RESET
+LAN_BASEADR<3>                                                                        6     16    FB1_16  STD  RESET
+LAN_BASEADR<2>                                                                        6     16    FB1_18  STD  RESET
 DQ<8>_BUFR                                                                            9     11    FB2_1   STD  
 IDE_BASEADR<3>                                                                        6     18    FB2_4   STD  RESET
 IDE_BASEADR<2>                                                                        6     18    FB2_7   STD  RESET
@@ -236,17 +236,17 @@ LAN_IRQ_OUT                                                                     
 LAN_A_INIT<6>                                                                         3     4     FB6_16  STD  SET
 LAN_ACCESS                                                                            3     5     FB6_17  STD  RESET
 DQ_SWAP                                                                               3     7     FB6_18  STD  RESET
-SHUT_UP_Z2<0>                                                                         4     15    FB7_1   STD  SET
+AUTO_CONFIG_Z2_DONE_CYCLE<1>                                                          4     15    FB7_1   STD  RESET
 D_Z2_OUT<1>                                                                           19    14    FB7_9   STD  SET
 D_Z2_OUT<2>                                                                           16    14    FB7_14  STD  SET
 D_Z2_OUT<0>                                                                           15    14    FB7_17  STD  SET
-LAN_BASEADR<8>                                                                        6     16    FB8_6   STD  RESET
-LAN_BASEADR<6>                                                                        6     16    FB8_7   STD  RESET
-LAN_BASEADR<4>                                                                        6     16    FB8_9   STD  RESET
-LAN_BASEADR<3>                                                                        6     16    FB8_11  STD  RESET
-LAN_BASEADR<14>                                                                       6     16    FB8_12  STD  RESET
-LAN_BASEADR<12>                                                                       6     16    FB8_13  STD  RESET
-LAN_BASEADR<11>                                                                       6     16    FB8_14  STD  RESET
+LAN_BASEADR<1>                                                                        6     16    FB8_6   STD  RESET
+LAN_BASEADR<15>                                                                       6     16    FB8_7   STD  RESET
+LAN_BASEADR<14>                                                                       6     16    FB8_9   STD  RESET
+LAN_BASEADR<13>                                                                       6     16    FB8_11  STD  RESET
+LAN_BASEADR<12>                                                                       6     16    FB8_12  STD  RESET
+LAN_BASEADR<11>                                                                       6     16    FB8_13  STD  RESET
+LAN_BASEADR<10>                                                                       6     16    FB8_14  STD  RESET
 LAN_BASEADR<0>                                                                        6     16    FB8_15  STD  RESET
 CP_BASEADR<3>                                                                         6     17    FB8_16  STD  RESET
 SHUT_UP_Z2<1>                                                                         4     16    FB8_18  STD  SET
@@ -374,70 +374,69 @@ Pin Type/Use - I  - Input             GCK - Global Clock
 X            - Signal used as input to the macrocell logic.
 Pin No.      - ~  - User Assigned
 *********************************** FB1  ***********************************
-Number of function block inputs used/remaining:               43/11
-Number of signals used by logic mapping into function block:  43
+Number of function block inputs used/remaining:               47/7
+Number of signals used by logic mapping into function block:  47
 Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
 Name                Pt      Pt    Pt  Pt               #    Type    Use
+SHUT_UP_Z2<0>         4       1<- \/2   0     FB1_1         (b)     (b)
 AUTO_CONFIG_Z2_DONE_CYCLE<2>
-                      4       1<- \/2   0     FB1_1         (b)     (b)
-AUTO_CONFIG_Z2_DONE_CYCLE<1>
                       4       2<- \/3   0     FB1_2         (b)     (b)
 LAN_BASEADR<9>        6       3<- \/2   0     FB1_3         (b)     (b)
-LAN_BASEADR<7>        6       2<- \/1   0     FB1_4         (b)     (b)
+LAN_BASEADR<8>        6       2<- \/1   0     FB1_4         (b)     (b)
 D<5>                  7       2<-   0   0     FB1_5   20    I/O     I/O
 D<4>                  7       3<- /\1   0     FB1_6   21    I/O     I/O
-LAN_BASEADR<5>        6       4<- /\3   0     FB1_7         (b)     (b)
+LAN_BASEADR<7>        6       4<- /\3   0     FB1_7         (b)     (b)
 IDE_CS<0>             1       0   /\4   0     FB1_8   22    I/O     O
-LAN_BASEADR<2>        6       1<-   0   0     FB1_9         (b)     (b)
+LAN_BASEADR<6>        6       1<-   0   0     FB1_9         (b)     (b)
 IDE_CS<1>             1       0   /\1   3     FB1_10  23    I/O     O
-LAN_BASEADR<1>        6       1<-   0   0     FB1_11        (b)     (b)
+LAN_BASEADR<5>        6       1<-   0   0     FB1_11        (b)     (b)
 IDE_A<0>              1       0   /\1   3     FB1_12  24    I/O     O
-LAN_BASEADR<15>       6       1<-   0   0     FB1_13        (b)     (b)
+LAN_BASEADR<4>        6       1<-   0   0     FB1_13        (b)     (b)
 IDE_A<2>              1       0   /\1   3     FB1_14  25    I/O     O
 IDE_A<1>              1       0   \/1   3     FB1_15  26    I/O     O
-LAN_BASEADR<13>       6       1<-   0   0     FB1_16        (b)     (b)
+LAN_BASEADR<3>        6       1<-   0   0     FB1_16        (b)     (b)
 IDE_R                 1       0   \/2   2     FB1_17  27    I/O     O
-LAN_BASEADR<10>       6       2<- \/1   0     FB1_18        (b)     (b)
+LAN_BASEADR<2>        6       2<- \/1   0     FB1_18        (b)     (b)
 
 Signals Used by Logic in Function Block
-  1: AS                            16: A<9>.PIN          30: A<12>.PIN 
-  2: AUTOCONFIG_Z2_ACCESS          17: A<10>.PIN         31: A<13>.PIN 
-  3: AUTO_CONFIG_Z2_DONE<0>        18: A<11>.PIN         32: DQ<5>.PIN 
-  4: AUTO_CONFIG_Z2_DONE<1>        19: IDE_R_S           33: DQ<4>.PIN 
-  5: AUTO_CONFIG_Z2_DONE<2>        20: LAN_ACCESS        34: D<15>.PIN 
-  6: AUTO_CONFIG_Z2_DONE_CYCLE<1>  21: LAN_BASEADR<10>   35: D<13>.PIN 
-  7: AUTO_CONFIG_Z2_DONE_CYCLE<2>  22: LAN_BASEADR<13>   36: D<10>.PIN 
-  8: A<1>                          23: LAN_BASEADR<15>   37: D<9>.PIN 
-  9: A<2>                          24: LAN_BASEADR<1>    38: RESET 
- 10: A<3>                          25: LAN_BASEADR<2>    39: RW 
- 11: A<4>                          26: LAN_BASEADR<5>    40: SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF 
- 12: A<5>                          27: LAN_BASEADR<7>    41: UDS 
- 13: A<6>                          28: LAN_BASEADR<9>    42: Z3_DATA<20> 
- 14: D_8_IOBUFE/D_8_IOBUFE_TRST    29: LDS               43: Z3_DATA<21> 
- 15: FCS                          
+  1: AS                            17: A<11>.PIN         33: D<9>.PIN 
+  2: AUTOCONFIG_Z2_ACCESS          18: IDE_R_S           34: D<8>.PIN 
+  3: AUTO_CONFIG_Z2_DONE<0>        19: LAN_ACCESS        35: D<7>.PIN 
+  4: AUTO_CONFIG_Z2_DONE<1>        20: LAN_BASEADR<2>    36: D<6>.PIN 
+  5: AUTO_CONFIG_Z2_DONE<2>        21: LAN_BASEADR<3>    37: D<5>.PIN 
+  6: AUTO_CONFIG_Z2_DONE_CYCLE<2>  22: LAN_BASEADR<4>    38: D<4>.PIN 
+  7: A<1>                          23: LAN_BASEADR<5>    39: D<3>.PIN 
+  8: A<2>                          24: LAN_BASEADR<6>    40: D<2>.PIN 
+  9: A<3>                          25: LAN_BASEADR<7>    41: RESET 
+ 10: A<4>                          26: LAN_BASEADR<8>    42: RW 
+ 11: A<5>                          27: LAN_BASEADR<9>    43: SHUT_UP_Z2<0> 
+ 12: A<6>                          28: LDS               44: SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF 
+ 13: D_8_IOBUFE/D_8_IOBUFE_TRST    29: A<12>.PIN         45: UDS 
+ 14: FCS                           30: A<13>.PIN         46: Z3_DATA<20> 
+ 15: A<9>.PIN                      31: DQ<5>.PIN         47: Z3_DATA<21> 
+ 16: A<10>.PIN                     32: DQ<4>.PIN        
 
 Signal                        1         2         3         4         5 FB
 Name                0----+----0----+----0----+----0----+----0----+----0 Inputs
+SHUT_UP_Z2<0>        XXX...XXXXXX...............X............XXXXX..... 15
 AUTO_CONFIG_Z2_DONE_CYCLE<2> 
-                     XXXXX.XX.XXXX...............X........XXXX......... 16
-AUTO_CONFIG_Z2_DONE_CYCLE<1> 
-                     XXXX.X.X.XXXX...............X........XXXX......... 15
-LAN_BASEADR<9>       XX.X...XXXXXX..............XX.......XXXXX......... 16
-LAN_BASEADR<7>       XXX....XXXXXX.............X.X....X...XXXX......... 16
-D<5>                 XX...........XX....X...........X......X...X....... 8
-D<4>                 XX...........XX....X............X.....X..X........ 8
-LAN_BASEADR<5>       XXX....XXXXXX............X..X.....X..XXXX......... 16
-IDE_CS<0>            .............................X.................... 1
-LAN_BASEADR<2>       XXX....XXXXXX...........X...X......X.XXXX......... 16
-IDE_CS<1>            ..............................X................... 1
-LAN_BASEADR<1>       XXX....XXXXXX..........X....X.......XXXXX......... 16
-IDE_A<0>             ...............X.................................. 1
-LAN_BASEADR<15>      XX.X...XXXXXX.........X.....X....X...XXXX......... 16
-IDE_A<2>             .................X................................ 1
-IDE_A<1>             ................X................................. 1
-LAN_BASEADR<13>      XX.X...XXXXXX........X......X.....X..XXXX......... 16
-IDE_R                X.................X............................... 2
-LAN_BASEADR<10>      XX.X...XXXXXX.......X.......X......X.XXXX......... 16
+                     XXXXXXX.XXXX...............X............XX.XX..... 16
+LAN_BASEADR<9>       XXX...XXXXXX..............XX....X.......XX.XX..... 16
+LAN_BASEADR<8>       XXX...XXXXXX.............X.X.....X......XX.XX..... 16
+D<5>                 XX..........XX....X...........X..........X....X... 8
+D<4>                 XX..........XX....X............X.........X...X.... 8
+LAN_BASEADR<7>       XXX...XXXXXX............X..X......X.....XX.XX..... 16
+IDE_CS<0>            ............................X..................... 1
+LAN_BASEADR<6>       XXX...XXXXXX...........X...X.......X....XX.XX..... 16
+IDE_CS<1>            .............................X.................... 1
+LAN_BASEADR<5>       XXX...XXXXXX..........X....X........X...XX.XX..... 16
+IDE_A<0>             ..............X................................... 1
+LAN_BASEADR<4>       XXX...XXXXXX.........X.....X.........X..XX.XX..... 16
+IDE_A<2>             ................X................................. 1
+IDE_A<1>             ...............X.................................. 1
+LAN_BASEADR<3>       XXX...XXXXXX........X......X..........X.XX.XX..... 16
+IDE_R                X................X................................ 2
+LAN_BASEADR<2>       XXX...XXXXXX.......X.......X...........XXX.XX..... 16
                     0----+----1----+----2----+----3----+----4----+----5
                               0         0         0         0         0
 *********************************** FB2  ***********************************
@@ -739,7 +738,8 @@ Number of function block inputs used/remaining:               28/26
 Number of signals used by logic mapping into function block:  28
 Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
 Name                Pt      Pt    Pt  Pt               #    Type    Use
-SHUT_UP_Z2<0>         4       0     0   1     FB7_1         (b)     (b)
+AUTO_CONFIG_Z2_DONE_CYCLE<1>
+                      4       0     0   1     FB7_1         (b)     (b)
 (unused)              0       0   \/4   1     FB7_2         (b)     (b)
 D<13>                 9       4<-   0   0     FB7_3   45    I/O     I/O
 (unused)              0       0     0   5     FB7_4         (b)     
@@ -759,31 +759,32 @@ D_Z2_OUT<0>          15      10<-   0   0     FB7_17        (b)     (b)
 (unused)              0       0   /\5   0     FB7_18        (b)     (b)
 
 Signals Used by Logic in Function Block
-  1: AS                      11: D_8_IOBUFE/D_8_IOBUFE_TRST  20: DQ<5>.PIN 
-  2: AUTOCONFIG_Z2_ACCESS    12: D_Z2_OUT<1>                 21: RESET 
-  3: AUTO_CONFIG_Z2_DONE<0>  13: D_Z2_OUT<2>                 22: RW 
-  4: AUTO_CONFIG_Z2_DONE<1>  14: D_Z2_OUT<3>                 23: SHUT_UP_Z2<0> 
-  5: A<1>                    15: FCS                         24: SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF 
-  6: A<2>                    16: LAN_ACCESS                  25: UDS 
-  7: A<3>                    17: LDS                         26: Z3_DATA<29> 
-  8: A<4>                    18: DQ<7>.PIN                   27: Z3_DATA<30> 
-  9: A<5>                    19: DQ<6>.PIN                   28: Z3_DATA<31> 
- 10: A<6>                   
+  1: AS                            11: A<6>                        20: DQ<6>.PIN 
+  2: AUTOCONFIG_Z2_ACCESS          12: D_8_IOBUFE/D_8_IOBUFE_TRST  21: DQ<5>.PIN 
+  3: AUTO_CONFIG_Z2_DONE<0>        13: D_Z2_OUT<1>                 22: RESET 
+  4: AUTO_CONFIG_Z2_DONE<1>        14: D_Z2_OUT<2>                 23: RW 
+  5: AUTO_CONFIG_Z2_DONE_CYCLE<1>  15: D_Z2_OUT<3>                 24: SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF 
+  6: A<1>                          16: FCS                         25: UDS 
+  7: A<2>                          17: LAN_ACCESS                  26: Z3_DATA<29> 
+  8: A<3>                          18: LDS                         27: Z3_DATA<30> 
+  9: A<4>                          19: DQ<7>.PIN                   28: Z3_DATA<31> 
+ 10: A<5>                         
 
 Signal                        1         2         3         4 FB
 Name                0----+----0----+----0----+----0----+----0 Inputs
-SHUT_UP_Z2<0>        XXX.XXXXXX......X...XXXXX............... 15
-D<13>                XX........XX..XX...X.X...X.............. 9
-D<14>                XX........X.X.XX..X..X....X............. 9
-D_Z2_OUT<1>          XXXXXXXXXX......X...X..XX............... 14
-D<15>                XX........X..XXX.X...X.....X............ 9
-D_Z2_OUT<2>          XXXXXXXXXX......X...X..XX............... 14
-D_Z2_OUT<0>          XXXXXXXXXX......X...X..XX............... 14
+AUTO_CONFIG_Z2_DONE_CYCLE<1> 
+                     XXXXXX.XXXX......X...XXXX............... 15
+D<13>                XX.........XX..XX...X.X..X.............. 9
+D<14>                XX.........X.X.XX..X..X...X............. 9
+D_Z2_OUT<1>          XXXX.XXXXXX......X...X.XX............... 14
+D<15>                XX.........X..XXX.X...X....X............ 9
+D_Z2_OUT<2>          XXXX.XXXXXX......X...X.XX............... 14
+D_Z2_OUT<0>          XXXX.XXXXXX......X...X.XX............... 14
                     0----+----1----+----2----+----3----+----4
                               0         0         0         0
 *********************************** FB8  ***********************************
-Number of function block inputs used/remaining:               41/13
-Number of signals used by logic mapping into function block:  41
+Number of function block inputs used/remaining:               45/9
+Number of signals used by logic mapping into function block:  45
 Signal              Total   Imp   Exp Unused  Loc     Pin   Pin     Pin
 Name                Pt      Pt    Pt  Pt               #    Type    Use
 (unused)              0       0   \/4   1     FB8_1         (b)     (b)
@@ -791,53 +792,54 @@ DQ<12>                9       4<-   0   0     FB8_2   130   I/O     I/O
 DQ<14>                9       4<-   0   0     FB8_3   131   I/O     I/O
 (unused)              0       0   /\4   1     FB8_4         (b)     (b)
 LAN_WRH               3       0   \/2   0     FB8_5   132   I/O     O
-LAN_BASEADR<8>        6       2<- \/1   0     FB8_6         (b)     (b)
-LAN_BASEADR<6>        6       1<-   0   0     FB8_7         (b)     (b)
+LAN_BASEADR<1>        6       2<- \/1   0     FB8_6         (b)     (b)
+LAN_BASEADR<15>       6       1<-   0   0     FB8_7         (b)     (b)
 LAN_CS                3       0   \/1   1     FB8_8   133   I/O     O
-LAN_BASEADR<4>        6       1<-   0   0     FB8_9         (b)     (b)
+LAN_BASEADR<14>       6       1<-   0   0     FB8_9         (b)     (b)
 LAN_RD                1       0   \/3   1     FB8_10  134   I/O     O
-LAN_BASEADR<3>        6       3<- \/2   0     FB8_11        (b)     (b)
-LAN_BASEADR<14>       6       2<- \/1   0     FB8_12        (b)     (b)
-LAN_BASEADR<12>       6       1<-   0   0     FB8_13        (b)     (b)
-LAN_BASEADR<11>       6       1<-   0   0     FB8_14        (b)     (b)
+LAN_BASEADR<13>       6       3<- \/2   0     FB8_11        (b)     (b)
+LAN_BASEADR<12>       6       2<- \/1   0     FB8_12        (b)     (b)
+LAN_BASEADR<11>       6       1<-   0   0     FB8_13        (b)     (b)
+LAN_BASEADR<10>       6       1<-   0   0     FB8_14        (b)     (b)
 LAN_BASEADR<0>        6       2<- /\1   0     FB8_15        (b)     (b)
 CP_BASEADR<3>         6       3<- /\2   0     FB8_16        (b)     (b)
 (unused)              0       0   /\3   2     FB8_17        (b)     (b)
 SHUT_UP_Z2<1>         4       0     0   1     FB8_18        (b)     (b)
 
 Signals Used by Logic in Function Block
-  1: AS                            15: DS0               29: LAN_WRH_S 
-  2: AUTOCONFIG_Z2_ACCESS          16: DS1               30: LAN_WR_RST 
-  3: AUTO_CONFIG_Z2_DONE<0>        17: FCS               31: LDS 
-  4: AUTO_CONFIG_Z2_DONE<1>        18: LAN_ACCESS        32: D<14>.PIN 
-  5: A<1>                          19: LAN_BASEADR<0>    33: D<12>.PIN 
-  6: A<2>                          20: LAN_BASEADR<11>   34: D<11>.PIN 
-  7: A<3>                          21: LAN_BASEADR<12>   35: D<8>.PIN 
-  8: A<4>                          22: LAN_BASEADR<14>   36: RESET 
-  9: A<5>                          23: LAN_BASEADR<3>    37: RW 
- 10: A<6>                          24: LAN_BASEADR<4>    38: SHUT_UP_Z2<1> 
- 11: CP_BASEADR<3>                 25: LAN_BASEADR<6>    39: SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF 
- 12: DQ_5_IOBUFE/DQ_5_IOBUFE_TRST  26: LAN_BASEADR<8>    40: UDS 
- 13: DQ_DATA<12>                   27: LAN_CS_RST        41: Z3_ADR<13> 
- 14: DQ_DATA<14>                   28: LAN_RD_S         
+  1: AS                            16: DS1               31: LDS 
+  2: AUTOCONFIG_Z2_ACCESS          17: FCS               32: D<15>.PIN 
+  3: AUTO_CONFIG_Z2_DONE<0>        18: LAN_ACCESS        33: D<14>.PIN 
+  4: AUTO_CONFIG_Z2_DONE<1>        19: LAN_BASEADR<0>    34: D<13>.PIN 
+  5: A<1>                          20: LAN_BASEADR<10>   35: D<12>.PIN 
+  6: A<2>                          21: LAN_BASEADR<11>   36: D<11>.PIN 
+  7: A<3>                          22: LAN_BASEADR<12>   37: D<10>.PIN 
+  8: A<4>                          23: LAN_BASEADR<13>   38: D<1>.PIN 
+  9: A<5>                          24: LAN_BASEADR<14>   39: D<0>.PIN 
+ 10: A<6>                          25: LAN_BASEADR<15>   40: RESET 
+ 11: CP_BASEADR<3>                 26: LAN_BASEADR<1>    41: RW 
+ 12: DQ_5_IOBUFE/DQ_5_IOBUFE_TRST  27: LAN_CS_RST        42: SHUT_UP_Z2<1> 
+ 13: DQ_DATA<12>                   28: LAN_RD_S          43: SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF 
+ 14: DQ_DATA<14>                   29: LAN_WRH_S         44: UDS 
+ 15: DS0                           30: LAN_WR_RST        45: Z3_ADR<13> 
 
 Signal                        1         2         3         4         5 FB
 Name                0----+----0----+----0----+----0----+----0----+----0 Inputs
-DQ<12>               ...........XX.XXXX............X.X..XX..X.......... 11
-DQ<14>               ...........X.XXXXX............XX...XX..X.......... 11
-LAN_WRH              ................X...........XX.....X.............. 4
-LAN_BASEADR<8>       XX.XXXXXXX...............X....X...XXX.XX.......... 16
-LAN_BASEADR<6>       XXX.XXXXXX..............X.....XX...XX.XX.......... 16
-LAN_CS               .................X........X........X....X......... 4
-LAN_BASEADR<4>       XXX.XXXXXX.............X......X.X..XX.XX.......... 16
-LAN_RD               ................X..........X.......X.............. 3
-LAN_BASEADR<3>       XXX.XXXXXX............X.......X..X.XX.XX.......... 16
-LAN_BASEADR<14>      XX.XXXXXXX...........X........XX...XX.XX.......... 16
-LAN_BASEADR<12>      XX.XXXXXXX..........X.........X.X..XX.XX.......... 16
-LAN_BASEADR<11>      XX.XXXXXXX.........X..........X..X.XX.XX.......... 16
-LAN_BASEADR<0>       XXX.XXXXXX........X...........X...XXX.XX.......... 16
-CP_BASEADR<3>        XXXXXXXXXXX...................X..X.XX.XX.......... 17
-SHUT_UP_Z2<1>        XXXXXXXXXX....................X....XXXXX.......... 16
+DQ<12>               ...........XX.XXXX............X...X....XX..X...... 11
+DQ<14>               ...........X.XXXXX............X.X......XX..X...... 11
+LAN_WRH              ................X...........XX.........X.......... 4
+LAN_BASEADR<1>       XXX.XXXXXX...............X....X......X.XX.XX...... 16
+LAN_BASEADR<15>      XXX.XXXXXX..............X.....XX.......XX.XX...... 16
+LAN_CS               .................X........X............X....X..... 4
+LAN_BASEADR<14>      XXX.XXXXXX.............X......X.X......XX.XX...... 16
+LAN_RD               ................X..........X...........X.......... 3
+LAN_BASEADR<13>      XXX.XXXXXX............X.......X..X.....XX.XX...... 16
+LAN_BASEADR<12>      XXX.XXXXXX...........X........X...X....XX.XX...... 16
+LAN_BASEADR<11>      XXX.XXXXXX..........X.........X....X...XX.XX...... 16
+LAN_BASEADR<10>      XXX.XXXXXX.........X..........X.....X..XX.XX...... 16
+LAN_BASEADR<0>       XXX.XXXXXX........X...........X.......XXX.XX...... 16
+CP_BASEADR<3>        XXXXXXXXXXX...................X....X...XX.XX...... 17
+SHUT_UP_Z2<1>        XXXXXXXXXX....................X........XXXXX...... 16
                     0----+----1----+----2----+----3----+----4----+----5
                               0         0         0         0         0
 *********************************** FB9  ***********************************
@@ -1466,11 +1468,11 @@ AUTO_CONFIG_Z2_DONE_CYCLE_T(1) <= ((NOT AS AND AUTO_CONFIG_Z2_DONE(0) AND
 FTCPE_AUTO_CONFIG_Z2_DONE_CYCLE2: FTCPE port map (AUTO_CONFIG_Z2_DONE_CYCLE(2),AUTO_CONFIG_Z2_DONE_CYCLE_T(2),SHUT_UP_Z2(2)/SHUT_UP_Z2(2)_CLKF,NOT RESET,'0');
 AUTO_CONFIG_Z2_DONE_CYCLE_T(2) <= ((NOT AS AND AUTO_CONFIG_Z2_DONE(0) AND 
 	AUTO_CONFIG_Z2_DONE(1) AND NOT AUTO_CONFIG_Z2_DONE(2) AND 
-	NOT AUTO_CONFIG_Z2_DONE_CYCLE(2) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
+	NOT AUTO_CONFIG_Z2_DONE_CYCLE(2) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND A(3) AND NOT A(1))
 	OR (NOT AS AND AUTO_CONFIG_Z2_DONE(0) AND 
 	AUTO_CONFIG_Z2_DONE(1) AND NOT AUTO_CONFIG_Z2_DONE(2) AND 
-	NOT AUTO_CONFIG_Z2_DONE_CYCLE(2) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
+	NOT AUTO_CONFIG_Z2_DONE_CYCLE(2) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND A(3) AND NOT A(1)));
 
 
@@ -1846,7 +1848,7 @@ D(15) <= D_I(15) when D_OE(15) = '1' else 'Z';
 D_OE(15) <= D_8_IOBUFE/D_8_IOBUFE_TRST;
 
 
-DQ_I(0) <= ((RESET AND UDS AND LDS AND DS1 AND DS0 AND D(0).PIN)
+DQ_I(0) <= ((RESET AND D(0).PIN AND UDS AND LDS AND DS1 AND DS0)
 	OR (RESET AND NOT UDS AND NOT FCS AND LAN_ACCESS AND DQ_DATA(0) AND 
 	NOT RW)
 	OR (RESET AND NOT LDS AND NOT FCS AND LAN_ACCESS AND DQ_DATA(0) AND 
@@ -1855,9 +1857,9 @@ DQ_I(0) <= ((RESET AND UDS AND LDS AND DS1 AND DS0 AND D(0).PIN)
 	NOT RW)
 	OR (RESET AND NOT DS0 AND NOT FCS AND LAN_ACCESS AND DQ_DATA(0) AND 
 	NOT RW)
-	OR (RESET AND FCS AND D(0).PIN)
-	OR (RESET AND NOT LAN_ACCESS AND D(0).PIN)
-	OR (RESET AND RW AND D(0).PIN));
+	OR (RESET AND D(0).PIN AND FCS)
+	OR (RESET AND D(0).PIN AND NOT LAN_ACCESS)
+	OR (RESET AND D(0).PIN AND RW));
 DQ(0) <= DQ_I(0) when DQ_OE(0) = '1' else 'Z';
 DQ_OE(0) <= DQ_5_IOBUFE/DQ_5_IOBUFE_TRST;
 
@@ -1870,19 +1872,19 @@ DQ_I(1) <= ((RESET AND NOT UDS AND NOT FCS AND LAN_ACCESS AND DQ_DATA(1) AND
 	NOT RW)
 	OR (RESET AND NOT DS0 AND NOT FCS AND LAN_ACCESS AND DQ_DATA(1) AND 
 	NOT RW)
-	OR (RESET AND UDS AND LDS AND DS1 AND DS0 AND D(1).PIN)
+	OR (RESET AND D(1).PIN AND UDS AND LDS AND DS1 AND DS0)
 	OR (NOT RESET AND LAN_D_INIT(1))
-	OR (RESET AND FCS AND D(1).PIN)
-	OR (RESET AND NOT LAN_ACCESS AND D(1).PIN)
-	OR (RESET AND RW AND D(1).PIN));
+	OR (RESET AND D(1).PIN AND FCS)
+	OR (RESET AND D(1).PIN AND NOT LAN_ACCESS)
+	OR (RESET AND D(1).PIN AND RW));
 DQ(1) <= DQ_I(1) when DQ_OE(1) = '1' else 'Z';
 DQ_OE(1) <= DQ_5_IOBUFE/DQ_5_IOBUFE_TRST;
 
 
 DQ_I(2) <= ((DQ_5_IOBUFE.EXP)
-	OR (RESET AND FCS AND D(2).PIN)
-	OR (RESET AND NOT LAN_ACCESS AND D(2).PIN)
-	OR (RESET AND RW AND D(2).PIN)
+	OR (RESET AND D(2).PIN AND FCS)
+	OR (RESET AND D(2).PIN AND NOT LAN_ACCESS)
+	OR (RESET AND D(2).PIN AND RW)
 	OR (RESET AND NOT UDS AND NOT FCS AND LAN_ACCESS AND DQ_DATA(2) AND 
 	NOT RW)
 	OR (RESET AND NOT LDS AND NOT FCS AND LAN_ACCESS AND DQ_DATA(2) AND 
@@ -1891,16 +1893,16 @@ DQ(2) <= DQ_I(2) when DQ_OE(2) = '1' else 'Z';
 DQ_OE(2) <= DQ_5_IOBUFE/DQ_5_IOBUFE_TRST;
 
 
-DQ_I(3) <= ((RESET AND UDS AND LDS AND DS1 AND DS0 AND D(3).PIN)
+DQ_I(3) <= ((RESET AND D(3).PIN AND UDS AND LDS AND DS1 AND DS0)
 	OR (RESET AND NOT LDS AND NOT FCS AND LAN_ACCESS AND DQ_DATA(3) AND 
 	NOT RW)
 	OR (RESET AND NOT DS1 AND NOT FCS AND LAN_ACCESS AND DQ_DATA(3) AND 
 	NOT RW)
 	OR (RESET AND NOT DS0 AND NOT FCS AND LAN_ACCESS AND DQ_DATA(3) AND 
 	NOT RW)
-	OR (RESET AND FCS AND D(3).PIN)
-	OR (RESET AND NOT LAN_ACCESS AND D(3).PIN)
-	OR (RESET AND RW AND D(3).PIN)
+	OR (RESET AND D(3).PIN AND FCS)
+	OR (RESET AND D(3).PIN AND NOT LAN_ACCESS)
+	OR (RESET AND D(3).PIN AND RW)
 	OR (RESET AND NOT UDS AND NOT FCS AND LAN_ACCESS AND DQ_DATA(3) AND 
 	NOT RW));
 DQ(3) <= DQ_I(3) when DQ_OE(3) = '1' else 'Z';
@@ -1913,9 +1915,9 @@ DQ_OE(4) <= DQ_5_IOBUFE/DQ_5_IOBUFE_TRST;
 
 
 DQ(4)_BUFR <= ((DQ_10_IOBUFE.EXP)
-	OR (RESET AND FCS AND D(4).PIN)
-	OR (RESET AND NOT LAN_ACCESS AND D(4).PIN)
-	OR (RESET AND RW AND D(4).PIN)
+	OR (RESET AND D(4).PIN AND FCS)
+	OR (RESET AND D(4).PIN AND NOT LAN_ACCESS)
+	OR (RESET AND D(4).PIN AND RW)
 	OR (RESET AND NOT UDS AND NOT FCS AND LAN_ACCESS AND DQ_DATA(4) AND 
 	NOT RW)
 	OR (RESET AND NOT LDS AND NOT FCS AND LAN_ACCESS AND DQ_DATA(4) AND 
@@ -1924,23 +1926,23 @@ DQ(4)_BUFR <= ((DQ_10_IOBUFE.EXP)
 
 
 DQ_I(5) <= ((_19_.EXP)
-	OR (RESET AND FCS AND D(5).PIN)
-	OR (RESET AND RW AND D(5).PIN)
+	OR (RESET AND D(5).PIN AND FCS)
+	OR (RESET AND D(5).PIN AND RW)
 	OR (RESET AND NOT UDS AND NOT FCS AND LAN_ACCESS AND DQ_DATA(5) AND 
 	NOT RW)
 	OR (RESET AND NOT LDS AND NOT FCS AND LAN_ACCESS AND DQ_DATA(5) AND 
 	NOT RW)
 	OR (RESET AND NOT DS1 AND NOT FCS AND LAN_ACCESS AND DQ_DATA(5) AND 
 	NOT RW)
-	OR (RESET AND NOT LAN_ACCESS AND D(5).PIN));
+	OR (RESET AND D(5).PIN AND NOT LAN_ACCESS));
 DQ(5) <= DQ_I(5) when DQ_OE(5) = '1' else 'Z';
 DQ_OE(5) <= DQ_5_IOBUFE/DQ_5_IOBUFE_TRST;
 
 
 DQ_I(6) <= ((_18_.EXP)
-	OR (RESET AND FCS AND D(6).PIN)
-	OR (RESET AND NOT LAN_ACCESS AND D(6).PIN)
-	OR (RESET AND RW AND D(6).PIN)
+	OR (RESET AND D(6).PIN AND FCS)
+	OR (RESET AND D(6).PIN AND NOT LAN_ACCESS)
+	OR (RESET AND D(6).PIN AND RW)
 	OR (RESET AND NOT UDS AND NOT FCS AND LAN_ACCESS AND DQ_DATA(6) AND 
 	NOT RW)
 	OR (RESET AND NOT LDS AND NOT FCS AND LAN_ACCESS AND DQ_DATA(6) AND 
@@ -1949,16 +1951,16 @@ DQ(6) <= DQ_I(6) when DQ_OE(6) = '1' else 'Z';
 DQ_OE(6) <= DQ_5_IOBUFE/DQ_5_IOBUFE_TRST;
 
 
-DQ_I(7) <= ((RESET AND UDS AND LDS AND DS1 AND DS0 AND D(7).PIN)
+DQ_I(7) <= ((RESET AND D(7).PIN AND UDS AND LDS AND DS1 AND DS0)
 	OR (RESET AND NOT LDS AND NOT FCS AND LAN_ACCESS AND DQ_DATA(7) AND 
 	NOT RW)
 	OR (RESET AND NOT DS1 AND NOT FCS AND LAN_ACCESS AND DQ_DATA(7) AND 
 	NOT RW)
 	OR (RESET AND NOT DS0 AND NOT FCS AND LAN_ACCESS AND DQ_DATA(7) AND 
 	NOT RW)
-	OR (RESET AND FCS AND D(7).PIN)
-	OR (RESET AND NOT LAN_ACCESS AND D(7).PIN)
-	OR (RESET AND RW AND D(7).PIN)
+	OR (RESET AND D(7).PIN AND FCS)
+	OR (RESET AND D(7).PIN AND NOT LAN_ACCESS)
+	OR (RESET AND D(7).PIN AND RW)
 	OR (RESET AND NOT UDS AND NOT FCS AND LAN_ACCESS AND DQ_DATA(7) AND 
 	NOT RW));
 DQ(7) <= DQ_I(7) when DQ_OE(7) = '1' else 'Z';
@@ -2102,10 +2104,10 @@ DQ_DATA_D(0) <= ((UDS AND LDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND
 	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
 	OR (D(8).PIN AND NOT LDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
 	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
-	OR (NOT UDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(0).PIN)
-	OR (NOT LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(0).PIN)
+	OR (D(0).PIN AND NOT UDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
+	OR (D(0).PIN AND NOT LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
 	OR (DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd4 AND 
 	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND A(16).PIN)
 	OR (LAN_SM_FSM_FFd2 AND DQ_DATA(0))
@@ -2117,10 +2119,10 @@ DQ_DATA_D(0) <= ((UDS AND LDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND
 FDCPE_DQ_DATA1: FDCPE port map (DQ_DATA(1),DQ_DATA_D(1),CLK_EXT,'0',LAN_SM_RST);
 DQ_DATA_D(1) <= ((EXP75_.EXP)
 	OR (LAN_SM_FSM_FFd4 AND DQ_DATA(1))
-	OR (NOT UDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(1).PIN)
-	OR (NOT LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(1).PIN)
+	OR (D(1).PIN AND NOT UDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
+	OR (D(1).PIN AND NOT LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
 	OR (DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd4 AND 
 	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND A(17).PIN)
 	OR (NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd4 AND 
@@ -2129,10 +2131,10 @@ DQ_DATA_D(1) <= ((EXP75_.EXP)
 	OR (LAN_SM_FSM_FFd1 AND DQ_DATA(1)));
 
 FDCPE_DQ_DATA2: FDCPE port map (DQ_DATA(2),DQ_DATA_D(2),CLK_EXT,'0',LAN_SM_RST);
-DQ_DATA_D(2) <= ((NOT UDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(2).PIN)
-	OR (NOT LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(2).PIN)
+DQ_DATA_D(2) <= ((D(2).PIN AND NOT UDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
+	OR (D(2).PIN AND NOT LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
 	OR (D(10).PIN AND NOT UDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
 	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
 	OR (D(10).PIN AND NOT LDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
@@ -2153,10 +2155,10 @@ FDCPE_DQ_DATA3: FDCPE port map (DQ_DATA(3),DQ_DATA_D(3),CLK_EXT,'0',LAN_SM_RST);
 DQ_DATA_D(3) <= ((EXP65_.EXP)
 	OR (LAN_SM_FSM_FFd2 AND DQ_DATA(3))
 	OR (LAN_SM_FSM_FFd4 AND DQ_DATA(3))
-	OR (NOT UDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(3).PIN)
-	OR (NOT LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(3).PIN)
+	OR (D(3).PIN AND NOT UDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
+	OR (D(3).PIN AND NOT LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
 	OR (NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd4 AND 
 	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND A(11).PIN)
 	OR (LAN_SM_FSM_FFd1 AND DQ_DATA(3)));
@@ -2166,12 +2168,12 @@ DQ_DATA_D(4) <= ((D(12).PIN AND NOT UDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND
 	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
 	OR (D(12).PIN AND NOT LDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
 	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
-	OR (NOT UDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(4).PIN)
-	OR (NOT LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(4).PIN)
-	OR (DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd4 AND 
-	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND A(20).PIN)
+	OR (D(4).PIN AND NOT UDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
+	OR (D(4).PIN AND NOT LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
+	OR (NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd4 AND 
+	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND A(12).PIN)
 	OR (UDS AND LDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
 	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND A(20).PIN)
 	OR (UDS AND LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
@@ -2179,17 +2181,17 @@ DQ_DATA_D(4) <= ((D(12).PIN AND NOT UDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND
 	OR (LAN_SM_FSM_FFd2 AND DQ_DATA(4))
 	OR (LAN_SM_FSM_FFd4 AND DQ_DATA(4))
 	OR (LAN_SM_FSM_FFd1 AND DQ_DATA(4))
-	OR (NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd4 AND 
-	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND A(12).PIN));
+	OR (DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd4 AND 
+	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND A(20).PIN));
 
 FDCPE_DQ_DATA5: FDCPE port map (DQ_DATA(5),DQ_DATA_D(5),CLK_EXT,'0',LAN_SM_RST);
 DQ_DATA_D(5) <= ((LAN_WRL_OBUF.EXP)
 	OR (D(13).PIN AND NOT UDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
 	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
-	OR (NOT UDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(5).PIN)
-	OR (NOT LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(5).PIN)
+	OR (D(5).PIN AND NOT UDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
+	OR (D(5).PIN AND NOT LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
 	OR (DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd4 AND 
 	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND A(21).PIN)
 	OR (NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd4 AND 
@@ -2199,10 +2201,10 @@ DQ_DATA_D(5) <= ((LAN_WRL_OBUF.EXP)
 	OR (LAN_SM_FSM_FFd1 AND DQ_DATA(5)));
 
 FDCPE_DQ_DATA6: FDCPE port map (DQ_DATA(6),DQ_DATA_D(6),CLK_EXT,'0',LAN_SM_RST);
-DQ_DATA_D(6) <= ((NOT UDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(6).PIN)
-	OR (NOT LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(6).PIN)
+DQ_DATA_D(6) <= ((D(6).PIN AND NOT UDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
+	OR (D(6).PIN AND NOT LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
 	OR (D(14).PIN AND NOT UDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
 	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
 	OR (D(14).PIN AND NOT LDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
@@ -2222,10 +2224,10 @@ DQ_DATA_D(6) <= ((NOT UDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND
 FDCPE_DQ_DATA7: FDCPE port map (DQ_DATA(7),DQ_DATA_D(7),CLK_EXT,'0',LAN_SM_RST);
 DQ_DATA_D(7) <= ((EXP68_.EXP)
 	OR (LAN_SM_FSM_FFd4 AND DQ_DATA(7))
-	OR (NOT UDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(7).PIN)
-	OR (NOT LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(7).PIN)
+	OR (D(7).PIN AND NOT UDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
+	OR (D(7).PIN AND NOT LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
 	OR (DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd4 AND 
 	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND A(23).PIN)
 	OR (NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd4 AND 
@@ -2239,8 +2241,8 @@ DQ_DATA_D(8) <= ((ROM_B_0_OBUF.EXP)
 	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
 	OR (D(8).PIN AND NOT LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
 	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
-	OR (NOT UDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(0).PIN)
+	OR (D(0).PIN AND NOT UDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
 	OR (DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd4 AND 
 	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND A(8).PIN)
 	OR (NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd4 AND 
@@ -2264,8 +2266,8 @@ DQ_DATA_D(9) <= ((ROM_B_0_OBUF$BUF10.EXP)
 	OR (LAN_SM_FSM_FFd1 AND DQ_DATA(9)));
 
 FDCPE_DQ_DATA10: FDCPE port map (DQ_DATA(10),DQ_DATA_D(10),CLK_EXT,'0',LAN_SM_RST);
-DQ_DATA_D(10) <= ((NOT LDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(2).PIN)
+DQ_DATA_D(10) <= ((D(2).PIN AND NOT LDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
 	OR (UDS AND LDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
 	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND A(10).PIN)
 	OR (UDS AND LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
@@ -2274,8 +2276,8 @@ DQ_DATA_D(10) <= ((NOT LDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND
 	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
 	OR (D(10).PIN AND NOT LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
 	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
-	OR (NOT UDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(2).PIN)
+	OR (D(2).PIN AND NOT UDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
 	OR (DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd4 AND 
 	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND A(10).PIN)
 	OR (LAN_SM_FSM_FFd2 AND DQ_DATA(10))
@@ -2285,10 +2287,10 @@ DQ_DATA_D(10) <= ((NOT LDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND
 	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND A(18).PIN));
 
 FDCPE_DQ_DATA11: FDCPE port map (DQ_DATA(11),DQ_DATA_D(11),CLK_EXT,'0',LAN_SM_RST);
-DQ_DATA_D(11) <= ((NOT UDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(3).PIN)
-	OR (NOT LDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(3).PIN)
+DQ_DATA_D(11) <= ((D(3).PIN AND NOT UDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
+	OR (D(3).PIN AND NOT LDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
 	OR (UDS AND LDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
 	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND A(11).PIN)
 	OR (UDS AND LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
@@ -2320,12 +2322,12 @@ DQ_DATA_D(13) <= ((D(13).PIN AND NOT UDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2
 	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
 	OR (D(13).PIN AND NOT LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
 	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
-	OR (NOT UDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(5).PIN)
-	OR (NOT LDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(5).PIN)
-	OR (DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd4 AND 
-	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND A(13).PIN)
+	OR (D(5).PIN AND NOT UDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
+	OR (D(5).PIN AND NOT LDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
+	OR (NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd4 AND 
+	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND A(21).PIN)
 	OR (UDS AND LDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
 	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND A(13).PIN)
 	OR (UDS AND LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
@@ -2333,15 +2335,15 @@ DQ_DATA_D(13) <= ((D(13).PIN AND NOT UDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2
 	OR (LAN_SM_FSM_FFd2 AND DQ_DATA(13))
 	OR (LAN_SM_FSM_FFd4 AND DQ_DATA(13))
 	OR (LAN_SM_FSM_FFd1 AND DQ_DATA(13))
-	OR (NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd4 AND 
-	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND A(21).PIN));
+	OR (DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd4 AND 
+	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND A(13).PIN));
 
 FDCPE_DQ_DATA14: FDCPE port map (DQ_DATA(14),DQ_DATA_D(14),CLK_EXT,'0',LAN_SM_RST);
 DQ_DATA_D(14) <= ((CP_RD_OBUF.EXP)
 	OR (LAN_SM_FSM_FFd4 AND DQ_DATA(14))
-	OR (D(14).PIN AND NOT UDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	OR (D(6).PIN AND NOT UDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
 	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
-	OR (D(14).PIN AND NOT LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	OR (D(6).PIN AND NOT LDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
 	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
 	OR (DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd4 AND 
 	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND A(14).PIN)
@@ -2356,10 +2358,10 @@ DQ_DATA_D(15) <= ((Z3_DATA(31).EXP)
 	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
 	OR (D(15).PIN AND NOT LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
 	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
-	OR (NOT UDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(7).PIN)
-	OR (NOT LDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
-	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3 AND D(7).PIN)
+	OR (D(7).PIN AND NOT UDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
+	OR (D(7).PIN AND NOT LDS AND DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
+	NOT LAN_SM_FSM_FFd4 AND NOT LAN_SM_FSM_FFd3)
 	OR (DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND NOT LAN_SM_FSM_FFd4 AND 
 	LAN_SM_FSM_FFd3 AND NOT LAN_SM_FSM_FFd1 AND A(15).PIN)
 	OR (UDS AND LDS AND NOT DQ_SWAP AND NOT LAN_SM_FSM_FFd2 AND 
@@ -2411,7 +2413,7 @@ D_Z2_OUT_D(1) <= ((AS)
 	OR (A(5) AND A(1))
 	OR (NOT A(4) AND A(2) AND A(3))
 	OR (NOT A(4) AND A(3) AND NOT A(1))
-	OR (NOT AUTO_CONFIG_Z2_DONE(1) AND A(4) AND NOT A(3) AND NOT A(1))
+	OR (NOT AUTO_CONFIG_Z2_DONE(0) AND A(4) AND NOT A(3) AND NOT A(1))
 	OR (A(4) AND A(2) AND NOT A(3) AND A(1))
 	OR (A(4) AND NOT A(2) AND A(3) AND A(1))
 	OR (A(4) AND NOT A(2) AND NOT A(3) AND NOT A(1)));
@@ -2441,9 +2443,9 @@ D_Z2_OUT_D(3) <= ((AS)
 	OR (NOT A(4) AND A(3))
 	OR (A(5) AND A(1))
 	OR (NOT AUTOCONFIG_Z2_ACCESS)
-	OR (NOT A(5) AND A(2) AND NOT A(1))
-	OR (A(4) AND A(5))
-	OR (NOT A(2) AND NOT A(3) AND NOT A(1))
+	OR (NOT A(5) AND NOT A(3) AND NOT A(1))
+	OR (A(5) AND NOT A(2))
+	OR (A(4) AND A(2) AND NOT A(1))
 	OR (AUTO_CONFIG_Z2_DONE(0) AND AUTO_CONFIG_Z2_DONE(1) AND 
 	NOT A(4) AND A(2) AND A(1)));
 
@@ -2575,19 +2577,19 @@ IDE_A(2) <= A(11).PIN;
 FDCPE_IDE_ACCESS: FDCPE port map (IDE_ACCESS,IDE_ACCESS_D,NOT AS,NOT RESET,'0');
 IDE_ACCESS_D <= ((SHUT_UP_Z2(2))
 	OR (ROM_OE_OBUF.EXP)
-	OR (IDE_BASEADR(0) AND NOT A(16).PIN)
-	OR (IDE_BASEADR(1) AND NOT A(17).PIN)
-	OR (NOT IDE_BASEADR(1) AND A(17).PIN)
-	OR (IDE_BASEADR(2) AND NOT A(18).PIN)
-	OR (NOT IDE_BASEADR(2) AND A(18).PIN)
-	OR (Z3_ADR(10).EXP)
-	OR (NOT IDE_BASEADR(0) AND A(16).PIN)
+	OR (IDE_BASEADR(4) AND NOT A(20).PIN)
+	OR (IDE_BASEADR(5) AND NOT A(21).PIN)
+	OR (NOT IDE_BASEADR(5) AND A(21).PIN)
 	OR (IDE_BASEADR(6) AND NOT A(22).PIN)
 	OR (NOT IDE_BASEADR(6) AND A(22).PIN)
-	OR (IDE_BASEADR(7) AND NOT A(23).PIN)
-	OR (NOT IDE_BASEADR(7) AND A(23).PIN)
+	OR (Z3_ADR(10).EXP)
+	OR (IDE_BASEADR(2) AND NOT A(18).PIN)
+	OR (NOT IDE_BASEADR(2) AND A(18).PIN)
 	OR (IDE_BASEADR(3) AND NOT A(19).PIN)
-	OR (NOT IDE_BASEADR(3) AND A(19).PIN));
+	OR (NOT IDE_BASEADR(3) AND A(19).PIN)
+	OR (NOT IDE_BASEADR(4) AND A(20).PIN)
+	OR (IDE_BASEADR(7) AND NOT A(23).PIN)
+	OR (NOT IDE_BASEADR(7) AND A(23).PIN));
 
 FTCPE_IDE_BASEADR0: FTCPE port map (IDE_BASEADR(0),IDE_BASEADR_T(0),SHUT_UP_Z2(2)/SHUT_UP_Z2(2)_CLKF,'0',NOT RESET);
 IDE_BASEADR_T(0) <= ((NOT AS AND AUTO_CONFIG_Z2_DONE(0) AND 
@@ -2775,228 +2777,228 @@ LAN_A_INIT_D(6) <= ((LAN_RST_SM_FSM_FFd3 AND NOT LAN_RST_SM_FSM_FFd1)
 	OR (NOT LAN_RST_SM_FSM_FFd3 AND LAN_RST_SM_FSM_FFd2));
 
 FTCPE_LAN_BASEADR0: FTCPE port map (LAN_BASEADR(0),LAN_BASEADR_T(0),SHUT_UP_Z2(2)/SHUT_UP_Z2(2)_CLKF,'0',NOT RESET);
-LAN_BASEADR_T(0) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(8).PIN AND 
+LAN_BASEADR_T(0) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(0).PIN AND 
 	NOT LAN_BASEADR(0) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(8).PIN AND 
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(0).PIN AND 
 	NOT LAN_BASEADR(0) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(8).PIN AND 
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(0).PIN AND 
 	LAN_BASEADR(0) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(8).PIN AND 
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(0).PIN AND 
 	LAN_BASEADR(0) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1)));
 
 FTCPE_LAN_BASEADR1: FTCPE port map (LAN_BASEADR(1),LAN_BASEADR_T(1),SHUT_UP_Z2(2)/SHUT_UP_Z2(2)_CLKF,'0',NOT RESET);
-LAN_BASEADR_T(1) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(9).PIN AND 
-	NOT LAN_BASEADR(1) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(9).PIN AND 
+LAN_BASEADR_T(1) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(1).PIN AND 
 	NOT LAN_BASEADR(1) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(9).PIN AND 
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(1).PIN AND 
+	NOT LAN_BASEADR(1) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(1).PIN AND 
 	LAN_BASEADR(1) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(9).PIN AND 
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(1).PIN AND 
 	LAN_BASEADR(1) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1)));
 
 FTCPE_LAN_BASEADR2: FTCPE port map (LAN_BASEADR(2),LAN_BASEADR_T(2),SHUT_UP_Z2(2)/SHUT_UP_Z2(2)_CLKF,'0',NOT RESET);
-LAN_BASEADR_T(2) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(10).PIN AND 
-	NOT LAN_BASEADR(2) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(10).PIN AND 
+LAN_BASEADR_T(2) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(2).PIN AND 
 	NOT LAN_BASEADR(2) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(10).PIN AND 
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(2).PIN AND 
+	NOT LAN_BASEADR(2) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(2).PIN AND 
 	LAN_BASEADR(2) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(10).PIN AND 
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(2).PIN AND 
 	LAN_BASEADR(2) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1)));
 
 FTCPE_LAN_BASEADR3: FTCPE port map (LAN_BASEADR(3),LAN_BASEADR_T(3),SHUT_UP_Z2(2)/SHUT_UP_Z2(2)_CLKF,'0',NOT RESET);
-LAN_BASEADR_T(3) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(11).PIN AND 
-	NOT LAN_BASEADR(3) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(11).PIN AND 
+LAN_BASEADR_T(3) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(3).PIN AND 
 	NOT LAN_BASEADR(3) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(11).PIN AND 
-	LAN_BASEADR(3) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(3).PIN AND 
+	NOT LAN_BASEADR(3) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(11).PIN AND 
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(3).PIN AND 
 	LAN_BASEADR(3) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(3).PIN AND 
+	LAN_BASEADR(3) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1)));
 
 FTCPE_LAN_BASEADR4: FTCPE port map (LAN_BASEADR(4),LAN_BASEADR_T(4),SHUT_UP_Z2(2)/SHUT_UP_Z2(2)_CLKF,'0',NOT RESET);
-LAN_BASEADR_T(4) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(12).PIN AND 
+LAN_BASEADR_T(4) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(4).PIN AND 
 	NOT LAN_BASEADR(4) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(12).PIN AND 
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(4).PIN AND 
 	NOT LAN_BASEADR(4) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(12).PIN AND 
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(4).PIN AND 
 	LAN_BASEADR(4) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(12).PIN AND 
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(4).PIN AND 
 	LAN_BASEADR(4) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1)));
 
 FTCPE_LAN_BASEADR5: FTCPE port map (LAN_BASEADR(5),LAN_BASEADR_T(5),SHUT_UP_Z2(2)/SHUT_UP_Z2(2)_CLKF,'0',NOT RESET);
-LAN_BASEADR_T(5) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(13).PIN AND 
-	NOT LAN_BASEADR(5) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(13).PIN AND 
+LAN_BASEADR_T(5) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(5).PIN AND 
 	NOT LAN_BASEADR(5) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(13).PIN AND 
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(5).PIN AND 
+	NOT LAN_BASEADR(5) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(5).PIN AND 
 	LAN_BASEADR(5) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(13).PIN AND 
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(5).PIN AND 
 	LAN_BASEADR(5) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1)));
 
 FTCPE_LAN_BASEADR6: FTCPE port map (LAN_BASEADR(6),LAN_BASEADR_T(6),SHUT_UP_Z2(2)/SHUT_UP_Z2(2)_CLKF,'0',NOT RESET);
-LAN_BASEADR_T(6) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(14).PIN AND 
+LAN_BASEADR_T(6) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(6).PIN AND 
 	NOT LAN_BASEADR(6) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(14).PIN AND 
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(6).PIN AND 
 	NOT LAN_BASEADR(6) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(14).PIN AND 
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(6).PIN AND 
 	LAN_BASEADR(6) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(14).PIN AND 
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(6).PIN AND 
 	LAN_BASEADR(6) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1)));
 
 FTCPE_LAN_BASEADR7: FTCPE port map (LAN_BASEADR(7),LAN_BASEADR_T(7),SHUT_UP_Z2(2)/SHUT_UP_Z2(2)_CLKF,'0',NOT RESET);
-LAN_BASEADR_T(7) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(15).PIN AND 
+LAN_BASEADR_T(7) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(7).PIN AND 
 	NOT LAN_BASEADR(7) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(15).PIN AND 
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(7).PIN AND 
 	NOT LAN_BASEADR(7) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(15).PIN AND 
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(7).PIN AND 
 	LAN_BASEADR(7) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(15).PIN AND 
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(7).PIN AND 
 	LAN_BASEADR(7) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
 	A(6) AND NOT A(2) AND A(3) AND NOT A(1)));
 
 FTCPE_LAN_BASEADR8: FTCPE port map (LAN_BASEADR(8),LAN_BASEADR_T(8),SHUT_UP_Z2(2)/SHUT_UP_Z2(2)_CLKF,'0',NOT RESET);
-LAN_BASEADR_T(8) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND D(8).PIN AND 
+LAN_BASEADR_T(8) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(8).PIN AND 
 	NOT LAN_BASEADR(8) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND D(8).PIN AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(8).PIN AND 
 	NOT LAN_BASEADR(8) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND NOT D(8).PIN AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(8).PIN AND 
 	LAN_BASEADR(8) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND NOT D(8).PIN AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(8).PIN AND 
 	LAN_BASEADR(8) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1)));
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1)));
 
 FTCPE_LAN_BASEADR9: FTCPE port map (LAN_BASEADR(9),LAN_BASEADR_T(9),SHUT_UP_Z2(2)/SHUT_UP_Z2(2)_CLKF,'0',NOT RESET);
-LAN_BASEADR_T(9) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND D(9).PIN AND 
+LAN_BASEADR_T(9) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(9).PIN AND 
 	NOT LAN_BASEADR(9) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND D(9).PIN AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(9).PIN AND 
 	NOT LAN_BASEADR(9) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND NOT D(9).PIN AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(9).PIN AND 
 	LAN_BASEADR(9) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND NOT D(9).PIN AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(9).PIN AND 
 	LAN_BASEADR(9) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1)));
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1)));
 
 FTCPE_LAN_BASEADR10: FTCPE port map (LAN_BASEADR(10),LAN_BASEADR_T(10),SHUT_UP_Z2(2)/SHUT_UP_Z2(2)_CLKF,'0',NOT RESET);
-LAN_BASEADR_T(10) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND D(10).PIN AND 
-	NOT LAN_BASEADR(10) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND D(10).PIN AND 
+LAN_BASEADR_T(10) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(10).PIN AND 
 	NOT LAN_BASEADR(10) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND NOT D(10).PIN AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(10).PIN AND 
+	NOT LAN_BASEADR(10) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(10).PIN AND 
 	LAN_BASEADR(10) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND NOT D(10).PIN AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(10).PIN AND 
 	LAN_BASEADR(10) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1)));
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1)));
 
 FTCPE_LAN_BASEADR11: FTCPE port map (LAN_BASEADR(11),LAN_BASEADR_T(11),SHUT_UP_Z2(2)/SHUT_UP_Z2(2)_CLKF,'0',NOT RESET);
-LAN_BASEADR_T(11) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND D(11).PIN AND 
+LAN_BASEADR_T(11) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(11).PIN AND 
 	NOT LAN_BASEADR(11) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND D(11).PIN AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(11).PIN AND 
 	NOT LAN_BASEADR(11) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND NOT D(11).PIN AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(11).PIN AND 
 	LAN_BASEADR(11) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND NOT D(11).PIN AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(11).PIN AND 
 	LAN_BASEADR(11) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1)));
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1)));
 
 FTCPE_LAN_BASEADR12: FTCPE port map (LAN_BASEADR(12),LAN_BASEADR_T(12),SHUT_UP_Z2(2)/SHUT_UP_Z2(2)_CLKF,'0',NOT RESET);
-LAN_BASEADR_T(12) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND D(12).PIN AND 
-	NOT LAN_BASEADR(12) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND D(12).PIN AND 
+LAN_BASEADR_T(12) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(12).PIN AND 
 	NOT LAN_BASEADR(12) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND NOT D(12).PIN AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(12).PIN AND 
+	NOT LAN_BASEADR(12) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(12).PIN AND 
 	LAN_BASEADR(12) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND NOT D(12).PIN AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(12).PIN AND 
 	LAN_BASEADR(12) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1)));
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1)));
 
 FTCPE_LAN_BASEADR13: FTCPE port map (LAN_BASEADR(13),LAN_BASEADR_T(13),SHUT_UP_Z2(2)/SHUT_UP_Z2(2)_CLKF,'0',NOT RESET);
-LAN_BASEADR_T(13) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND D(13).PIN AND 
-	NOT LAN_BASEADR(13) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND D(13).PIN AND 
+LAN_BASEADR_T(13) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(13).PIN AND 
 	NOT LAN_BASEADR(13) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND NOT D(13).PIN AND 
-	LAN_BASEADR(13) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND NOT D(13).PIN AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(13).PIN AND 
+	NOT LAN_BASEADR(13) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(13).PIN AND 
 	LAN_BASEADR(13) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1)));
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(13).PIN AND 
+	LAN_BASEADR(13) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1)));
 
 FTCPE_LAN_BASEADR14: FTCPE port map (LAN_BASEADR(14),LAN_BASEADR_T(14),SHUT_UP_Z2(2)/SHUT_UP_Z2(2)_CLKF,'0',NOT RESET);
-LAN_BASEADR_T(14) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND D(14).PIN AND 
-	NOT LAN_BASEADR(14) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND D(14).PIN AND 
+LAN_BASEADR_T(14) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(14).PIN AND 
 	NOT LAN_BASEADR(14) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND NOT D(14).PIN AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(14).PIN AND 
+	NOT LAN_BASEADR(14) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(14).PIN AND 
 	LAN_BASEADR(14) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND NOT D(14).PIN AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(14).PIN AND 
 	LAN_BASEADR(14) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1)));
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1)));
 
 FTCPE_LAN_BASEADR15: FTCPE port map (LAN_BASEADR(15),LAN_BASEADR_T(15),SHUT_UP_Z2(2)/SHUT_UP_Z2(2)_CLKF,'0',NOT RESET);
-LAN_BASEADR_T(15) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND D(15).PIN AND 
+LAN_BASEADR_T(15) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(15).PIN AND 
 	NOT LAN_BASEADR(15) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND D(15).PIN AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND D(15).PIN AND 
 	NOT LAN_BASEADR(15) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND NOT D(15).PIN AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(15).PIN AND 
 	LAN_BASEADR(15) AND NOT UDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(1) AND NOT D(15).PIN AND 
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1))
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT D(15).PIN AND 
 	LAN_BASEADR(15) AND NOT LDS AND AUTOCONFIG_Z2_ACCESS AND NOT RW AND NOT A(4) AND NOT A(5) AND 
-	A(6) AND A(2) AND NOT A(3) AND NOT A(1)));
+	A(6) AND NOT A(2) AND A(3) AND NOT A(1)));
 
 
 LAN_CFG_I(1) <= '0';
@@ -3218,10 +3220,10 @@ FDCPE_ROM_OE_S: FDCPE port map (ROM_OE_S,ROM_OE_S_D,SHUT_UP_Z2(2)/SHUT_UP_Z2(2)_
 ROM_OE_S_D <= (NOT AS AND IDE_ACCESS AND IDE_ENABLE AND RW);
 
 FTCPE_SHUT_UP_Z20: FTCPE port map (SHUT_UP_Z2(0),SHUT_UP_Z2_T(0),SHUT_UP_Z2(2)/SHUT_UP_Z2(2)_CLKF,'0',NOT RESET);
-SHUT_UP_Z2_T(0) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT UDS AND 
+SHUT_UP_Z2_T(0) <= ((NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT LDS AND 
 	AUTOCONFIG_Z2_ACCESS AND SHUT_UP_Z2(0) AND NOT RW AND NOT A(4) AND NOT A(5) AND A(6) AND 
 	NOT A(2) AND A(3) AND NOT A(1))
-	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT LDS AND 
+	OR (NOT AS AND NOT AUTO_CONFIG_Z2_DONE(0) AND NOT UDS AND 
 	AUTOCONFIG_Z2_ACCESS AND SHUT_UP_Z2(0) AND NOT RW AND NOT A(4) AND NOT A(5) AND A(6) AND 
 	NOT A(2) AND A(3) AND NOT A(1)));
 

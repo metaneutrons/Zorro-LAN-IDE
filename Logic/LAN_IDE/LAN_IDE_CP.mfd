@@ -17,9 +17,9 @@ GLOBALS | 1 | 2 | CLK_EXT
 
 MACROCELL | 15 | 5 | Z3_DATA<10>
 ATTRIBUTES | 8685506 | 0
-INPUTS | 11 | DQ_SWAP  | DQ<10>.PIN  | DQ<2>.PIN  | LAN_SM_RST  | FCS  | LAN_ACCESS  | RW  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd3  | LAN_SM_FSM_FFd1
+INPUTS | 11 | DQ_SWAP  | DQ<2>.PIN  | DQ<10>.PIN  | LAN_SM_RST  | FCS  | LAN_ACCESS  | RW  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd3  | LAN_SM_FSM_FFd1
 INPUTMC | 7 | 5 | 17 | 11 | 2 | 5 | 16 | 11 | 14 | 14 | 5 | 11 | 13 | 14 | 6
-INPUTP | 4 | 234 | 220 | 147 | 158
+INPUTP | 4 | 220 | 234 | 147 | 158
 EQ | 7 | 
    A<18>.D = DQ_SWAP & DQ<2>.PIN
 	# !DQ_SWAP & DQ<10>.PIN;
@@ -247,9 +247,9 @@ GLOBALS | 1 | 2 | CLK_EXT
 MACROCELL | 15 | 10 | Z3_DATA<8>
 ATTRIBUTES | 8685506 | 0
 OUTPUTMC | 1 | 15 | 11
-INPUTS | 13 | UDS  | DQ_SWAP  | D<2>.PIN  | LAN_SM_RST  | FCS  | LAN_ACCESS  | RW  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd3  | LAN_SM_FSM_FFd1  | LDS  | ROM_B_0_OBUF$BUF3.EXP
+INPUTS | 13 | D<2>.PIN  | UDS  | DQ_SWAP  | LAN_SM_RST  | FCS  | LAN_ACCESS  | RW  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd3  | LAN_SM_FSM_FFd1  | LDS  | ROM_B_0_OBUF$BUF3.EXP
 INPUTMC | 8 | 5 | 17 | 11 | 2 | 5 | 16 | 11 | 14 | 14 | 5 | 11 | 13 | 14 | 6 | 15 | 9
-INPUTP | 5 | 155 | 71 | 147 | 158 | 157
+INPUTP | 5 | 71 | 155 | 147 | 158 | 157
 EXPORTS | 1 | 15 | 11
 IMPORTS | 1 | 15 | 9
 EQ | 12 | 
@@ -261,10 +261,10 @@ EQ | 12 |
    A<16>.OE = !FCS & LAN_ACCESS & RW;
    A<16>.CE = LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1;
-    Z3_DATA<8>.EXP  =  !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<2>.PIN
-	# !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<2>.PIN
+    Z3_DATA<8>.EXP  =  D<2>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<2>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 GLOBALS | 1 | 2 | CLK_EXT
 
 MACROCELL | 15 | 7 | Z3_DATA<9>
@@ -284,7 +284,7 @@ GLOBALS | 1 | 2 | CLK_EXT
 
 MACROCELL | 8 | 3 | AUTO_CONFIG_Z2_DONE<0>
 ATTRIBUTES | 8520560 | 0
-OUTPUTMC | 54 | 8 | 3 | 8 | 6 | 13 | 10 | 0 | 0 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 11 | 3 | 2 | 7 | 14 | 0 | 10 | 0 | 8 | 7 | 10 | 7 | 8 | 0 | 2 | 7 | 6 | 0 | 3 | 8 | 2 | 6 | 0 | 7 | 17 | 3 | 0 | 6 | 14 | 6 | 6 | 6 | 11 | 8 | 0 | 0 | 7 | 0 | 9 | 0 | 11 | 0 | 17 | 1 | 4 | 1 | 5 | 1 | 7 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 7 | 3 | 11 | 3 | 13 | 6 | 17 | 7 | 5 | 7 | 7 | 7 | 9 | 7 | 16
+OUTPUTMC | 65 | 8 | 3 | 8 | 6 | 6 | 0 | 13 | 10 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 11 | 3 | 2 | 7 | 14 | 7 | 13 | 7 | 12 | 7 | 11 | 7 | 10 | 7 | 8 | 7 | 6 | 7 | 5 | 0 | 17 | 0 | 15 | 0 | 12 | 0 | 10 | 0 | 8 | 0 | 1 | 0 | 3 | 0 | 2 | 8 | 2 | 0 | 0 | 7 | 17 | 3 | 0 | 6 | 14 | 6 | 6 | 6 | 11 | 8 | 0 | 0 | 7 | 0 | 9 | 0 | 11 | 0 | 13 | 0 | 14 | 0 | 16 | 1 | 4 | 1 | 5 | 1 | 7 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 7 | 3 | 11 | 3 | 13 | 6 | 9 | 6 | 17 | 7 | 4 | 7 | 7 | 7 | 9 | 7 | 16
 INPUTS | 15 | AUTO_CONFIG_Z2_DONE<0>  | AUTO_CONFIG_Z2_DONE_CYCLE<0>  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | AS  | AUTO_CONFIG_Z2_DONE<2>  | CFIN  | A<18>.PIN  | A<17>.PIN  | A<16>.PIN  | A<23>.PIN  | A<22>.PIN  | A<21>.PIN  | A<19>.PIN  | A<20>.PIN
 INPUTMC | 4 | 8 | 3 | 8 | 6 | 2 | 17 | 8 | 5
 INPUTP | 11 | 263 | 152 | 190 | 171 | 172 | 175 | 161 | 162 | 163 | 169 | 167
@@ -301,9 +301,9 @@ EQ | 8 |
 
 MACROCELL | 8 | 4 | AUTO_CONFIG_Z2_DONE<1>
 ATTRIBUTES | 8520560 | 0
-OUTPUTMC | 52 | 8 | 4 | 13 | 10 | 0 | 0 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 11 | 3 | 2 | 0 | 17 | 7 | 13 | 7 | 12 | 0 | 15 | 7 | 11 | 0 | 12 | 7 | 5 | 0 | 2 | 8 | 2 | 7 | 17 | 3 | 0 | 6 | 14 | 6 | 6 | 6 | 9 | 8 | 0 | 0 | 1 | 0 | 13 | 0 | 14 | 0 | 16 | 1 | 4 | 1 | 5 | 1 | 7 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 7 | 3 | 11 | 3 | 13 | 6 | 17 | 7 | 4 | 7 | 10 | 7 | 14 | 7 | 16
+OUTPUTMC | 37 | 8 | 4 | 6 | 0 | 0 | 0 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 11 | 3 | 2 | 8 | 2 | 7 | 17 | 3 | 0 | 6 | 14 | 6 | 6 | 3 | 13 | 8 | 0 | 13 | 10 | 1 | 4 | 1 | 5 | 1 | 7 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 7 | 3 | 11 | 6 | 17 | 7 | 16
 INPUTS | 5 | AUTO_CONFIG_Z2_DONE<1>  | AUTO_CONFIG_Z2_DONE_CYCLE<1>  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | AS
-INPUTMC | 3 | 8 | 4 | 0 | 1 | 2 | 17
+INPUTMC | 3 | 8 | 4 | 6 | 0 | 2 | 17
 INPUTP | 2 | 263 | 152
 EQ | 5 | 
    !AUTO_CONFIG_Z2_DONE<1>.D = !AUTO_CONFIG_Z2_DONE<1> & 
@@ -314,9 +314,9 @@ EQ | 5 |
 
 MACROCELL | 8 | 5 | AUTO_CONFIG_Z2_DONE<2>
 ATTRIBUTES | 8520560 | 0
-OUTPUTMC | 21 | 8 | 5 | 0 | 0 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 11 | 3 | 2 | 3 | 7 | 3 | 0 | 13 | 10 | 0 | 17 | 1 | 4 | 1 | 5 | 1 | 7 | 3 | 3 | 3 | 4 | 3 | 5 | 8 | 3
+OUTPUTMC | 20 | 8 | 5 | 0 | 0 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 11 | 3 | 2 | 3 | 7 | 3 | 0 | 13 | 10 | 1 | 4 | 1 | 5 | 1 | 7 | 3 | 3 | 3 | 4 | 3 | 5 | 8 | 3
 INPUTS | 5 | AUTO_CONFIG_Z2_DONE<2>  | AUTO_CONFIG_Z2_DONE_CYCLE<2>  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | AS
-INPUTMC | 3 | 8 | 5 | 0 | 0 | 2 | 17
+INPUTMC | 3 | 8 | 5 | 0 | 1 | 2 | 17
 INPUTP | 2 | 263 | 152
 EQ | 5 | 
    !AUTO_CONFIG_Z2_DONE<2>.D = !AUTO_CONFIG_Z2_DONE<2> & 
@@ -341,17 +341,14 @@ EQ | 8 |
    AUTO_CONFIG_Z2_DONE_CYCLE<0>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
    AUTO_CONFIG_Z2_DONE_CYCLE<0>.AR = !RESET;
 
-MACROCELL | 0 | 1 | AUTO_CONFIG_Z2_DONE_CYCLE<1>
+MACROCELL | 6 | 0 | AUTO_CONFIG_Z2_DONE_CYCLE<1>
 ATTRIBUTES | 4326192 | 0
-OUTPUTMC | 3 | 8 | 4 | 0 | 0 | 0 | 2
-INPUTS | 17 | AS  | AUTO_CONFIG_Z2_DONE<1>  | D<9>.PIN  | LAN_BASEADR<9>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | LDS  | AUTO_CONFIG_Z2_DONE_CYCLE<2>.EXP
-INPUTMC | 5 | 8 | 4 | 0 | 2 | 8 | 2 | 2 | 17 | 0 | 0
-INPUTP | 12 | 152 | 73 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 263 | 157
-EXPORTS | 1 | 0 | 2
-IMPORTS | 1 | 0 | 0
-EQ | 18 | 
-   AUTO_CONFIG_Z2_DONE_CYCLE<1>.T = ;Imported pterms FB1_1
-	  !AS & AUTO_CONFIG_Z2_DONE<0> & 
+OUTPUTMC | 2 | 8 | 4 | 6 | 0
+INPUTS | 15 | AS  | AUTO_CONFIG_Z2_DONE<0>  | AUTO_CONFIG_Z2_DONE<1>  | AUTO_CONFIG_Z2_DONE_CYCLE<1>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET
+INPUTMC | 5 | 8 | 3 | 8 | 4 | 6 | 0 | 8 | 2 | 2 | 17
+INPUTP | 10 | 152 | 155 | 158 | 97 | 91 | 98 | 99 | 107 | 157 | 263
+EQ | 8 | 
+   AUTO_CONFIG_Z2_DONE_CYCLE<1>.T = !AS & AUTO_CONFIG_Z2_DONE<0> & 
 	!AUTO_CONFIG_Z2_DONE<1> & !AUTO_CONFIG_Z2_DONE_CYCLE<1> & !UDS & 
 	AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & A<6> & A<3> & !A<1>
 	# !AS & AUTO_CONFIG_Z2_DONE<0> & 
@@ -359,42 +356,36 @@ EQ | 18 |
 	AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & A<6> & A<3> & !A<1>;
    AUTO_CONFIG_Z2_DONE_CYCLE<1>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
    AUTO_CONFIG_Z2_DONE_CYCLE<1>.AR = !RESET;
-    AUTO_CONFIG_Z2_DONE_CYCLE<1>.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<1> & D<9>.PIN & 
-	!LAN_BASEADR<9> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & D<9>.PIN & 
-	!LAN_BASEADR<9> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & !D<9>.PIN & 
-	LAN_BASEADR<9> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
 
-MACROCELL | 0 | 0 | AUTO_CONFIG_Z2_DONE_CYCLE<2>
+MACROCELL | 0 | 1 | AUTO_CONFIG_Z2_DONE_CYCLE<2>
 ATTRIBUTES | 4326192 | 0
-OUTPUTMC | 4 | 8 | 5 | 0 | 0 | 0 | 17 | 0 | 1
-INPUTS | 18 | AS  | AUTO_CONFIG_Z2_DONE<0>  | AUTO_CONFIG_Z2_DONE<1>  | AUTO_CONFIG_Z2_DONE<2>  | AUTO_CONFIG_Z2_DONE_CYCLE<2>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<3>  | A<1>  | AUTO_CONFIG_Z2_DONE_CYCLE<1>  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | LDS  | LAN_BASEADR<10>.EXP
-INPUTMC | 8 | 8 | 3 | 8 | 4 | 8 | 5 | 0 | 0 | 8 | 2 | 0 | 1 | 2 | 17 | 0 | 17
-INPUTP | 10 | 152 | 155 | 158 | 97 | 91 | 98 | 99 | 107 | 263 | 157
-EXPORTS | 1 | 0 | 1
-IMPORTS | 1 | 0 | 17
-EQ | 17 | 
-   AUTO_CONFIG_Z2_DONE_CYCLE<2>.T = !AS & AUTO_CONFIG_Z2_DONE<0> & 
+OUTPUTMC | 3 | 8 | 5 | 0 | 0 | 0 | 2
+INPUTS | 17 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<9>.PIN  | LAN_BASEADR<9>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | SHUT_UP_Z2<0>.EXP
+INPUTMC | 5 | 8 | 3 | 0 | 2 | 8 | 2 | 2 | 17 | 0 | 0
+INPUTP | 12 | 152 | 73 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
+EXPORTS | 1 | 0 | 2
+IMPORTS | 1 | 0 | 0
+EQ | 20 | 
+   AUTO_CONFIG_Z2_DONE_CYCLE<2>.T = ;Imported pterms FB1_1
+	  !AS & AUTO_CONFIG_Z2_DONE<0> & 
 	AUTO_CONFIG_Z2_DONE<1> & !AUTO_CONFIG_Z2_DONE<2> & 
 	!AUTO_CONFIG_Z2_DONE_CYCLE<2> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & A<3> & !A<1>
-;Imported pterms FB1_18
 	# !AS & AUTO_CONFIG_Z2_DONE<0> & 
 	AUTO_CONFIG_Z2_DONE<1> & !AUTO_CONFIG_Z2_DONE<2> & 
 	!AUTO_CONFIG_Z2_DONE_CYCLE<2> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & A<3> & !A<1>;
    AUTO_CONFIG_Z2_DONE_CYCLE<2>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
    AUTO_CONFIG_Z2_DONE_CYCLE<2>.AR = !RESET;
-    AUTO_CONFIG_Z2_DONE_CYCLE<2>.EXP  =  !AS & AUTO_CONFIG_Z2_DONE<0> & 
-	!AUTO_CONFIG_Z2_DONE<1> & !AUTO_CONFIG_Z2_DONE_CYCLE<1> & !UDS & 
-	AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & A<6> & A<3> & !A<1>
-	# !AS & AUTO_CONFIG_Z2_DONE<0> & 
-	!AUTO_CONFIG_Z2_DONE<1> & !AUTO_CONFIG_Z2_DONE_CYCLE<1> & !LDS & 
-	AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & A<6> & A<3> & !A<1>
+    AUTO_CONFIG_Z2_DONE_CYCLE<2>.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<9>.PIN & 
+	!LAN_BASEADR<9> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<9>.PIN & 
+	!LAN_BASEADR<9> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<9>.PIN & 
+	LAN_BASEADR<9> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
 
 MACROCELL | 3 | 17 | CP_BASEADR<0>
 ATTRIBUTES | 4326304 | 0
@@ -475,9 +466,9 @@ EQ | 18 |
 MACROCELL | 7 | 15 | CP_BASEADR<3>
 ATTRIBUTES | 4326304 | 0
 OUTPUTMC | 4 | 7 | 15 | 4 | 2 | 7 | 16 | 7 | 14
-INPUTS | 20 | AS  | AUTO_CONFIG_Z2_DONE<0>  | AUTO_CONFIG_Z2_DONE<1>  | D<11>.PIN  | CP_BASEADR<3>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | D<8>.PIN  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | LAN_BASEADR<0>  | LDS  | EXP51_.EXP
+INPUTS | 20 | AS  | AUTO_CONFIG_Z2_DONE<0>  | AUTO_CONFIG_Z2_DONE<1>  | D<11>.PIN  | CP_BASEADR<3>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | D<0>.PIN  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | LAN_BASEADR<0>  | LDS  | EXP51_.EXP
 INPUTMC | 7 | 8 | 3 | 8 | 4 | 7 | 15 | 8 | 2 | 2 | 17 | 7 | 14 | 7 | 16
-INPUTP | 13 | 152 | 77 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 32 | 263 | 157
+INPUTP | 13 | 152 | 77 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 4 | 263 | 157
 EXPORTS | 1 | 7 | 14
 IMPORTS | 1 | 7 | 16
 EQ | 21 | 
@@ -496,10 +487,10 @@ EQ | 21 |
 	AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & A<6> & !A<2> & A<3> & !A<1>;
    CP_BASEADR<3>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
    CP_BASEADR<3>.AP = !RESET;
-    CP_BASEADR<3>.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<8>.PIN & 
+    CP_BASEADR<3>.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<0>.PIN & 
 	!LAN_BASEADR<0> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<8>.PIN & 
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<0>.PIN & 
 	!LAN_BASEADR<0> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
 
@@ -612,7 +603,7 @@ EQ | 18 |
 
 MACROCELL | 1 | 12 | IDE_BASEADR<0>
 ATTRIBUTES | 4326304 | 0
-OUTPUTMC | 5 | 1 | 12 | 4 | 5 | 1 | 11 | 4 | 7 | 1 | 13
+OUTPUTMC | 5 | 1 | 12 | 4 | 4 | 1 | 11 | 4 | 8 | 1 | 13
 INPUTS | 21 | AS  | AUTO_CONFIG_Z2_DONE<0>  | AUTO_CONFIG_Z2_DONE<1>  | AUTO_CONFIG_Z2_DONE<2>  | D<8>.PIN  | IDE_BASEADR<0>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | FCS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | Z3_DATA<23>  | LAN_ACCESS  | D_3_IOBUFE.EXP
 INPUTMC | 9 | 8 | 3 | 8 | 4 | 8 | 5 | 1 | 12 | 8 | 2 | 2 | 17 | 12 | 14 | 5 | 16 | 1 | 11
 INPUTP | 12 | 152 | 32 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 147 | 263
@@ -643,7 +634,7 @@ EQ | 21 |
 
 MACROCELL | 1 | 8 | IDE_BASEADR<1>
 ATTRIBUTES | 4326304 | 0
-OUTPUTMC | 4 | 1 | 8 | 4 | 5 | 1 | 7 | 1 | 9
+OUTPUTMC | 4 | 1 | 8 | 4 | 4 | 1 | 7 | 1 | 9
 INPUTS | 21 | AS  | AUTO_CONFIG_Z2_DONE<0>  | AUTO_CONFIG_Z2_DONE<1>  | AUTO_CONFIG_Z2_DONE<2>  | D<9>.PIN  | IDE_BASEADR<1>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | FCS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | Z3_DATA<22>  | LAN_ACCESS  | ROM_B_0_OBUF$BUF5.EXP
 INPUTMC | 9 | 8 | 3 | 8 | 4 | 8 | 5 | 1 | 8 | 8 | 2 | 2 | 17 | 10 | 6 | 5 | 16 | 1 | 7
 INPUTP | 12 | 152 | 73 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 147 | 263
@@ -674,7 +665,7 @@ EQ | 21 |
 
 MACROCELL | 1 | 6 | IDE_BASEADR<2>
 ATTRIBUTES | 4326304 | 0
-OUTPUTMC | 3 | 1 | 6 | 4 | 5 | 1 | 5
+OUTPUTMC | 3 | 1 | 6 | 1 | 5 | 4 | 7
 INPUTS | 19 | AS  | AUTO_CONFIG_Z2_DONE<0>  | AUTO_CONFIG_Z2_DONE<1>  | AUTO_CONFIG_Z2_DONE<2>  | D<10>.PIN  | IDE_BASEADR<2>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | ROM_B_0_OBUF$BUF7.EXP
 INPUTMC | 7 | 8 | 3 | 8 | 4 | 8 | 5 | 1 | 6 | 8 | 2 | 2 | 17 | 1 | 5
 INPUTP | 12 | 152 | 74 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
@@ -702,7 +693,7 @@ EQ | 19 |
 
 MACROCELL | 1 | 3 | IDE_BASEADR<3>
 ATTRIBUTES | 4326304 | 0
-OUTPUTMC | 3 | 1 | 3 | 4 | 6 | 1 | 4
+OUTPUTMC | 3 | 1 | 3 | 1 | 4 | 4 | 7
 INPUTS | 19 | AS  | AUTO_CONFIG_Z2_DONE<0>  | AUTO_CONFIG_Z2_DONE<1>  | AUTO_CONFIG_Z2_DONE<2>  | D<11>.PIN  | IDE_BASEADR<3>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | A_LAN_6_OBUF.EXP
 INPUTMC | 7 | 8 | 3 | 8 | 4 | 8 | 5 | 1 | 3 | 8 | 2 | 2 | 17 | 1 | 4
 INPUTP | 12 | 152 | 77 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
@@ -730,7 +721,7 @@ EQ | 19 |
 
 MACROCELL | 3 | 8 | IDE_BASEADR<4>
 ATTRIBUTES | 4326304 | 0
-OUTPUTMC | 5 | 3 | 8 | 4 | 4 | 3 | 7 | 4 | 8 | 3 | 9
+OUTPUTMC | 5 | 3 | 8 | 4 | 5 | 3 | 7 | 4 | 7 | 3 | 9
 INPUTS | 21 | AS  | AUTO_CONFIG_Z2_DONE<0>  | AUTO_CONFIG_Z2_DONE<1>  | AUTO_CONFIG_Z2_DONE<2>  | D<12>.PIN  | IDE_BASEADR<4>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | D<15>.PIN  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | CP_BASEADR<7>  | LDS  | A_LAN_3_OBUF.EXP
 INPUTMC | 8 | 8 | 3 | 8 | 4 | 8 | 5 | 3 | 8 | 8 | 2 | 2 | 17 | 3 | 9 | 3 | 7
 INPUTP | 13 | 152 | 78 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 89 | 263 | 157
@@ -765,7 +756,7 @@ EQ | 25 |
 
 MACROCELL | 3 | 6 | IDE_BASEADR<5>
 ATTRIBUTES | 4326304 | 0
-OUTPUTMC | 4 | 3 | 6 | 4 | 4 | 3 | 5 | 3 | 7
+OUTPUTMC | 4 | 3 | 6 | 4 | 5 | 3 | 5 | 3 | 7
 INPUTS | 20 | AS  | AUTO_CONFIG_Z2_DONE<0>  | AUTO_CONFIG_Z2_DONE<1>  | AUTO_CONFIG_Z2_DONE<2>  | D<13>.PIN  | IDE_BASEADR<5>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | CP_CS  | A_LAN_0_OBUF.EXP
 INPUTMC | 8 | 8 | 3 | 8 | 4 | 8 | 5 | 3 | 6 | 8 | 2 | 2 | 17 | 4 | 1 | 3 | 5
 INPUTP | 12 | 152 | 80 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
@@ -795,7 +786,7 @@ EQ | 20 |
 
 MACROCELL | 3 | 3 | IDE_BASEADR<6>
 ATTRIBUTES | 4326304 | 0
-OUTPUTMC | 3 | 3 | 4 | 4 | 7 | 3 | 2
+OUTPUTMC | 3 | 4 | 5 | 3 | 4 | 3 | 2
 INPUTS | 19 | AS  | AUTO_CONFIG_Z2_DONE<0>  | AUTO_CONFIG_Z2_DONE<1>  | AUTO_CONFIG_Z2_DONE<2>  | D<15>.PIN  | IDE_BASEADR<7>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | A_LAN_1_OBUF.EXP
 INPUTMC | 7 | 8 | 3 | 8 | 4 | 8 | 5 | 3 | 2 | 8 | 2 | 2 | 17 | 3 | 4
 INPUTP | 12 | 152 | 89 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
@@ -836,7 +827,7 @@ EQ | 31 |
 
 MACROCELL | 3 | 2 | IDE_BASEADR<7>
 ATTRIBUTES | 4326304 | 0
-OUTPUTMC | 4 | 3 | 2 | 3 | 3 | 4 | 7 | 3 | 1
+OUTPUTMC | 4 | 3 | 2 | 4 | 6 | 3 | 3 | 3 | 1
 INPUTS | 21 | AS  | AUTO_CONFIG_Z2_DONE<0>  | AUTO_CONFIG_Z2_DONE<1>  | AUTO_CONFIG_Z2_DONE<2>  | D<15>.PIN  | IDE_BASEADR<7>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | FCS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | Z3_DATA<16>  | LAN_ACCESS  | IDE_BASEADR<6>.EXP
 INPUTMC | 9 | 8 | 3 | 8 | 4 | 8 | 5 | 3 | 2 | 8 | 2 | 2 | 17 | 15 | 13 | 5 | 16 | 3 | 3
 INPUTP | 12 | 152 | 89 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 147 | 263
@@ -868,422 +859,421 @@ EQ | 21 |
 MACROCELL | 7 | 14 | LAN_BASEADR<0>
 ATTRIBUTES | 4326304 | 0
 OUTPUTMC | 4 | 7 | 14 | 2 | 10 | 7 | 15 | 7 | 13
-INPUTS | 20 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<8>.PIN  | LAN_BASEADR<0>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | AUTO_CONFIG_Z2_DONE<1>  | D<11>.PIN  | LAN_BASEADR<11>  | CP_BASEADR<3>.EXP
-INPUTMC | 7 | 8 | 3 | 7 | 14 | 8 | 2 | 2 | 17 | 8 | 4 | 7 | 13 | 7 | 15
-INPUTP | 13 | 152 | 32 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263 | 77
+INPUTS | 19 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<0>.PIN  | LAN_BASEADR<0>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | D<10>.PIN  | LAN_BASEADR<10>  | CP_BASEADR<3>.EXP
+INPUTMC | 6 | 8 | 3 | 7 | 14 | 8 | 2 | 2 | 17 | 7 | 13 | 7 | 15
+INPUTP | 13 | 152 | 4 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263 | 74
 EXPORTS | 1 | 7 | 13
 IMPORTS | 1 | 7 | 15
 EQ | 18 | 
-   LAN_BASEADR<0>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<8>.PIN & 
+   LAN_BASEADR<0>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<0>.PIN & 
 	LAN_BASEADR<0> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<8>.PIN & 
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<0>.PIN & 
 	LAN_BASEADR<0> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
 ;Imported pterms FB8_16
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<8>.PIN & 
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<0>.PIN & 
 	!LAN_BASEADR<0> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<8>.PIN & 
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<0>.PIN & 
 	!LAN_BASEADR<0> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>;
    LAN_BASEADR<0>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
    LAN_BASEADR<0>.AP = !RESET;
-    LAN_BASEADR<0>.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<1> & D<11>.PIN & 
-	!LAN_BASEADR<11> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-
-MACROCELL | 0 | 17 | LAN_BASEADR<10>
-ATTRIBUTES | 4326304 | 0
-OUTPUTMC | 4 | 0 | 17 | 0 | 16 | 2 | 12 | 0 | 0
-INPUTS | 20 | AS  | AUTO_CONFIG_Z2_DONE<1>  | D<10>.PIN  | LAN_BASEADR<10>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | AUTO_CONFIG_Z2_DONE<0>  | AUTO_CONFIG_Z2_DONE<2>  | AUTO_CONFIG_Z2_DONE_CYCLE<2>  | IDE_R_OBUF.EXP
-INPUTMC | 8 | 8 | 4 | 0 | 17 | 8 | 2 | 2 | 17 | 8 | 3 | 8 | 5 | 0 | 0 | 0 | 16
-INPUTP | 12 | 152 | 74 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
-EXPORTS | 1 | 0 | 0
-IMPORTS | 1 | 0 | 16
-EQ | 19 | 
-   LAN_BASEADR<10>.T = !AS & !AUTO_CONFIG_Z2_DONE<1> & !D<10>.PIN & 
-	LAN_BASEADR<10> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & !D<10>.PIN & 
-	LAN_BASEADR<10> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-;Imported pterms FB1_17
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & D<10>.PIN & 
-	!LAN_BASEADR<10> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & D<10>.PIN & 
+    LAN_BASEADR<0>.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<10>.PIN & 
 	!LAN_BASEADR<10> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>;
-   LAN_BASEADR<10>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
-   LAN_BASEADR<10>.AP = !RESET;
-    LAN_BASEADR<10>.EXP  =  !AS & AUTO_CONFIG_Z2_DONE<0> & 
-	AUTO_CONFIG_Z2_DONE<1> & !AUTO_CONFIG_Z2_DONE<2> & 
-	!AUTO_CONFIG_Z2_DONE_CYCLE<2> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<3> & !A<1>
+	A<6> & !A<2> & A<3> & !A<1>
 
-MACROCELL | 7 | 13 | LAN_BASEADR<11>
+MACROCELL | 7 | 13 | LAN_BASEADR<10>
 ATTRIBUTES | 4326304 | 0
 OUTPUTMC | 3 | 7 | 13 | 2 | 12 | 7 | 14
-INPUTS | 17 | AS  | AUTO_CONFIG_Z2_DONE<1>  | D<11>.PIN  | LAN_BASEADR<11>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | LAN_BASEADR<0>.EXP
-INPUTMC | 5 | 8 | 4 | 7 | 13 | 8 | 2 | 2 | 17 | 7 | 14
-INPUTP | 12 | 152 | 77 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
+INPUTS | 17 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<10>.PIN  | LAN_BASEADR<10>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | LAN_BASEADR<0>.EXP
+INPUTMC | 5 | 8 | 3 | 7 | 13 | 8 | 2 | 2 | 17 | 7 | 14
+INPUTP | 12 | 152 | 74 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
 IMPORTS | 1 | 7 | 14
 EQ | 15 | 
-   LAN_BASEADR<11>.T = !AS & !AUTO_CONFIG_Z2_DONE<1> & D<11>.PIN & 
-	!LAN_BASEADR<11> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & !D<11>.PIN & 
-	LAN_BASEADR<11> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & !D<11>.PIN & 
-	LAN_BASEADR<11> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
+   LAN_BASEADR<10>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & D<10>.PIN & 
+	!LAN_BASEADR<10> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<10>.PIN & 
+	LAN_BASEADR<10> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<10>.PIN & 
+	LAN_BASEADR<10> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
 ;Imported pterms FB8_15
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & D<11>.PIN & 
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<10>.PIN & 
+	!LAN_BASEADR<10> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>;
+   LAN_BASEADR<10>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
+   LAN_BASEADR<10>.AP = !RESET;
+
+MACROCELL | 7 | 12 | LAN_BASEADR<11>
+ATTRIBUTES | 4326304 | 0
+OUTPUTMC | 3 | 7 | 12 | 2 | 12 | 7 | 11
+INPUTS | 17 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<11>.PIN  | LAN_BASEADR<11>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | LAN_BASEADR<12>.EXP
+INPUTMC | 5 | 8 | 3 | 7 | 12 | 8 | 2 | 2 | 17 | 7 | 11
+INPUTP | 12 | 152 | 77 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
+IMPORTS | 1 | 7 | 11
+EQ | 15 | 
+   LAN_BASEADR<11>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & D<11>.PIN & 
+	!LAN_BASEADR<11> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<11>.PIN & 
+	LAN_BASEADR<11> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<11>.PIN & 
+	LAN_BASEADR<11> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+;Imported pterms FB8_12
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<11>.PIN & 
 	!LAN_BASEADR<11> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>;
+	A<6> & !A<2> & A<3> & !A<1>;
    LAN_BASEADR<11>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
    LAN_BASEADR<11>.AP = !RESET;
 
-MACROCELL | 7 | 12 | LAN_BASEADR<12>
+MACROCELL | 7 | 11 | LAN_BASEADR<12>
 ATTRIBUTES | 4326304 | 0
-OUTPUTMC | 3 | 7 | 12 | 2 | 13 | 7 | 11
-INPUTS | 17 | AS  | AUTO_CONFIG_Z2_DONE<1>  | D<12>.PIN  | LAN_BASEADR<12>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | LAN_BASEADR<14>.EXP
-INPUTMC | 5 | 8 | 4 | 7 | 12 | 8 | 2 | 2 | 17 | 7 | 11
-INPUTP | 12 | 152 | 78 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
-IMPORTS | 1 | 7 | 11
-EQ | 15 | 
-   LAN_BASEADR<12>.T = !AS & !AUTO_CONFIG_Z2_DONE<1> & D<12>.PIN & 
-	!LAN_BASEADR<12> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & !D<12>.PIN & 
-	LAN_BASEADR<12> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & !D<12>.PIN & 
-	LAN_BASEADR<12> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-;Imported pterms FB8_12
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & D<12>.PIN & 
-	!LAN_BASEADR<12> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>;
-   LAN_BASEADR<12>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
-   LAN_BASEADR<12>.AP = !RESET;
-
-MACROCELL | 0 | 15 | LAN_BASEADR<13>
-ATTRIBUTES | 4326304 | 0
-OUTPUTMC | 3 | 0 | 15 | 0 | 14 | 2 | 13
-INPUTS | 17 | AS  | AUTO_CONFIG_Z2_DONE<1>  | D<13>.PIN  | LAN_BASEADR<13>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | IDE_A_1_OBUF$BUF0.EXP
-INPUTMC | 5 | 8 | 4 | 0 | 15 | 8 | 2 | 2 | 17 | 0 | 14
-INPUTP | 12 | 152 | 80 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
-IMPORTS | 1 | 0 | 14
-EQ | 15 | 
-   LAN_BASEADR<13>.T = !AS & !AUTO_CONFIG_Z2_DONE<1> & D<13>.PIN & 
-	!LAN_BASEADR<13> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & !D<13>.PIN & 
-	LAN_BASEADR<13> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & !D<13>.PIN & 
-	LAN_BASEADR<13> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-;Imported pterms FB1_15
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & D<13>.PIN & 
-	!LAN_BASEADR<13> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>;
-   LAN_BASEADR<13>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
-   LAN_BASEADR<13>.AP = !RESET;
-
-MACROCELL | 7 | 11 | LAN_BASEADR<14>
-ATTRIBUTES | 4326304 | 0
-OUTPUTMC | 4 | 7 | 11 | 2 | 7 | 7 | 10 | 7 | 12
-INPUTS | 19 | AS  | AUTO_CONFIG_Z2_DONE<1>  | D<14>.PIN  | LAN_BASEADR<14>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | D<12>.PIN  | LAN_BASEADR<12>  | LAN_BASEADR<3>.EXP
-INPUTMC | 6 | 8 | 4 | 7 | 11 | 8 | 2 | 2 | 17 | 7 | 12 | 7 | 10
-INPUTP | 13 | 152 | 81 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263 | 78
+OUTPUTMC | 4 | 7 | 11 | 2 | 13 | 7 | 10 | 7 | 12
+INPUTS | 19 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<12>.PIN  | LAN_BASEADR<12>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | D<11>.PIN  | LAN_BASEADR<11>  | LAN_BASEADR<13>.EXP
+INPUTMC | 6 | 8 | 3 | 7 | 11 | 8 | 2 | 2 | 17 | 7 | 12 | 7 | 10
+INPUTP | 13 | 152 | 78 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263 | 77
 EXPORTS | 1 | 7 | 12
 IMPORTS | 1 | 7 | 10
 EQ | 18 | 
-   LAN_BASEADR<14>.T = !AS & !AUTO_CONFIG_Z2_DONE<1> & !D<14>.PIN & 
-	LAN_BASEADR<14> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & !D<14>.PIN & 
-	LAN_BASEADR<14> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
+   LAN_BASEADR<12>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<12>.PIN & 
+	LAN_BASEADR<12> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<12>.PIN & 
+	LAN_BASEADR<12> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
 ;Imported pterms FB8_11
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & D<14>.PIN & 
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<12>.PIN & 
+	!LAN_BASEADR<12> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<12>.PIN & 
+	!LAN_BASEADR<12> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>;
+   LAN_BASEADR<12>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
+   LAN_BASEADR<12>.AP = !RESET;
+    LAN_BASEADR<12>.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<11>.PIN & 
+	!LAN_BASEADR<11> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+
+MACROCELL | 7 | 10 | LAN_BASEADR<13>
+ATTRIBUTES | 4326304 | 0
+OUTPUTMC | 4 | 7 | 10 | 2 | 13 | 7 | 9 | 7 | 11
+INPUTS | 19 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<13>.PIN  | LAN_BASEADR<13>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | D<12>.PIN  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | LAN_BASEADR<12>  | LDS  | LAN_RD_OBUF.EXP
+INPUTMC | 6 | 8 | 3 | 7 | 10 | 8 | 2 | 2 | 17 | 7 | 11 | 7 | 9
+INPUTP | 13 | 152 | 80 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 78 | 263 | 157
+EXPORTS | 1 | 7 | 11
+IMPORTS | 1 | 7 | 9
+EQ | 21 | 
+   LAN_BASEADR<13>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<13>.PIN & 
+	LAN_BASEADR<13> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+;Imported pterms FB8_10
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<13>.PIN & 
+	!LAN_BASEADR<13> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<13>.PIN & 
+	!LAN_BASEADR<13> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<13>.PIN & 
+	LAN_BASEADR<13> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>;
+   LAN_BASEADR<13>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
+   LAN_BASEADR<13>.AP = !RESET;
+    LAN_BASEADR<13>.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<12>.PIN & 
+	!LAN_BASEADR<12> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<12>.PIN & 
+	!LAN_BASEADR<12> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+
+MACROCELL | 7 | 8 | LAN_BASEADR<14>
+ATTRIBUTES | 4326304 | 0
+OUTPUTMC | 3 | 7 | 8 | 2 | 7 | 7 | 7
+INPUTS | 17 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<14>.PIN  | LAN_BASEADR<14>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | LAN_CS_OBUF.EXP
+INPUTMC | 5 | 8 | 3 | 7 | 8 | 8 | 2 | 2 | 17 | 7 | 7
+INPUTP | 12 | 152 | 81 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
+IMPORTS | 1 | 7 | 7
+EQ | 15 | 
+   LAN_BASEADR<14>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & D<14>.PIN & 
 	!LAN_BASEADR<14> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & D<14>.PIN & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<14>.PIN & 
+	LAN_BASEADR<14> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<14>.PIN & 
+	LAN_BASEADR<14> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+;Imported pterms FB8_8
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<14>.PIN & 
 	!LAN_BASEADR<14> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>;
+	A<6> & !A<2> & A<3> & !A<1>;
    LAN_BASEADR<14>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
    LAN_BASEADR<14>.AP = !RESET;
-    LAN_BASEADR<14>.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<1> & D<12>.PIN & 
-	!LAN_BASEADR<12> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
 
-MACROCELL | 0 | 12 | LAN_BASEADR<15>
+MACROCELL | 7 | 6 | LAN_BASEADR<15>
 ATTRIBUTES | 4326304 | 0
-OUTPUTMC | 4 | 0 | 12 | 2 | 7 | 0 | 13 | 2 | 12
-INPUTS | 17 | AS  | AUTO_CONFIG_Z2_DONE<1>  | D<15>.PIN  | LAN_BASEADR<15>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | IDE_A_2_OBUF$BUF0.EXP
-INPUTMC | 5 | 8 | 4 | 0 | 12 | 8 | 2 | 2 | 17 | 0 | 13
+OUTPUTMC | 4 | 7 | 6 | 2 | 7 | 2 | 12 | 7 | 5
+INPUTS | 17 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<15>.PIN  | LAN_BASEADR<15>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | LAN_BASEADR<1>.EXP
+INPUTMC | 5 | 8 | 3 | 7 | 6 | 8 | 2 | 2 | 17 | 7 | 5
 INPUTP | 12 | 152 | 89 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
-IMPORTS | 1 | 0 | 13
+IMPORTS | 1 | 7 | 5
 EQ | 15 | 
-   LAN_BASEADR<15>.T = !AS & !AUTO_CONFIG_Z2_DONE<1> & D<15>.PIN & 
+   LAN_BASEADR<15>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & D<15>.PIN & 
 	!LAN_BASEADR<15> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & !D<15>.PIN & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<15>.PIN & 
 	LAN_BASEADR<15> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & !D<15>.PIN & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<15>.PIN & 
 	LAN_BASEADR<15> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-;Imported pterms FB1_14
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & D<15>.PIN & 
+	A<6> & !A<2> & A<3> & !A<1>
+;Imported pterms FB8_6
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<15>.PIN & 
 	!LAN_BASEADR<15> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>;
+	A<6> & !A<2> & A<3> & !A<1>;
    LAN_BASEADR<15>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
    LAN_BASEADR<15>.AP = !RESET;
 
-MACROCELL | 0 | 10 | LAN_BASEADR<1>
+MACROCELL | 7 | 5 | LAN_BASEADR<1>
 ATTRIBUTES | 4326304 | 0
-OUTPUTMC | 3 | 0 | 10 | 2 | 10 | 0 | 11
-INPUTS | 17 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<9>.PIN  | LAN_BASEADR<1>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | IDE_A_0_OBUF$BUF0.EXP
-INPUTMC | 5 | 8 | 3 | 0 | 10 | 8 | 2 | 2 | 17 | 0 | 11
-INPUTP | 12 | 152 | 73 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
-IMPORTS | 1 | 0 | 11
-EQ | 15 | 
-   LAN_BASEADR<1>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & D<9>.PIN & 
-	!LAN_BASEADR<1> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<9>.PIN & 
+OUTPUTMC | 4 | 7 | 5 | 2 | 10 | 7 | 4 | 7 | 6
+INPUTS | 19 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<1>.PIN  | LAN_BASEADR<1>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | D<15>.PIN  | LAN_BASEADR<15>  | LAN_WRH_OBUF.EXP
+INPUTMC | 6 | 8 | 3 | 7 | 5 | 8 | 2 | 2 | 17 | 7 | 6 | 7 | 4
+INPUTP | 13 | 152 | 30 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263 | 89
+EXPORTS | 1 | 7 | 6
+IMPORTS | 1 | 7 | 4
+EQ | 18 | 
+   LAN_BASEADR<1>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<1>.PIN & 
 	LAN_BASEADR<1> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<9>.PIN & 
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<1>.PIN & 
 	LAN_BASEADR<1> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
-;Imported pterms FB1_12
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<9>.PIN & 
+;Imported pterms FB8_5
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<1>.PIN & 
+	!LAN_BASEADR<1> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<1>.PIN & 
 	!LAN_BASEADR<1> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>;
    LAN_BASEADR<1>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
    LAN_BASEADR<1>.AP = !RESET;
-
-MACROCELL | 0 | 8 | LAN_BASEADR<2>
-ATTRIBUTES | 4326304 | 0
-OUTPUTMC | 3 | 0 | 8 | 2 | 9 | 0 | 9
-INPUTS | 17 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<10>.PIN  | LAN_BASEADR<2>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | IDE_CS_1_OBUF.EXP
-INPUTMC | 5 | 8 | 3 | 0 | 8 | 8 | 2 | 2 | 17 | 0 | 9
-INPUTP | 12 | 152 | 74 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
-IMPORTS | 1 | 0 | 9
-EQ | 15 | 
-   LAN_BASEADR<2>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & D<10>.PIN & 
-	!LAN_BASEADR<2> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+    LAN_BASEADR<1>.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<15>.PIN & 
+	!LAN_BASEADR<15> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<10>.PIN & 
+
+MACROCELL | 0 | 17 | LAN_BASEADR<2>
+ATTRIBUTES | 4326304 | 0
+OUTPUTMC | 4 | 0 | 17 | 2 | 9 | 0 | 16 | 0 | 0
+INPUTS | 18 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<2>.PIN  | LAN_BASEADR<2>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | SHUT_UP_Z2<0>  | IDE_R_OBUF.EXP
+INPUTMC | 6 | 8 | 3 | 0 | 17 | 8 | 2 | 2 | 17 | 0 | 0 | 0 | 16
+INPUTP | 12 | 152 | 71 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
+EXPORTS | 1 | 0 | 0
+IMPORTS | 1 | 0 | 16
+EQ | 18 | 
+   LAN_BASEADR<2>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<2>.PIN & 
 	LAN_BASEADR<2> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<10>.PIN & 
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<2>.PIN & 
 	LAN_BASEADR<2> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
-;Imported pterms FB1_10
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<10>.PIN & 
+;Imported pterms FB1_17
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<2>.PIN & 
+	!LAN_BASEADR<2> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<2>.PIN & 
 	!LAN_BASEADR<2> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>;
    LAN_BASEADR<2>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
    LAN_BASEADR<2>.AP = !RESET;
+    LAN_BASEADR<2>.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & !LDS & 
+	AUTOCONFIG_Z2_ACCESS & SHUT_UP_Z2<0> & !RW & !A<4> & !A<5> & A<6> & 
+	!A<2> & A<3> & !A<1>
 
-MACROCELL | 7 | 10 | LAN_BASEADR<3>
+MACROCELL | 0 | 15 | LAN_BASEADR<3>
 ATTRIBUTES | 4326304 | 0
-OUTPUTMC | 5 | 7 | 10 | 2 | 10 | 2 | 9 | 7 | 9 | 7 | 11
-INPUTS | 20 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<11>.PIN  | LAN_BASEADR<3>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | AUTO_CONFIG_Z2_DONE<1>  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | D<14>.PIN  | LAN_BASEADR<14>  | LDS  | LAN_RD_OBUF.EXP
-INPUTMC | 7 | 8 | 3 | 7 | 10 | 8 | 2 | 8 | 4 | 2 | 17 | 7 | 11 | 7 | 9
-INPUTP | 13 | 152 | 77 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 263 | 81 | 157
-EXPORTS | 1 | 7 | 11
-IMPORTS | 1 | 7 | 9
-EQ | 21 | 
-   LAN_BASEADR<3>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<11>.PIN & 
-	LAN_BASEADR<3> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & !A<2> & A<3> & !A<1>
-;Imported pterms FB8_10
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<11>.PIN & 
+OUTPUTMC | 4 | 0 | 15 | 2 | 10 | 0 | 14 | 2 | 9
+INPUTS | 17 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<3>.PIN  | LAN_BASEADR<3>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | IDE_A_1_OBUF$BUF0.EXP
+INPUTMC | 5 | 8 | 3 | 0 | 15 | 8 | 2 | 2 | 17 | 0 | 14
+INPUTP | 12 | 152 | 28 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
+IMPORTS | 1 | 0 | 14
+EQ | 15 | 
+   LAN_BASEADR<3>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & D<3>.PIN & 
 	!LAN_BASEADR<3> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<11>.PIN & 
-	!LAN_BASEADR<3> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<3>.PIN & 
+	LAN_BASEADR<3> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<11>.PIN & 
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<3>.PIN & 
 	LAN_BASEADR<3> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+;Imported pterms FB1_15
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<3>.PIN & 
+	!LAN_BASEADR<3> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>;
    LAN_BASEADR<3>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
    LAN_BASEADR<3>.AP = !RESET;
-    LAN_BASEADR<3>.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<1> & D<14>.PIN & 
-	!LAN_BASEADR<14> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & D<14>.PIN & 
-	!LAN_BASEADR<14> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
 
-MACROCELL | 7 | 8 | LAN_BASEADR<4>
+MACROCELL | 0 | 12 | LAN_BASEADR<4>
 ATTRIBUTES | 4326304 | 0
-OUTPUTMC | 3 | 7 | 8 | 2 | 11 | 7 | 7
-INPUTS | 17 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<12>.PIN  | LAN_BASEADR<4>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | LAN_CS_OBUF.EXP
-INPUTMC | 5 | 8 | 3 | 7 | 8 | 8 | 2 | 2 | 17 | 7 | 7
-INPUTP | 12 | 152 | 78 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
-IMPORTS | 1 | 7 | 7
+OUTPUTMC | 3 | 0 | 12 | 0 | 13 | 2 | 11
+INPUTS | 17 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<4>.PIN  | LAN_BASEADR<4>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | IDE_A_2_OBUF$BUF0.EXP
+INPUTMC | 5 | 8 | 3 | 0 | 12 | 8 | 2 | 2 | 17 | 0 | 13
+INPUTP | 12 | 152 | 38 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
+IMPORTS | 1 | 0 | 13
 EQ | 15 | 
-   LAN_BASEADR<4>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & D<12>.PIN & 
+   LAN_BASEADR<4>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & D<4>.PIN & 
 	!LAN_BASEADR<4> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<12>.PIN & 
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<4>.PIN & 
 	LAN_BASEADR<4> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<12>.PIN & 
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<4>.PIN & 
 	LAN_BASEADR<4> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
-;Imported pterms FB8_8
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<12>.PIN & 
+;Imported pterms FB1_14
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<4>.PIN & 
 	!LAN_BASEADR<4> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>;
    LAN_BASEADR<4>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
    LAN_BASEADR<4>.AP = !RESET;
 
-MACROCELL | 0 | 6 | LAN_BASEADR<5>
+MACROCELL | 0 | 10 | LAN_BASEADR<5>
 ATTRIBUTES | 4326304 | 0
-OUTPUTMC | 3 | 2 | 9 | 0 | 7 | 0 | 5
+OUTPUTMC | 3 | 0 | 10 | 2 | 9 | 0 | 11
+INPUTS | 17 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<5>.PIN  | LAN_BASEADR<5>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | IDE_A_0_OBUF$BUF0.EXP
+INPUTMC | 5 | 8 | 3 | 0 | 10 | 8 | 2 | 2 | 17 | 0 | 11
+INPUTP | 12 | 152 | 37 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
+IMPORTS | 1 | 0 | 11
+EQ | 15 | 
+   LAN_BASEADR<5>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & D<5>.PIN & 
+	!LAN_BASEADR<5> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<5>.PIN & 
+	LAN_BASEADR<5> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<5>.PIN & 
+	LAN_BASEADR<5> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+;Imported pterms FB1_12
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<5>.PIN & 
+	!LAN_BASEADR<5> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>;
+   LAN_BASEADR<5>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
+   LAN_BASEADR<5>.AP = !RESET;
+
+MACROCELL | 0 | 8 | LAN_BASEADR<6>
+ATTRIBUTES | 4326304 | 0
+OUTPUTMC | 3 | 0 | 8 | 0 | 9 | 2 | 11
+INPUTS | 17 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<6>.PIN  | LAN_BASEADR<6>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | IDE_CS_1_OBUF.EXP
+INPUTMC | 5 | 8 | 3 | 0 | 8 | 8 | 2 | 2 | 17 | 0 | 9
+INPUTP | 12 | 152 | 26 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
+IMPORTS | 1 | 0 | 9
+EQ | 15 | 
+   LAN_BASEADR<6>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & D<6>.PIN & 
+	!LAN_BASEADR<6> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<6>.PIN & 
+	LAN_BASEADR<6> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<6>.PIN & 
+	LAN_BASEADR<6> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+;Imported pterms FB1_10
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<6>.PIN & 
+	!LAN_BASEADR<6> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>;
+   LAN_BASEADR<6>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
+   LAN_BASEADR<6>.AP = !RESET;
+
+MACROCELL | 0 | 6 | LAN_BASEADR<7>
+ATTRIBUTES | 4326304 | 0
+OUTPUTMC | 4 | 2 | 8 | 0 | 7 | 2 | 11 | 0 | 5
 INPUTS | 9 | AS  | FCS  | AUTOCONFIG_Z2_ACCESS  | RW  | LAN_ACCESS  | Z3_DATA<20>  | IDE_CS_0_OBUF.EXP  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET
 INPUTMC | 5 | 8 | 2 | 5 | 16 | 10 | 8 | 0 | 7 | 2 | 17
 INPUTP | 4 | 152 | 147 | 158 | 263
 EXPORTS | 1 | 0 | 5
 IMPORTS | 1 | 0 | 7
 EQ | 18 | 
-   LAN_BASEADR<5>.T = ;Imported pterms FB1_8
-	  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<13>.PIN & 
-	!LAN_BASEADR<5> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<13>.PIN & 
-	!LAN_BASEADR<5> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<13>.PIN & 
-	LAN_BASEADR<5> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<13>.PIN & 
-	LAN_BASEADR<5> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & !A<2> & A<3> & !A<1>;
-   LAN_BASEADR<5>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
-   LAN_BASEADR<5>.AP = !RESET;
-    LAN_BASEADR<5>.EXP  =  !AS & FCS & AUTOCONFIG_Z2_ACCESS & RW
-	# !AS & AUTOCONFIG_Z2_ACCESS & !LAN_ACCESS & RW
-	# Z3_DATA<20> & !FCS & LAN_ACCESS & RW
-
-MACROCELL | 7 | 6 | LAN_BASEADR<6>
-ATTRIBUTES | 4326304 | 0
-OUTPUTMC | 3 | 7 | 6 | 2 | 11 | 7 | 5
-INPUTS | 17 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<14>.PIN  | LAN_BASEADR<6>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | LAN_BASEADR<8>.EXP
-INPUTMC | 5 | 8 | 3 | 7 | 6 | 8 | 2 | 2 | 17 | 7 | 5
-INPUTP | 12 | 152 | 81 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
-IMPORTS | 1 | 7 | 5
-EQ | 15 | 
-   LAN_BASEADR<6>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & D<14>.PIN & 
-	!LAN_BASEADR<6> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<14>.PIN & 
-	LAN_BASEADR<6> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<14>.PIN & 
-	LAN_BASEADR<6> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & !A<2> & A<3> & !A<1>
-;Imported pterms FB8_6
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<14>.PIN & 
-	!LAN_BASEADR<6> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & !A<2> & A<3> & !A<1>;
-   LAN_BASEADR<6>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
-   LAN_BASEADR<6>.AP = !RESET;
-
-MACROCELL | 0 | 3 | LAN_BASEADR<7>
-ATTRIBUTES | 4326304 | 0
-OUTPUTMC | 5 | 0 | 3 | 2 | 8 | 0 | 2 | 2 | 11 | 0 | 4
-INPUTS | 18 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<15>.PIN  | LAN_BASEADR<7>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | FCS  | LAN_BASEADR<9>.EXP
-INPUTMC | 5 | 8 | 3 | 0 | 3 | 8 | 2 | 2 | 17 | 0 | 2
-INPUTP | 13 | 152 | 89 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263 | 147
-EXPORTS | 1 | 0 | 4
-IMPORTS | 1 | 0 | 2
-EQ | 16 | 
-   LAN_BASEADR<7>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<15>.PIN & 
-	LAN_BASEADR<7> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<15>.PIN & 
-	LAN_BASEADR<7> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & !A<2> & A<3> & !A<1>
-;Imported pterms FB1_3
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<15>.PIN & 
+   LAN_BASEADR<7>.T = ;Imported pterms FB1_8
+	  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<7>.PIN & 
 	!LAN_BASEADR<7> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<15>.PIN & 
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<7>.PIN & 
 	!LAN_BASEADR<7> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<7>.PIN & 
+	LAN_BASEADR<7> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<7>.PIN & 
+	LAN_BASEADR<7> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>;
    LAN_BASEADR<7>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
    LAN_BASEADR<7>.AP = !RESET;
     LAN_BASEADR<7>.EXP  =  !AS & FCS & AUTOCONFIG_Z2_ACCESS & RW
+	# !AS & AUTOCONFIG_Z2_ACCESS & !LAN_ACCESS & RW
+	# Z3_DATA<20> & !FCS & LAN_ACCESS & RW
 
-MACROCELL | 7 | 5 | LAN_BASEADR<8>
+MACROCELL | 0 | 3 | LAN_BASEADR<8>
 ATTRIBUTES | 4326304 | 0
-OUTPUTMC | 4 | 7 | 5 | 2 | 8 | 7 | 4 | 7 | 6
-INPUTS | 20 | AS  | AUTO_CONFIG_Z2_DONE<1>  | D<8>.PIN  | LAN_BASEADR<8>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | AUTO_CONFIG_Z2_DONE<0>  | D<14>.PIN  | LAN_BASEADR<6>  | LAN_WRH_OBUF.EXP
-INPUTMC | 7 | 8 | 4 | 7 | 5 | 8 | 2 | 2 | 17 | 8 | 3 | 7 | 6 | 7 | 4
-INPUTP | 13 | 152 | 32 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263 | 81
-EXPORTS | 1 | 7 | 6
-IMPORTS | 1 | 7 | 4
-EQ | 18 | 
-   LAN_BASEADR<8>.T = !AS & !AUTO_CONFIG_Z2_DONE<1> & !D<8>.PIN & 
+OUTPUTMC | 4 | 0 | 3 | 2 | 8 | 0 | 2 | 0 | 4
+INPUTS | 18 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<8>.PIN  | LAN_BASEADR<8>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | FCS  | LAN_BASEADR<9>.EXP
+INPUTMC | 5 | 8 | 3 | 0 | 3 | 8 | 2 | 2 | 17 | 0 | 2
+INPUTP | 13 | 152 | 32 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263 | 147
+EXPORTS | 1 | 0 | 4
+IMPORTS | 1 | 0 | 2
+EQ | 16 | 
+   LAN_BASEADR<8>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<8>.PIN & 
 	LAN_BASEADR<8> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & !D<8>.PIN & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<8>.PIN & 
 	LAN_BASEADR<8> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-;Imported pterms FB8_5
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & D<8>.PIN & 
+	A<6> & !A<2> & A<3> & !A<1>
+;Imported pterms FB1_3
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<8>.PIN & 
 	!LAN_BASEADR<8> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & D<8>.PIN & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<8>.PIN & 
 	!LAN_BASEADR<8> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>;
+	A<6> & !A<2> & A<3> & !A<1>;
    LAN_BASEADR<8>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
    LAN_BASEADR<8>.AP = !RESET;
-    LAN_BASEADR<8>.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<14>.PIN & 
-	!LAN_BASEADR<6> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & !A<2> & A<3> & !A<1>
+    LAN_BASEADR<8>.EXP  =  !AS & FCS & AUTOCONFIG_Z2_ACCESS & RW
 
 MACROCELL | 0 | 2 | LAN_BASEADR<9>
 ATTRIBUTES | 4326304 | 0
 OUTPUTMC | 4 | 0 | 2 | 2 | 8 | 0 | 1 | 0 | 3
-INPUTS | 20 | AS  | AUTO_CONFIG_Z2_DONE<1>  | D<9>.PIN  | LAN_BASEADR<9>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | AUTO_CONFIG_Z2_DONE<0>  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | D<15>.PIN  | LAN_BASEADR<7>  | LDS  | AUTO_CONFIG_Z2_DONE_CYCLE<1>.EXP
-INPUTMC | 7 | 8 | 4 | 0 | 2 | 8 | 2 | 8 | 3 | 2 | 17 | 0 | 3 | 0 | 1
-INPUTP | 13 | 152 | 73 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 263 | 89 | 157
+INPUTS | 19 | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<9>.PIN  | LAN_BASEADR<9>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | D<8>.PIN  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | LAN_BASEADR<8>  | LDS  | AUTO_CONFIG_Z2_DONE_CYCLE<2>.EXP
+INPUTMC | 6 | 8 | 3 | 0 | 2 | 8 | 2 | 2 | 17 | 0 | 3 | 0 | 1
+INPUTP | 13 | 152 | 73 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 32 | 263 | 157
 EXPORTS | 1 | 0 | 3
 IMPORTS | 1 | 0 | 1
 EQ | 21 | 
-   LAN_BASEADR<9>.T = !AS & !AUTO_CONFIG_Z2_DONE<1> & !D<9>.PIN & 
+   LAN_BASEADR<9>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<9>.PIN & 
 	LAN_BASEADR<9> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
+	A<6> & !A<2> & A<3> & !A<1>
 ;Imported pterms FB1_2
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & D<9>.PIN & 
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<9>.PIN & 
 	!LAN_BASEADR<9> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & D<9>.PIN & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<9>.PIN & 
 	!LAN_BASEADR<9> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & !D<9>.PIN & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<9>.PIN & 
 	LAN_BASEADR<9> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>;
+	A<6> & !A<2> & A<3> & !A<1>;
    LAN_BASEADR<9>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
    LAN_BASEADR<9>.AP = !RESET;
-    LAN_BASEADR<9>.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<15>.PIN & 
-	!LAN_BASEADR<7> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+    LAN_BASEADR<9>.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<8>.PIN & 
+	!LAN_BASEADR<8> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<15>.PIN & 
-	!LAN_BASEADR<7> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<8>.PIN & 
+	!LAN_BASEADR<8> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
 
 MACROCELL | 5 | 14 | LAN_IRQ_OUT
@@ -1464,9 +1454,9 @@ GLOBALS | 1 | 2 | CLK_EXT
 MACROCELL | 15 | 0 | Z3_DATA<26>
 ATTRIBUTES | 8553408 | 0
 OUTPUTMC | 2 | 4 | 14 | 15 | 17
-INPUTS | 12 | LDS  | DQ_SWAP  | LAN_SM_FSM_FFd3  | LAN_SM_RST  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd1  | D<2>.PIN  | UDS  | A<10>.PIN  | A<18>.PIN  | Z3_DATA<12>.EXP
-INPUTMC | 7 | 5 | 17 | 11 | 13 | 11 | 2 | 11 | 14 | 14 | 5 | 14 | 6 | 15 | 1
-INPUTP | 5 | 157 | 71 | 155 | 112 | 171
+INPUTS | 12 | D<2>.PIN  | LDS  | DQ_SWAP  | LAN_SM_RST  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd1  | LAN_SM_FSM_FFd3  | UDS  | A<10>.PIN  | A<18>.PIN  | Z3_DATA<12>.EXP
+INPUTMC | 7 | 5 | 17 | 11 | 2 | 11 | 14 | 14 | 5 | 14 | 6 | 11 | 13 | 15 | 1
+INPUTP | 5 | 71 | 157 | 155 | 112 | 171
 EXPORTS | 1 | 15 | 17
 IMPORTS | 1 | 15 | 1
 EQ | 13 | 
@@ -1477,8 +1467,8 @@ EQ | 13 |
    Z3_DATA<26>.AP = LAN_SM_RST;
    Z3_DATA<26>.CE = !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd1;
-    Z3_DATA<26>.EXP  =  !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<2>.PIN
+    Z3_DATA<26>.EXP  =  D<2>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# UDS & LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & A<10>.PIN
 	# UDS & LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
@@ -1518,9 +1508,9 @@ GLOBALS | 1 | 2 | CLK_EXT
 MACROCELL | 10 | 1 | Z3_DATA<29>
 ATTRIBUTES | 8553408 | 0
 OUTPUTMC | 2 | 6 | 1 | 10 | 0
-INPUTS | 8 | DQ_SWAP  | DQ<13>.PIN  | DQ<5>.PIN  | LAN_SM_RST  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd1  | DQ<6>.PIN
+INPUTS | 8 | DQ_SWAP  | DQ<5>.PIN  | DQ<13>.PIN  | LAN_SM_RST  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd1  | DQ<6>.PIN
 INPUTMC | 5 | 5 | 17 | 11 | 2 | 11 | 14 | 14 | 5 | 14 | 6
-INPUTP | 3 | 204 | 221 | 227
+INPUTP | 3 | 221 | 204 | 227
 EXPORTS | 1 | 10 | 0
 EQ | 7 | 
    Z3_DATA<29>.D = DQ_SWAP & DQ<5>.PIN
@@ -1575,9 +1565,9 @@ GLOBALS | 1 | 2 | CLK_EXT
 MACROCELL | 9 | 16 | DQ_10_IOBUFE
 ATTRIBUTES | 265986 | 0
 OUTPUTMC | 1 | 9 | 17
-INPUTS | 13 | RESET  | LAN_D_INIT<8>  | UDS  | LDS  | DS1  | DS0  | D<4>.PIN  | FCS  | LAN_ACCESS  | DQ_DATA<4>  | RW  | DQ_5_IOBUFE/DQ_5_IOBUFE_TRST  | EXP58_.EXP
+INPUTS | 13 | RESET  | LAN_D_INIT<8>  | D<4>.PIN  | UDS  | LDS  | DS1  | DS0  | FCS  | LAN_ACCESS  | DQ_DATA<4>  | RW  | DQ_5_IOBUFE/DQ_5_IOBUFE_TRST  | EXP58_.EXP
 INPUTMC | 5 | 13 | 15 | 5 | 16 | 14 | 8 | 1 | 15 | 9 | 15
-INPUTP | 8 | 263 | 155 | 157 | 148 | 170 | 38 | 147 | 158
+INPUTP | 8 | 263 | 38 | 155 | 157 | 148 | 170 | 147 | 158
 EXPORTS | 1 | 9 | 17
 IMPORTS | 1 | 9 | 15
 EQ | 21 | 
@@ -1597,7 +1587,7 @@ EQ | 21 |
 	# RESET & !DS0 & !FCS & LAN_ACCESS & DQ_DATA<10> & 
 	!RW;
    DQ<10>.OE = DQ_5_IOBUFE/DQ_5_IOBUFE_TRST;
-    DQ_10_IOBUFE.EXP  =  RESET & UDS & LDS & DS1 & DS0 & D<4>.PIN
+    DQ_10_IOBUFE.EXP  =  RESET & D<4>.PIN & UDS & LDS & DS1 & DS0
 	# RESET & !DS1 & !FCS & LAN_ACCESS & DQ_DATA<4> & 
 	!RW
 	# RESET & !DS0 & !FCS & LAN_ACCESS & DQ_DATA<4> & 
@@ -1636,15 +1626,15 @@ EQ | 21 |
 
 MACROCELL | 9 | 1 | DQ_1_IOBUFE
 ATTRIBUTES | 265986 | 0
-INPUTS | 9 | RESET  | LAN_D_INIT<1>  | LAN_ACCESS  | D<1>.PIN  | FCS  | RW  | DQ<4>_BUFR.EXP  | DQ_0_IOBUFE.EXP  | DQ_5_IOBUFE/DQ_5_IOBUFE_TRST
+INPUTS | 9 | RESET  | LAN_D_INIT<1>  | D<1>.PIN  | LAN_ACCESS  | FCS  | RW  | DQ<4>_BUFR.EXP  | DQ_0_IOBUFE.EXP  | DQ_5_IOBUFE/DQ_5_IOBUFE_TRST
 INPUTMC | 5 | 13 | 16 | 5 | 16 | 9 | 0 | 9 | 2 | 1 | 15
 INPUTP | 4 | 263 | 30 | 147 | 158
 IMPORTS | 2 | 9 | 0 | 9 | 2
 EQ | 16 | 
    DQ<1> = !RESET & LAN_D_INIT<1>
-	# RESET & FCS & D<1>.PIN
-	# RESET & !LAN_ACCESS & D<1>.PIN
-	# RESET & RW & D<1>.PIN
+	# RESET & D<1>.PIN & FCS
+	# RESET & D<1>.PIN & !LAN_ACCESS
+	# RESET & D<1>.PIN & RW
 ;Imported pterms FB10_1
 	# RESET & !UDS & !FCS & LAN_ACCESS & DQ_DATA<1> & 
 	!RW
@@ -1655,7 +1645,7 @@ EQ | 16 |
 	# RESET & !DS0 & !FCS & LAN_ACCESS & DQ_DATA<1> & 
 	!RW
 ;Imported pterms FB10_3
-	# RESET & UDS & LDS & DS1 & DS0 & D<1>.PIN;
+	# RESET & D<1>.PIN & UDS & LDS & DS1 & DS0;
    DQ<1>.OE = DQ_5_IOBUFE/DQ_5_IOBUFE_TRST;
 
 MACROCELL | 9 | 0 | DQ<4>_BUFR.MC
@@ -1669,15 +1659,15 @@ IMPORTS | 1 | 9 | 17
 EQ | 23 | 
    DQ<4>_BUFR = !RESET & LAN_D_INIT<1>
 ;Imported pterms FB10_18
-	# RESET & FCS & D<4>.PIN
-	# RESET & !LAN_ACCESS & D<4>.PIN
-	# RESET & RW & D<4>.PIN
+	# RESET & D<4>.PIN & FCS
+	# RESET & D<4>.PIN & !LAN_ACCESS
+	# RESET & D<4>.PIN & RW
 	# RESET & !UDS & !FCS & LAN_ACCESS & DQ_DATA<4> & 
 	!RW
 	# RESET & !LDS & !FCS & LAN_ACCESS & DQ_DATA<4> & 
 	!RW
 ;Imported pterms FB10_17
-	# RESET & UDS & LDS & DS1 & DS0 & D<4>.PIN
+	# RESET & D<4>.PIN & UDS & LDS & DS1 & DS0
 	# RESET & !DS1 & !FCS & LAN_ACCESS & DQ_DATA<4> & 
 	!RW
 	# RESET & !DS0 & !FCS & LAN_ACCESS & DQ_DATA<4> & 
@@ -1950,7 +1940,7 @@ EQ | 20 |
 MACROCELL | 0 | 5 | D_4_IOBUFE
 ATTRIBUTES | 265986 | 0
 OUTPUTMC | 1 | 0 | 4
-INPUTS | 7 | RW  | DQ<4>.PIN  | LAN_ACCESS  | FCS  | Z3_DATA<21>  | LAN_BASEADR<5>.EXP  | D_8_IOBUFE/D_8_IOBUFE_TRST
+INPUTS | 7 | RW  | DQ<4>.PIN  | LAN_ACCESS  | FCS  | Z3_DATA<21>  | LAN_BASEADR<7>.EXP  | D_8_IOBUFE/D_8_IOBUFE_TRST
 INPUTMC | 4 | 5 | 16 | 10 | 7 | 0 | 6 | 4 | 10
 INPUTP | 3 | 158 | 225 | 147
 EXPORTS | 1 | 0 | 4
@@ -1968,7 +1958,7 @@ EQ | 9 |
 
 MACROCELL | 0 | 4 | D_5_IOBUFE
 ATTRIBUTES | 265986 | 0
-INPUTS | 9 | RW  | DQ<5>.PIN  | LAN_ACCESS  | FCS  | AS  | AUTOCONFIG_Z2_ACCESS  | LAN_BASEADR<7>.EXP  | D_8_IOBUFE/D_8_IOBUFE_TRST  | D_4_IOBUFE.EXP
+INPUTS | 9 | RW  | DQ<5>.PIN  | LAN_ACCESS  | FCS  | AS  | AUTOCONFIG_Z2_ACCESS  | LAN_BASEADR<8>.EXP  | D_8_IOBUFE/D_8_IOBUFE_TRST  | D_4_IOBUFE.EXP
 INPUTMC | 5 | 5 | 16 | 8 | 2 | 0 | 3 | 4 | 10 | 0 | 5
 INPUTP | 4 | 158 | 221 | 147 | 152
 IMPORTS | 2 | 0 | 3 | 0 | 5
@@ -2055,17 +2045,17 @@ EQ | 8 |
 MACROCELL | 9 | 2 | DQ_0_IOBUFE
 ATTRIBUTES | 265986 | 0
 OUTPUTMC | 1 | 9 | 1
-INPUTS | 12 | RESET  | LAN_ACCESS  | D<0>.PIN  | FCS  | RW  | UDS  | LDS  | DS1  | DS0  | D<1>.PIN  | DQ_5_IOBUFE/DQ_5_IOBUFE_TRST  | EXP53_.EXP
+INPUTS | 12 | RESET  | D<0>.PIN  | LAN_ACCESS  | FCS  | RW  | D<1>.PIN  | UDS  | LDS  | DS1  | DS0  | DQ_5_IOBUFE/DQ_5_IOBUFE_TRST  | EXP53_.EXP
 INPUTMC | 3 | 5 | 16 | 1 | 15 | 9 | 3
-INPUTP | 9 | 263 | 4 | 147 | 158 | 155 | 157 | 148 | 170 | 30
+INPUTP | 9 | 263 | 4 | 147 | 158 | 30 | 155 | 157 | 148 | 170
 EXPORTS | 1 | 9 | 1
 IMPORTS | 1 | 9 | 3
 EQ | 15 | 
-   DQ<0> = RESET & FCS & D<0>.PIN
-	# RESET & !LAN_ACCESS & D<0>.PIN
-	# RESET & RW & D<0>.PIN
+   DQ<0> = RESET & D<0>.PIN & FCS
+	# RESET & D<0>.PIN & !LAN_ACCESS
+	# RESET & D<0>.PIN & RW
 ;Imported pterms FB10_4
-	# RESET & UDS & LDS & DS1 & DS0 & D<0>.PIN
+	# RESET & D<0>.PIN & UDS & LDS & DS1 & DS0
 	# RESET & !UDS & !FCS & LAN_ACCESS & DQ_DATA<0> & 
 	!RW
 	# RESET & !LDS & !FCS & LAN_ACCESS & DQ_DATA<0> & 
@@ -2075,7 +2065,7 @@ EQ | 15 |
 	# RESET & !DS0 & !FCS & LAN_ACCESS & DQ_DATA<0> & 
 	!RW;
    DQ<0>.OE = DQ_5_IOBUFE/DQ_5_IOBUFE_TRST;
-    DQ_0_IOBUFE.EXP  =  RESET & UDS & LDS & DS1 & DS0 & D<1>.PIN
+    DQ_0_IOBUFE.EXP  =  RESET & D<1>.PIN & UDS & LDS & DS1 & DS0
 
 MACROCELL | 7 | 1 | DQ_12_IOBUFE
 ATTRIBUTES | 265986 | 0
@@ -2180,28 +2170,28 @@ EQ | 16 |
 MACROCELL | 9 | 5 | DQ_2_IOBUFE
 ATTRIBUTES | 265986 | 0
 OUTPUTMC | 1 | 9 | 4
-INPUTS | 12 | RESET  | UDS  | LDS  | DS1  | DS0  | D<3>.PIN  | FCS  | LAN_ACCESS  | DQ_DATA<3>  | RW  | DQ_5_IOBUFE/DQ_5_IOBUFE_TRST  | EXP54_.EXP
+INPUTS | 12 | RESET  | D<3>.PIN  | UDS  | LDS  | DS1  | DS0  | FCS  | LAN_ACCESS  | DQ_DATA<3>  | RW  | DQ_5_IOBUFE/DQ_5_IOBUFE_TRST  | EXP54_.EXP
 INPUTMC | 4 | 5 | 16 | 11 | 17 | 1 | 15 | 9 | 6
-INPUTP | 8 | 263 | 155 | 157 | 148 | 170 | 28 | 147 | 158
+INPUTP | 8 | 263 | 28 | 155 | 157 | 148 | 170 | 147 | 158
 EXPORTS | 1 | 9 | 4
 IMPORTS | 1 | 9 | 6
 EQ | 22 | 
    DQ<2> = ;Imported pterms FB10_7
-	  RESET & FCS & D<2>.PIN
-	# RESET & !LAN_ACCESS & D<2>.PIN
-	# RESET & RW & D<2>.PIN
+	  RESET & D<2>.PIN & FCS
+	# RESET & D<2>.PIN & !LAN_ACCESS
+	# RESET & D<2>.PIN & RW
 	# RESET & !UDS & !FCS & LAN_ACCESS & DQ_DATA<2> & 
 	!RW
 	# RESET & !LDS & !FCS & LAN_ACCESS & DQ_DATA<2> & 
 	!RW
 ;Imported pterms FB10_8
-	# RESET & UDS & LDS & DS1 & DS0 & D<2>.PIN
+	# RESET & D<2>.PIN & UDS & LDS & DS1 & DS0
 	# RESET & !DS1 & !FCS & LAN_ACCESS & DQ_DATA<2> & 
 	!RW
 	# RESET & !DS0 & !FCS & LAN_ACCESS & DQ_DATA<2> & 
 	!RW;
    DQ<2>.OE = DQ_5_IOBUFE/DQ_5_IOBUFE_TRST;
-    DQ_2_IOBUFE.EXP  =  RESET & UDS & LDS & DS1 & DS0 & D<3>.PIN
+    DQ_2_IOBUFE.EXP  =  RESET & D<3>.PIN & UDS & LDS & DS1 & DS0
 	# RESET & !LDS & !FCS & LAN_ACCESS & DQ_DATA<3> & 
 	!RW
 	# RESET & !DS1 & !FCS & LAN_ACCESS & DQ_DATA<3> & 
@@ -2211,18 +2201,18 @@ EQ | 22 |
 
 MACROCELL | 9 | 4 | DQ_3_IOBUFE
 ATTRIBUTES | 265986 | 0
-INPUTS | 9 | RESET  | LAN_ACCESS  | D<3>.PIN  | FCS  | RW  | UDS  | DQ_DATA<3>  | DQ_2_IOBUFE.EXP  | DQ_5_IOBUFE/DQ_5_IOBUFE_TRST
+INPUTS | 9 | RESET  | D<3>.PIN  | LAN_ACCESS  | FCS  | RW  | UDS  | DQ_DATA<3>  | DQ_2_IOBUFE.EXP  | DQ_5_IOBUFE/DQ_5_IOBUFE_TRST
 INPUTMC | 4 | 5 | 16 | 11 | 17 | 9 | 5 | 1 | 15
 INPUTP | 5 | 263 | 28 | 147 | 158 | 155
 IMPORTS | 1 | 9 | 5
 EQ | 14 | 
-   DQ<3> = RESET & FCS & D<3>.PIN
-	# RESET & !LAN_ACCESS & D<3>.PIN
-	# RESET & RW & D<3>.PIN
+   DQ<3> = RESET & D<3>.PIN & FCS
+	# RESET & D<3>.PIN & !LAN_ACCESS
+	# RESET & D<3>.PIN & RW
 	# RESET & !UDS & !FCS & LAN_ACCESS & DQ_DATA<3> & 
 	!RW
 ;Imported pterms FB10_6
-	# RESET & UDS & LDS & DS1 & DS0 & D<3>.PIN
+	# RESET & D<3>.PIN & UDS & LDS & DS1 & DS0
 	# RESET & !LDS & !FCS & LAN_ACCESS & DQ_DATA<3> & 
 	!RW
 	# RESET & !DS1 & !FCS & LAN_ACCESS & DQ_DATA<3> & 
@@ -2234,16 +2224,16 @@ EQ | 14 |
 MACROCELL | 9 | 7 | DQ_5_IOBUFE
 ATTRIBUTES | 265986 | 0
 OUTPUTMC | 1 | 9 | 6
-INPUTS | 13 | RESET  | LAN_ACCESS  | D<5>.PIN  | UDS  | LDS  | DS1  | DS0  | D<2>.PIN  | FCS  | DQ_DATA<2>  | DQ_5_IOBUFE/DQ_5_IOBUFE_TRST  | RW  | EXP55_.EXP
+INPUTS | 13 | RESET  | D<5>.PIN  | LAN_ACCESS  | D<2>.PIN  | UDS  | LDS  | DS1  | DS0  | FCS  | DQ_DATA<2>  | DQ_5_IOBUFE/DQ_5_IOBUFE_TRST  | RW  | EXP55_.EXP
 INPUTMC | 4 | 5 | 16 | 15 | 11 | 1 | 15 | 9 | 8
-INPUTP | 9 | 263 | 37 | 155 | 157 | 148 | 170 | 71 | 147 | 158
+INPUTP | 9 | 263 | 37 | 71 | 155 | 157 | 148 | 170 | 147 | 158
 EXPORTS | 1 | 9 | 6
 IMPORTS | 1 | 9 | 8
 EQ | 20 | 
-   DQ<5> = RESET & !LAN_ACCESS & D<5>.PIN
+   DQ<5> = RESET & D<5>.PIN & !LAN_ACCESS
 ;Imported pterms FB10_9
-	# RESET & FCS & D<5>.PIN
-	# RESET & RW & D<5>.PIN
+	# RESET & D<5>.PIN & FCS
+	# RESET & D<5>.PIN & RW
 	# RESET & !UDS & !FCS & LAN_ACCESS & DQ_DATA<5> & 
 	!RW
 	# RESET & !LDS & !FCS & LAN_ACCESS & DQ_DATA<5> & 
@@ -2251,11 +2241,11 @@ EQ | 20 |
 	# RESET & !DS1 & !FCS & LAN_ACCESS & DQ_DATA<5> & 
 	!RW
 ;Imported pterms FB10_10
-	# RESET & UDS & LDS & DS1 & DS0 & D<5>.PIN
+	# RESET & D<5>.PIN & UDS & LDS & DS1 & DS0
 	# RESET & !DS0 & !FCS & LAN_ACCESS & DQ_DATA<5> & 
 	!RW;
    DQ<5>.OE = DQ_5_IOBUFE/DQ_5_IOBUFE_TRST;
-    DQ_5_IOBUFE.EXP  =  RESET & UDS & LDS & DS1 & DS0 & D<2>.PIN
+    DQ_5_IOBUFE.EXP  =  RESET & D<2>.PIN & UDS & LDS & DS1 & DS0
 	# RESET & !DS1 & !FCS & LAN_ACCESS & DQ_DATA<2> & 
 	!RW
 	# RESET & !DS0 & !FCS & LAN_ACCESS & DQ_DATA<2> & 
@@ -2264,28 +2254,28 @@ EQ | 20 |
 MACROCELL | 9 | 11 | DQ_6_IOBUFE
 ATTRIBUTES | 265986 | 0
 OUTPUTMC | 1 | 9 | 10
-INPUTS | 12 | RESET  | UDS  | LDS  | DS1  | DS0  | D<7>.PIN  | FCS  | LAN_ACCESS  | DQ_DATA<7>  | RW  | DQ_5_IOBUFE/DQ_5_IOBUFE_TRST  | EXP56_.EXP
+INPUTS | 12 | RESET  | D<7>.PIN  | UDS  | LDS  | DS1  | DS0  | FCS  | LAN_ACCESS  | DQ_DATA<7>  | RW  | DQ_5_IOBUFE/DQ_5_IOBUFE_TRST  | EXP56_.EXP
 INPUTMC | 4 | 5 | 16 | 12 | 4 | 1 | 15 | 9 | 12
-INPUTP | 8 | 263 | 155 | 157 | 148 | 170 | 29 | 147 | 158
+INPUTP | 8 | 263 | 29 | 155 | 157 | 148 | 170 | 147 | 158
 EXPORTS | 1 | 9 | 10
 IMPORTS | 1 | 9 | 12
 EQ | 22 | 
    DQ<6> = ;Imported pterms FB10_13
-	  RESET & FCS & D<6>.PIN
-	# RESET & !LAN_ACCESS & D<6>.PIN
-	# RESET & RW & D<6>.PIN
+	  RESET & D<6>.PIN & FCS
+	# RESET & D<6>.PIN & !LAN_ACCESS
+	# RESET & D<6>.PIN & RW
 	# RESET & !UDS & !FCS & LAN_ACCESS & DQ_DATA<6> & 
 	!RW
 	# RESET & !LDS & !FCS & LAN_ACCESS & DQ_DATA<6> & 
 	!RW
 ;Imported pterms FB10_14
-	# RESET & UDS & LDS & DS1 & DS0 & D<6>.PIN
+	# RESET & D<6>.PIN & UDS & LDS & DS1 & DS0
 	# RESET & !DS1 & !FCS & LAN_ACCESS & DQ_DATA<6> & 
 	!RW
 	# RESET & !DS0 & !FCS & LAN_ACCESS & DQ_DATA<6> & 
 	!RW;
    DQ<6>.OE = DQ_5_IOBUFE/DQ_5_IOBUFE_TRST;
-    DQ_6_IOBUFE.EXP  =  RESET & UDS & LDS & DS1 & DS0 & D<7>.PIN
+    DQ_6_IOBUFE.EXP  =  RESET & D<7>.PIN & UDS & LDS & DS1 & DS0
 	# RESET & !LDS & !FCS & LAN_ACCESS & DQ_DATA<7> & 
 	!RW
 	# RESET & !DS1 & !FCS & LAN_ACCESS & DQ_DATA<7> & 
@@ -2295,18 +2285,18 @@ EQ | 22 |
 
 MACROCELL | 9 | 10 | DQ_7_IOBUFE
 ATTRIBUTES | 265986 | 0
-INPUTS | 9 | RESET  | LAN_ACCESS  | D<7>.PIN  | FCS  | RW  | UDS  | DQ_DATA<7>  | DQ_6_IOBUFE.EXP  | DQ_5_IOBUFE/DQ_5_IOBUFE_TRST
+INPUTS | 9 | RESET  | D<7>.PIN  | LAN_ACCESS  | FCS  | RW  | UDS  | DQ_DATA<7>  | DQ_6_IOBUFE.EXP  | DQ_5_IOBUFE/DQ_5_IOBUFE_TRST
 INPUTMC | 4 | 5 | 16 | 12 | 4 | 9 | 11 | 1 | 15
 INPUTP | 5 | 263 | 29 | 147 | 158 | 155
 IMPORTS | 1 | 9 | 11
 EQ | 14 | 
-   DQ<7> = RESET & FCS & D<7>.PIN
-	# RESET & !LAN_ACCESS & D<7>.PIN
-	# RESET & RW & D<7>.PIN
+   DQ<7> = RESET & D<7>.PIN & FCS
+	# RESET & D<7>.PIN & !LAN_ACCESS
+	# RESET & D<7>.PIN & RW
 	# RESET & !UDS & !FCS & LAN_ACCESS & DQ_DATA<7> & 
 	!RW
 ;Imported pterms FB10_12
-	# RESET & UDS & LDS & DS1 & DS0 & D<7>.PIN
+	# RESET & D<7>.PIN & UDS & LDS & DS1 & DS0
 	# RESET & !LDS & !FCS & LAN_ACCESS & DQ_DATA<7> & 
 	!RW
 	# RESET & !DS1 & !FCS & LAN_ACCESS & DQ_DATA<7> & 
@@ -2319,7 +2309,7 @@ MACROCELL | 5 | 17 | DQ_SWAP
 ATTRIBUTES | 8520608 | 0
 OUTPUTMC | 70 | 8 | 10 | 15 | 5 | 15 | 1 | 15 | 0 | 14 | 11 | 14 | 13 | 14 | 12 | 8 | 13 | 8 | 16 | 10 | 2 | 10 | 4 | 10 | 9 | 10 | 10 | 12 | 7 | 15 | 9 | 15 | 7 | 15 | 13 | 15 | 8 | 15 | 6 | 10 | 12 | 10 | 8 | 10 | 7 | 10 | 6 | 12 | 14 | 15 | 4 | 15 | 3 | 14 | 17 | 10 | 5 | 10 | 3 | 10 | 1 | 10 | 0 | 12 | 8 | 10 | 17 | 15 | 17 | 11 | 0 | 15 | 15 | 12 | 16 | 12 | 15 | 12 | 10 | 14 | 10 | 15 | 11 | 11 | 16 | 14 | 8 | 12 | 9 | 12 | 5 | 12 | 3 | 10 | 14 | 14 | 7 | 10 | 13 | 10 | 16 | 11 | 1 | 11 | 15 | 11 | 17 | 12 | 0 | 12 | 1 | 12 | 2 | 12 | 4 | 12 | 6 | 12 | 11 | 12 | 12 | 12 | 13 | 12 | 17 | 14 | 0 | 14 | 1 | 14 | 9 | 15 | 2 | 15 | 10 | 15 | 12 | 15 | 14 | 15 | 16
 INPUTS | 7 | Z3  | SHUT_UP_Z2<0>  | A<13>.PIN  | A<14>.PIN  | Mcompar_LAN_ACCESS_cmp_eq0000_AEB_or0000/Mcompar_LAN_ACCESS_cmp_eq0000_AEB_or0000_D2  | FCS  | RESET
-INPUTMC | 2 | 6 | 0 | 2 | 10
+INPUTMC | 2 | 0 | 0 | 2 | 10
 INPUTP | 5 | 151 | 123 | 125 | 147 | 263
 EQ | 4 | 
    !DQ_SWAP.D = Z3 & !SHUT_UP_Z2<0> & A<13>.PIN & A<14>.PIN & 
@@ -2444,7 +2434,7 @@ GLOBALS | 1 | 2 | CLK_EXT
 
 MACROCELL | 8 | 2 | AUTOCONFIG_Z2_ACCESS
 ATTRIBUTES | 8520496 | 0
-OUTPUTMC | 86 | 8 | 6 | 4 | 10 | 0 | 0 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 17 | 3 | 2 | 7 | 14 | 0 | 17 | 7 | 13 | 7 | 12 | 0 | 15 | 7 | 11 | 0 | 12 | 0 | 10 | 0 | 8 | 7 | 10 | 7 | 8 | 13 | 13 | 7 | 6 | 0 | 3 | 7 | 5 | 0 | 2 | 3 | 1 | 4 | 13 | 4 | 12 | 4 | 16 | 6 | 2 | 6 | 4 | 6 | 11 | 1 | 14 | 4 | 9 | 1 | 10 | 0 | 1 | 0 | 4 | 1 | 9 | 1 | 13 | 1 | 15 | 4 | 11 | 6 | 0 | 7 | 17 | 3 | 0 | 6 | 16 | 6 | 8 | 6 | 13 | 7 | 16 | 0 | 6 | 0 | 7 | 0 | 9 | 0 | 11 | 0 | 13 | 0 | 14 | 0 | 16 | 1 | 4 | 1 | 5 | 1 | 7 | 1 | 11 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 7 | 3 | 11 | 3 | 13 | 4 | 14 | 4 | 15 | 4 | 17 | 6 | 1 | 6 | 5 | 6 | 10 | 7 | 4 | 7 | 7 | 7 | 9 | 8 | 17 | 8 | 1
+OUTPUTMC | 86 | 8 | 6 | 6 | 0 | 4 | 10 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 17 | 3 | 2 | 7 | 14 | 7 | 13 | 7 | 12 | 7 | 11 | 7 | 10 | 7 | 8 | 7 | 6 | 7 | 5 | 0 | 17 | 0 | 15 | 0 | 12 | 0 | 10 | 0 | 8 | 13 | 13 | 0 | 3 | 0 | 2 | 3 | 1 | 4 | 13 | 4 | 12 | 4 | 16 | 6 | 2 | 6 | 4 | 6 | 11 | 1 | 14 | 4 | 9 | 1 | 10 | 0 | 1 | 0 | 4 | 1 | 9 | 1 | 13 | 1 | 15 | 4 | 11 | 0 | 0 | 7 | 17 | 3 | 0 | 6 | 16 | 6 | 8 | 6 | 13 | 7 | 16 | 0 | 6 | 0 | 7 | 0 | 9 | 0 | 11 | 0 | 13 | 0 | 14 | 0 | 16 | 1 | 4 | 1 | 5 | 1 | 7 | 1 | 11 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 7 | 3 | 11 | 3 | 13 | 4 | 14 | 4 | 15 | 4 | 17 | 6 | 1 | 6 | 5 | 6 | 10 | 7 | 4 | 7 | 7 | 7 | 9 | 8 | 17 | 8 | 1
 INPUTS | 17 | AUTO_CONFIG_Z2_DONE<1>  | CFIN  | A<18>.PIN  | A<17>.PIN  | A<16>.PIN  | A<23>.PIN  | A<22>.PIN  | A<21>.PIN  | A<19>.PIN  | A<20>.PIN  | AUTO_CONFIG_Z2_DONE<0>  | A<2>  | AS  | RESET  | A<3>  | A<1>  | AUTO_CONFIG_Z2_DONE<0>.EXP
 INPUTMC | 3 | 8 | 4 | 8 | 3 | 8 | 3
 INPUTP | 14 | 190 | 171 | 172 | 175 | 161 | 162 | 163 | 169 | 167 | 101 | 152 | 263 | 99 | 107
@@ -2505,32 +2495,32 @@ EQ | 3 |
 MACROCELL | 4 | 6 | IDE_ACCESS
 ATTRIBUTES | 8520496 | 0
 OUTPUTMC | 5 | 8 | 9 | 8 | 11 | 8 | 12 | 8 | 14 | 13 | 13
-INPUTS | 7 | SHUT_UP_Z2<2>  | IDE_BASEADR<3>  | A<19>.PIN  | EXP34_.EXP  | EXP35_.EXP  | AS  | RESET
-INPUTMC | 4 | 3 | 0 | 1 | 3 | 4 | 5 | 4 | 7
-INPUTP | 3 | 169 | 152 | 263
+INPUTS | 7 | SHUT_UP_Z2<2>  | IDE_BASEADR<7>  | A<23>.PIN  | EXP34_.EXP  | EXP35_.EXP  | AS  | RESET
+INPUTMC | 4 | 3 | 0 | 3 | 2 | 4 | 5 | 4 | 7
+INPUTP | 3 | 161 | 152 | 263
 IMPORTS | 2 | 4 | 5 | 4 | 7
 EQ | 23 | 
    !IDE_ACCESS.D = SHUT_UP_Z2<2>
-	# IDE_BASEADR<3> & !A<19>.PIN
-	# !IDE_BASEADR<3> & A<19>.PIN
+	# IDE_BASEADR<7> & !A<23>.PIN
+	# !IDE_BASEADR<7> & A<23>.PIN
 ;Imported pterms FB5_6
-	# IDE_BASEADR<0> & !A<16>.PIN
-	# IDE_BASEADR<1> & !A<17>.PIN
-	# !IDE_BASEADR<1> & A<17>.PIN
-	# IDE_BASEADR<2> & !A<18>.PIN
-	# !IDE_BASEADR<2> & A<18>.PIN
-;Imported pterms FB5_5
 	# IDE_BASEADR<4> & !A<20>.PIN
 	# IDE_BASEADR<5> & !A<21>.PIN
 	# !IDE_BASEADR<5> & A<21>.PIN
-;Imported pterms FB5_8
-	# !IDE_BASEADR<0> & A<16>.PIN
 	# IDE_BASEADR<6> & !A<22>.PIN
 	# !IDE_BASEADR<6> & A<22>.PIN
-	# IDE_BASEADR<7> & !A<23>.PIN
-	# !IDE_BASEADR<7> & A<23>.PIN
+;Imported pterms FB5_5
+	# IDE_BASEADR<0> & !A<16>.PIN
+	# IDE_BASEADR<1> & !A<17>.PIN
+	# !IDE_BASEADR<1> & A<17>.PIN
+;Imported pterms FB5_8
+	# IDE_BASEADR<2> & !A<18>.PIN
+	# !IDE_BASEADR<2> & A<18>.PIN
+	# IDE_BASEADR<3> & !A<19>.PIN
+	# !IDE_BASEADR<3> & A<19>.PIN
+	# !IDE_BASEADR<4> & A<20>.PIN
 ;Imported pterms FB5_9
-	# !IDE_BASEADR<4> & A<20>.PIN;
+	# !IDE_BASEADR<0> & A<16>.PIN;
    IDE_ACCESS.CLK = !AS;
    IDE_ACCESS.AR = !RESET;
 
@@ -2538,7 +2528,7 @@ MACROCELL | 5 | 16 | LAN_ACCESS
 ATTRIBUTES | 8520496 | 0
 OUTPUTMC | 81 | 8 | 10 | 15 | 5 | 15 | 2 | 15 | 1 | 14 | 16 | 14 | 14 | 14 | 13 | 8 | 13 | 8 | 16 | 10 | 2 | 10 | 4 | 10 | 9 | 10 | 10 | 12 | 7 | 15 | 10 | 15 | 7 | 9 | 15 | 11 | 8 | 9 | 1 | 7 | 3 | 1 | 0 | 11 | 10 | 3 | 1 | 4 | 13 | 4 | 14 | 4 | 16 | 6 | 2 | 6 | 4 | 6 | 11 | 1 | 14 | 4 | 9 | 1 | 10 | 0 | 5 | 0 | 4 | 1 | 9 | 1 | 13 | 1 | 12 | 4 | 11 | 9 | 2 | 7 | 1 | 11 | 7 | 7 | 2 | 11 | 4 | 9 | 3 | 9 | 4 | 9 | 7 | 9 | 9 | 9 | 10 | 11 | 2 | 7 | 7 | 13 | 13 | 13 | 2 | 1 | 15 | 4 | 10 | 0 | 6 | 1 | 1 | 1 | 8 | 1 | 16 | 1 | 17 | 3 | 2 | 4 | 12 | 4 | 15 | 4 | 17 | 6 | 1 | 6 | 5 | 6 | 10 | 7 | 0 | 9 | 0 | 9 | 5 | 9 | 6 | 9 | 8 | 9 | 11 | 9 | 12 | 9 | 13 | 9 | 14 | 9 | 16 | 9 | 17 | 11 | 3 | 11 | 5 | 11 | 6 | 11 | 9
 INPUTS | 5 | Z3  | SHUT_UP_Z2<0>  | Mcompar_LAN_ACCESS_cmp_eq0000_AEB_or0000/Mcompar_LAN_ACCESS_cmp_eq0000_AEB_or0000_D2  | FCS  | RESET
-INPUTMC | 2 | 6 | 0 | 2 | 10
+INPUTMC | 2 | 0 | 0 | 2 | 10
 INPUTP | 3 | 151 | 147 | 263
 EQ | 4 | 
    LAN_ACCESS.D = Z3 & !SHUT_UP_Z2<0> & 
@@ -2581,10 +2571,10 @@ EQ | 23 |
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# D<8>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
-	# !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<0>.PIN
-	# !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<0>.PIN
+	# D<0>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<0>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<16>.PIN;
    DQ_DATA<0>.CLK = CLK_EXT;	// GCK
@@ -2605,8 +2595,8 @@ EQ | 23 |
 	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<18>.PIN
 ;Imported pterms FB16_1
-	# !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<2>.PIN
+	# D<2>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# UDS & LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & A<10>.PIN
 	# UDS & LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
@@ -2616,8 +2606,8 @@ EQ | 23 |
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# D<10>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
-	# !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<2>.PIN
+	# D<2>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<10>.PIN;
    DQ_DATA<10>.CLK = CLK_EXT;	// GCK
@@ -2638,10 +2628,10 @@ EQ | 23 |
 	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<19>.PIN
 ;Imported pterms FB12_2
-	# !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<3>.PIN
-	# !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<3>.PIN
+	# D<3>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<3>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# UDS & LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & A<11>.PIN
 	# UDS & LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
@@ -2677,10 +2667,10 @@ EQ | 32 |
 ;Imported pterms FB16_15
 	# D<12>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
-	# !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<4>.PIN
-	# !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<4>.PIN
+	# D<4>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<4>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<12>.PIN
 	# UDS & LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
@@ -2694,8 +2684,8 @@ EQ | 32 |
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# D<10>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
-	# !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<2>.PIN
+	# D<2>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<10>.PIN
 GLOBALS | 1 | 2 | CLK_EXT
@@ -2703,27 +2693,27 @@ GLOBALS | 1 | 2 | CLK_EXT
 MACROCELL | 12 | 16 | DQ_DATA<13>
 ATTRIBUTES | 8553344 | 0
 OUTPUTMC | 3 | 11 | 6 | 12 | 16 | 11 | 5
-INPUTS | 10 | LAN_SM_FSM_FFd1  | DQ_DATA<13>  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | DQ_SWAP  | LAN_SM_FSM_FFd3  | A<21>.PIN  | EXP73_.EXP  | DQ_DATA<14>.EXP  | LAN_SM_RST
+INPUTS | 10 | LAN_SM_FSM_FFd1  | DQ_DATA<13>  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | DQ_SWAP  | LAN_SM_FSM_FFd3  | A<13>.PIN  | EXP73_.EXP  | DQ_DATA<14>.EXP  | LAN_SM_RST
 INPUTMC | 9 | 14 | 6 | 12 | 16 | 11 | 14 | 14 | 5 | 5 | 17 | 11 | 13 | 12 | 15 | 12 | 17 | 11 | 2
-INPUTP | 1 | 163
+INPUTP | 1 | 123
 IMPORTS | 2 | 12 | 15 | 12 | 17
 EQ | 23 | 
    DQ_DATA<13>.D = LAN_SM_FSM_FFd2 & DQ_DATA<13>
 	# LAN_SM_FSM_FFd4 & DQ_DATA<13>
 	# LAN_SM_FSM_FFd1 & DQ_DATA<13>
-	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
-	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<21>.PIN
+	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
+	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<13>.PIN
 ;Imported pterms FB13_16
 	# D<13>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# D<13>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
-	# !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<5>.PIN
-	# !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<5>.PIN
-	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
-	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<13>.PIN
+	# D<5>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<5>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
+	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<21>.PIN
 ;Imported pterms FB13_18
 	# UDS & LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & A<13>.PIN
@@ -2746,19 +2736,19 @@ EQ | 27 |
 	# LAN_SM_FSM_FFd1 & DQ_DATA<14>
 ;Imported pterms FB13_1
 	# LAN_SM_FSM_FFd4 & DQ_DATA<14>
-	# D<14>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	# D<6>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
-	# D<14>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	# D<6>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<14>.PIN
 	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<22>.PIN
 ;Imported pterms FB13_2
-	# !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<6>.PIN
-	# !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<6>.PIN
+	# D<14>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<14>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# UDS & LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & A<14>.PIN
 	# UDS & LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
@@ -2789,10 +2779,10 @@ EQ | 24 |
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# D<15>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
-	# !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<7>.PIN
-	# !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<7>.PIN
+	# D<7>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<7>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<15>.PIN
 ;Imported pterms FB13_9
@@ -2818,10 +2808,10 @@ EQ | 25 |
 	# LAN_SM_FSM_FFd1 & DQ_DATA<1>
 ;Imported pterms FB15_1
 	# LAN_SM_FSM_FFd4 & DQ_DATA<1>
-	# !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<1>.PIN
-	# !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<1>.PIN
+	# D<1>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<1>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<17>.PIN
 	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
@@ -2855,10 +2845,10 @@ EQ | 23 |
 	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<10>.PIN
 ;Imported pterms FB16_11
-	# !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<2>.PIN
-	# !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<2>.PIN
+	# D<2>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<2>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 ;Imported pterms FB16_13
 	# D<10>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
@@ -2887,10 +2877,10 @@ EQ | 29 |
 ;Imported pterms FB12_17
 	# LAN_SM_FSM_FFd2 & DQ_DATA<3>
 	# LAN_SM_FSM_FFd4 & DQ_DATA<3>
-	# !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<3>.PIN
-	# !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<3>.PIN
+	# D<3>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<3>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<11>.PIN
 ;Imported pterms FB12_16
@@ -2917,27 +2907,27 @@ GLOBALS | 1 | 2 | CLK_EXT
 MACROCELL | 14 | 8 | DQ_DATA<4>
 ATTRIBUTES | 8553344 | 0
 OUTPUTMC | 3 | 14 | 8 | 9 | 16 | 9 | 17
-INPUTS | 10 | LAN_SM_FSM_FFd1  | DQ_DATA<4>  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | DQ_SWAP  | LAN_SM_FSM_FFd3  | A<12>.PIN  | EXP77_.EXP  | DQ_DATA<9>.EXP  | LAN_SM_RST
+INPUTS | 10 | LAN_SM_FSM_FFd1  | DQ_DATA<4>  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | DQ_SWAP  | LAN_SM_FSM_FFd3  | A<20>.PIN  | EXP77_.EXP  | DQ_DATA<9>.EXP  | LAN_SM_RST
 INPUTMC | 9 | 14 | 6 | 14 | 8 | 11 | 14 | 14 | 5 | 5 | 17 | 11 | 13 | 14 | 7 | 14 | 9 | 11 | 2
-INPUTP | 1 | 115
+INPUTP | 1 | 167
 IMPORTS | 2 | 14 | 7 | 14 | 9
 EQ | 23 | 
    DQ_DATA<4>.D = LAN_SM_FSM_FFd2 & DQ_DATA<4>
 	# LAN_SM_FSM_FFd4 & DQ_DATA<4>
 	# LAN_SM_FSM_FFd1 & DQ_DATA<4>
-	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
-	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<12>.PIN
+	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
+	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<20>.PIN
 ;Imported pterms FB15_8
 	# D<12>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# D<12>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
-	# !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<4>.PIN
-	# !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<4>.PIN
-	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
-	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<20>.PIN
+	# D<4>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<4>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
+	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<12>.PIN
 ;Imported pterms FB15_10
 	# UDS & LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & A<20>.PIN
@@ -2962,10 +2952,10 @@ EQ | 25 |
 ;Imported pterms FB13_13
 	# D<13>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
-	# !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<5>.PIN
-	# !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<5>.PIN
+	# D<5>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<5>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<21>.PIN
 	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
@@ -2997,10 +2987,10 @@ EQ | 23 |
 	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<14>.PIN
 ;Imported pterms FB13_5
-	# !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<6>.PIN
-	# !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<6>.PIN
+	# D<6>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<6>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 ;Imported pterms FB13_7
 	# D<14>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
@@ -3019,9 +3009,9 @@ GLOBALS | 1 | 2 | CLK_EXT
 MACROCELL | 12 | 4 | DQ_DATA<7>
 ATTRIBUTES | 8553344 | 0
 OUTPUTMC | 5 | 9 | 10 | 12 | 4 | 9 | 11 | 12 | 3 | 12 | 5
-INPUTS | 11 | LAN_SM_FSM_FFd1  | DQ_DATA<7>  | LAN_SM_FSM_FFd2  | UDS  | DQ_SWAP  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd3  | D<6>.PIN  | LDS  | EXP69_.EXP  | LAN_SM_RST
+INPUTS | 11 | LAN_SM_FSM_FFd1  | DQ_DATA<7>  | LAN_SM_FSM_FFd2  | D<6>.PIN  | UDS  | DQ_SWAP  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd3  | LDS  | EXP69_.EXP  | LAN_SM_RST
 INPUTMC | 8 | 14 | 6 | 12 | 4 | 11 | 14 | 5 | 17 | 14 | 5 | 11 | 13 | 12 | 3 | 11 | 2
-INPUTP | 3 | 155 | 26 | 157
+INPUTP | 3 | 26 | 155 | 157
 EXPORTS | 1 | 12 | 5
 IMPORTS | 1 | 12 | 3
 EQ | 27 | 
@@ -3029,10 +3019,10 @@ EQ | 27 |
 	# LAN_SM_FSM_FFd1 & DQ_DATA<7>
 ;Imported pterms FB13_4
 	# LAN_SM_FSM_FFd4 & DQ_DATA<7>
-	# !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<7>.PIN
-	# !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<7>.PIN
+	# D<7>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<7>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<23>.PIN
 	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
@@ -3048,10 +3038,10 @@ EQ | 27 |
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & A<15>.PIN;
    DQ_DATA<7>.CLK = CLK_EXT;	// GCK
    DQ_DATA<7>.AP = LAN_SM_RST;
-    DQ_DATA<7>.EXP  =  !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<6>.PIN
-	# !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<6>.PIN
+    DQ_DATA<7>.EXP  =  D<6>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<6>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 GLOBALS | 1 | 2 | CLK_EXT
 
 MACROCELL | 10 | 15 | DQ_DATA<8>
@@ -3071,15 +3061,15 @@ EQ | 24 |
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# D<8>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
-	# !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<0>.PIN
+	# D<0>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<8>.PIN
 	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<16>.PIN
 ;Imported pterms FB11_14
-	# !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<0>.PIN
+	# D<0>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# UDS & LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & A<8>.PIN
 	# UDS & LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
@@ -3111,10 +3101,10 @@ EQ | 27 |
 	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<17>.PIN
 ;Imported pterms FB15_12
-	# !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<1>.PIN
-	# !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<1>.PIN
+	# D<1>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<1>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# UDS & LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & A<9>.PIN
 	# UDS & LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
@@ -3142,21 +3132,32 @@ EQ | 6 |
    LAN_WR_RST.AR = RESET;
 GLOBALS | 1 | 2 | CLK_EXT
 
-MACROCELL | 6 | 0 | SHUT_UP_Z2<0>
+MACROCELL | 0 | 0 | SHUT_UP_Z2<0>
 ATTRIBUTES | 4326308 | 0
-OUTPUTMC | 3 | 5 | 17 | 5 | 16 | 6 | 0
-INPUTS | 15 | AS  | AUTO_CONFIG_Z2_DONE<0>  | UDS  | AUTOCONFIG_Z2_ACCESS  | SHUT_UP_Z2<0>  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET
-INPUTMC | 4 | 8 | 3 | 8 | 2 | 6 | 0 | 2 | 17
-INPUTP | 11 | 152 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157 | 263
-EQ | 8 | 
+OUTPUTMC | 5 | 5 | 17 | 5 | 16 | 0 | 0 | 0 | 17 | 0 | 1
+INPUTS | 19 | AS  | AUTO_CONFIG_Z2_DONE<0>  | UDS  | AUTOCONFIG_Z2_ACCESS  | SHUT_UP_Z2<0>  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | AUTO_CONFIG_Z2_DONE<1>  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET  | AUTO_CONFIG_Z2_DONE<2>  | AUTO_CONFIG_Z2_DONE_CYCLE<2>  | LDS  | LAN_BASEADR<2>.EXP
+INPUTMC | 8 | 8 | 3 | 8 | 2 | 0 | 0 | 8 | 4 | 2 | 17 | 8 | 5 | 0 | 1 | 0 | 17
+INPUTP | 11 | 152 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 263 | 157
+EXPORTS | 1 | 0 | 1
+IMPORTS | 1 | 0 | 17
+EQ | 17 | 
    SHUT_UP_Z2<0>.T = !AS & !AUTO_CONFIG_Z2_DONE<0> & !UDS & 
 	AUTOCONFIG_Z2_ACCESS & SHUT_UP_Z2<0> & !RW & !A<4> & !A<5> & A<6> & 
 	!A<2> & A<3> & !A<1>
+;Imported pterms FB1_18
 	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !LDS & 
 	AUTOCONFIG_Z2_ACCESS & SHUT_UP_Z2<0> & !RW & !A<4> & !A<5> & A<6> & 
 	!A<2> & A<3> & !A<1>;
    SHUT_UP_Z2<0>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
    SHUT_UP_Z2<0>.AP = !RESET;
+    SHUT_UP_Z2<0>.EXP  =  !AS & AUTO_CONFIG_Z2_DONE<0> & 
+	AUTO_CONFIG_Z2_DONE<1> & !AUTO_CONFIG_Z2_DONE<2> & 
+	!AUTO_CONFIG_Z2_DONE_CYCLE<2> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & A<3> & !A<1>
+	# !AS & AUTO_CONFIG_Z2_DONE<0> & 
+	AUTO_CONFIG_Z2_DONE<1> & !AUTO_CONFIG_Z2_DONE<2> & 
+	!AUTO_CONFIG_Z2_DONE_CYCLE<2> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & A<3> & !A<1>
 
 MACROCELL | 7 | 17 | SHUT_UP_Z2<1>
 ATTRIBUTES | 4326308 | 0
@@ -3241,7 +3242,7 @@ EQ | 25 |
 	# A<5> & A<1>
 	# !A<4> & A<2> & A<3>
 ;Imported pterms FB7_7
-	# !AUTO_CONFIG_Z2_DONE<0> & A<4> & !A<3> & !A<1>
+	# !AUTO_CONFIG_Z2_DONE<1> & A<4> & !A<3> & !A<1>
 	# AUTO_CONFIG_Z2_DONE<0> & AUTO_CONFIG_Z2_DONE<1> & 
 	A<4> & !A<3> & A<1>
 	# AUTO_CONFIG_Z2_DONE<0> & !AUTO_CONFIG_Z2_DONE<1> & 
@@ -3250,7 +3251,7 @@ EQ | 25 |
 	!A<4> & !A<5> & A<2> & !A<1>
 ;Imported pterms FB7_10
 	# !A<4> & A<3> & !A<1>
-	# !AUTO_CONFIG_Z2_DONE<1> & A<4> & !A<3> & !A<1>
+	# !AUTO_CONFIG_Z2_DONE<0> & A<4> & !A<3> & !A<1>
 	# A<4> & A<2> & !A<3> & A<1>
 	# A<4> & !A<2> & A<3> & A<1>
 	# A<4> & !A<2> & !A<3> & !A<1>;
@@ -3290,13 +3291,13 @@ EQ | 21 |
 MACROCELL | 8 | 0 | D_Z2_OUT<3>
 ATTRIBUTES | 8520612 | 0
 OUTPUTMC | 1 | 6 | 10
-INPUTS | 11 | AUTO_CONFIG_Z2_DONE<0>  | AUTO_CONFIG_Z2_DONE<1>  | A<4>  | A<2>  | A<1>  | A<5>  | A<3>  | EXP52_.EXP  | Z3_ADR<3>.EXP  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET
+INPUTS | 10 | AUTO_CONFIG_Z2_DONE<0>  | AUTO_CONFIG_Z2_DONE<1>  | A<4>  | A<2>  | A<1>  | A<5>  | EXP52_.EXP  | Z3_ADR<3>.EXP  | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF  | RESET
 INPUTMC | 5 | 8 | 3 | 8 | 4 | 8 | 1 | 8 | 17 | 2 | 17
-INPUTP | 6 | 97 | 101 | 107 | 91 | 99 | 263
+INPUTP | 5 | 97 | 101 | 107 | 91 | 263
 IMPORTS | 2 | 8 | 1 | 8 | 17
 EQ | 17 | 
-   D_Z2_OUT<3>.D = A<4> & A<5>
-	# !A<2> & !A<3> & !A<1>
+   D_Z2_OUT<3>.D = A<5> & !A<2>
+	# A<4> & A<2> & !A<1>
 	# AUTO_CONFIG_Z2_DONE<0> & AUTO_CONFIG_Z2_DONE<1> & 
 	!A<4> & A<2> & A<1>
 ;Imported pterms FB9_2
@@ -3309,7 +3310,7 @@ EQ | 17 |
 	# !A<2> & A<3> & A<1>
 ;Imported pterms FB9_18
 	# !AUTOCONFIG_Z2_ACCESS
-	# !A<5> & A<2> & !A<1>;
+	# !A<5> & !A<3> & !A<1>;
    D_Z2_OUT<3>.CLK = SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF;
    D_Z2_OUT<3>.AP = !RESET;
 
@@ -3349,15 +3350,15 @@ EQ | 3 |
 MACROCELL | 4 | 8 | Z3_ADR<10>
 ATTRIBUTES | 8520608 | 0
 OUTPUTMC | 2 | 5 | 7 | 4 | 7
-INPUTS | 5 | A<12>.PIN  | FCS  | RESET  | IDE_BASEADR<4>  | A<20>.PIN
-INPUTMC | 1 | 3 | 8
-INPUTP | 4 | 115 | 147 | 263 | 167
+INPUTS | 5 | A<12>.PIN  | FCS  | RESET  | IDE_BASEADR<0>  | A<16>.PIN
+INPUTMC | 1 | 1 | 12
+INPUTP | 4 | 115 | 147 | 263 | 175
 EXPORTS | 1 | 4 | 7
 EQ | 4 | 
    Z3_ADR<10>.D = A<12>.PIN;
    Z3_ADR<10>.CLK = !FCS;
    Z3_ADR<10>.AP = !RESET;
-    Z3_ADR<10>.EXP  =  !IDE_BASEADR<4> & A<20>.PIN
+    Z3_ADR<10>.EXP  =  !IDE_BASEADR<0> & A<16>.PIN
 
 MACROCELL | 5 | 12 | Z3_ADR<11>
 ATTRIBUTES | 8520608 | 0
@@ -3392,16 +3393,16 @@ EQ | 3 |
 MACROCELL | 8 | 17 | Z3_ADR<3>
 ATTRIBUTES | 8520608 | 0
 OUTPUTMC | 2 | 1 | 2 | 8 | 0
-INPUTS | 6 | A<5>  | FCS  | RESET  | AUTOCONFIG_Z2_ACCESS  | A<2>  | A<1>
+INPUTS | 6 | A<5>  | FCS  | RESET  | AUTOCONFIG_Z2_ACCESS  | A<3>  | A<1>
 INPUTMC | 1 | 8 | 2
-INPUTP | 5 | 91 | 147 | 263 | 101 | 107
+INPUTP | 5 | 91 | 147 | 263 | 99 | 107
 EXPORTS | 1 | 8 | 0
 EQ | 5 | 
    Z3_ADR<3>.D = A<5>;
    Z3_ADR<3>.CLK = !FCS;
    Z3_ADR<3>.AP = !RESET;
     Z3_ADR<3>.EXP  =  !AUTOCONFIG_Z2_ACCESS
-	# !A<5> & A<2> & !A<1>
+	# !A<5> & !A<3> & !A<1>
 
 MACROCELL | 5 | 8 | Z3_ADR<4>
 ATTRIBUTES | 8520608 | 0
@@ -3942,16 +3943,16 @@ EQ | 1 |
 MACROCELL | 12 | 1 | CP_RD_OBUF
 ATTRIBUTES | 264962 | 0
 OUTPUTMC | 1 | 12 | 0
-INPUTS | 11 | AS  | CP_RD_S  | UDS  | DQ_SWAP  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd3  | D<6>.PIN  | LDS  | A<14>.PIN  | A<22>.PIN
+INPUTS | 11 | AS  | CP_RD_S  | D<14>.PIN  | UDS  | DQ_SWAP  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd3  | LDS  | A<14>.PIN  | A<22>.PIN
 INPUTMC | 5 | 8 | 7 | 5 | 17 | 11 | 14 | 14 | 5 | 11 | 13
-INPUTP | 6 | 152 | 155 | 26 | 157 | 125 | 162
+INPUTP | 6 | 152 | 81 | 155 | 157 | 125 | 162
 EXPORTS | 1 | 12 | 0
 EQ | 9 | 
    !CP_RD = !AS & !CP_RD_S;
-    CP_RD_OBUF.EXP  =  !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<6>.PIN
-	# !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<6>.PIN
+    CP_RD_OBUF.EXP  =  D<14>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<14>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# UDS & LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & A<14>.PIN
 	# UDS & LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
@@ -3972,28 +3973,28 @@ EQ | 12 |
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# D<8>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
-	# !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<0>.PIN
-	# !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<0>.PIN
+	# D<0>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<0>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<16>.PIN
 
 MACROCELL | 0 | 16 | IDE_R_OBUF
 ATTRIBUTES | 264962 | 0
 OUTPUTMC | 1 | 0 | 17
-INPUTS | 15 | AS  | IDE_R_S  | AUTO_CONFIG_Z2_DONE<1>  | D<10>.PIN  | LAN_BASEADR<10>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS
-INPUTMC | 4 | 8 | 11 | 8 | 4 | 0 | 17 | 8 | 2
-INPUTP | 11 | 152 | 74 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157
+INPUTS | 15 | AS  | IDE_R_S  | AUTO_CONFIG_Z2_DONE<0>  | D<2>.PIN  | LAN_BASEADR<2>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS
+INPUTMC | 4 | 8 | 11 | 8 | 3 | 0 | 17 | 8 | 2
+INPUTP | 11 | 152 | 71 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157
 EXPORTS | 1 | 0 | 17
 EQ | 7 | 
    !IDE_R = !AS & !IDE_R_S;
-    IDE_R_OBUF.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<1> & D<10>.PIN & 
-	!LAN_BASEADR<10> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & D<10>.PIN & 
-	!LAN_BASEADR<10> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
+    IDE_R_OBUF.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<2>.PIN & 
+	!LAN_BASEADR<2> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<2>.PIN & 
+	!LAN_BASEADR<2> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
 
 MACROCELL | 2 | 1 | IDE_W_OBUF
 ATTRIBUTES | 264962 | 0
@@ -4006,35 +4007,35 @@ EQ | 1 |
 MACROCELL | 7 | 7 | LAN_CS_OBUF
 ATTRIBUTES | 264962 | 0
 OUTPUTMC | 1 | 7 | 8
-INPUTS | 17 | Z3_ADR<13>  | LAN_CS_RST  | RESET  | LAN_ACCESS  | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<12>.PIN  | LAN_BASEADR<4>  | LDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>
+INPUTS | 17 | Z3_ADR<13>  | LAN_CS_RST  | RESET  | LAN_ACCESS  | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<14>.PIN  | LAN_BASEADR<14>  | LDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>
 INPUTMC | 6 | 5 | 10 | 13 | 17 | 5 | 16 | 8 | 3 | 7 | 8 | 8 | 2
-INPUTP | 11 | 263 | 152 | 78 | 157 | 158 | 97 | 91 | 98 | 101 | 99 | 107
+INPUTP | 11 | 263 | 152 | 81 | 157 | 158 | 97 | 91 | 98 | 101 | 99 | 107
 EXPORTS | 1 | 7 | 8
 EQ | 6 | 
    LAN_CS = !RESET & LAN_CS_RST
 	# Z3_ADR<13> & LAN_CS_RST
 	# RESET & !Z3_ADR<13> & LAN_ACCESS;
-    LAN_CS_OBUF.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<12>.PIN & 
-	!LAN_BASEADR<4> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+    LAN_CS_OBUF.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<14>.PIN & 
+	!LAN_BASEADR<14> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
 
 MACROCELL | 7 | 4 | LAN_WRH_OBUF
 ATTRIBUTES | 264962 | 0
 OUTPUTMC | 1 | 7 | 5
-INPUTS | 18 | RESET  | LAN_WR_RST  | FCS  | LAN_WRH_S  | AS  | AUTO_CONFIG_Z2_DONE<1>  | D<8>.PIN  | LAN_BASEADR<8>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS
-INPUTMC | 5 | 13 | 8 | 14 | 12 | 8 | 4 | 7 | 5 | 8 | 2
-INPUTP | 13 | 263 | 147 | 152 | 32 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157
+INPUTS | 18 | RESET  | LAN_WR_RST  | FCS  | LAN_WRH_S  | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<1>.PIN  | LAN_BASEADR<1>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS
+INPUTMC | 5 | 13 | 8 | 14 | 12 | 8 | 3 | 7 | 5 | 8 | 2
+INPUTP | 13 | 263 | 147 | 152 | 30 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157
 EXPORTS | 1 | 7 | 5
 EQ | 9 | 
    LAN_WRH = !RESET & LAN_WR_RST
 	# FCS & LAN_WR_RST
 	# RESET & !FCS & LAN_WRH_S;
-    LAN_WRH_OBUF.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<1> & D<8>.PIN & 
-	!LAN_BASEADR<8> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<1> & D<8>.PIN & 
-	!LAN_BASEADR<8> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
+    LAN_WRH_OBUF.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<1>.PIN & 
+	!LAN_BASEADR<1> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<1>.PIN & 
+	!LAN_BASEADR<1> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
 
 MACROCELL | 12 | 13 | LAN_WRL_OBUF
 ATTRIBUTES | 264962 | 0
@@ -4059,33 +4060,33 @@ EQ | 10 |
 MACROCELL | 4 | 4 | ROM_OE_OBUF
 ATTRIBUTES | 264962 | 0
 OUTPUTMC | 1 | 4 | 5
-INPUTS | 7 | AS  | ROM_OE_S  | AUTOBOOT_OFF  | IDE_BASEADR<4>  | A<20>.PIN  | IDE_BASEADR<5>  | A<21>.PIN
-INPUTMC | 3 | 8 | 14 | 3 | 8 | 3 | 6
-INPUTP | 4 | 152 | 142 | 167 | 163
+INPUTS | 7 | AS  | ROM_OE_S  | AUTOBOOT_OFF  | IDE_BASEADR<0>  | A<16>.PIN  | IDE_BASEADR<1>  | A<17>.PIN
+INPUTMC | 3 | 8 | 14 | 1 | 12 | 1 | 8
+INPUTP | 4 | 152 | 142 | 175 | 172
 EXPORTS | 1 | 4 | 5
 EQ | 4 | 
    !ROM_OE = !AS & !ROM_OE_S & !AUTOBOOT_OFF;
-    ROM_OE_OBUF.EXP  =  IDE_BASEADR<4> & !A<20>.PIN
-	# IDE_BASEADR<5> & !A<21>.PIN
-	# !IDE_BASEADR<5> & A<21>.PIN
+    ROM_OE_OBUF.EXP  =  IDE_BASEADR<0> & !A<16>.PIN
+	# IDE_BASEADR<1> & !A<17>.PIN
+	# !IDE_BASEADR<1> & A<17>.PIN
 
 MACROCELL | 7 | 9 | LAN_RD_OBUF
 ATTRIBUTES | 264962 | 0
 OUTPUTMC | 1 | 7 | 10
-INPUTS | 17 | RESET  | FCS  | LAN_RD_S  | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<11>.PIN  | LAN_BASEADR<3>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS
+INPUTS | 17 | RESET  | FCS  | LAN_RD_S  | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<13>.PIN  | LAN_BASEADR<13>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS
 INPUTMC | 4 | 11 | 5 | 8 | 3 | 7 | 10 | 8 | 2
-INPUTP | 13 | 263 | 147 | 152 | 77 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157
+INPUTP | 13 | 263 | 147 | 152 | 80 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157
 EXPORTS | 1 | 7 | 10
 EQ | 10 | 
    LAN_RD = RESET & !FCS & LAN_RD_S;
-    LAN_RD_OBUF.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<11>.PIN & 
-	!LAN_BASEADR<3> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+    LAN_RD_OBUF.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<13>.PIN & 
+	!LAN_BASEADR<13> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<11>.PIN & 
-	!LAN_BASEADR<3> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<13>.PIN & 
+	!LAN_BASEADR<13> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<11>.PIN & 
-	LAN_BASEADR<3> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<13>.PIN & 
+	LAN_BASEADR<13> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
 
 MACROCELL | 13 | 13 | SLAVE_OBUF
@@ -4103,17 +4104,17 @@ EQ | 5 |
 MACROCELL | 14 | 11 | ROM_B_0_OBUF$BUF10
 ATTRIBUTES | 265986 | 0
 OUTPUTMC | 1 | 14 | 10
-INPUTS | 11 | FCS  | LAN_READY  | UDS  | DQ_SWAP  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd3  | D<1>.PIN  | LDS  | A<9>.PIN  | A<17>.PIN
+INPUTS | 11 | FCS  | LAN_READY  | D<1>.PIN  | UDS  | DQ_SWAP  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd3  | LDS  | A<9>.PIN  | A<17>.PIN
 INPUTMC | 5 | 14 | 3 | 5 | 17 | 11 | 14 | 14 | 5 | 11 | 13
-INPUTP | 6 | 147 | 155 | 30 | 157 | 108 | 172
+INPUTP | 6 | 147 | 30 | 155 | 157 | 108 | 172
 EXPORTS | 1 | 14 | 10
 EQ | 10 | 
    DTACK = Gnd;
    DTACK.OE = !FCS & LAN_READY;
-    ROM_B_0_OBUF$BUF10.EXP  =  !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<1>.PIN
-	# !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<1>.PIN
+    ROM_B_0_OBUF$BUF10.EXP  =  D<1>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<1>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# UDS & LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & A<9>.PIN
 	# UDS & LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
@@ -4140,7 +4141,7 @@ MACROCELL | 2 | 13 | ROM_B_0_OBUF$BUF9
 ATTRIBUTES | 265986 | 0
 OUTPUTMC | 1 | 2 | 12
 INPUTS | 6 | LAN_IRQ_OUT  | LAN_INT_ENABLE  | D<12>.PIN  | LAN_BASEADR<12>  | D<13>.PIN  | LAN_BASEADR<13>
-INPUTMC | 4 | 5 | 14 | 11 | 12 | 7 | 12 | 0 | 15
+INPUTMC | 4 | 5 | 14 | 11 | 12 | 7 | 11 | 7 | 10
 INPUTP | 2 | 78 | 80
 EXPORTS | 1 | 2 | 12
 EQ | 6 | 
@@ -4193,75 +4194,75 @@ EQ | 22 |
 MACROCELL | 0 | 11 | IDE_A_0_OBUF$BUF0
 ATTRIBUTES | 264962 | 0
 OUTPUTMC | 1 | 0 | 10
-INPUTS | 14 | A<9>.PIN  | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<9>.PIN  | LAN_BASEADR<1>  | LDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>
+INPUTS | 14 | A<9>.PIN  | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<5>.PIN  | LAN_BASEADR<5>  | LDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>
 INPUTMC | 3 | 8 | 3 | 0 | 10 | 8 | 2
-INPUTP | 11 | 108 | 152 | 73 | 157 | 158 | 97 | 91 | 98 | 101 | 99 | 107
+INPUTP | 11 | 108 | 152 | 37 | 157 | 158 | 97 | 91 | 98 | 101 | 99 | 107
 EXPORTS | 1 | 0 | 10
 EQ | 4 | 
    IDE_A<0> = A<9>.PIN;
-    IDE_A_0_OBUF$BUF0.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<9>.PIN & 
-	!LAN_BASEADR<1> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+    IDE_A_0_OBUF$BUF0.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<5>.PIN & 
+	!LAN_BASEADR<5> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
 
 MACROCELL | 0 | 14 | IDE_A_1_OBUF$BUF0
 ATTRIBUTES | 264962 | 0
 OUTPUTMC | 1 | 0 | 15
-INPUTS | 14 | A<10>.PIN  | AS  | AUTO_CONFIG_Z2_DONE<1>  | D<13>.PIN  | LAN_BASEADR<13>  | LDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>
-INPUTMC | 3 | 8 | 4 | 0 | 15 | 8 | 2
-INPUTP | 11 | 112 | 152 | 80 | 157 | 158 | 97 | 91 | 98 | 101 | 99 | 107
+INPUTS | 14 | A<10>.PIN  | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<3>.PIN  | LAN_BASEADR<3>  | LDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>
+INPUTMC | 3 | 8 | 3 | 0 | 15 | 8 | 2
+INPUTP | 11 | 112 | 152 | 28 | 157 | 158 | 97 | 91 | 98 | 101 | 99 | 107
 EXPORTS | 1 | 0 | 15
 EQ | 4 | 
    IDE_A<1> = A<10>.PIN;
-    IDE_A_1_OBUF$BUF0.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<1> & D<13>.PIN & 
-	!LAN_BASEADR<13> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
+    IDE_A_1_OBUF$BUF0.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<3>.PIN & 
+	!LAN_BASEADR<3> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
 
 MACROCELL | 0 | 13 | IDE_A_2_OBUF$BUF0
 ATTRIBUTES | 264962 | 0
 OUTPUTMC | 1 | 0 | 12
-INPUTS | 14 | A<11>.PIN  | AS  | AUTO_CONFIG_Z2_DONE<1>  | D<15>.PIN  | LAN_BASEADR<15>  | LDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>
-INPUTMC | 3 | 8 | 4 | 0 | 12 | 8 | 2
-INPUTP | 11 | 114 | 152 | 89 | 157 | 158 | 97 | 91 | 98 | 101 | 99 | 107
+INPUTS | 14 | A<11>.PIN  | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<4>.PIN  | LAN_BASEADR<4>  | LDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>
+INPUTMC | 3 | 8 | 3 | 0 | 12 | 8 | 2
+INPUTP | 11 | 114 | 152 | 38 | 157 | 158 | 97 | 91 | 98 | 101 | 99 | 107
 EXPORTS | 1 | 0 | 12
 EQ | 4 | 
    IDE_A<2> = A<11>.PIN;
-    IDE_A_2_OBUF$BUF0.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<1> & D<15>.PIN & 
-	!LAN_BASEADR<15> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
-	A<6> & A<2> & !A<3> & !A<1>
+    IDE_A_2_OBUF$BUF0.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<4>.PIN & 
+	!LAN_BASEADR<4> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	A<6> & !A<2> & A<3> & !A<1>
 
 MACROCELL | 0 | 7 | IDE_CS_0_OBUF
 ATTRIBUTES | 264962 | 0
 OUTPUTMC | 1 | 0 | 6
-INPUTS | 15 | A<12>.PIN  | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<13>.PIN  | LAN_BASEADR<5>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS
+INPUTS | 15 | A<12>.PIN  | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<7>.PIN  | LAN_BASEADR<7>  | UDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>  | LDS
 INPUTMC | 3 | 8 | 3 | 0 | 6 | 8 | 2
-INPUTP | 12 | 115 | 152 | 80 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157
+INPUTP | 12 | 115 | 152 | 29 | 155 | 158 | 97 | 91 | 98 | 101 | 99 | 107 | 157
 EXPORTS | 1 | 0 | 6
 EQ | 13 | 
    IDE_CS<0> = !A<12>.PIN;
-    IDE_CS_0_OBUF.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<13>.PIN & 
-	!LAN_BASEADR<5> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+    IDE_CS_0_OBUF.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<7>.PIN & 
+	!LAN_BASEADR<7> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<13>.PIN & 
-	!LAN_BASEADR<5> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & D<7>.PIN & 
+	!LAN_BASEADR<7> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<13>.PIN & 
-	LAN_BASEADR<5> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<7>.PIN & 
+	LAN_BASEADR<7> & !UDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
-	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<13>.PIN & 
-	LAN_BASEADR<5> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+	# !AS & !AUTO_CONFIG_Z2_DONE<0> & !D<7>.PIN & 
+	LAN_BASEADR<7> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
 
 MACROCELL | 0 | 9 | IDE_CS_1_OBUF
 ATTRIBUTES | 264962 | 0
 OUTPUTMC | 1 | 0 | 8
-INPUTS | 14 | A<13>.PIN  | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<10>.PIN  | LAN_BASEADR<2>  | LDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>
+INPUTS | 14 | A<13>.PIN  | AS  | AUTO_CONFIG_Z2_DONE<0>  | D<6>.PIN  | LAN_BASEADR<6>  | LDS  | AUTOCONFIG_Z2_ACCESS  | RW  | A<4>  | A<5>  | A<6>  | A<2>  | A<3>  | A<1>
 INPUTMC | 3 | 8 | 3 | 0 | 8 | 8 | 2
-INPUTP | 11 | 123 | 152 | 74 | 157 | 158 | 97 | 91 | 98 | 101 | 99 | 107
+INPUTP | 11 | 123 | 152 | 26 | 157 | 158 | 97 | 91 | 98 | 101 | 99 | 107
 EXPORTS | 1 | 0 | 8
 EQ | 4 | 
    IDE_CS<1> = !A<13>.PIN;
-    IDE_CS_1_OBUF.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<10>.PIN & 
-	!LAN_BASEADR<2> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
+    IDE_CS_1_OBUF.EXP  =  !AS & !AUTO_CONFIG_Z2_DONE<0> & D<6>.PIN & 
+	!LAN_BASEADR<6> & !LDS & AUTOCONFIG_Z2_ACCESS & !RW & !A<4> & !A<5> & 
 	A<6> & !A<2> & A<3> & !A<1>
 
 MACROCELL | 13 | 14 | ROM_B_0_OBUF$BUF1
@@ -4287,17 +4288,17 @@ EQ | 4 |
 MACROCELL | 11 | 1 | ROM_B_0_OBUF$BUF4
 ATTRIBUTES | 265986 | 0
 OUTPUTMC | 1 | 11 | 0
-INPUTS | 9 | UDS  | DQ_SWAP  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd3  | D<3>.PIN  | LDS  | A<11>.PIN  | A<19>.PIN
+INPUTS | 9 | D<3>.PIN  | UDS  | DQ_SWAP  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd3  | LDS  | A<11>.PIN  | A<19>.PIN
 INPUTMC | 4 | 5 | 17 | 11 | 14 | 14 | 5 | 11 | 13
-INPUTP | 5 | 155 | 28 | 157 | 114 | 169
+INPUTP | 5 | 28 | 155 | 157 | 114 | 169
 EXPORTS | 1 | 11 | 0
 EQ | 10 | 
    LAN_CFG<4> = Gnd;
    LAN_CFG<4>.OE = Gnd;
-    ROM_B_0_OBUF$BUF4.EXP  =  !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<3>.PIN
-	# !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<3>.PIN
+    ROM_B_0_OBUF$BUF4.EXP  =  D<3>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<3>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# UDS & LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & A<11>.PIN
 	# UDS & LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
@@ -4351,14 +4352,14 @@ EQ | 6 |
 MACROCELL | 10 | 13 | ROM_B_0_OBUF
 ATTRIBUTES | 264962 | 0
 OUTPUTMC | 1 | 10 | 14
-INPUTS | 9 | LDS  | DQ_SWAP  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd3  | D<0>.PIN  | UDS  | A<8>.PIN  | A<16>.PIN
+INPUTS | 9 | D<0>.PIN  | LDS  | DQ_SWAP  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd3  | UDS  | A<8>.PIN  | A<16>.PIN
 INPUTMC | 4 | 5 | 17 | 11 | 14 | 14 | 5 | 11 | 13
-INPUTP | 5 | 157 | 4 | 155 | 106 | 175
+INPUTP | 5 | 4 | 157 | 155 | 106 | 175
 EXPORTS | 1 | 10 | 14
 EQ | 7 | 
    ROM_B<1> = Gnd;
-    ROM_B_0_OBUF.EXP  =  !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<0>.PIN
+    ROM_B_0_OBUF.EXP  =  D<0>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# UDS & LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & A<8>.PIN
 	# UDS & LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
@@ -4372,7 +4373,7 @@ EQ | 1 |
 
 MACROCELL | 2 | 17 | SHUT_UP_Z2<2>/SHUT_UP_Z2<2>_CLKF
 ATTRIBUTES | 133888 | 0
-OUTPUTMC | 52 | 8 | 3 | 8 | 4 | 8 | 5 | 8 | 6 | 0 | 1 | 0 | 0 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 3 | 3 | 3 | 2 | 7 | 14 | 0 | 17 | 7 | 13 | 7 | 12 | 0 | 15 | 7 | 11 | 0 | 12 | 0 | 10 | 0 | 8 | 7 | 10 | 7 | 8 | 0 | 6 | 7 | 6 | 0 | 3 | 7 | 5 | 0 | 2 | 8 | 9 | 6 | 0 | 7 | 17 | 3 | 0 | 6 | 16 | 6 | 8 | 6 | 13 | 8 | 0 | 8 | 11 | 8 | 12 | 8 | 14 | 8 | 8 | 8 | 7 | 5 | 3
+OUTPUTMC | 52 | 8 | 3 | 8 | 4 | 8 | 5 | 8 | 6 | 6 | 0 | 0 | 1 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 3 | 3 | 3 | 2 | 7 | 14 | 7 | 13 | 7 | 12 | 7 | 11 | 7 | 10 | 7 | 8 | 7 | 6 | 7 | 5 | 0 | 17 | 0 | 15 | 0 | 12 | 0 | 10 | 0 | 8 | 0 | 6 | 0 | 3 | 0 | 2 | 8 | 9 | 0 | 0 | 7 | 17 | 3 | 0 | 6 | 16 | 6 | 8 | 6 | 13 | 8 | 0 | 8 | 11 | 8 | 12 | 8 | 14 | 8 | 8 | 8 | 7 | 5 | 3
 INPUTS | 2 | C1  | C3
 INPUTP | 2 | 188 | 187
 EQ | 2 | 
@@ -4416,7 +4417,7 @@ MACROCELL | 2 | 10 | Mcompar_LAN_ACCESS_cmp_eq0000_AEB_or0000/Mcompar_LAN_ACCESS
 ATTRIBUTES | 133888 | 0
 OUTPUTMC | 2 | 5 | 17 | 5 | 16
 INPUTS | 8 | LAN_BASEADR<1>  | A<17>.PIN  | LAN_BASEADR<0>  | A<16>.PIN  | LAN_BASEADR<3>  | A<19>.PIN  | EXP28_.EXP  | EXP29_.EXP
-INPUTMC | 5 | 0 | 10 | 7 | 14 | 7 | 10 | 2 | 9 | 2 | 11
+INPUTMC | 5 | 7 | 5 | 7 | 14 | 0 | 15 | 2 | 9 | 2 | 11
 INPUTP | 3 | 172 | 175 | 169
 IMPORTS | 2 | 2 | 9 | 2 | 11
 EQ | 38 | 
@@ -4462,14 +4463,14 @@ EQ | 38 |
 MACROCELL | 9 | 13 | _18_
 ATTRIBUTES | 265986 | 0
 OUTPUTMC | 1 | 9 | 12
-INPUTS | 12 | DQ_5_IOBUFE/DQ_5_IOBUFE_TRST  | DQ<8>_BUFR  | RESET  | UDS  | LDS  | DS1  | DS0  | D<6>.PIN  | FCS  | LAN_ACCESS  | DQ_DATA<6>  | RW
+INPUTS | 12 | DQ_5_IOBUFE/DQ_5_IOBUFE_TRST  | DQ<8>_BUFR  | RESET  | D<6>.PIN  | UDS  | LDS  | DS1  | DS0  | FCS  | LAN_ACCESS  | DQ_DATA<6>  | RW
 INPUTMC | 4 | 1 | 15 | 1 | 0 | 5 | 16 | 12 | 5
-INPUTP | 8 | 263 | 155 | 157 | 148 | 170 | 26 | 147 | 158
+INPUTP | 8 | 263 | 26 | 155 | 157 | 148 | 170 | 147 | 158
 EXPORTS | 1 | 9 | 12
 EQ | 7 | 
    DQ<8> = DQ<8>_BUFR;
    DQ<8>.OE = DQ_5_IOBUFE/DQ_5_IOBUFE_TRST;
-    _18_.EXP  =  RESET & UDS & LDS & DS1 & DS0 & D<6>.PIN
+    _18_.EXP  =  RESET & D<6>.PIN & UDS & LDS & DS1 & DS0
 	# RESET & !DS1 & !FCS & LAN_ACCESS & DQ_DATA<6> & 
 	!RW
 	# RESET & !DS0 & !FCS & LAN_ACCESS & DQ_DATA<6> & 
@@ -4478,14 +4479,14 @@ EQ | 7 |
 MACROCELL | 9 | 9 | _19_
 ATTRIBUTES | 265986 | 0
 OUTPUTMC | 1 | 9 | 8
-INPUTS | 12 | DQ_5_IOBUFE/DQ_5_IOBUFE_TRST  | DQ<4>_BUFR  | RESET  | UDS  | LDS  | DS1  | DS0  | D<5>.PIN  | FCS  | LAN_ACCESS  | DQ_DATA<5>  | RW
+INPUTS | 12 | DQ_5_IOBUFE/DQ_5_IOBUFE_TRST  | DQ<4>_BUFR  | RESET  | D<5>.PIN  | UDS  | LDS  | DS1  | DS0  | FCS  | LAN_ACCESS  | DQ_DATA<5>  | RW
 INPUTMC | 4 | 1 | 15 | 9 | 0 | 5 | 16 | 12 | 11
-INPUTP | 8 | 263 | 155 | 157 | 148 | 170 | 37 | 147 | 158
+INPUTP | 8 | 263 | 37 | 155 | 157 | 148 | 170 | 147 | 158
 EXPORTS | 1 | 9 | 8
 EQ | 5 | 
    DQ<4> = DQ<4>_BUFR;
    DQ<4>.OE = DQ_5_IOBUFE/DQ_5_IOBUFE_TRST;
-    _19_.EXP  =  RESET & UDS & LDS & DS1 & DS0 & D<5>.PIN
+    _19_.EXP  =  RESET & D<5>.PIN & UDS & LDS & DS1 & DS0
 	# RESET & !DS0 & !FCS & LAN_ACCESS & DQ_DATA<5> & 
 	!RW
 
@@ -4521,7 +4522,7 @@ MACROCELL | 2 | 7 | EXP26_
 ATTRIBUTES | 2048 | 0
 OUTPUTMC | 1 | 2 | 8
 INPUTS | 4 | D<14>.PIN  | LAN_BASEADR<14>  | D<15>.PIN  | LAN_BASEADR<15>
-INPUTMC | 2 | 7 | 11 | 0 | 12
+INPUTMC | 2 | 7 | 8 | 7 | 6
 INPUTP | 2 | 81 | 89
 EXPORTS | 1 | 2 | 8
 EQ | 3 | 
@@ -4533,7 +4534,7 @@ MACROCELL | 2 | 8 | EXP27_
 ATTRIBUTES | 2048 | 0
 OUTPUTMC | 1 | 2 | 9
 INPUTS | 7 | D<8>.PIN  | LAN_BASEADR<8>  | D<9>.PIN  | LAN_BASEADR<9>  | LAN_BASEADR<7>  | A<23>.PIN  | EXP26_.EXP
-INPUTMC | 4 | 7 | 5 | 0 | 2 | 0 | 3 | 2 | 7
+INPUTMC | 4 | 0 | 3 | 0 | 2 | 0 | 6 | 2 | 7
 INPUTP | 3 | 32 | 73 | 161
 EXPORTS | 1 | 2 | 9
 IMPORTS | 1 | 2 | 7
@@ -4552,7 +4553,7 @@ MACROCELL | 2 | 9 | EXP28_
 ATTRIBUTES | 2048 | 0
 OUTPUTMC | 1 | 2 | 10
 INPUTS | 7 | LAN_BASEADR<2>  | A<18>.PIN  | LAN_BASEADR<3>  | A<19>.PIN  | LAN_BASEADR<5>  | A<21>.PIN  | EXP27_.EXP
-INPUTMC | 4 | 0 | 8 | 7 | 10 | 0 | 6 | 2 | 8
+INPUTMC | 4 | 0 | 17 | 0 | 15 | 0 | 10 | 2 | 8
 INPUTP | 3 | 171 | 169 | 163
 EXPORTS | 1 | 2 | 10
 IMPORTS | 1 | 2 | 8
@@ -4577,7 +4578,7 @@ MACROCELL | 2 | 11 | EXP29_
 ATTRIBUTES | 2048 | 0
 OUTPUTMC | 1 | 2 | 10
 INPUTS | 7 | LAN_BASEADR<4>  | A<20>.PIN  | LAN_BASEADR<6>  | A<22>.PIN  | LAN_BASEADR<7>  | A<23>.PIN  | EXP30_.EXP
-INPUTMC | 4 | 7 | 8 | 7 | 6 | 0 | 3 | 2 | 12
+INPUTMC | 4 | 0 | 12 | 0 | 8 | 0 | 6 | 2 | 12
 INPUTP | 3 | 167 | 162 | 161
 EXPORTS | 1 | 2 | 10
 IMPORTS | 1 | 2 | 12
@@ -4603,7 +4604,7 @@ MACROCELL | 2 | 12 | EXP30_
 ATTRIBUTES | 2048 | 0
 OUTPUTMC | 1 | 2 | 11
 INPUTS | 7 | D<10>.PIN  | LAN_BASEADR<10>  | D<11>.PIN  | LAN_BASEADR<11>  | D<15>.PIN  | LAN_BASEADR<15>  | ROM_B_0_OBUF$BUF9.EXP
-INPUTMC | 4 | 0 | 17 | 7 | 13 | 0 | 12 | 2 | 13
+INPUTMC | 4 | 7 | 13 | 7 | 12 | 7 | 6 | 2 | 13
 INPUTP | 3 | 74 | 77 | 89
 EXPORTS | 1 | 2 | 11
 IMPORTS | 1 | 2 | 13
@@ -4669,38 +4670,38 @@ EQ | 4 |
 MACROCELL | 4 | 5 | EXP34_
 ATTRIBUTES | 2048 | 0
 OUTPUTMC | 1 | 4 | 6
-INPUTS | 7 | IDE_BASEADR<0>  | A<16>.PIN  | IDE_BASEADR<1>  | A<17>.PIN  | IDE_BASEADR<2>  | A<18>.PIN  | ROM_OE_OBUF.EXP
-INPUTMC | 4 | 1 | 12 | 1 | 8 | 1 | 6 | 4 | 4
-INPUTP | 3 | 175 | 172 | 171
+INPUTS | 7 | IDE_BASEADR<4>  | A<20>.PIN  | IDE_BASEADR<5>  | A<21>.PIN  | IDE_BASEADR<6>  | A<22>.PIN  | ROM_OE_OBUF.EXP
+INPUTMC | 4 | 3 | 8 | 3 | 6 | 3 | 3 | 4 | 4
+INPUTP | 3 | 167 | 163 | 162
 EXPORTS | 1 | 4 | 6
 IMPORTS | 1 | 4 | 4
 EQ | 9 | 
-       EXP34_.EXP  =  IDE_BASEADR<0> & !A<16>.PIN
-	# IDE_BASEADR<1> & !A<17>.PIN
-	# !IDE_BASEADR<1> & A<17>.PIN
-	# IDE_BASEADR<2> & !A<18>.PIN
-	# !IDE_BASEADR<2> & A<18>.PIN
-;Imported pterms FB5_5
-	# IDE_BASEADR<4> & !A<20>.PIN
+       EXP34_.EXP  =  IDE_BASEADR<4> & !A<20>.PIN
 	# IDE_BASEADR<5> & !A<21>.PIN
 	# !IDE_BASEADR<5> & A<21>.PIN
+	# IDE_BASEADR<6> & !A<22>.PIN
+	# !IDE_BASEADR<6> & A<22>.PIN
+;Imported pterms FB5_5
+	# IDE_BASEADR<0> & !A<16>.PIN
+	# IDE_BASEADR<1> & !A<17>.PIN
+	# !IDE_BASEADR<1> & A<17>.PIN
 
 MACROCELL | 4 | 7 | EXP35_
 ATTRIBUTES | 2048 | 0
 OUTPUTMC | 1 | 4 | 6
-INPUTS | 7 | IDE_BASEADR<0>  | A<16>.PIN  | IDE_BASEADR<6>  | A<22>.PIN  | IDE_BASEADR<7>  | A<23>.PIN  | Z3_ADR<10>.EXP
-INPUTMC | 4 | 1 | 12 | 3 | 3 | 3 | 2 | 4 | 8
-INPUTP | 3 | 175 | 162 | 161
+INPUTS | 7 | IDE_BASEADR<2>  | A<18>.PIN  | IDE_BASEADR<3>  | A<19>.PIN  | IDE_BASEADR<4>  | A<20>.PIN  | Z3_ADR<10>.EXP
+INPUTMC | 4 | 1 | 6 | 1 | 3 | 3 | 8 | 4 | 8
+INPUTP | 3 | 171 | 169 | 167
 EXPORTS | 1 | 4 | 6
 IMPORTS | 1 | 4 | 8
 EQ | 7 | 
-       EXP35_.EXP  =  !IDE_BASEADR<0> & A<16>.PIN
-	# IDE_BASEADR<6> & !A<22>.PIN
-	# !IDE_BASEADR<6> & A<22>.PIN
-	# IDE_BASEADR<7> & !A<23>.PIN
-	# !IDE_BASEADR<7> & A<23>.PIN
-;Imported pterms FB5_9
+       EXP35_.EXP  =  IDE_BASEADR<2> & !A<18>.PIN
+	# !IDE_BASEADR<2> & A<18>.PIN
+	# IDE_BASEADR<3> & !A<19>.PIN
+	# !IDE_BASEADR<3> & A<19>.PIN
 	# !IDE_BASEADR<4> & A<20>.PIN
+;Imported pterms FB5_9
+	# !IDE_BASEADR<0> & A<16>.PIN
 
 MACROCELL | 4 | 12 | EXP36_
 ATTRIBUTES | 2048 | 0
@@ -4774,12 +4775,12 @@ EQ | 6 |
 MACROCELL | 6 | 6 | EXP41_
 ATTRIBUTES | 2048 | 0
 OUTPUTMC | 1 | 6 | 7
-INPUTS | 7 | AUTO_CONFIG_Z2_DONE<0>  | A<4>  | A<3>  | A<1>  | AUTO_CONFIG_Z2_DONE<1>  | A<2>  | A<5>
-INPUTMC | 2 | 8 | 3 | 8 | 4
+INPUTS | 7 | AUTO_CONFIG_Z2_DONE<1>  | A<4>  | A<3>  | A<1>  | AUTO_CONFIG_Z2_DONE<0>  | A<2>  | A<5>
+INPUTMC | 2 | 8 | 4 | 8 | 3
 INPUTP | 5 | 97 | 99 | 107 | 101 | 91
 EXPORTS | 1 | 6 | 7
 EQ | 7 | 
-       EXP41_.EXP  =  !AUTO_CONFIG_Z2_DONE<0> & A<4> & !A<3> & !A<1>
+       EXP41_.EXP  =  !AUTO_CONFIG_Z2_DONE<1> & A<4> & !A<3> & !A<1>
 	# AUTO_CONFIG_Z2_DONE<0> & AUTO_CONFIG_Z2_DONE<1> & 
 	A<4> & !A<3> & A<1>
 	# AUTO_CONFIG_Z2_DONE<0> & !AUTO_CONFIG_Z2_DONE<1> & 
@@ -4802,7 +4803,7 @@ EQ | 13 |
 	# A<5> & A<1>
 	# !A<4> & A<2> & A<3>
 ;Imported pterms FB7_7
-	# !AUTO_CONFIG_Z2_DONE<0> & A<4> & !A<3> & !A<1>
+	# !AUTO_CONFIG_Z2_DONE<1> & A<4> & !A<3> & !A<1>
 	# AUTO_CONFIG_Z2_DONE<0> & AUTO_CONFIG_Z2_DONE<1> & 
 	A<4> & !A<3> & A<1>
 	# AUTO_CONFIG_Z2_DONE<0> & !AUTO_CONFIG_Z2_DONE<1> & 
@@ -4813,13 +4814,13 @@ EQ | 13 |
 MACROCELL | 6 | 9 | EXP43_
 ATTRIBUTES | 2048 | 0
 OUTPUTMC | 1 | 6 | 8
-INPUTS | 5 | A<4>  | A<3>  | A<1>  | AUTO_CONFIG_Z2_DONE<1>  | A<2>
-INPUTMC | 1 | 8 | 4
+INPUTS | 5 | A<4>  | A<3>  | A<1>  | AUTO_CONFIG_Z2_DONE<0>  | A<2>
+INPUTMC | 1 | 8 | 3
 INPUTP | 4 | 97 | 99 | 107 | 101
 EXPORTS | 1 | 6 | 8
 EQ | 5 | 
        EXP43_.EXP  =  !A<4> & A<3> & !A<1>
-	# !AUTO_CONFIG_Z2_DONE<1> & A<4> & !A<3> & !A<1>
+	# !AUTO_CONFIG_Z2_DONE<0> & A<4> & !A<3> & !A<1>
 	# A<4> & A<2> & !A<3> & A<1>
 	# A<4> & !A<2> & A<3> & A<1>
 	# A<4> & !A<2> & !A<3> & !A<1>
@@ -4971,12 +4972,12 @@ EQ | 7 |
 MACROCELL | 9 | 3 | EXP53_
 ATTRIBUTES | 2048 | 0
 OUTPUTMC | 1 | 9 | 2
-INPUTS | 10 | RESET  | UDS  | LDS  | DS1  | DS0  | D<0>.PIN  | FCS  | LAN_ACCESS  | DQ_DATA<0>  | RW
+INPUTS | 10 | RESET  | D<0>.PIN  | UDS  | LDS  | DS1  | DS0  | FCS  | LAN_ACCESS  | DQ_DATA<0>  | RW
 INPUTMC | 2 | 5 | 16 | 10 | 17
-INPUTP | 8 | 263 | 155 | 157 | 148 | 170 | 4 | 147 | 158
+INPUTP | 8 | 263 | 4 | 155 | 157 | 148 | 170 | 147 | 158
 EXPORTS | 1 | 9 | 2
 EQ | 9 | 
-       EXP53_.EXP  =  RESET & UDS & LDS & DS1 & DS0 & D<0>.PIN
+       EXP53_.EXP  =  RESET & D<0>.PIN & UDS & LDS & DS1 & DS0
 	# RESET & !UDS & !FCS & LAN_ACCESS & DQ_DATA<0> & 
 	!RW
 	# RESET & !LDS & !FCS & LAN_ACCESS & DQ_DATA<0> & 
@@ -4989,21 +4990,21 @@ EQ | 9 |
 MACROCELL | 9 | 6 | EXP54_
 ATTRIBUTES | 2048 | 0
 OUTPUTMC | 1 | 9 | 5
-INPUTS | 9 | RESET  | FCS  | D<2>.PIN  | LAN_ACCESS  | RW  | UDS  | DQ_DATA<2>  | LDS  | DQ_5_IOBUFE.EXP
+INPUTS | 9 | RESET  | D<2>.PIN  | FCS  | LAN_ACCESS  | RW  | UDS  | DQ_DATA<2>  | LDS  | DQ_5_IOBUFE.EXP
 INPUTMC | 3 | 5 | 16 | 15 | 11 | 9 | 7
-INPUTP | 6 | 263 | 147 | 71 | 158 | 155 | 157
+INPUTP | 6 | 263 | 71 | 147 | 158 | 155 | 157
 EXPORTS | 1 | 9 | 5
 IMPORTS | 1 | 9 | 7
 EQ | 13 | 
-       EXP54_.EXP  =  RESET & FCS & D<2>.PIN
-	# RESET & !LAN_ACCESS & D<2>.PIN
-	# RESET & RW & D<2>.PIN
+       EXP54_.EXP  =  RESET & D<2>.PIN & FCS
+	# RESET & D<2>.PIN & !LAN_ACCESS
+	# RESET & D<2>.PIN & RW
 	# RESET & !UDS & !FCS & LAN_ACCESS & DQ_DATA<2> & 
 	!RW
 	# RESET & !LDS & !FCS & LAN_ACCESS & DQ_DATA<2> & 
 	!RW
 ;Imported pterms FB10_8
-	# RESET & UDS & LDS & DS1 & DS0 & D<2>.PIN
+	# RESET & D<2>.PIN & UDS & LDS & DS1 & DS0
 	# RESET & !DS1 & !FCS & LAN_ACCESS & DQ_DATA<2> & 
 	!RW
 	# RESET & !DS0 & !FCS & LAN_ACCESS & DQ_DATA<2> & 
@@ -5012,14 +5013,14 @@ EQ | 13 |
 MACROCELL | 9 | 8 | EXP55_
 ATTRIBUTES | 2048 | 0
 OUTPUTMC | 1 | 9 | 7
-INPUTS | 10 | RESET  | FCS  | D<5>.PIN  | RW  | UDS  | LAN_ACCESS  | DQ_DATA<5>  | LDS  | DS1  | _19_.EXP
+INPUTS | 10 | RESET  | D<5>.PIN  | FCS  | RW  | UDS  | LAN_ACCESS  | DQ_DATA<5>  | LDS  | DS1  | _19_.EXP
 INPUTMC | 3 | 5 | 16 | 12 | 11 | 9 | 9
-INPUTP | 7 | 263 | 147 | 37 | 158 | 155 | 157 | 148
+INPUTP | 7 | 263 | 37 | 147 | 158 | 155 | 157 | 148
 EXPORTS | 1 | 9 | 7
 IMPORTS | 1 | 9 | 9
 EQ | 12 | 
-       EXP55_.EXP  =  RESET & FCS & D<5>.PIN
-	# RESET & RW & D<5>.PIN
+       EXP55_.EXP  =  RESET & D<5>.PIN & FCS
+	# RESET & D<5>.PIN & RW
 	# RESET & !UDS & !FCS & LAN_ACCESS & DQ_DATA<5> & 
 	!RW
 	# RESET & !LDS & !FCS & LAN_ACCESS & DQ_DATA<5> & 
@@ -5027,28 +5028,28 @@ EQ | 12 |
 	# RESET & !DS1 & !FCS & LAN_ACCESS & DQ_DATA<5> & 
 	!RW
 ;Imported pterms FB10_10
-	# RESET & UDS & LDS & DS1 & DS0 & D<5>.PIN
+	# RESET & D<5>.PIN & UDS & LDS & DS1 & DS0
 	# RESET & !DS0 & !FCS & LAN_ACCESS & DQ_DATA<5> & 
 	!RW
 
 MACROCELL | 9 | 12 | EXP56_
 ATTRIBUTES | 2048 | 0
 OUTPUTMC | 1 | 9 | 11
-INPUTS | 9 | RESET  | FCS  | D<6>.PIN  | LAN_ACCESS  | RW  | UDS  | DQ_DATA<6>  | LDS  | _18_.EXP
+INPUTS | 9 | RESET  | D<6>.PIN  | FCS  | LAN_ACCESS  | RW  | UDS  | DQ_DATA<6>  | LDS  | _18_.EXP
 INPUTMC | 3 | 5 | 16 | 12 | 5 | 9 | 13
-INPUTP | 6 | 263 | 147 | 26 | 158 | 155 | 157
+INPUTP | 6 | 263 | 26 | 147 | 158 | 155 | 157
 EXPORTS | 1 | 9 | 11
 IMPORTS | 1 | 9 | 13
 EQ | 13 | 
-       EXP56_.EXP  =  RESET & FCS & D<6>.PIN
-	# RESET & !LAN_ACCESS & D<6>.PIN
-	# RESET & RW & D<6>.PIN
+       EXP56_.EXP  =  RESET & D<6>.PIN & FCS
+	# RESET & D<6>.PIN & !LAN_ACCESS
+	# RESET & D<6>.PIN & RW
 	# RESET & !UDS & !FCS & LAN_ACCESS & DQ_DATA<6> & 
 	!RW
 	# RESET & !LDS & !FCS & LAN_ACCESS & DQ_DATA<6> & 
 	!RW
 ;Imported pterms FB10_14
-	# RESET & UDS & LDS & DS1 & DS0 & D<6>.PIN
+	# RESET & D<6>.PIN & UDS & LDS & DS1 & DS0
 	# RESET & !DS1 & !FCS & LAN_ACCESS & DQ_DATA<6> & 
 	!RW
 	# RESET & !DS0 & !FCS & LAN_ACCESS & DQ_DATA<6> & 
@@ -5094,21 +5095,21 @@ EQ | 13 |
 MACROCELL | 9 | 17 | EXP59_
 ATTRIBUTES | 2048 | 0
 OUTPUTMC | 1 | 9 | 0
-INPUTS | 9 | RESET  | FCS  | D<4>.PIN  | LAN_ACCESS  | RW  | UDS  | DQ_DATA<4>  | LDS  | DQ_10_IOBUFE.EXP
+INPUTS | 9 | RESET  | D<4>.PIN  | FCS  | LAN_ACCESS  | RW  | UDS  | DQ_DATA<4>  | LDS  | DQ_10_IOBUFE.EXP
 INPUTMC | 3 | 5 | 16 | 14 | 8 | 9 | 16
-INPUTP | 6 | 263 | 147 | 38 | 158 | 155 | 157
+INPUTP | 6 | 263 | 38 | 147 | 158 | 155 | 157
 EXPORTS | 1 | 9 | 0
 IMPORTS | 1 | 9 | 16
 EQ | 13 | 
-       EXP59_.EXP  =  RESET & FCS & D<4>.PIN
-	# RESET & !LAN_ACCESS & D<4>.PIN
-	# RESET & RW & D<4>.PIN
+       EXP59_.EXP  =  RESET & D<4>.PIN & FCS
+	# RESET & D<4>.PIN & !LAN_ACCESS
+	# RESET & D<4>.PIN & RW
 	# RESET & !UDS & !FCS & LAN_ACCESS & DQ_DATA<4> & 
 	!RW
 	# RESET & !LDS & !FCS & LAN_ACCESS & DQ_DATA<4> & 
 	!RW
 ;Imported pterms FB10_17
-	# RESET & UDS & LDS & DS1 & DS0 & D<4>.PIN
+	# RESET & D<4>.PIN & UDS & LDS & DS1 & DS0
 	# RESET & !DS1 & !FCS & LAN_ACCESS & DQ_DATA<4> & 
 	!RW
 	# RESET & !DS0 & !FCS & LAN_ACCESS & DQ_DATA<4> & 
@@ -5127,15 +5128,15 @@ EQ | 17 |
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# D<8>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
-	# !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<0>.PIN
+	# D<0>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<8>.PIN
 	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<16>.PIN
 ;Imported pterms FB11_14
-	# !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<0>.PIN
+	# D<0>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# UDS & LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & A<8>.PIN
 	# UDS & LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
@@ -5249,18 +5250,18 @@ EQ | 10 |
 MACROCELL | 11 | 16 | EXP66_
 ATTRIBUTES | 2048 | 0
 OUTPUTMC | 1 | 11 | 17
-INPUTS | 11 | LAN_SM_FSM_FFd2  | DQ_DATA<3>  | LAN_SM_FSM_FFd4  | UDS  | DQ_SWAP  | LAN_SM_FSM_FFd3  | D<3>.PIN  | LDS  | LAN_SM_FSM_FFd1  | A<11>.PIN  | EXP65_.EXP
+INPUTS | 11 | LAN_SM_FSM_FFd2  | DQ_DATA<3>  | LAN_SM_FSM_FFd4  | D<3>.PIN  | UDS  | DQ_SWAP  | LAN_SM_FSM_FFd3  | LDS  | LAN_SM_FSM_FFd1  | A<11>.PIN  | EXP65_.EXP
 INPUTMC | 7 | 11 | 14 | 11 | 17 | 14 | 5 | 5 | 17 | 11 | 13 | 14 | 6 | 11 | 15
-INPUTP | 4 | 155 | 28 | 157 | 114
+INPUTP | 4 | 28 | 155 | 157 | 114
 EXPORTS | 1 | 11 | 17
 IMPORTS | 1 | 11 | 15
 EQ | 19 | 
        EXP66_.EXP  =  LAN_SM_FSM_FFd2 & DQ_DATA<3>
 	# LAN_SM_FSM_FFd4 & DQ_DATA<3>
-	# !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<3>.PIN
-	# !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<3>.PIN
+	# D<3>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<3>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<11>.PIN
 ;Imported pterms FB12_16
@@ -5278,26 +5279,26 @@ EQ | 19 |
 MACROCELL | 12 | 0 | EXP67_
 ATTRIBUTES | 2048 | 0
 OUTPUTMC | 1 | 12 | 17
-INPUTS | 12 | LAN_SM_FSM_FFd4  | DQ_DATA<14>  | D<14>.PIN  | UDS  | DQ_SWAP  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd3  | LDS  | LAN_SM_FSM_FFd1  | A<14>.PIN  | A<22>.PIN  | CP_RD_OBUF.EXP
+INPUTS | 12 | LAN_SM_FSM_FFd4  | DQ_DATA<14>  | D<6>.PIN  | UDS  | DQ_SWAP  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd3  | LDS  | LAN_SM_FSM_FFd1  | A<14>.PIN  | A<22>.PIN  | CP_RD_OBUF.EXP
 INPUTMC | 7 | 14 | 5 | 12 | 17 | 5 | 17 | 11 | 14 | 11 | 13 | 14 | 6 | 12 | 1
-INPUTP | 5 | 81 | 155 | 157 | 125 | 162
+INPUTP | 5 | 26 | 155 | 157 | 125 | 162
 EXPORTS | 1 | 12 | 17
 IMPORTS | 1 | 12 | 1
 EQ | 18 | 
        EXP67_.EXP  =  LAN_SM_FSM_FFd4 & DQ_DATA<14>
-	# D<14>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	# D<6>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
-	# D<14>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	# D<6>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<14>.PIN
 	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<22>.PIN
 ;Imported pterms FB13_2
-	# !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<6>.PIN
-	# !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<6>.PIN
+	# D<14>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<14>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# UDS & LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & A<14>.PIN
 	# UDS & LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
@@ -5323,17 +5324,17 @@ EQ | 8 |
 MACROCELL | 12 | 3 | EXP69_
 ATTRIBUTES | 2048 | 0
 OUTPUTMC | 1 | 12 | 4
-INPUTS | 12 | LAN_SM_FSM_FFd4  | DQ_DATA<7>  | UDS  | DQ_SWAP  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd3  | D<7>.PIN  | LDS  | LAN_SM_FSM_FFd1  | A<23>.PIN  | A<15>.PIN  | EXP68_.EXP
+INPUTS | 12 | LAN_SM_FSM_FFd4  | DQ_DATA<7>  | D<7>.PIN  | UDS  | DQ_SWAP  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd3  | LDS  | LAN_SM_FSM_FFd1  | A<23>.PIN  | A<15>.PIN  | EXP68_.EXP
 INPUTMC | 7 | 14 | 5 | 12 | 4 | 5 | 17 | 11 | 14 | 11 | 13 | 14 | 6 | 12 | 2
-INPUTP | 5 | 155 | 29 | 157 | 161 | 139
+INPUTP | 5 | 29 | 155 | 157 | 161 | 139
 EXPORTS | 1 | 12 | 4
 IMPORTS | 1 | 12 | 2
 EQ | 18 | 
        EXP69_.EXP  =  LAN_SM_FSM_FFd4 & DQ_DATA<7>
-	# !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<7>.PIN
-	# !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<7>.PIN
+	# D<7>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<7>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<23>.PIN
 	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
@@ -5380,10 +5381,10 @@ EQ | 13 |
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# D<15>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
-	# !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<7>.PIN
-	# !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<7>.PIN
+	# D<7>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<7>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<15>.PIN
 ;Imported pterms FB13_9
@@ -5401,10 +5402,10 @@ IMPORTS | 1 | 12 | 13
 EQ | 17 | 
        EXP72_.EXP  =  D<13>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
-	# !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<5>.PIN
-	# !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<5>.PIN
+	# D<5>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<5>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<21>.PIN
 	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
@@ -5420,36 +5421,36 @@ EQ | 17 |
 MACROCELL | 12 | 15 | EXP73_
 ATTRIBUTES | 2048 | 0
 OUTPUTMC | 1 | 12 | 16
-INPUTS | 10 | D<13>.PIN  | UDS  | DQ_SWAP  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd3  | LDS  | D<5>.PIN  | LAN_SM_FSM_FFd1  | A<13>.PIN
+INPUTS | 10 | D<13>.PIN  | UDS  | DQ_SWAP  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd3  | LDS  | D<5>.PIN  | LAN_SM_FSM_FFd1  | A<21>.PIN
 INPUTMC | 5 | 5 | 17 | 11 | 14 | 14 | 5 | 11 | 13 | 14 | 6
-INPUTP | 5 | 80 | 155 | 157 | 37 | 123
+INPUTP | 5 | 80 | 155 | 157 | 37 | 163
 EXPORTS | 1 | 12 | 16
 EQ | 10 | 
        EXP73_.EXP  =  D<13>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# D<13>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
-	# !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<5>.PIN
-	# !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<5>.PIN
-	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
-	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<13>.PIN
+	# D<5>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<5>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
+	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<21>.PIN
 
 MACROCELL | 14 | 0 | EXP74_
 ATTRIBUTES | 2048 | 0
 OUTPUTMC | 1 | 14 | 17
-INPUTS | 12 | LAN_SM_FSM_FFd4  | DQ_DATA<1>  | UDS  | DQ_SWAP  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd3  | D<1>.PIN  | LDS  | LAN_SM_FSM_FFd1  | A<17>.PIN  | A<9>.PIN  | EXP75_.EXP
+INPUTS | 12 | LAN_SM_FSM_FFd4  | DQ_DATA<1>  | D<1>.PIN  | UDS  | DQ_SWAP  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd3  | LDS  | LAN_SM_FSM_FFd1  | A<17>.PIN  | A<9>.PIN  | EXP75_.EXP
 INPUTMC | 7 | 14 | 5 | 14 | 17 | 5 | 17 | 11 | 14 | 11 | 13 | 14 | 6 | 14 | 1
-INPUTP | 5 | 155 | 30 | 157 | 172 | 108
+INPUTP | 5 | 30 | 155 | 157 | 172 | 108
 EXPORTS | 1 | 14 | 17
 IMPORTS | 1 | 14 | 1
 EQ | 18 | 
        EXP74_.EXP  =  LAN_SM_FSM_FFd4 & DQ_DATA<1>
-	# !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<1>.PIN
-	# !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<1>.PIN
+	# D<1>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<1>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<17>.PIN
 	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
@@ -5502,21 +5503,21 @@ EQ | 9 |
 MACROCELL | 14 | 7 | EXP77_
 ATTRIBUTES | 2048 | 0
 OUTPUTMC | 1 | 14 | 8
-INPUTS | 10 | D<12>.PIN  | UDS  | DQ_SWAP  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd3  | LDS  | D<4>.PIN  | LAN_SM_FSM_FFd1  | A<20>.PIN
+INPUTS | 10 | D<12>.PIN  | UDS  | DQ_SWAP  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd3  | LDS  | D<4>.PIN  | LAN_SM_FSM_FFd1  | A<12>.PIN
 INPUTMC | 5 | 5 | 17 | 11 | 14 | 14 | 5 | 11 | 13 | 14 | 6
-INPUTP | 5 | 78 | 155 | 157 | 38 | 167
+INPUTP | 5 | 78 | 155 | 157 | 38 | 115
 EXPORTS | 1 | 14 | 8
 EQ | 10 | 
        EXP77_.EXP  =  D<12>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# D<12>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
-	# !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<4>.PIN
-	# !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<4>.PIN
-	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
-	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<20>.PIN
+	# D<4>.PIN & !UDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<4>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
+	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<12>.PIN
 
 MACROCELL | 14 | 10 | EXP78_
 ATTRIBUTES | 2048 | 0
@@ -5537,10 +5538,10 @@ EQ | 18 |
 	# !DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<17>.PIN
 ;Imported pterms FB15_12
-	# !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<1>.PIN
-	# !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<1>.PIN
+	# D<1>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<1>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# UDS & LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & A<9>.PIN
 	# UDS & LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
@@ -5568,18 +5569,18 @@ EQ | 10 |
 MACROCELL | 15 | 14 | EXP80_
 ATTRIBUTES | 2048 | 0
 OUTPUTMC | 1 | 15 | 15
-INPUTS | 12 | D<12>.PIN  | LDS  | DQ_SWAP  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd3  | UDS  | D<4>.PIN  | LAN_SM_FSM_FFd1  | A<12>.PIN  | A<20>.PIN  | Z3_DATA<16>.EXP
+INPUTS | 12 | D<12>.PIN  | LDS  | DQ_SWAP  | LAN_SM_FSM_FFd2  | LAN_SM_FSM_FFd4  | LAN_SM_FSM_FFd3  | D<4>.PIN  | UDS  | LAN_SM_FSM_FFd1  | A<12>.PIN  | A<20>.PIN  | Z3_DATA<16>.EXP
 INPUTMC | 6 | 5 | 17 | 11 | 14 | 14 | 5 | 11 | 13 | 14 | 6 | 15 | 13
-INPUTP | 6 | 78 | 157 | 155 | 38 | 115 | 167
+INPUTP | 6 | 78 | 157 | 38 | 155 | 115 | 167
 EXPORTS | 1 | 15 | 15
 IMPORTS | 1 | 15 | 13
 EQ | 13 | 
        EXP80_.EXP  =  D<12>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
-	# !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<4>.PIN
-	# !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<4>.PIN
+	# D<4>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<4>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<12>.PIN
 	# UDS & LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
@@ -5607,10 +5608,10 @@ EQ | 21 |
 ;Imported pterms FB16_15
 	# D<12>.PIN & !LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
-	# !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<4>.PIN
-	# !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
-	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & D<4>.PIN
+	# D<4>.PIN & !UDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
+	# D<4>.PIN & !LDS & DQ_SWAP & !LAN_SM_FSM_FFd2 & 
+	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3
 	# DQ_SWAP & !LAN_SM_FSM_FFd2 & !LAN_SM_FSM_FFd4 & 
 	LAN_SM_FSM_FFd3 & !LAN_SM_FSM_FFd1 & A<12>.PIN
 	# UDS & LDS & !DQ_SWAP & !LAN_SM_FSM_FFd2 & 
@@ -5620,18 +5621,18 @@ EQ | 21 |
 	!LAN_SM_FSM_FFd4 & !LAN_SM_FSM_FFd3 & A<12>.PIN
 
 PIN | CLK_EXT | 4096 | 0 | N/A | 57 | 70 | 8 | 10 | 15 | 5 | 15 | 2 | 15 | 1 | 14 | 16 | 14 | 14 | 14 | 13 | 8 | 13 | 8 | 16 | 10 | 2 | 10 | 4 | 10 | 9 | 10 | 10 | 12 | 7 | 15 | 10 | 15 | 7 | 5 | 14 | 15 | 13 | 15 | 8 | 15 | 6 | 10 | 12 | 10 | 8 | 10 | 7 | 10 | 6 | 12 | 14 | 15 | 4 | 15 | 3 | 15 | 0 | 10 | 5 | 10 | 3 | 10 | 1 | 10 | 0 | 12 | 8 | 11 | 14 | 14 | 5 | 11 | 13 | 14 | 6 | 13 | 9 | 13 | 11 | 13 | 12 | 10 | 17 | 15 | 17 | 11 | 0 | 15 | 16 | 12 | 16 | 12 | 17 | 12 | 10 | 14 | 17 | 15 | 11 | 11 | 17 | 14 | 8 | 12 | 11 | 12 | 5 | 12 | 4 | 10 | 15 | 14 | 9 | 13 | 8 | 5 | 15 | 13 | 17 | 13 | 16 | 13 | 15 | 11 | 12 | 5 | 0 | 11 | 5 | 14 | 3 | 14 | 12 | 14 | 2 | 14 | 15 | 13 | 0 | 11 | 2
-PIN | RW | 64 | 0 | N/A | 158 | 139 | 8 | 10 | 15 | 5 | 15 | 2 | 15 | 1 | 14 | 16 | 14 | 14 | 14 | 13 | 8 | 13 | 8 | 16 | 10 | 2 | 10 | 4 | 10 | 9 | 10 | 10 | 12 | 7 | 15 | 10 | 15 | 7 | 8 | 6 | 4 | 10 | 0 | 0 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 17 | 3 | 2 | 7 | 14 | 0 | 17 | 7 | 13 | 7 | 12 | 0 | 15 | 7 | 11 | 0 | 12 | 0 | 10 | 0 | 8 | 7 | 10 | 7 | 8 | 0 | 1 | 7 | 6 | 0 | 3 | 7 | 5 | 0 | 2 | 9 | 15 | 11 | 8 | 9 | 1 | 7 | 16 | 1 | 0 | 11 | 10 | 3 | 1 | 4 | 13 | 4 | 14 | 4 | 16 | 6 | 2 | 6 | 4 | 6 | 11 | 1 | 14 | 4 | 9 | 1 | 11 | 0 | 5 | 0 | 4 | 1 | 9 | 1 | 13 | 1 | 16 | 4 | 11 | 9 | 2 | 7 | 1 | 11 | 6 | 7 | 2 | 11 | 4 | 9 | 3 | 9 | 4 | 9 | 6 | 9 | 9 | 9 | 10 | 11 | 11 | 14 | 5 | 8 | 9 | 6 | 0 | 7 | 17 | 3 | 0 | 8 | 11 | 8 | 12 | 8 | 14 | 11 | 12 | 11 | 3 | 8 | 8 | 8 | 7 | 1 | 15 | 0 | 6 | 0 | 7 | 0 | 9 | 0 | 11 | 0 | 13 | 0 | 14 | 0 | 16 | 1 | 1 | 1 | 4 | 1 | 5 | 1 | 7 | 1 | 10 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 7 | 3 | 11 | 3 | 13 | 4 | 12 | 4 | 15 | 4 | 17 | 6 | 1 | 6 | 5 | 6 | 10 | 7 | 0 | 7 | 3 | 7 | 4 | 7 | 7 | 7 | 9 | 9 | 0 | 9 | 5 | 9 | 7 | 9 | 8 | 9 | 11 | 9 | 12 | 9 | 13 | 9 | 14 | 9 | 16 | 9 | 17 | 11 | 5 | 11 | 7 | 11 | 9
+PIN | RW | 64 | 0 | N/A | 158 | 139 | 8 | 10 | 15 | 5 | 15 | 2 | 15 | 1 | 14 | 16 | 14 | 14 | 14 | 13 | 8 | 13 | 8 | 16 | 10 | 2 | 10 | 4 | 10 | 9 | 10 | 10 | 12 | 7 | 15 | 10 | 15 | 7 | 8 | 6 | 6 | 0 | 4 | 10 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 17 | 3 | 2 | 7 | 14 | 7 | 13 | 7 | 12 | 7 | 11 | 7 | 10 | 7 | 8 | 7 | 6 | 7 | 5 | 0 | 17 | 0 | 15 | 0 | 12 | 0 | 10 | 0 | 8 | 0 | 1 | 0 | 3 | 0 | 2 | 9 | 15 | 11 | 8 | 9 | 1 | 7 | 16 | 1 | 0 | 11 | 10 | 3 | 1 | 4 | 13 | 4 | 14 | 4 | 16 | 6 | 2 | 6 | 4 | 6 | 11 | 1 | 14 | 4 | 9 | 1 | 11 | 0 | 5 | 0 | 4 | 1 | 9 | 1 | 13 | 1 | 16 | 4 | 11 | 9 | 2 | 7 | 1 | 11 | 6 | 7 | 2 | 11 | 4 | 9 | 3 | 9 | 4 | 9 | 6 | 9 | 9 | 9 | 10 | 11 | 11 | 14 | 5 | 8 | 9 | 0 | 0 | 7 | 17 | 3 | 0 | 8 | 11 | 8 | 12 | 8 | 14 | 11 | 12 | 11 | 3 | 8 | 8 | 8 | 7 | 1 | 15 | 0 | 6 | 0 | 7 | 0 | 9 | 0 | 11 | 0 | 13 | 0 | 14 | 0 | 16 | 1 | 1 | 1 | 4 | 1 | 5 | 1 | 7 | 1 | 10 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 7 | 3 | 11 | 3 | 13 | 4 | 12 | 4 | 15 | 4 | 17 | 6 | 1 | 6 | 5 | 6 | 10 | 7 | 0 | 7 | 3 | 7 | 4 | 7 | 7 | 7 | 9 | 9 | 0 | 9 | 5 | 9 | 7 | 9 | 8 | 9 | 11 | 9 | 12 | 9 | 13 | 9 | 14 | 9 | 16 | 9 | 17 | 11 | 5 | 11 | 7 | 11 | 9
 PIN | FCS | 64 | 0 | N/A | 147 | 101 | 8 | 10 | 15 | 5 | 15 | 2 | 15 | 1 | 14 | 16 | 14 | 14 | 14 | 13 | 8 | 13 | 8 | 16 | 10 | 2 | 10 | 4 | 10 | 9 | 10 | 10 | 12 | 7 | 15 | 10 | 15 | 7 | 9 | 15 | 11 | 8 | 9 | 1 | 7 | 3 | 1 | 0 | 11 | 10 | 3 | 1 | 4 | 13 | 4 | 12 | 4 | 16 | 6 | 2 | 6 | 4 | 6 | 10 | 1 | 14 | 4 | 9 | 1 | 10 | 0 | 5 | 0 | 4 | 1 | 9 | 1 | 13 | 1 | 12 | 4 | 11 | 9 | 2 | 7 | 1 | 11 | 6 | 7 | 2 | 11 | 4 | 9 | 3 | 9 | 4 | 9 | 6 | 9 | 9 | 9 | 10 | 5 | 17 | 5 | 10 | 5 | 16 | 4 | 8 | 5 | 12 | 5 | 11 | 8 | 15 | 8 | 17 | 5 | 8 | 5 | 6 | 13 | 7 | 13 | 6 | 13 | 5 | 13 | 4 | 13 | 3 | 13 | 1 | 11 | 2 | 7 | 4 | 12 | 13 | 7 | 9 | 13 | 13 | 14 | 11 | 13 | 2 | 1 | 15 | 4 | 10 | 0 | 3 | 0 | 6 | 1 | 1 | 1 | 8 | 1 | 16 | 1 | 17 | 3 | 2 | 4 | 14 | 4 | 15 | 4 | 17 | 6 | 1 | 6 | 5 | 7 | 0 | 9 | 0 | 9 | 5 | 9 | 7 | 9 | 8 | 9 | 11 | 9 | 12 | 9 | 13 | 9 | 14 | 9 | 16 | 9 | 17 | 11 | 3 | 11 | 5 | 11 | 7 | 11 | 9 | 12 | 14
-PIN | AS | 64 | 0 | N/A | 152 | 99 | 8 | 3 | 8 | 4 | 8 | 5 | 8 | 6 | 4 | 10 | 0 | 0 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 17 | 3 | 2 | 7 | 14 | 0 | 17 | 7 | 13 | 7 | 12 | 0 | 15 | 7 | 11 | 0 | 12 | 0 | 10 | 0 | 8 | 7 | 10 | 7 | 8 | 1 | 15 | 7 | 6 | 0 | 3 | 7 | 5 | 0 | 2 | 3 | 1 | 4 | 13 | 4 | 12 | 4 | 16 | 6 | 2 | 6 | 4 | 6 | 11 | 1 | 14 | 4 | 9 | 1 | 10 | 0 | 1 | 0 | 4 | 1 | 9 | 1 | 13 | 1 | 11 | 4 | 11 | 8 | 2 | 4 | 6 | 8 | 9 | 6 | 0 | 7 | 17 | 3 | 0 | 6 | 16 | 6 | 8 | 6 | 13 | 7 | 16 | 8 | 11 | 8 | 12 | 8 | 14 | 12 | 1 | 10 | 15 | 0 | 16 | 2 | 1 | 4 | 4 | 13 | 13 | 4 | 1 | 0 | 6 | 0 | 7 | 0 | 9 | 0 | 11 | 0 | 13 | 0 | 14 | 1 | 4 | 1 | 5 | 1 | 7 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 7 | 3 | 11 | 3 | 13 | 4 | 14 | 4 | 15 | 4 | 17 | 6 | 1 | 6 | 5 | 6 | 10 | 7 | 4 | 7 | 7 | 7 | 9 | 8 | 1
-PIN | RESET | 64 | 0 | N/A | 263 | 132 | 8 | 3 | 8 | 4 | 8 | 5 | 8 | 6 | 0 | 1 | 0 | 0 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 3 | 3 | 3 | 2 | 7 | 14 | 0 | 17 | 7 | 13 | 7 | 12 | 0 | 15 | 7 | 11 | 0 | 12 | 0 | 10 | 0 | 8 | 7 | 10 | 7 | 8 | 0 | 6 | 7 | 6 | 0 | 3 | 7 | 5 | 0 | 2 | 5 | 14 | 9 | 16 | 11 | 9 | 9 | 1 | 9 | 0 | 1 | 0 | 11 | 11 | 9 | 2 | 7 | 1 | 11 | 7 | 7 | 2 | 11 | 4 | 9 | 3 | 9 | 4 | 9 | 7 | 9 | 9 | 9 | 10 | 5 | 17 | 13 | 9 | 8 | 2 | 13 | 11 | 13 | 12 | 5 | 10 | 4 | 6 | 5 | 16 | 8 | 9 | 13 | 8 | 6 | 0 | 7 | 17 | 3 | 0 | 6 | 16 | 6 | 8 | 6 | 13 | 8 | 0 | 8 | 11 | 8 | 12 | 8 | 14 | 4 | 8 | 5 | 12 | 5 | 11 | 8 | 15 | 8 | 17 | 5 | 8 | 5 | 6 | 13 | 7 | 13 | 6 | 13 | 5 | 13 | 4 | 13 | 3 | 13 | 1 | 5 | 15 | 13 | 17 | 13 | 16 | 13 | 15 | 5 | 0 | 3 | 11 | 1 | 1 | 3 | 13 | 11 | 2 | 13 | 0 | 3 | 5 | 5 | 5 | 5 | 7 | 5 | 2 | 5 | 4 | 3 | 4 | 3 | 7 | 1 | 4 | 1 | 2 | 5 | 9 | 5 | 13 | 7 | 7 | 7 | 4 | 12 | 13 | 7 | 9 | 4 | 1 | 1 | 15 | 7 | 0 | 7 | 3 | 9 | 5 | 9 | 6 | 9 | 8 | 9 | 11 | 9 | 12 | 9 | 13 | 9 | 14 | 9 | 15 | 9 | 17 | 11 | 3 | 11 | 5 | 11 | 6 | 11 | 8 | 11 | 10 | 12 | 14
-PIN | A<4> | 64 | 0 | N/A | 97 | 68 | 8 | 6 | 1 | 1 | 0 | 0 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 11 | 3 | 2 | 7 | 14 | 0 | 17 | 7 | 13 | 7 | 12 | 0 | 15 | 7 | 11 | 0 | 12 | 0 | 10 | 0 | 8 | 7 | 10 | 7 | 8 | 0 | 1 | 7 | 6 | 0 | 3 | 7 | 5 | 0 | 2 | 6 | 0 | 7 | 17 | 3 | 0 | 6 | 15 | 6 | 7 | 6 | 12 | 8 | 0 | 8 | 15 | 0 | 7 | 0 | 9 | 0 | 11 | 0 | 13 | 0 | 14 | 0 | 16 | 1 | 4 | 1 | 5 | 1 | 7 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 7 | 3 | 11 | 3 | 13 | 6 | 6 | 6 | 9 | 6 | 11 | 6 | 14 | 6 | 17 | 7 | 4 | 7 | 7 | 7 | 9 | 7 | 16 | 8 | 1
-PIN | A<3> | 64 | 0 | N/A | 99 | 67 | 8 | 6 | 3 | 5 | 0 | 0 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 11 | 3 | 2 | 7 | 14 | 0 | 17 | 7 | 13 | 7 | 12 | 0 | 15 | 7 | 11 | 0 | 12 | 0 | 10 | 0 | 8 | 7 | 10 | 7 | 8 | 0 | 1 | 7 | 6 | 0 | 3 | 7 | 5 | 0 | 2 | 6 | 0 | 7 | 17 | 3 | 0 | 6 | 15 | 6 | 7 | 6 | 12 | 8 | 0 | 13 | 1 | 0 | 7 | 0 | 9 | 0 | 11 | 0 | 13 | 0 | 14 | 0 | 16 | 1 | 4 | 1 | 5 | 1 | 7 | 3 | 3 | 3 | 4 | 3 | 7 | 3 | 11 | 3 | 13 | 6 | 6 | 6 | 9 | 6 | 14 | 6 | 17 | 7 | 4 | 7 | 7 | 7 | 9 | 7 | 16 | 8 | 1 | 8 | 2
-PIN | A<1> | 64 | 0 | N/A | 107 | 67 | 8 | 6 | 8 | 0 | 0 | 0 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 11 | 3 | 2 | 7 | 14 | 0 | 17 | 7 | 13 | 7 | 12 | 0 | 15 | 7 | 11 | 0 | 12 | 0 | 10 | 0 | 8 | 7 | 10 | 7 | 8 | 0 | 1 | 7 | 6 | 0 | 3 | 7 | 5 | 0 | 2 | 6 | 0 | 7 | 17 | 3 | 0 | 6 | 15 | 6 | 7 | 6 | 11 | 0 | 7 | 0 | 9 | 0 | 11 | 0 | 13 | 0 | 14 | 0 | 16 | 1 | 4 | 1 | 5 | 1 | 7 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 7 | 3 | 11 | 3 | 13 | 6 | 6 | 6 | 9 | 6 | 14 | 6 | 17 | 7 | 4 | 7 | 7 | 7 | 9 | 7 | 16 | 8 | 1 | 8 | 2 | 8 | 17
-PIN | A<5> | 64 | 0 | N/A | 91 | 66 | 8 | 6 | 3 | 13 | 0 | 0 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 11 | 3 | 2 | 7 | 14 | 0 | 17 | 7 | 13 | 7 | 12 | 0 | 15 | 7 | 11 | 0 | 12 | 0 | 10 | 0 | 8 | 7 | 10 | 7 | 8 | 0 | 1 | 7 | 6 | 0 | 3 | 7 | 5 | 0 | 2 | 6 | 0 | 7 | 17 | 3 | 0 | 6 | 15 | 6 | 7 | 6 | 12 | 8 | 0 | 8 | 17 | 0 | 7 | 0 | 9 | 0 | 11 | 0 | 13 | 0 | 14 | 0 | 16 | 1 | 4 | 1 | 5 | 1 | 7 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 7 | 3 | 11 | 6 | 6 | 6 | 11 | 6 | 14 | 6 | 17 | 7 | 4 | 7 | 7 | 7 | 9 | 7 | 16 | 8 | 1
-PIN | UDS | 64 | 0 | N/A | 155 | 125 | 8 | 6 | 1 | 15 | 0 | 0 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 11 | 3 | 2 | 7 | 14 | 0 | 17 | 7 | 13 | 7 | 12 | 0 | 15 | 7 | 11 | 0 | 12 | 0 | 10 | 0 | 8 | 7 | 10 | 7 | 8 | 0 | 1 | 7 | 6 | 0 | 3 | 7 | 5 | 0 | 2 | 9 | 15 | 11 | 8 | 9 | 0 | 8 | 1 | 1 | 0 | 11 | 10 | 7 | 9 | 7 | 1 | 11 | 6 | 7 | 2 | 11 | 3 | 9 | 3 | 9 | 4 | 9 | 6 | 9 | 9 | 9 | 10 | 11 | 14 | 11 | 11 | 10 | 16 | 15 | 16 | 10 | 13 | 15 | 15 | 12 | 15 | 12 | 13 | 12 | 9 | 14 | 16 | 15 | 10 | 11 | 16 | 14 | 7 | 12 | 8 | 12 | 4 | 12 | 3 | 10 | 14 | 14 | 1 | 6 | 0 | 7 | 17 | 3 | 0 | 6 | 15 | 6 | 7 | 6 | 12 | 7 | 16 | 11 | 12 | 14 | 2 | 14 | 11 | 11 | 2 | 8 | 8 | 8 | 7 | 0 | 7 | 0 | 16 | 1 | 1 | 1 | 7 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 7 | 3 | 13 | 7 | 0 | 7 | 3 | 7 | 4 | 9 | 2 | 9 | 5 | 9 | 7 | 9 | 8 | 9 | 11 | 9 | 12 | 9 | 13 | 9 | 14 | 9 | 16 | 9 | 17 | 10 | 0 | 11 | 1 | 11 | 5 | 11 | 7 | 11 | 9 | 11 | 15 | 11 | 17 | 12 | 0 | 12 | 1 | 12 | 2 | 12 | 6 | 12 | 11 | 12 | 12 | 12 | 17 | 14 | 0 | 14 | 9 | 14 | 10 | 15 | 0 | 15 | 12 | 15 | 13 | 15 | 14
-PIN | A<6> | 64 | 0 | N/A | 98 | 61 | 8 | 6 | 5 | 8 | 0 | 0 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 11 | 3 | 2 | 7 | 14 | 0 | 17 | 7 | 13 | 7 | 12 | 0 | 15 | 7 | 11 | 0 | 12 | 0 | 10 | 0 | 8 | 7 | 10 | 7 | 8 | 0 | 1 | 7 | 6 | 0 | 3 | 7 | 5 | 0 | 2 | 6 | 0 | 7 | 17 | 3 | 0 | 6 | 16 | 6 | 8 | 6 | 13 | 7 | 16 | 0 | 7 | 0 | 9 | 0 | 11 | 0 | 13 | 0 | 14 | 0 | 16 | 1 | 4 | 1 | 5 | 1 | 7 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 7 | 3 | 11 | 3 | 13 | 7 | 4 | 7 | 7 | 7 | 9 | 8 | 1
-PIN | LDS | 64 | 0 | N/A | 157 | 123 | 8 | 6 | 0 | 0 | 1 | 5 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 10 | 3 | 13 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 11 | 1 | 7 | 1 | 6 | 1 | 3 | 3 | 7 | 3 | 6 | 1 | 4 | 1 | 16 | 7 | 14 | 0 | 17 | 7 | 13 | 7 | 12 | 0 | 15 | 7 | 11 | 0 | 12 | 0 | 10 | 0 | 8 | 7 | 9 | 7 | 8 | 0 | 2 | 7 | 6 | 0 | 3 | 7 | 5 | 0 | 1 | 9 | 15 | 11 | 8 | 9 | 0 | 8 | 1 | 0 | 16 | 11 | 10 | 7 | 15 | 7 | 0 | 11 | 6 | 3 | 14 | 11 | 3 | 9 | 2 | 9 | 3 | 9 | 6 | 9 | 8 | 9 | 9 | 11 | 13 | 11 | 12 | 10 | 16 | 15 | 16 | 10 | 13 | 15 | 14 | 12 | 15 | 12 | 13 | 12 | 9 | 14 | 16 | 15 | 10 | 11 | 16 | 14 | 7 | 12 | 8 | 12 | 4 | 12 | 3 | 10 | 14 | 14 | 1 | 6 | 0 | 7 | 17 | 3 | 0 | 6 | 15 | 6 | 7 | 6 | 12 | 7 | 16 | 14 | 12 | 14 | 11 | 11 | 2 | 8 | 8 | 8 | 7 | 0 | 7 | 0 | 9 | 0 | 11 | 0 | 13 | 0 | 14 | 1 | 1 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 8 | 3 | 11 | 7 | 3 | 7 | 4 | 7 | 7 | 9 | 5 | 9 | 7 | 9 | 11 | 9 | 12 | 9 | 13 | 9 | 14 | 9 | 16 | 9 | 17 | 10 | 0 | 11 | 1 | 11 | 5 | 11 | 7 | 11 | 9 | 11 | 15 | 11 | 17 | 12 | 0 | 12 | 1 | 12 | 2 | 12 | 6 | 12 | 11 | 12 | 12 | 12 | 17 | 14 | 0 | 14 | 9 | 14 | 10 | 15 | 0 | 15 | 12 | 15 | 13
-PIN | A<2> | 64 | 0 | N/A | 101 | 66 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 11 | 3 | 2 | 7 | 14 | 0 | 17 | 7 | 13 | 7 | 12 | 0 | 15 | 7 | 11 | 0 | 12 | 0 | 10 | 0 | 8 | 7 | 10 | 7 | 8 | 0 | 1 | 7 | 6 | 0 | 3 | 7 | 5 | 0 | 2 | 6 | 0 | 7 | 17 | 3 | 0 | 6 | 15 | 6 | 7 | 6 | 12 | 8 | 0 | 13 | 3 | 3 | 11 | 0 | 7 | 0 | 9 | 0 | 11 | 0 | 13 | 0 | 14 | 0 | 16 | 1 | 4 | 1 | 5 | 1 | 7 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 7 | 3 | 13 | 6 | 6 | 6 | 9 | 6 | 11 | 6 | 14 | 6 | 17 | 7 | 4 | 7 | 7 | 7 | 9 | 7 | 16 | 8 | 2 | 8 | 17
+PIN | AS | 64 | 0 | N/A | 152 | 99 | 8 | 3 | 8 | 4 | 8 | 5 | 8 | 6 | 6 | 0 | 4 | 10 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 17 | 3 | 2 | 7 | 14 | 7 | 13 | 7 | 12 | 7 | 11 | 7 | 10 | 7 | 8 | 7 | 6 | 7 | 5 | 0 | 17 | 0 | 15 | 0 | 12 | 0 | 10 | 0 | 8 | 1 | 15 | 0 | 3 | 0 | 2 | 3 | 1 | 4 | 13 | 4 | 12 | 4 | 16 | 6 | 2 | 6 | 4 | 6 | 11 | 1 | 14 | 4 | 9 | 1 | 10 | 0 | 1 | 0 | 4 | 1 | 9 | 1 | 13 | 1 | 11 | 4 | 11 | 8 | 2 | 4 | 6 | 8 | 9 | 0 | 0 | 7 | 17 | 3 | 0 | 6 | 16 | 6 | 8 | 6 | 13 | 7 | 16 | 8 | 11 | 8 | 12 | 8 | 14 | 12 | 1 | 10 | 15 | 0 | 16 | 2 | 1 | 4 | 4 | 13 | 13 | 4 | 1 | 0 | 6 | 0 | 7 | 0 | 9 | 0 | 11 | 0 | 13 | 0 | 14 | 1 | 4 | 1 | 5 | 1 | 7 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 7 | 3 | 11 | 3 | 13 | 4 | 14 | 4 | 15 | 4 | 17 | 6 | 1 | 6 | 5 | 6 | 10 | 7 | 4 | 7 | 7 | 7 | 9 | 8 | 1
+PIN | RESET | 64 | 0 | N/A | 263 | 132 | 8 | 3 | 8 | 4 | 8 | 5 | 8 | 6 | 6 | 0 | 0 | 1 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 3 | 3 | 3 | 2 | 7 | 14 | 7 | 13 | 7 | 12 | 7 | 11 | 7 | 10 | 7 | 8 | 7 | 6 | 7 | 5 | 0 | 17 | 0 | 15 | 0 | 12 | 0 | 10 | 0 | 8 | 0 | 6 | 0 | 3 | 0 | 2 | 5 | 14 | 9 | 16 | 11 | 9 | 9 | 1 | 9 | 0 | 1 | 0 | 11 | 11 | 9 | 2 | 7 | 1 | 11 | 7 | 7 | 2 | 11 | 4 | 9 | 3 | 9 | 4 | 9 | 7 | 9 | 9 | 9 | 10 | 5 | 17 | 13 | 9 | 8 | 2 | 13 | 11 | 13 | 12 | 5 | 10 | 4 | 6 | 5 | 16 | 8 | 9 | 13 | 8 | 0 | 0 | 7 | 17 | 3 | 0 | 6 | 16 | 6 | 8 | 6 | 13 | 8 | 0 | 8 | 11 | 8 | 12 | 8 | 14 | 4 | 8 | 5 | 12 | 5 | 11 | 8 | 15 | 8 | 17 | 5 | 8 | 5 | 6 | 13 | 7 | 13 | 6 | 13 | 5 | 13 | 4 | 13 | 3 | 13 | 1 | 5 | 15 | 13 | 17 | 13 | 16 | 13 | 15 | 5 | 0 | 3 | 11 | 1 | 1 | 3 | 13 | 11 | 2 | 13 | 0 | 3 | 5 | 5 | 5 | 5 | 7 | 5 | 2 | 5 | 4 | 3 | 4 | 3 | 7 | 1 | 4 | 1 | 2 | 5 | 9 | 5 | 13 | 7 | 7 | 7 | 4 | 12 | 13 | 7 | 9 | 4 | 1 | 1 | 15 | 7 | 0 | 7 | 3 | 9 | 5 | 9 | 6 | 9 | 8 | 9 | 11 | 9 | 12 | 9 | 13 | 9 | 14 | 9 | 15 | 9 | 17 | 11 | 3 | 11 | 5 | 11 | 6 | 11 | 8 | 11 | 10 | 12 | 14
+PIN | A<4> | 64 | 0 | N/A | 97 | 68 | 8 | 6 | 6 | 0 | 1 | 1 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 11 | 3 | 2 | 7 | 14 | 7 | 13 | 7 | 12 | 7 | 11 | 7 | 10 | 7 | 8 | 7 | 6 | 7 | 5 | 0 | 17 | 0 | 15 | 0 | 12 | 0 | 10 | 0 | 8 | 0 | 1 | 0 | 3 | 0 | 2 | 0 | 0 | 7 | 17 | 3 | 0 | 6 | 15 | 6 | 7 | 6 | 12 | 8 | 0 | 8 | 15 | 0 | 7 | 0 | 9 | 0 | 11 | 0 | 13 | 0 | 14 | 0 | 16 | 1 | 4 | 1 | 5 | 1 | 7 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 7 | 3 | 11 | 3 | 13 | 6 | 6 | 6 | 9 | 6 | 11 | 6 | 14 | 6 | 17 | 7 | 4 | 7 | 7 | 7 | 9 | 7 | 16 | 8 | 1
+PIN | A<1> | 64 | 0 | N/A | 107 | 67 | 8 | 6 | 6 | 0 | 8 | 0 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 11 | 3 | 2 | 7 | 14 | 7 | 13 | 7 | 12 | 7 | 11 | 7 | 10 | 7 | 8 | 7 | 6 | 7 | 5 | 0 | 17 | 0 | 15 | 0 | 12 | 0 | 10 | 0 | 8 | 0 | 1 | 0 | 3 | 0 | 2 | 0 | 0 | 7 | 17 | 3 | 0 | 6 | 15 | 6 | 7 | 6 | 11 | 0 | 7 | 0 | 9 | 0 | 11 | 0 | 13 | 0 | 14 | 0 | 16 | 1 | 4 | 1 | 5 | 1 | 7 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 7 | 3 | 11 | 3 | 13 | 6 | 6 | 6 | 9 | 6 | 14 | 6 | 17 | 7 | 4 | 7 | 7 | 7 | 9 | 7 | 16 | 8 | 1 | 8 | 2 | 8 | 17
+PIN | A<3> | 64 | 0 | N/A | 99 | 67 | 8 | 6 | 6 | 0 | 3 | 5 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 11 | 3 | 2 | 7 | 14 | 7 | 13 | 7 | 12 | 7 | 11 | 7 | 10 | 7 | 8 | 7 | 6 | 7 | 5 | 0 | 17 | 0 | 15 | 0 | 12 | 0 | 10 | 0 | 8 | 0 | 1 | 0 | 3 | 0 | 2 | 0 | 0 | 7 | 17 | 3 | 0 | 6 | 15 | 6 | 7 | 6 | 12 | 7 | 16 | 13 | 1 | 0 | 7 | 0 | 9 | 0 | 11 | 0 | 13 | 0 | 14 | 0 | 16 | 1 | 4 | 1 | 5 | 1 | 7 | 3 | 3 | 3 | 4 | 3 | 7 | 3 | 11 | 3 | 13 | 6 | 6 | 6 | 9 | 6 | 14 | 6 | 17 | 7 | 4 | 7 | 7 | 7 | 9 | 8 | 1 | 8 | 2 | 8 | 17
+PIN | A<5> | 64 | 0 | N/A | 91 | 66 | 8 | 6 | 6 | 0 | 3 | 13 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 11 | 3 | 2 | 7 | 14 | 7 | 13 | 7 | 12 | 7 | 11 | 7 | 10 | 7 | 8 | 7 | 6 | 7 | 5 | 0 | 17 | 0 | 15 | 0 | 12 | 0 | 10 | 0 | 8 | 0 | 1 | 0 | 3 | 0 | 2 | 0 | 0 | 7 | 17 | 3 | 0 | 6 | 15 | 6 | 7 | 6 | 12 | 8 | 0 | 8 | 17 | 0 | 7 | 0 | 9 | 0 | 11 | 0 | 13 | 0 | 14 | 0 | 16 | 1 | 4 | 1 | 5 | 1 | 7 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 7 | 3 | 11 | 6 | 6 | 6 | 11 | 6 | 14 | 6 | 17 | 7 | 4 | 7 | 7 | 7 | 9 | 7 | 16 | 8 | 1
+PIN | UDS | 64 | 0 | N/A | 155 | 125 | 8 | 6 | 6 | 0 | 1 | 15 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 11 | 3 | 2 | 7 | 14 | 7 | 13 | 7 | 12 | 7 | 11 | 7 | 10 | 7 | 8 | 7 | 6 | 7 | 5 | 0 | 17 | 0 | 15 | 0 | 12 | 0 | 10 | 0 | 8 | 0 | 1 | 0 | 3 | 0 | 2 | 9 | 15 | 11 | 8 | 9 | 0 | 8 | 1 | 1 | 0 | 11 | 10 | 7 | 9 | 7 | 1 | 11 | 6 | 7 | 2 | 11 | 3 | 9 | 3 | 9 | 4 | 9 | 6 | 9 | 9 | 9 | 10 | 11 | 14 | 11 | 11 | 10 | 16 | 15 | 16 | 10 | 13 | 15 | 15 | 12 | 15 | 12 | 13 | 12 | 9 | 14 | 16 | 15 | 10 | 11 | 16 | 14 | 7 | 12 | 8 | 12 | 4 | 12 | 3 | 10 | 14 | 14 | 1 | 0 | 0 | 7 | 17 | 3 | 0 | 6 | 15 | 6 | 7 | 6 | 12 | 7 | 16 | 11 | 12 | 14 | 2 | 14 | 11 | 11 | 2 | 8 | 8 | 8 | 7 | 0 | 7 | 0 | 16 | 1 | 1 | 1 | 7 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 7 | 3 | 13 | 7 | 0 | 7 | 3 | 7 | 4 | 9 | 2 | 9 | 5 | 9 | 7 | 9 | 8 | 9 | 11 | 9 | 12 | 9 | 13 | 9 | 14 | 9 | 16 | 9 | 17 | 10 | 0 | 11 | 1 | 11 | 5 | 11 | 7 | 11 | 9 | 11 | 15 | 11 | 17 | 12 | 0 | 12 | 1 | 12 | 2 | 12 | 6 | 12 | 11 | 12 | 12 | 12 | 17 | 14 | 0 | 14 | 9 | 14 | 10 | 15 | 0 | 15 | 12 | 15 | 13 | 15 | 14
+PIN | A<6> | 64 | 0 | N/A | 98 | 61 | 8 | 6 | 6 | 0 | 5 | 8 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 11 | 3 | 2 | 7 | 14 | 7 | 13 | 7 | 12 | 7 | 11 | 7 | 10 | 7 | 8 | 7 | 6 | 7 | 5 | 0 | 17 | 0 | 15 | 0 | 12 | 0 | 10 | 0 | 8 | 0 | 1 | 0 | 3 | 0 | 2 | 0 | 0 | 7 | 17 | 3 | 0 | 6 | 16 | 6 | 8 | 6 | 13 | 7 | 16 | 0 | 7 | 0 | 9 | 0 | 11 | 0 | 13 | 0 | 14 | 0 | 16 | 1 | 4 | 1 | 5 | 1 | 7 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 7 | 3 | 11 | 3 | 13 | 7 | 4 | 7 | 7 | 7 | 9 | 8 | 1
+PIN | LDS | 64 | 0 | N/A | 157 | 123 | 8 | 6 | 6 | 0 | 0 | 0 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 10 | 3 | 13 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 11 | 1 | 7 | 1 | 6 | 1 | 3 | 3 | 7 | 3 | 6 | 1 | 4 | 1 | 16 | 7 | 14 | 7 | 13 | 7 | 12 | 7 | 11 | 7 | 9 | 7 | 8 | 7 | 6 | 7 | 5 | 0 | 17 | 0 | 15 | 0 | 12 | 0 | 10 | 0 | 8 | 0 | 2 | 0 | 3 | 0 | 1 | 9 | 15 | 11 | 8 | 9 | 0 | 8 | 1 | 0 | 16 | 11 | 10 | 7 | 15 | 7 | 0 | 11 | 6 | 3 | 14 | 11 | 3 | 9 | 2 | 9 | 3 | 9 | 6 | 9 | 8 | 9 | 9 | 11 | 13 | 11 | 12 | 10 | 16 | 15 | 16 | 10 | 13 | 15 | 14 | 12 | 15 | 12 | 13 | 12 | 9 | 14 | 16 | 15 | 10 | 11 | 16 | 14 | 7 | 12 | 8 | 12 | 4 | 12 | 3 | 10 | 14 | 14 | 1 | 1 | 5 | 7 | 17 | 3 | 0 | 6 | 15 | 6 | 7 | 6 | 12 | 7 | 16 | 14 | 12 | 14 | 11 | 11 | 2 | 8 | 8 | 8 | 7 | 0 | 7 | 0 | 9 | 0 | 11 | 0 | 13 | 0 | 14 | 1 | 1 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 8 | 3 | 11 | 7 | 3 | 7 | 4 | 7 | 7 | 9 | 5 | 9 | 7 | 9 | 11 | 9 | 12 | 9 | 13 | 9 | 14 | 9 | 16 | 9 | 17 | 10 | 0 | 11 | 1 | 11 | 5 | 11 | 7 | 11 | 9 | 11 | 15 | 11 | 17 | 12 | 0 | 12 | 1 | 12 | 2 | 12 | 6 | 12 | 11 | 12 | 12 | 12 | 17 | 14 | 0 | 14 | 9 | 14 | 10 | 15 | 0 | 15 | 12 | 15 | 13
+PIN | A<2> | 64 | 0 | N/A | 101 | 65 | 3 | 17 | 3 | 16 | 3 | 15 | 7 | 15 | 3 | 14 | 3 | 12 | 3 | 10 | 3 | 9 | 1 | 12 | 1 | 8 | 1 | 6 | 1 | 3 | 3 | 8 | 3 | 6 | 1 | 11 | 3 | 2 | 7 | 14 | 7 | 13 | 7 | 12 | 7 | 11 | 7 | 10 | 7 | 8 | 7 | 6 | 7 | 5 | 0 | 17 | 0 | 15 | 0 | 12 | 0 | 10 | 0 | 8 | 0 | 1 | 0 | 3 | 0 | 2 | 0 | 0 | 7 | 17 | 3 | 0 | 6 | 15 | 6 | 7 | 6 | 12 | 8 | 0 | 13 | 3 | 3 | 11 | 0 | 7 | 0 | 9 | 0 | 11 | 0 | 13 | 0 | 14 | 0 | 16 | 1 | 4 | 1 | 5 | 1 | 7 | 3 | 3 | 3 | 4 | 3 | 5 | 3 | 7 | 3 | 13 | 6 | 6 | 6 | 9 | 6 | 11 | 6 | 14 | 6 | 17 | 7 | 4 | 7 | 7 | 7 | 9 | 7 | 16 | 8 | 2
 PIN | LAN_INT | 64 | 0 | N/A | 201 | 2 | 5 | 14 | 5 | 0
 PIN | DS1 | 64 | 0 | N/A | 148 | 32 | 9 | 14 | 11 | 7 | 9 | 0 | 7 | 3 | 1 | 1 | 11 | 9 | 11 | 2 | 7 | 0 | 11 | 6 | 1 | 16 | 11 | 3 | 9 | 2 | 9 | 3 | 9 | 5 | 9 | 8 | 9 | 9 | 11 | 14 | 14 | 4 | 11 | 12 | 14 | 6 | 11 | 11 | 14 | 3 | 14 | 2 | 14 | 15 | 9 | 7 | 9 | 11 | 9 | 13 | 9 | 16 | 11 | 5 | 11 | 13 | 14 | 5 | 14 | 14
 PIN | DS0 | 64 | 0 | N/A | 170 | 29 | 9 | 14 | 11 | 7 | 9 | 0 | 7 | 3 | 1 | 1 | 11 | 9 | 11 | 2 | 7 | 0 | 11 | 5 | 1 | 16 | 11 | 3 | 9 | 2 | 9 | 3 | 9 | 5 | 9 | 7 | 9 | 9 | 11 | 14 | 14 | 4 | 11 | 12 | 14 | 6 | 14 | 2 | 14 | 12 | 14 | 14 | 9 | 11 | 9 | 13 | 9 | 16 | 11 | 13 | 14 | 5 | 14 | 16
@@ -5687,43 +5688,43 @@ PIN | LAN_CFG<1> | 536871040 | 0 | N/A | 23
 PIN | ROM_B<1> | 536871040 | 0 | N/A | 129
 PIN | ROM_B<0> | 536871040 | 0 | N/A | 61
 PIN | A<8> | 536870976 | 0 | N/A | 106 | 5 | 10 | 17 | 10 | 14 | 13 | 7 | 10 | 0 | 10 | 13
-PIN | A<18> | 536870976 | 0 | N/A | 171 | 8 | 8 | 2 | 4 | 5 | 15 | 17 | 15 | 0 | 2 | 9 | 4 | 2 | 8 | 3 | 15 | 12
-PIN | A<19> | 536870976 | 0 | N/A | 169 | 9 | 8 | 2 | 4 | 6 | 11 | 0 | 11 | 15 | 2 | 9 | 2 | 10 | 4 | 2 | 8 | 3 | 11 | 1
-PIN | A<20> | 536870976 | 0 | N/A | 167 | 11 | 8 | 2 | 4 | 4 | 15 | 15 | 14 | 7 | 4 | 0 | 2 | 11 | 4 | 2 | 4 | 8 | 8 | 3 | 14 | 9 | 15 | 14
-PIN | A<21> | 536870976 | 0 | N/A | 163 | 9 | 8 | 2 | 4 | 4 | 12 | 16 | 8 | 3 | 4 | 0 | 2 | 9 | 12 | 12 | 12 | 13 | 12 | 17
-PIN | A<22> | 536870976 | 0 | N/A | 162 | 8 | 8 | 2 | 2 | 11 | 12 | 6 | 12 | 1 | 4 | 0 | 4 | 7 | 8 | 3 | 12 | 0
-PIN | A<23> | 536870976 | 0 | N/A | 161 | 11 | 8 | 2 | 2 | 11 | 12 | 10 | 12 | 3 | 11 | 11 | 4 | 1 | 2 | 8 | 4 | 7 | 8 | 3 | 12 | 2 | 12 | 11
+PIN | A<18> | 536870976 | 0 | N/A | 171 | 8 | 8 | 2 | 4 | 2 | 15 | 17 | 15 | 0 | 2 | 9 | 4 | 7 | 8 | 3 | 15 | 12
+PIN | A<19> | 536870976 | 0 | N/A | 169 | 9 | 8 | 2 | 4 | 2 | 11 | 0 | 11 | 15 | 2 | 9 | 2 | 10 | 4 | 7 | 8 | 3 | 11 | 1
+PIN | A<20> | 536870976 | 0 | N/A | 167 | 11 | 8 | 2 | 4 | 5 | 15 | 15 | 14 | 8 | 4 | 0 | 2 | 11 | 4 | 2 | 4 | 7 | 8 | 3 | 14 | 9 | 15 | 14
+PIN | A<21> | 536870976 | 0 | N/A | 163 | 9 | 8 | 2 | 4 | 5 | 12 | 15 | 8 | 3 | 4 | 0 | 2 | 9 | 12 | 12 | 12 | 13 | 12 | 17
+PIN | A<22> | 536870976 | 0 | N/A | 162 | 8 | 8 | 2 | 4 | 5 | 12 | 6 | 12 | 1 | 4 | 0 | 2 | 11 | 8 | 3 | 12 | 0
+PIN | A<23> | 536870976 | 0 | N/A | 161 | 11 | 8 | 2 | 4 | 6 | 12 | 10 | 12 | 3 | 11 | 11 | 4 | 1 | 2 | 8 | 2 | 11 | 8 | 3 | 12 | 2 | 12 | 11
 PIN | A<9> | 536870976 | 0 | N/A | 108 | 6 | 14 | 11 | 14 | 1 | 13 | 6 | 0 | 11 | 14 | 0 | 14 | 10
 PIN | A<10> | 536870976 | 0 | N/A | 112 | 6 | 15 | 16 | 15 | 11 | 13 | 5 | 0 | 14 | 15 | 0 | 15 | 12
 PIN | A<11> | 536870976 | 0 | N/A | 114 | 6 | 0 | 13 | 11 | 16 | 13 | 4 | 11 | 1 | 11 | 15 | 11 | 17
-PIN | A<12> | 536870976 | 0 | N/A | 115 | 6 | 15 | 14 | 14 | 8 | 4 | 8 | 0 | 7 | 14 | 9 | 15 | 13
-PIN | A<13> | 536870976 | 0 | N/A | 123 | 7 | 5 | 17 | 12 | 15 | 0 | 9 | 5 | 12 | 12 | 12 | 12 | 13 | 12 | 17
+PIN | A<12> | 536870976 | 0 | N/A | 115 | 6 | 15 | 14 | 14 | 7 | 4 | 8 | 0 | 7 | 14 | 9 | 15 | 13
+PIN | A<13> | 536870976 | 0 | N/A | 123 | 7 | 5 | 17 | 12 | 16 | 0 | 9 | 5 | 12 | 12 | 12 | 12 | 13 | 12 | 17
 PIN | A<14> | 536870976 | 0 | N/A | 125 | 6 | 5 | 17 | 12 | 6 | 12 | 5 | 5 | 11 | 12 | 0 | 12 | 1
 PIN | A<15> | 536870976 | 0 | N/A | 139 | 5 | 5 | 10 | 12 | 9 | 12 | 3 | 12 | 2 | 12 | 8
-PIN | A<16> | 536870976 | 0 | N/A | 175 | 10 | 8 | 2 | 4 | 5 | 10 | 16 | 10 | 14 | 2 | 10 | 4 | 3 | 4 | 7 | 8 | 3 | 10 | 0 | 10 | 13
-PIN | A<17> | 536870976 | 0 | N/A | 172 | 9 | 8 | 2 | 4 | 5 | 14 | 11 | 14 | 1 | 2 | 10 | 4 | 3 | 8 | 3 | 14 | 0 | 14 | 10
+PIN | A<16> | 536870976 | 0 | N/A | 175 | 10 | 8 | 2 | 4 | 4 | 10 | 16 | 10 | 14 | 2 | 10 | 4 | 3 | 4 | 8 | 8 | 3 | 10 | 0 | 10 | 13
+PIN | A<17> | 536870976 | 0 | N/A | 172 | 9 | 8 | 2 | 4 | 4 | 14 | 11 | 14 | 1 | 2 | 10 | 4 | 3 | 8 | 3 | 14 | 0 | 14 | 10
 PIN | DQ<10> | 536870976 | 0 | N/A | 234 | 4 | 15 | 5 | 8 | 16 | 15 | 6 | 15 | 1
 PIN | DQ<11> | 536870976 | 0 | N/A | 207 | 4 | 10 | 5 | 10 | 2 | 10 | 12 | 15 | 3
 PIN | DQ<1> | 536870976 | 0 | N/A | 216 | 6 | 8 | 13 | 15 | 7 | 15 | 8 | 15 | 3 | 1 | 14 | 4 | 11
 PIN | DQ<4> | 536870976 | 0 | N/A | 225 | 7 | 4 | 17 | 10 | 4 | 10 | 8 | 10 | 3 | 4 | 16 | 0 | 5 | 15 | 2
 PIN | DQ<8> | 536870976 | 0 | N/A | 231 | 4 | 8 | 10 | 15 | 9 | 15 | 13 | 15 | 4
 PIN | DQ<9> | 536870976 | 0 | N/A | 209 | 4 | 8 | 13 | 15 | 7 | 15 | 8 | 15 | 4
-PIN | D<0> | 536870976 | 0 | N/A | 4 | 5 | 9 | 2 | 10 | 16 | 10 | 14 | 9 | 3 | 10 | 13
-PIN | D<10> | 536870976 | 0 | N/A | 74 | 13 | 3 | 15 | 1 | 6 | 0 | 17 | 0 | 8 | 9 | 15 | 15 | 16 | 9 | 14 | 1 | 5 | 0 | 9 | 0 | 16 | 2 | 12 | 3 | 14 | 15 | 12
-PIN | D<11> | 536870976 | 0 | N/A | 77 | 13 | 7 | 15 | 1 | 3 | 7 | 13 | 7 | 10 | 11 | 8 | 7 | 16 | 11 | 15 | 1 | 4 | 2 | 12 | 7 | 9 | 7 | 14 | 11 | 7 | 11 | 17
-PIN | D<12> | 536870976 | 0 | N/A | 78 | 14 | 3 | 14 | 3 | 8 | 7 | 12 | 7 | 8 | 7 | 1 | 15 | 15 | 14 | 7 | 2 | 13 | 3 | 7 | 3 | 13 | 7 | 0 | 7 | 7 | 7 | 11 | 15 | 14
-PIN | D<13> | 536870976 | 0 | N/A | 80 | 14 | 3 | 12 | 3 | 6 | 0 | 15 | 0 | 14 | 11 | 7 | 12 | 15 | 11 | 6 | 0 | 7 | 2 | 13 | 3 | 5 | 3 | 11 | 11 | 5 | 12 | 12 | 12 | 13
-PIN | D<14> | 536870976 | 0 | N/A | 81 | 12 | 3 | 10 | 2 | 7 | 7 | 11 | 7 | 6 | 7 | 2 | 12 | 6 | 12 | 0 | 3 | 4 | 3 | 9 | 7 | 3 | 7 | 5 | 7 | 10
-PIN | D<15> | 536870976 | 0 | N/A | 89 | 16 | 3 | 9 | 3 | 2 | 0 | 12 | 0 | 3 | 11 | 4 | 12 | 9 | 12 | 2 | 11 | 12 | 2 | 7 | 0 | 2 | 0 | 13 | 2 | 12 | 3 | 3 | 3 | 8 | 11 | 3 | 11 | 11
-PIN | D<1> | 536870976 | 0 | N/A | 30 | 4 | 9 | 1 | 14 | 11 | 14 | 0 | 9 | 2
-PIN | D<2> | 536870976 | 0 | N/A | 71 | 5 | 15 | 10 | 15 | 16 | 9 | 6 | 9 | 7 | 15 | 0
-PIN | D<3> | 536870976 | 0 | N/A | 28 | 4 | 9 | 4 | 9 | 5 | 11 | 16 | 11 | 1
-PIN | D<4> | 536870976 | 0 | N/A | 38 | 4 | 14 | 7 | 15 | 14 | 9 | 16 | 9 | 17
-PIN | D<5> | 536870976 | 0 | N/A | 37 | 5 | 9 | 7 | 12 | 15 | 9 | 9 | 9 | 8 | 12 | 12
-PIN | D<6> | 536870976 | 0 | N/A | 26 | 4 | 12 | 4 | 12 | 1 | 9 | 12 | 9 | 13
-PIN | D<7> | 536870976 | 0 | N/A | 29 | 4 | 9 | 10 | 12 | 9 | 12 | 3 | 9 | 11
-PIN | D<8> | 536870976 | 0 | N/A | 32 | 13 | 3 | 17 | 1 | 12 | 7 | 14 | 7 | 5 | 1 | 0 | 10 | 16 | 10 | 14 | 2 | 8 | 1 | 1 | 1 | 11 | 3 | 0 | 7 | 4 | 7 | 15
-PIN | D<9> | 536870976 | 0 | N/A | 73 | 13 | 3 | 16 | 1 | 8 | 0 | 10 | 0 | 2 | 11 | 10 | 14 | 10 | 14 | 1 | 2 | 8 | 0 | 1 | 0 | 11 | 1 | 7 | 3 | 15 | 11 | 9
+PIN | D<0> | 536870976 | 0 | N/A | 4 | 7 | 7 | 14 | 9 | 2 | 10 | 16 | 10 | 14 | 7 | 15 | 9 | 3 | 10 | 13
+PIN | D<10> | 536870976 | 0 | N/A | 74 | 11 | 3 | 15 | 1 | 6 | 7 | 13 | 9 | 15 | 15 | 16 | 9 | 14 | 1 | 5 | 2 | 12 | 3 | 14 | 7 | 14 | 15 | 12
+PIN | D<11> | 536870976 | 0 | N/A | 77 | 11 | 7 | 15 | 1 | 3 | 7 | 12 | 11 | 8 | 7 | 16 | 11 | 15 | 1 | 4 | 2 | 12 | 7 | 11 | 11 | 7 | 11 | 17
+PIN | D<12> | 536870976 | 0 | N/A | 78 | 12 | 3 | 14 | 3 | 8 | 7 | 11 | 7 | 1 | 15 | 15 | 14 | 7 | 2 | 13 | 3 | 7 | 3 | 13 | 7 | 0 | 7 | 10 | 15 | 14
+PIN | D<13> | 536870976 | 0 | N/A | 80 | 13 | 3 | 12 | 3 | 6 | 7 | 10 | 11 | 7 | 12 | 15 | 11 | 6 | 2 | 13 | 3 | 5 | 3 | 11 | 7 | 9 | 11 | 5 | 12 | 12 | 12 | 13
+PIN | D<14> | 536870976 | 0 | N/A | 81 | 10 | 3 | 10 | 2 | 7 | 7 | 8 | 7 | 2 | 12 | 6 | 12 | 1 | 3 | 4 | 3 | 9 | 7 | 3 | 7 | 7
+PIN | D<15> | 536870976 | 0 | N/A | 89 | 14 | 3 | 9 | 3 | 2 | 7 | 6 | 11 | 4 | 12 | 9 | 12 | 2 | 11 | 12 | 2 | 7 | 2 | 12 | 3 | 3 | 3 | 8 | 7 | 5 | 11 | 3 | 11 | 11
+PIN | D<1> | 536870976 | 0 | N/A | 30 | 6 | 7 | 5 | 9 | 1 | 14 | 11 | 14 | 0 | 7 | 4 | 9 | 2
+PIN | D<2> | 536870976 | 0 | N/A | 71 | 7 | 0 | 17 | 0 | 16 | 15 | 16 | 15 | 10 | 9 | 6 | 9 | 7 | 15 | 0
+PIN | D<3> | 536870976 | 0 | N/A | 28 | 6 | 0 | 15 | 9 | 4 | 9 | 5 | 11 | 16 | 0 | 14 | 11 | 1
+PIN | D<4> | 536870976 | 0 | N/A | 38 | 6 | 0 | 12 | 0 | 13 | 15 | 14 | 14 | 7 | 9 | 16 | 9 | 17
+PIN | D<5> | 536870976 | 0 | N/A | 37 | 7 | 0 | 10 | 9 | 7 | 12 | 15 | 9 | 9 | 0 | 11 | 9 | 8 | 12 | 12
+PIN | D<6> | 536870976 | 0 | N/A | 26 | 6 | 0 | 8 | 0 | 9 | 12 | 0 | 12 | 4 | 9 | 12 | 9 | 13
+PIN | D<7> | 536870976 | 0 | N/A | 29 | 5 | 12 | 3 | 9 | 10 | 12 | 9 | 0 | 7 | 9 | 11
+PIN | D<8> | 536870976 | 0 | N/A | 32 | 11 | 3 | 17 | 1 | 12 | 0 | 3 | 1 | 0 | 10 | 16 | 10 | 14 | 2 | 8 | 0 | 2 | 1 | 1 | 1 | 11 | 3 | 0
+PIN | D<9> | 536870976 | 0 | N/A | 73 | 11 | 3 | 16 | 1 | 8 | 0 | 2 | 11 | 10 | 14 | 10 | 14 | 1 | 2 | 8 | 0 | 1 | 1 | 7 | 3 | 15 | 11 | 9
 PIN | DQ<0> | 536870976 | 0 | N/A | 217 | 7 | 8 | 10 | 15 | 9 | 15 | 13 | 15 | 4 | 3 | 1 | 1 | 16 | 1 | 17
 PIN | DQ<12> | 536870976 | 0 | N/A | 235 | 4 | 10 | 3 | 10 | 4 | 10 | 8 | 15 | 2
 PIN | DQ<13> | 536870976 | 0 | N/A | 204 | 4 | 10 | 1 | 10 | 9 | 10 | 7 | 14 | 17

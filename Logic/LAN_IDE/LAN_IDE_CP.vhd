@@ -135,7 +135,6 @@ architecture Behavioral of LAN_IDE_CP is
 	signal LAN_WRH_S: std_logic;
 	signal LAN_WRL_S: std_logic;
 	signal LAN_READY: std_logic;
-	signal CONFIG_READY: std_logic;
 	signal LAN_IRQ_D0: std_logic;
 	signal LAN_IRQ_OUT: std_logic;
 	signal Z3_ADR:STD_LOGIC_VECTOR(15 downto 2);
@@ -173,7 +172,6 @@ architecture Behavioral of LAN_IDE_CP is
 begin
 
 	Z3_DATA_IN <= D(15 downto 0) & A(23 downto 8);
-	
 	Z3_DS <= UDS & LDS & DS1 & DS0;
 	AMIGA_CLK <= not (C1 xor C3);
 	DS <= UDS and LDS;
@@ -562,19 +560,12 @@ begin
 					--when "010101"	=> Dout1 <=	"1111" ; --Rom vector high byte low  nibble 
 					--when "010110"	=> Dout1 <=	"1111" ; --Rom vector low byte high nibble
 					when "010111"	=> 
-						D_Z2_OUT <=	"1110" ; --Rom vector low byte low  nibble						
-					when "100010"	=>
-						D_Z2_OUT <=	"1111" ;
-						if(RW='0')then
-							if(AUTO_CONFIG_Z2_DONE(1) = '0')then
-								LAN_BASEADR(15 downto 8)	<= D(15 downto 8); --Base adress
-							end if;
-						end if;	
+						D_Z2_OUT <=	"1110" ; --Rom vector low byte low  nibble							
 					when "100100"	=>
 						D_Z2_OUT <=	"1111" ;
 						if(RW='0')then
 							if(AUTO_CONFIG_Z2_DONE(0) = '0')then
-								LAN_BASEADR(7 downto 0)	<= D(15 downto 8); --Base adress
+								LAN_BASEADR(15 downto 0)	<= D(15 downto 0); --Base adress
 								SHUT_UP_Z2(0)					<='0'; --enable board
 								AUTO_CONFIG_Z2_DONE_CYCLE(0)	<= '1'; --done here
 							elsif(AUTO_CONFIG_Z2_DONE(1) = '0')then
