@@ -58,7 +58,8 @@ entity LAN_IDE_CP is
            DS1 : in  STD_LOGIC;
            FCS : in  STD_LOGIC;
            RESET : in  STD_LOGIC;
-           INT_OUT : out  STD_LOGIC;
+           INT2_OUT : out  STD_LOGIC;
+			  INT6_OUT : out  STD_LOGIC;
            AUTOBOOT_OFF : in  STD_LOGIC;
            ROM_B : out  STD_LOGIC_VECTOR (1 downto 0);
            ROM_OE : out  STD_LOGIC;
@@ -470,10 +471,14 @@ begin
 	ROM_OE	<= ROM_OE_S when AS='0' and AUTOBOOT_OFF = '0' else '1';				
 
 --	INT_OUT <= 'Z';
-	INT_OUT <= '0' when 
+	INT2_OUT <= '0' when 
 							(LAN_IRQ_OUT = '0' and LAN_INT_ENABLE = '1')
-							or CP_IRQ = '0' 
 							else 'Z';
+
+	INT6_OUT <= '0' when 
+							CP_IRQ = '0' 
+							else 'Z';
+
 	
 	OWN 	<= 'Z';--'0' when AS='0' and (autoconfig  = '1' or ide = '1' or lan_adr = '1' or cp = '1') else 'Z';
 	SLAVE <= '0' when AS='0' and (autoconfig  = '1' or ide = '1' or lan_adr = '1' or cp = '1') else '1';	
