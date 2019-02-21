@@ -5,7 +5,7 @@
     The structure and the elements are likely to change over the next few releases.
     This means code written to parse this file will need to be revisited each subsequent release.-->
 
-  <application stringID="Xst" timeStamp="Thu Feb 21 11:10:34 2019">
+  <application stringID="Xst" timeStamp="Thu Feb 21 13:59:05 2019">
     <section stringID="User_Env">
       <table stringID="User_EnvVar">
         <column stringID="variable"/>
@@ -119,20 +119,20 @@
         <item stringID="XST_IOS" value="117"/>
       </section>
       <section stringID="XST_CELL_USAGE">
-        <item dataType="int" stringID="XST_BELS" value="989">
-          <item dataType="int" stringID="XST_AND2" value="369"/>
-          <item dataType="int" stringID="XST_AND3" value="16"/>
+        <item dataType="int" stringID="XST_BELS" value="973">
+          <item dataType="int" stringID="XST_AND2" value="363"/>
+          <item dataType="int" stringID="XST_AND3" value="15"/>
           <item dataType="int" stringID="XST_GND" value="1"/>
-          <item dataType="int" stringID="XST_INV" value="288"/>
-          <item dataType="int" stringID="XST_OR2" value="263"/>
+          <item dataType="int" stringID="XST_INV" value="284"/>
+          <item dataType="int" stringID="XST_OR2" value="259"/>
           <item dataType="int" stringID="XST_XOR2" value="33"/>
         </item>
         <item dataType="int" stringID="XST_FLIPFLOPSLATCHES" value="141">
           <item dataType="int" stringID="XST_FD" value="4"/>
           <item dataType="int" stringID="XST_FDC" value="20"/>
           <item dataType="int" stringID="XST_FDCE" value="7"/>
-          <item dataType="int" stringID="XST_FDP" value="42"/>
-          <item dataType="int" stringID="XST_FDPE" value="68"/>
+          <item dataType="int" stringID="XST_FDP" value="41"/>
+          <item dataType="int" stringID="XST_FDPE" value="69"/>
         </item>
         <item dataType="int" stringID="XST_IO_BUFFERS" value="115">
           <item dataType="int" stringID="XST_IBUF" value="24"/>

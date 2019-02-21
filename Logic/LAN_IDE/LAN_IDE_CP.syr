@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.14 secs
+Total CPU time to Xst completion: 0.15 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.14 secs
+Total CPU time to Xst completion: 0.15 secs
  
 --> Reading design: LAN_IDE_CP.prj
 
@@ -176,7 +176,7 @@ INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     Found 1-bit register for signal <CP_WE_QUIRK>.
     Found 1-bit register for signal <CP_WE_S>.
     Found 4-bit register for signal <D_Z2_OUT>.
-    Found 4-bit comparator less for signal <DQ$cmp_lt0000> created at line 638.
+    Found 4-bit comparator less for signal <DQ$cmp_lt0000> created at line 636.
     Found 16-bit register for signal <DQ_DATA>.
     Found 1-bit register for signal <DQ_SWAP>.
     Found 2-bit comparator less for signal <DQ_SWAP$cmp_lt0000> created at line 261.
@@ -397,21 +397,21 @@ Design Statistics
 # IOs                              : 117
 
 Cell Usage :
-# BELS                             : 989
-#      AND2                        : 369
-#      AND3                        : 16
+# BELS                             : 973
+#      AND2                        : 363
+#      AND3                        : 15
 #      GND                         : 1
-#      INV                         : 288
-#      OR2                         : 263
-#      OR3                         : 16
+#      INV                         : 284
+#      OR2                         : 259
+#      OR3                         : 15
 #      OR4                         : 3
 #      XOR2                        : 33
 # FlipFlops/Latches                : 141
 #      FD                          : 4
 #      FDC                         : 20
 #      FDCE                        : 7
-#      FDP                         : 42
-#      FDPE                        : 68
+#      FDP                         : 41
+#      FDPE                        : 69
 # IO Buffers                       : 115
 #      IBUF                        : 24
 #      IOBUFE                      : 48
@@ -420,12 +420,12 @@ Cell Usage :
 =========================================================================
 
 
-Total REAL time to Xst completion: 19.00 secs
-Total CPU time to Xst completion: 18.77 secs
+Total REAL time to Xst completion: 20.00 secs
+Total CPU time to Xst completion: 20.12 secs
  
 --> 
 
-Total memory usage is 4534808 kilobytes
+Total memory usage is 4534764 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   46 (   0 filtered)
