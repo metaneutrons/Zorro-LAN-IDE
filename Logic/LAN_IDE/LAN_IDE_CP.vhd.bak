@@ -58,8 +58,8 @@ entity LAN_IDE_CP is
            DS1 : in  STD_LOGIC;
            FCS : in  STD_LOGIC;
            RESET : in  STD_LOGIC;
-           INT_OUT : out  STD_LOGIC;
-			  INT_CP_OUT : out  STD_LOGIC;
+           INT2_OUT : out  STD_LOGIC;
+			  INT6_OUT : out  STD_LOGIC;
            AUTOBOOT_OFF : in  STD_LOGIC;
            ROM_B : out  STD_LOGIC_VECTOR (1 downto 0);
            ROM_OE : out  STD_LOGIC;
@@ -172,7 +172,6 @@ architecture Behavioral of LAN_IDE_CP is
 begin
 
 	Z3_DATA_IN <= D(15 downto 0) & A(23 downto 8);
-	
 	Z3_DS <= UDS & LDS & DS1 & DS0;
 	AMIGA_CLK <= not (C1 xor C3);
 	DS <= UDS and LDS;
@@ -243,7 +242,7 @@ begin
 	
 	ADDRESS_Z3_DECODE: process(AS,reset,FCS)
 	begin
-		if(--AS ='0' or 
+		if(AS ='0' or 
 			reset='0')then
 			LAN_ACCESS 		<= '0';
 			DQ_SWAP  <= '1';
@@ -273,7 +272,7 @@ begin
 	
 	ADDRESS_Z2_DECODE: process(FCS,reset,AS)
 	begin
-		if(--FCS ='0' or 
+		if(FCS ='0' or 
 			reset='0')then
 			AUTOCONFIG_Z2_ACCESS <= '0';
 			IDE_ACCESS 				<= '0';
@@ -392,6 +391,7 @@ begin
 							LAN_SM <= wait_read_lower;
 						end if;
 					else
+						
 						if(Z3_DS(3 downto 2) < "11")then -- determine bushalf
 							LAN_SM <= start_write_upper;
 						else
@@ -560,11 +560,11 @@ begin
 					--when "010101"	=> Dout1 <=	"1111" ; --Rom vector high byte low  nibble 
 					--when "010110"	=> Dout1 <=	"1111" ; --Rom vector low byte high nibble
 					when "010111"	=> 
-						D_Z2_OUT <=	"1110" ; --Rom vector low byte low  nibble						
+						D_Z2_OUT <=	"1110" ; --Rom vector low byte low  nibble							
 					when "100010"	=>
 						D_Z2_OUT <=	"1111" ;
 						if(RW='0')then
-							if(AUTO_CONFIG_Z2_DONE(1) = '0')then
+							if(AUTO_CONFIG_Z2_DONE(0) = '0')then
 								LAN_BASEADR(15 downto 8)	<= D(15 downto 8); --Base adress
 							end if;
 						end if;	
@@ -604,7 +604,7 @@ begin
 
 
 
-	LAN_CS	<= LAN_ACCESS   when reset='1' else LAN_CS_RST;						
+	LAN_CS	<= LAN_ACCESS   when reset='1' and Z3_ADR(15)='0' else LAN_CS_RST;						
 	LAN_WRL	<= LAN_WRL_S when FCS='0' and reset = '1' else LAN_WR_RST;
 	LAN_WRH	<= LAN_WRH_S when FCS='0' and reset = '1' else LAN_WR_RST;
 	LAN_RD	<= LAN_RD_S  when FCS='0' and reset = '1' else '0';
@@ -642,10 +642,10 @@ begin
 
 
 
-	INT_OUT <= '0' when LAN_IRQ_OUT = '0' and LAN_INT_ENABLE = '1' else
+	INT2_OUT <= '0' when LAN_IRQ_OUT = '0' and LAN_INT_ENABLE = '1' else
 					--'0' when CP_IRQ = '0' else
 				  'Z';
-	INT_CP_OUT <= '0' when CP_IRQ = '0' else
+	INT6_OUT <= '0' when CP_IRQ = '0' else
 				  'Z';
 	OWN 	<= 'Z';
 	SLAVE <= '0' when FCS='0' and LAN_ACCESS = '1' else 
@@ -701,7 +701,7 @@ begin
 			--default values
 			CP_RD_S		<= '1';
 			CP_WE_S		<= '1';
-			if(CP_ACCESS = '1' and DS='0')then --datastrobe instead of AS!
+			if(CP_ACCESS = '1' and DS='0' and AS='0')then --datastrobe and AS!
 				CP_RD_S		<= not RW;
 				CP_WE_S		<= RW;
 			end if;				

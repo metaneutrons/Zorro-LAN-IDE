@@ -58,8 +58,8 @@ entity LAN_IDE_CP is
            DS1 : in  STD_LOGIC;
            FCS : in  STD_LOGIC;
            RESET : in  STD_LOGIC;
-           INT_OUT : out  STD_LOGIC;
-			  INT_CP_OUT : out  STD_LOGIC;
+           INT2_OUT : out  STD_LOGIC;
+			  INT6_OUT : out  STD_LOGIC;
            AUTOBOOT_OFF : in  STD_LOGIC;
            ROM_B : out  STD_LOGIC_VECTOR (1 downto 0);
            ROM_OE : out  STD_LOGIC;
@@ -107,12 +107,12 @@ architecture Behavioral of LAN_IDE_CP is
 				end_write_upper,
 				start_write_lower,
 				wait_write_lower,
-				end_write_lower
+				end_write_lower,
+				config_rw
 	);
 
 	signal LAN_RST_SM: lan_reset :=nop;
 	signal LAN_SM: lan_bus_sm :=nop;
-	signal AUTOCONFIG_Z3_ACCESS: STD_LOGIC;
 	signal AUTOCONFIG_Z2_ACCESS: STD_LOGIC;
 	signal IDE_ACCESS: STD_LOGIC;
 	signal IDE_ENABLE: STD_LOGIC;
@@ -130,7 +130,7 @@ architecture Behavioral of LAN_IDE_CP is
 	signal AUTO_CONFIG_Z2_DONE_CYCLE:STD_LOGIC_VECTOR(2 downto 0):="000";
 	signal SHUT_UP_Z2:STD_LOGIC_VECTOR(2 downto 0):="111";
 	signal LAN_BASEADR:STD_LOGIC_VECTOR(15 downto 0);
-	signal LAN_INT_ENABLE: std_logic;
+	signal LAN_INT_ENABLE: std_logic :='0';
 	signal LAN_RD_S: std_logic;
 	signal LAN_WRH_S: std_logic;
 	signal LAN_WRL_S: std_logic;
@@ -246,7 +246,6 @@ begin
 	begin
 		if(--AS ='0' or 
 			reset='0')then
-			AUTOCONFIG_Z3_ACCESS 	<= '0';
 			LAN_ACCESS 		<= '0';
 			DQ_SWAP  <= '1';
 			Z3_ADR <= (others => '1'); 
@@ -289,14 +288,14 @@ begin
 			end if;	
 
 			--CP base
-			if(A(23 downto 16) = CP_BASEADR and SHUT_UP_Z2(0)='0' )then	
+			if(A(23 downto 16) = CP_BASEADR and SHUT_UP_Z2(1)='0' )then	
 				CP_ACCESS 		<= '1';
 			else
 				CP_ACCESS 		<= '0';
 			end if;		
 
 			--IDE base
-			if(A(23 downto 16) = IDE_BASEADR and SHUT_UP_Z2(1)='0' )then	
+			if(A(23 downto 16) = IDE_BASEADR and SHUT_UP_Z2(2)='0' )then	
 				IDE_ACCESS 		<= '1';
 			else
 				IDE_ACCESS 		<= '0';
@@ -305,14 +304,12 @@ begin
 		end if;				
 	end process ADDRESS_Z2_DECODE;
 	
-	--LAN interrupt enable
+	--LAN interrupt controll
 	lan_int_proc: process (CLK_EXT,reset)
 	begin
 		if(reset ='0') then
-			LAN_INT_ENABLE <='0';
 			LAN_IRQ_D0 <='1';
 			LAN_IRQ_OUT <='1';
-			CONFIG_READY <='0';
 		elsif rising_edge(CLK_EXT) then
 			LAN_IRQ_D0 <= LAN_INT;
 			
@@ -329,22 +326,6 @@ begin
 				) then
 				LAN_IRQ_OUT <='0';
 			end if;
-			
-			--bus acknowledge if a access to A15=1 occurred
-			if(LAN_ACCESS = '1' and FCS ='0' and Z3_ADR(15)='1') then 
-				CONFIG_READY <='1';
-			else
-				CONFIG_READY <='0';
-			end if;
-			
-			--set int enable and config ready flags
-			if(LAN_ACCESS = '1' and FCS ='0' and RW='0' and Z3_ADR(15)='1') then --enable if a write to A15 occured
-				if(Z3_DS(3) ='0')then 
-					LAN_INT_ENABLE <= Z3_DATA_IN(31); --this controlls the output bit
-				elsif(Z3_DS(2) ='0')then
-					LAN_INT_ENABLE <= Z3_DATA_IN(15); --this controlls the output bit
-				end if;
-			end if;
 		end if;
 	end process lan_int_proc;
 	
@@ -352,7 +333,7 @@ begin
 	lan_rst_gen: process (CLK_EXT)
 	begin
 		if falling_edge(CLK_EXT) then			
-			if(FCS ='1' or reset = '0' or Z3_DS = "1111" or LAN_ACCESS = '0' or BERR = '0' or Z3_ADR(15)='1') then
+			if(FCS ='1' or reset = '0' or Z3_DS = "1111" or LAN_ACCESS = '0' or BERR = '0') then
 				LAN_SM_RST <='1';
 			else
 				LAN_SM_RST <='0';
@@ -401,8 +382,9 @@ begin
 						end if;
 					end if;	
 						
-					if(RW='1')then --read from MSB
-						
+					if(Z3_ADR(15)='1')then
+							LAN_SM <= config_rw;
+					elsif(RW='1')then --read from MSB			
 						if(Z3_DS(3 downto 2) < "11")then --determine bushalf
 							LAN_RD_S		<= '1';
 							LAN_SM <= wait_read_upper;
@@ -491,7 +473,15 @@ begin
 				when end_write_lower=>
 					LAN_READY <='1';
 					LAN_SM<=end_write_lower; -- stay here until cylce end
-			end case;			
+				when config_rw=>
+					LAN_READY <='1';
+					if(Z3_DS(3) ='0' and RW='0')then 
+						LAN_INT_ENABLE <= Z3_DATA_IN(31); --this controlls the output bit
+					elsif(Z3_DS(1) ='0' and RW='0')then
+						LAN_INT_ENABLE <= Z3_DATA_IN(15); --this controlls the output bit
+					end if;
+					LAN_SM<=config_rw; -- stay here until cylce end
+				end case;			
 		end if;
 	end process lan_rw_gen;
 
@@ -536,7 +526,12 @@ begin
 						else
 							D_Z2_OUT <=	"1001" ; --ProductID low nibble: 6->1001 
 						end if;						
+					when "000100"	=> --er_flags (Z3) 
+						D_Z2_OUT <=	"1110" ; -- io device no size extension 64kb subsize    	
+					when "000101"	=> --er_flags (Z3) 
+						D_Z2_OUT <=	"1101" ; -- io device no size extension 64kb subsize    	
 					when "001000"	=> D_Z2_OUT <=	"1111" ; --Ventor ID 0
+					
 					when "001001"	=> 
 						if(AUTO_CONFIG_Z2_DONE(0) = '0' or AUTO_CONFIG_Z2_DONE(1) = '0')then
 							D_Z2_OUT <=	"0101" ; --Ventor ID 1
@@ -567,18 +562,16 @@ begin
 					--when "010101"	=> Dout1 <=	"1111" ; --Rom vector high byte low  nibble 
 					--when "010110"	=> Dout1 <=	"1111" ; --Rom vector low byte high nibble
 					when "010111"	=> 
-						if(AUTO_CONFIG_Z2_DONE = 1)then
-							D_Z2_OUT <=	"1110" ; --Rom vector low byte low  nibble						
-						else
-							D_Z2_OUT <=	"1111" ; --Rom vector low byte low  nibble						
-						end if;
+						D_Z2_OUT <=	"1110" ; --Rom vector low byte low  nibble						
 					when "100010"	=>
+						D_Z2_OUT <=	"1111" ;
 						if(RW='0')then
 							if(AUTO_CONFIG_Z2_DONE(1) = '0')then
 								LAN_BASEADR(15 downto 8)	<= D(15 downto 8); --Base adress
 							end if;
 						end if;	
 					when "100100"	=>
+						D_Z2_OUT <=	"1111" ;
 						if(RW='0')then
 							if(AUTO_CONFIG_Z2_DONE(0) = '0')then
 								LAN_BASEADR(7 downto 0)	<= D(15 downto 8); --Base adress
@@ -613,7 +606,7 @@ begin
 
 
 
-	LAN_CS	<= LAN_ACCESS   when reset='1' else LAN_CS_RST;						
+	LAN_CS	<= LAN_ACCESS   when reset='1' and Z3_ADR(15)='0' else LAN_CS_RST;						
 	LAN_WRL	<= LAN_WRL_S when FCS='0' and reset = '1' else LAN_WR_RST;
 	LAN_WRH	<= LAN_WRH_S when FCS='0' and reset = '1' else LAN_WR_RST;
 	LAN_RD	<= LAN_RD_S  when FCS='0' and reset = '1' else '0';
@@ -647,24 +640,14 @@ begin
 			D 	when RW='0' and AS='0' and CP_ACCESS ='1' else
 			(others => 'Z');
 
---
---	--defined lancp signal that matches both LAN and CP addresses (and IDE for Rev2 boards)
---	DQ <=	LAN_D_CLR when (LAN_RST_SM = wait0 or LAN_RST_SM = clr or LAN_RST_SM = clr_commit) else
---			LAN_D_SET when (LAN_RST_SM = wait1 or LAN_RST_SM = set or LAN_RST_SM = set_commit) else
---			D( 7 downto 0) & D( 7 downto 0)	when RW='0' and AS='0' and lancp = '1' and LDS='0' and UDS='1' else
---			D(15 downto 8) & D(15 downto 8)	when RW='0' and AS='0' and lancp = '1' and LDS='1' and UDS='0' else
---			D( 7 downto 0) & D(15 downto 8)	when RW='0' and AS='0' and lan_adr ='1' and lan_adr_sw ='1' else
---			D 	when RW='0' and AS='0' and lancp ='1'
---			else (others => 'Z');
-								
 
 
 
 
-
-	INT_OUT <= '0' when LAN_IRQ_OUT = '0' and LAN_INT_ENABLE = '1' else
+	INT2_OUT <= '0' when LAN_IRQ_OUT = '0' and LAN_INT_ENABLE = '1' else
+					--'0' when CP_IRQ = '0' else
 				  'Z';
-	INT_CP_OUT <= '0' when CP_IRQ = '0' else
+	INT6_OUT <= '0' when CP_IRQ = '0' else
 				  'Z';
 	OWN 	<= 'Z';
 	SLAVE <= '0' when FCS='0' and LAN_ACCESS = '1' else 
@@ -673,7 +656,7 @@ begin
 	
 	OVR <= '0' when FCS='0' and LAN_ACCESS = '1' else 'Z'; --is Cache inhibit on Z3!
 
-	DTACK <= '0' when FCS='0' and (LAN_READY = '1' or CONFIG_READY='1') else 'Z';
+	DTACK <= '0' when FCS='0' and LAN_READY = '1' else 'Z';
 
    MTACK <= 'Z';
 

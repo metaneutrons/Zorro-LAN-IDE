@@ -173,5 +173,8 @@
 <msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">LAN_D_INIT_1</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">LAN_IDE_CP</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">2 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;LAN_D_INIT_4&gt; &lt;LAN_D_INIT_9&gt; </arg>
 </msg>
 
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">LAN_A_INIT_3</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">LAN_IDE_CP</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;LAN_RST_SM_FSM_FFd8&gt; </arg>
+</msg>
+
 </messages>
 

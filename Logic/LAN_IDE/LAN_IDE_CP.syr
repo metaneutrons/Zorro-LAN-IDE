@@ -3,14 +3,14 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 --> Parameter TMPDIR set to xst/projnav.tmp
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.13 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.14 secs
  
 --> Parameter xsthdpdir set to xst
 
 
-Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.13 secs
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.14 secs
  
 --> Reading design: LAN_IDE_CP.prj
 
@@ -43,7 +43,7 @@ Target Device                      : XC9500XL CPLDs
 ---- Source Options
 Top Module Name                    : LAN_IDE_CP
 Automatic FSM Extraction           : YES
-FSM Encoding Algorithm             : Compact
+FSM Encoding Algorithm             : One-Hot
 Safe Implementation                : No
 Mux Extraction                     : Yes
 Resource Sharing                   : YES
@@ -55,7 +55,7 @@ XOR Preserve                       : YES
 Equivalent register Removal        : YES
 
 ---- General Options
-Optimization Goal                  : Area
+Optimization Goal                  : Speed
 Optimization Effort                : 1
 Keep Hierarchy                     : Yes
 Netlist Hierarchy                  : As_Optimized
@@ -71,7 +71,7 @@ wysiwyg                            : NO
 
 =========================================================================
 
-Setting FSM Encoding Algorithm to : OPT
+Setting FSM Encoding Algorithm to : ONE
 
 
 =========================================================================
@@ -123,7 +123,7 @@ INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     | Reset type         | asynchronous                                   |
     | Reset State        | nop                                            |
     | Power Up State     | nop                                            |
-    | Encoding           | compact                                        |
+    | Encoding           | one-hot                                        |
     | Implementation     | automatic                                      |
     -----------------------------------------------------------------------
     Found finite state machine <FSM_1> for signal <LAN_RST_SM>.
@@ -137,7 +137,7 @@ INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     | Reset type         | asynchronous                                   |
     | Reset State        | nop                                            |
     | Power Up State     | nop                                            |
-    | Encoding           | compact                                        |
+    | Encoding           | one-hot                                        |
     | Implementation     | automatic                                      |
     -----------------------------------------------------------------------
     Found 16-bit tristate buffer for signal <D>.
@@ -165,30 +165,30 @@ INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     Found 1-bit tristate buffer for signal <A<10>>.
     Found 1-bit tristate buffer for signal <A<9>>.
     Found 1-bit tristate buffer for signal <A<8>>.
-    Found 1-bit xor2 for signal <AMIGA_CLK$xor0000> created at line 176.
+    Found 1-bit xor2 for signal <AMIGA_CLK$xor0000> created at line 177.
     Found 3-bit register for signal <AUTO_CONFIG_Z2_DONE>.
     Found 3-bit register for signal <AUTO_CONFIG_Z2_DONE_CYCLE>.
     Found 1-bit register for signal <AUTOCONFIG_Z2_ACCESS>.
     Found 1-bit register for signal <CP_ACCESS>.
-    Found 8-bit comparator equal for signal <CP_ACCESS$cmp_eq0000> created at line 289.
+    Found 8-bit comparator equal for signal <CP_ACCESS$cmp_eq0000> created at line 290.
     Found 8-bit register for signal <CP_BASEADR>.
     Found 1-bit register for signal <CP_RD_S>.
     Found 1-bit register for signal <CP_WE_QUIRK>.
     Found 1-bit register for signal <CP_WE_S>.
     Found 4-bit register for signal <D_Z2_OUT>.
-    Found 4-bit comparator less for signal <DQ$cmp_lt0000> created at line 629.
+    Found 4-bit comparator less for signal <DQ$cmp_lt0000> created at line 637.
     Found 16-bit register for signal <DQ_DATA>.
     Found 1-bit register for signal <DQ_SWAP>.
-    Found 2-bit comparator less for signal <DQ_SWAP$cmp_lt0000> created at line 260.
+    Found 2-bit comparator less for signal <DQ_SWAP$cmp_lt0000> created at line 261.
     Found 1-bit register for signal <IDE_ACCESS>.
-    Found 8-bit comparator equal for signal <IDE_ACCESS$cmp_eq0000> created at line 296.
+    Found 8-bit comparator equal for signal <IDE_ACCESS$cmp_eq0000> created at line 297.
     Found 8-bit register for signal <IDE_BASEADR>.
     Found 1-bit register for signal <IDE_ENABLE>.
     Found 1-bit register for signal <IDE_R_S>.
     Found 1-bit register for signal <IDE_W_S>.
     Found 14-bit register for signal <LAN_A_INIT>.
     Found 1-bit register for signal <LAN_ACCESS>.
-    Found 16-bit comparator equal for signal <LAN_ACCESS$cmp_eq0000> created at line 259.
+    Found 16-bit comparator equal for signal <LAN_ACCESS$cmp_eq0000> created at line 260.
     Found 16-bit register for signal <LAN_BASEADR>.
     Found 1-bit register for signal <LAN_CS_RST>.
     Found 16-bit register for signal <LAN_D_INIT>.
@@ -197,7 +197,7 @@ INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     Found 1-bit register for signal <LAN_IRQ_OUT>.
     Found 1-bit register for signal <LAN_RD_S>.
     Found 1-bit register for signal <LAN_READY>.
-    Found 2-bit comparator less for signal <LAN_SM$cmp_lt0000> created at line 386.
+    Found 2-bit comparator less for signal <LAN_SM$cmp_lt0000> created at line 387.
     Found 1-bit register for signal <LAN_SM_RST>.
     Found 1-bit register for signal <LAN_WR_RST>.
     Found 1-bit register for signal <LAN_WRH_S>.
@@ -209,7 +209,7 @@ INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     Found 32-bit register for signal <Z3_DATA>.
     Summary:
 	inferred   2 Finite State Machine(s).
-	inferred  58 D-type flip-flop(s).
+	inferred  74 D-type flip-flop(s).
 	inferred   6 Comparator(s).
 	inferred   1 Xor(s).
 	inferred  58 Tristate(s).
@@ -220,10 +220,10 @@ Unit <LAN_IDE_CP> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
-# Registers                                            : 70
- 1-bit register                                        : 61
+# Registers                                            : 85
+ 1-bit register                                        : 77
  14-bit register                                       : 2
- 16-bit register                                       : 3
+ 16-bit register                                       : 2
  3-bit register                                        : 1
  4-bit register                                        : 1
  8-bit register                                        : 2
@@ -244,38 +244,38 @@ Macro Statistics
 *                       Advanced HDL Synthesis                          *
 =========================================================================
 
-Optimizing FSM <LAN_RST_SM/FSM> on signal <LAN_RST_SM[1:3]> with compact encoding.
+Optimizing FSM <LAN_RST_SM/FSM> on signal <LAN_RST_SM[1:8]> with one-hot encoding.
 ------------------------
  State      | Encoding
 ------------------------
- nop        | 000
- wait0      | 100
- clr        | 101
- clr_commit | 111
- wait1      | 001
- set        | 011
- set_commit | 010
- done       | 110
+ nop        | 00000001
+ wait0      | 00000010
+ clr        | 00000100
+ clr_commit | 00001000
+ wait1      | 00010000
+ set        | 00100000
+ set_commit | 01000000
+ done       | 10000000
 ------------------------
-Optimizing FSM <LAN_SM/FSM> on signal <LAN_SM[1:4]> with compact encoding.
--------------------------------
+Optimizing FSM <LAN_SM/FSM> on signal <LAN_SM[1:13]> with one-hot encoding.
+------------------------------------
  State             | Encoding
--------------------------------
- nop               | 0000
+------------------------------------
+ nop               | 0000000000001
  start_read_upper  | unreached
- wait_read_upper   | 0001
- end_read_upper    | 1010
- start_read_lower  | 0101
- wait_read_lower   | 0111
- end_read_lower    | 0110
- start_write_upper | 1001
- wait_write_upper  | 0011
- end_write_upper   | 0010
- start_write_lower | 1101
- wait_write_lower  | 1111
- end_write_lower   | 1110
- config_rw         | 0100
--------------------------------
+ wait_read_upper   | 0000000000100
+ end_read_upper    | 0000001000000
+ start_read_lower  | 0000010000000
+ wait_read_lower   | 0000000001000
+ end_read_lower    | 0000100000000
+ start_write_upper | 0000000010000
+ wait_write_upper  | 0001000000000
+ end_write_upper   | 0010000000000
+ start_write_lower | 0000000100000
+ wait_write_lower  | 0100000000000
+ end_write_lower   | 1000000000000
+ config_rw         | 0000000000010
+------------------------------------
 WARNING:Xst:1293 - FF/Latch <0> has a constant value of 1 in block <13>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <0> has a constant value of 1 in block <12>. This FF/Latch will be trimmed during the optimization process.
 WARNING:Xst:1293 - FF/Latch <0> has a constant value of 1 in block <11>. This FF/Latch will be trimmed during the optimization process.
@@ -304,8 +304,8 @@ Advanced HDL Synthesis Report
 
 Macro Statistics
 # FSMs                                                 : 2
-# Registers                                            : 58
- Flip-Flops                                            : 58
+# Registers                                            : 74
+ Flip-Flops                                            : 74
 # Comparators                                          : 3
  16-bit comparator equal                               : 1
  8-bit comparator equal                                : 2
@@ -339,14 +339,14 @@ WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_A_INIT_1> has a
 WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_A_INIT_0> has a constant value of 1 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
 INFO:Xst:2261 - The FF/Latch <LAN_D_INIT_8> in Unit <LAN_IDE_CP> is equivalent to the following 2 FFs/Latches, which will be removed : <LAN_D_INIT_10> <LAN_D_INIT_11> 
 INFO:Xst:2261 - The FF/Latch <LAN_D_INIT_1> in Unit <LAN_IDE_CP> is equivalent to the following 2 FFs/Latches, which will be removed : <LAN_D_INIT_4> <LAN_D_INIT_9> 
+INFO:Xst:2261 - The FF/Latch <LAN_A_INIT_3> in Unit <LAN_IDE_CP> is equivalent to the following FF/Latch, which will be removed : <LAN_RST_SM_FSM_FFd8> 
 
 Optimizing unit <LAN_IDE_CP> ...
+  implementation constraint: INIT=s	 : SHUT_UP_Z2_2
+  implementation constraint: INIT=s	 : SHUT_UP_Z2_0
+  implementation constraint: INIT=s	 : SHUT_UP_Z2_1
   implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_1
   implementation constraint: INIT=r	 : LAN_INT_ENABLE
-  implementation constraint: INIT=s	 : SHUT_UP_Z2_2
-  implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_CYCLE_0
-  implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_CYCLE_1
-  implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_CYCLE_2
   implementation constraint: INIT=s	 : D_Z2_OUT_3
   implementation constraint: INIT=s	 : LAN_A_INIT_3
   implementation constraint: INIT=s	 : D_Z2_OUT_2
@@ -354,18 +354,32 @@ Optimizing unit <LAN_IDE_CP> ...
   implementation constraint: INIT=s	 : D_Z2_OUT_1
   implementation constraint: INIT=s	 : D_Z2_OUT_0
   implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_2
+  implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_CYCLE_2
   implementation constraint: INIT=r	 : LAN_D_INIT_1
   implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_0
   implementation constraint: INIT=r	 : LAN_D_INIT_8
-  implementation constraint: INIT=s	 : SHUT_UP_Z2_0
-  implementation constraint: INIT=s	 : SHUT_UP_Z2_1
+  implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_CYCLE_1
+  implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_CYCLE_0
   implementation constraint: INIT=r	 : LAN_RST_SM_FSM_FFd1
   implementation constraint: INIT=r	 : LAN_RST_SM_FSM_FFd2
   implementation constraint: INIT=r	 : LAN_RST_SM_FSM_FFd3
+  implementation constraint: INIT=r	 : LAN_RST_SM_FSM_FFd4
+  implementation constraint: INIT=r	 : LAN_RST_SM_FSM_FFd5
+  implementation constraint: INIT=r	 : LAN_RST_SM_FSM_FFd6
+  implementation constraint: INIT=r	 : LAN_RST_SM_FSM_FFd7
   implementation constraint: INIT=r	 : LAN_SM_FSM_FFd1
   implementation constraint: INIT=r	 : LAN_SM_FSM_FFd2
   implementation constraint: INIT=r	 : LAN_SM_FSM_FFd3
   implementation constraint: INIT=r	 : LAN_SM_FSM_FFd4
+  implementation constraint: INIT=r	 : LAN_SM_FSM_FFd5
+  implementation constraint: INIT=r	 : LAN_SM_FSM_FFd6
+  implementation constraint: INIT=r	 : LAN_SM_FSM_FFd7
+  implementation constraint: INIT=r	 : LAN_SM_FSM_FFd8
+  implementation constraint: INIT=r	 : LAN_SM_FSM_FFd9
+  implementation constraint: INIT=r	 : LAN_SM_FSM_FFd10
+  implementation constraint: INIT=r	 : LAN_SM_FSM_FFd11
+  implementation constraint: INIT=r	 : LAN_SM_FSM_FFd12
+  implementation constraint: INIT=s	 : LAN_SM_FSM_FFd13
 
 =========================================================================
 *                           Partition Report                            *
@@ -385,7 +399,7 @@ Final Results
 RTL Top Level Output File Name     : LAN_IDE_CP.ngr
 Top Level Output File Name         : LAN_IDE_CP
 Output Format                      : NGC
-Optimization Goal                  : Area
+Optimization Goal                  : Speed
 Keep Hierarchy                     : Yes
 Target Technology                  : XC9500XL CPLDs
 Macro Preserve                     : YES
@@ -397,20 +411,25 @@ Design Statistics
 # IOs                              : 117
 
 Cell Usage :
-# BELS                             : 966
-#      AND2                        : 362
-#      AND3                        : 15
+# BELS                             : 1090
+#      AND2                        : 361
+#      AND3                        : 39
+#      AND4                        : 15
+#      AND5                        : 1
+#      AND8                        : 4
 #      GND                         : 1
-#      INV                         : 280
-#      OR2                         : 259
-#      OR3                         : 14
-#      OR4                         : 2
+#      INV                         : 346
+#      OR2                         : 222
+#      OR3                         : 45
+#      OR4                         : 6
+#      OR5                         : 1
+#      OR8                         : 16
 #      XOR2                        : 33
-# FlipFlops/Latches                : 141
+# FlipFlops/Latches                : 154
 #      FD                          : 4
-#      FDC                         : 20
+#      FDC                         : 32
 #      FDCE                        : 7
-#      FDP                         : 41
+#      FDP                         : 42
 #      FDPE                        : 69
 # IO Buffers                       : 115
 #      IBUF                        : 24
@@ -420,14 +439,14 @@ Cell Usage :
 =========================================================================
 
 
-Total REAL time to Xst completion: 19.00 secs
-Total CPU time to Xst completion: 18.56 secs
+Total REAL time to Xst completion: 9.00 secs
+Total CPU time to Xst completion: 9.16 secs
  
 --> 
 
-Total memory usage is 4534820 kilobytes
+Total memory usage is 4534788 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   46 (   0 filtered)
-Number of infos    :   10 (   0 filtered)
+Number of infos    :   11 (   0 filtered)
 

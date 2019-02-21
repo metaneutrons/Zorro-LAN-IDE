@@ -172,6 +172,7 @@ architecture Behavioral of LAN_IDE_CP is
 begin
 
 	Z3_DATA_IN <= D(15 downto 0) & A(23 downto 8);
+	
 	Z3_DS <= UDS & LDS & DS1 & DS0;
 	AMIGA_CLK <= not (C1 xor C3);
 	DS <= UDS and LDS;
@@ -561,11 +562,18 @@ begin
 					--when "010110"	=> Dout1 <=	"1111" ; --Rom vector low byte high nibble
 					when "010111"	=> 
 						D_Z2_OUT <=	"1110" ; --Rom vector low byte low  nibble							
+					when "100010"	=>
+						D_Z2_OUT <=	"1111" ;
+						if(RW='0')then
+							if(AUTO_CONFIG_Z2_DONE(1) = '0')then --reg (1)?!?! Why? it does not work with (0) but it should!
+								LAN_BASEADR(15 downto 8)	<= D(15 downto 8); --Base adress
+							end if;
+						end if;	
 					when "100100"	=>
 						D_Z2_OUT <=	"1111" ;
 						if(RW='0')then
 							if(AUTO_CONFIG_Z2_DONE(0) = '0')then
-								LAN_BASEADR(15 downto 0)	<= D(15 downto 0); --Base adress
+								LAN_BASEADR(7 downto 0)	<= D(15 downto 8); --Base adress
 								SHUT_UP_Z2(0)					<='0'; --enable board
 								AUTO_CONFIG_Z2_DONE_CYCLE(0)	<= '1'; --done here
 							elsif(AUTO_CONFIG_Z2_DONE(1) = '0')then
@@ -617,7 +625,7 @@ begin
 	--signal assignment
 	D(15 downto 0)	<=	Z3_DATA(31 downto 16) 	when RW='1' and FCS='0' and LAN_ACCESS ='1' else		
 							D_Z2_OUT	& x"FFF" 		when RW='1' and  AS='0' and AUTOCONFIG_Z2_ACCESS ='1' else
-							DQ(7 downto 0)&DQ(7 downto 0)  when RW='1' and CP_ACCESS = '1'     and AS='0' else
+							DQ(15 downto 0)  when RW='1' and CP_ACCESS = '1'     and AS='0' else
 							(others => 'Z');
 
 	A(23 downto 8)	<=	Z3_DATA(15 downto  0) 	when RW='1' and FCS='0' and LAN_ACCESS ='1' else			
@@ -694,7 +702,7 @@ begin
 			--default values
 			CP_RD_S		<= '1';
 			CP_WE_S		<= '1';
-			if(CP_ACCESS = '1' and DS='0')then --datastrobe instead of AS!
+			if(CP_ACCESS = '1' and DS='0' and AS='0')then --datastrobe and AS!
 				CP_RD_S		<= not RW;
 				CP_WE_S		<= RW;
 			end if;				

@@ -7,7 +7,7 @@ run
 -ofmt NGC
 -p xc9500xl
 -top LAN_IDE_CP
--opt_mode Area
+-opt_mode Speed
 -opt_level 1
 -iuc NO
 -keep_hierarchy Yes
@@ -17,7 +17,7 @@ run
 -bus_delimiter <>
 -case Maintain
 -verilog2001 YES
--fsm_extract YES -fsm_encoding Compact
+-fsm_extract YES -fsm_encoding One-Hot
 -safe_implementation No
 -mux_extract Yes
 -resource_sharing YES
