@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.15 secs
+Total CPU time to Xst completion: 0.14 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.15 secs
+Total CPU time to Xst completion: 0.14 secs
  
 --> Reading design: LAN_IDE_CP.prj
 
@@ -111,6 +111,7 @@ Synthesizing Unit <LAN_IDE_CP>.
     Related source file is "C:/Users/Matze/Amiga/Hardwarehacks/Zorro-LAN-IDE/Logic/LAN_IDE/LAN_IDE_CP.vhd".
 WARNING:Xst:647 - Input <IDE_WAIT> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <MTCR> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:1780 - Signal <CONFIG_READY> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
 INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     Found finite state machine <FSM_0> for signal <LAN_SM>.
     -----------------------------------------------------------------------
@@ -146,8 +147,8 @@ INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     Found 1-bit tristate buffer for signal <OVR>.
     Found 1-bit tristate buffer for signal <MTACK>.
     Found 1-bit tristate buffer for signal <DTACK>.
-    Found 1-bit tristate buffer for signal <INT_OUT>.
-    Found 1-bit tristate buffer for signal <INT_CP_OUT>.
+    Found 1-bit tristate buffer for signal <INT2_OUT>.
+    Found 1-bit tristate buffer for signal <INT6_OUT>.
     Found 4-bit tristate buffer for signal <LAN_CFG>.
     Found 1-bit tristate buffer for signal <A<23>>.
     Found 1-bit tristate buffer for signal <A<22>>.
@@ -165,30 +166,30 @@ INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     Found 1-bit tristate buffer for signal <A<10>>.
     Found 1-bit tristate buffer for signal <A<9>>.
     Found 1-bit tristate buffer for signal <A<8>>.
-    Found 1-bit xor2 for signal <AMIGA_CLK$xor0000> created at line 177.
+    Found 1-bit xor2 for signal <AMIGA_CLK$xor0000> created at line 178.
     Found 3-bit register for signal <AUTO_CONFIG_Z2_DONE>.
     Found 3-bit register for signal <AUTO_CONFIG_Z2_DONE_CYCLE>.
     Found 1-bit register for signal <AUTOCONFIG_Z2_ACCESS>.
     Found 1-bit register for signal <CP_ACCESS>.
-    Found 8-bit comparator equal for signal <CP_ACCESS$cmp_eq0000> created at line 290.
+    Found 8-bit comparator equal for signal <CP_ACCESS$cmp_eq0000> created at line 291.
     Found 8-bit register for signal <CP_BASEADR>.
     Found 1-bit register for signal <CP_RD_S>.
     Found 1-bit register for signal <CP_WE_QUIRK>.
     Found 1-bit register for signal <CP_WE_S>.
     Found 4-bit register for signal <D_Z2_OUT>.
-    Found 4-bit comparator less for signal <DQ$cmp_lt0000> created at line 636.
+    Found 4-bit comparator less for signal <DQ$cmp_lt0000> created at line 638.
     Found 16-bit register for signal <DQ_DATA>.
     Found 1-bit register for signal <DQ_SWAP>.
-    Found 2-bit comparator less for signal <DQ_SWAP$cmp_lt0000> created at line 261.
+    Found 2-bit comparator less for signal <DQ_SWAP$cmp_lt0000> created at line 262.
     Found 1-bit register for signal <IDE_ACCESS>.
-    Found 8-bit comparator equal for signal <IDE_ACCESS$cmp_eq0000> created at line 297.
+    Found 8-bit comparator equal for signal <IDE_ACCESS$cmp_eq0000> created at line 298.
     Found 8-bit register for signal <IDE_BASEADR>.
     Found 1-bit register for signal <IDE_ENABLE>.
     Found 1-bit register for signal <IDE_R_S>.
     Found 1-bit register for signal <IDE_W_S>.
     Found 14-bit register for signal <LAN_A_INIT>.
     Found 1-bit register for signal <LAN_ACCESS>.
-    Found 16-bit comparator equal for signal <LAN_ACCESS$cmp_eq0000> created at line 260.
+    Found 16-bit comparator equal for signal <LAN_ACCESS$cmp_eq0000> created at line 261.
     Found 16-bit register for signal <LAN_BASEADR>.
     Found 1-bit register for signal <LAN_CS_RST>.
     Found 16-bit register for signal <LAN_D_INIT>.
@@ -197,7 +198,7 @@ INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
     Found 1-bit register for signal <LAN_IRQ_OUT>.
     Found 1-bit register for signal <LAN_RD_S>.
     Found 1-bit register for signal <LAN_READY>.
-    Found 2-bit comparator less for signal <LAN_SM$cmp_lt0000> created at line 387.
+    Found 2-bit comparator less for signal <LAN_SM$cmp_lt0000> created at line 388.
     Found 1-bit register for signal <LAN_SM_RST>.
     Found 1-bit register for signal <LAN_WR_RST>.
     Found 1-bit register for signal <LAN_WRH_S>.
@@ -397,11 +398,11 @@ Design Statistics
 # IOs                              : 117
 
 Cell Usage :
-# BELS                             : 973
-#      AND2                        : 363
+# BELS                             : 975
+#      AND2                        : 364
 #      AND3                        : 15
 #      GND                         : 1
-#      INV                         : 284
+#      INV                         : 285
 #      OR2                         : 259
 #      OR3                         : 15
 #      OR4                         : 3
@@ -420,14 +421,14 @@ Cell Usage :
 =========================================================================
 
 
-Total REAL time to Xst completion: 20.00 secs
-Total CPU time to Xst completion: 20.12 secs
+Total REAL time to Xst completion: 19.00 secs
+Total CPU time to Xst completion: 18.75 secs
  
 --> 
 
-Total memory usage is 4534764 kilobytes
+Total memory usage is 4534744 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :   46 (   0 filtered)
+Number of warnings :   47 (   0 filtered)
 Number of infos    :   10 (   0 filtered)
 

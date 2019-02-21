@@ -58,8 +58,8 @@ entity LAN_IDE_CP is
            DS1 : in  STD_LOGIC;
            FCS : in  STD_LOGIC;
            RESET : in  STD_LOGIC;
-           INT2_OUT : out  STD_LOGIC;
-			  INT6_OUT : out  STD_LOGIC;
+           INT_OUT : out  STD_LOGIC;
+			  INT_CP_OUT : out  STD_LOGIC;
            AUTOBOOT_OFF : in  STD_LOGIC;
            ROM_B : out  STD_LOGIC_VECTOR (1 downto 0);
            ROM_OE : out  STD_LOGIC;
@@ -135,7 +135,6 @@ architecture Behavioral of LAN_IDE_CP is
 	signal LAN_WRH_S: std_logic;
 	signal LAN_WRL_S: std_logic;
 	signal LAN_READY: std_logic;
-	signal CONFIG_READY: std_logic;
 	signal LAN_IRQ_D0: std_logic;
 	signal LAN_IRQ_OUT: std_logic;
 	signal Z3_ADR:STD_LOGIC_VECTOR(15 downto 2);
@@ -393,7 +392,6 @@ begin
 							LAN_SM <= wait_read_lower;
 						end if;
 					else
-						
 						if(Z3_DS(3 downto 2) < "11")then -- determine bushalf
 							LAN_SM <= start_write_upper;
 						else
@@ -606,7 +604,7 @@ begin
 
 
 
-	LAN_CS	<= LAN_ACCESS   when reset='1' and Z3_ADR(15)='0' else LAN_CS_RST;						
+	LAN_CS	<= LAN_ACCESS   when reset='1' else LAN_CS_RST;						
 	LAN_WRL	<= LAN_WRL_S when FCS='0' and reset = '1' else LAN_WR_RST;
 	LAN_WRH	<= LAN_WRH_S when FCS='0' and reset = '1' else LAN_WR_RST;
 	LAN_RD	<= LAN_RD_S  when FCS='0' and reset = '1' else '0';
@@ -644,10 +642,10 @@ begin
 
 
 
-	INT2_OUT <= '0' when LAN_IRQ_OUT = '0' and LAN_INT_ENABLE = '1' else
+	INT_OUT <= '0' when LAN_IRQ_OUT = '0' and LAN_INT_ENABLE = '1' else
 					--'0' when CP_IRQ = '0' else
 				  'Z';
-	INT6_OUT <= '0' when CP_IRQ = '0' else
+	INT_CP_OUT <= '0' when CP_IRQ = '0' else
 				  'Z';
 	OWN 	<= 'Z';
 	SLAVE <= '0' when FCS='0' and LAN_ACCESS = '1' else 
