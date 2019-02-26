@@ -1,7 +1,7 @@
 Release 8.1i - Fit P.20131013
 Copyright(c) 1995-2003 Xilinx Inc. All rights reserved
 
- 2-21-2019 11:44PM
+ 2-24-2019  3:25PM
 
 NOTE: This file is designed to be imported into a spreadsheet program
 such as Microsoft Excel for viewing, printing and sorting. The pipe '|'
@@ -115,7 +115,7 @@ P94|A<18>|I/O|I/O|BIDIR|||||||||
 P95|A<17>|I/O|I/O|BIDIR|||||||||
 P96|MTACK|O|I/O|OUTPUT|||||||||
 P97|A<16>|I/O|I/O|BIDIR|||||||||
-P98|BERR|I|I/O|INPUT|||||||||
+P98|TIE||I/O||||||||||
 P99|GND||GND||||||||||
 P100|OVR|O|I/O|OUTPUT|||||||||
 P101|TIE||I/O||||||||||

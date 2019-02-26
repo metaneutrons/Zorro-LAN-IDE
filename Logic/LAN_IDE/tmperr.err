@@ -1,0 +1,24 @@
+WARNING:Cpld - Unable to retrieve the path to the iSE Project Repository. Will
+   use the default filename of 'LAN_IDE_CP.ise'.
+INFO:Cpld - Inferring BUFG constraint for signal 'CLK_EXT' based upon the LOC
+   constraint 'P30'. It is recommended that you declare this BUFG explicitedly
+   in your design. Note that for certain device families the output of a BUFG
+   constraint can not drive a gated clock, and the BUFG constraint will be
+   ignored.
+WARNING:Cpld:1007 - Removing unused input(s) 'BERR'.  The input(s) are unused
+   after optimization. Please verify functionality via simulation.
+WARNING:Cpld:1007 - Removing unused input(s) 'IDE_WAIT'.  The input(s) are
+   unused after optimization. Please verify functionality via simulation.
+WARNING:Cpld:1007 - Removing unused input(s) 'MTCR'.  The input(s) are unused
+   after optimization. Please verify functionality via simulation.
+WARNING:Cpld:896 - Unable to map all desired signals into function block, FB5,
+   because too many function block product terms are required. Buffering output
+   signal CP_CS to allow all signals assigned to this function block to be
+   placed.
+ERROR:Cpld:886 - Function block FB1 was too congested to route successfully.
+   This occurs due to excessive (>= 50) product term input fanins to this
+   function block. Consider moving output signals in this function block to less
+   congested function blocks, buffering output signals that must remain in this
+   function block, or selecting a larger package.
+ERROR:Cpld:868 - Cannot fit the design into any of the specified devices with
+   the selected implementation options.

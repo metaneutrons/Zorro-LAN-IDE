@@ -69,7 +69,7 @@
     <output file='topnav.htm'/>
   </xslFile>
   <xslFile file='leftnav.xsl'>
-    <param name='result' value='1'/>
+    <param name='result' value='0'/>
     <output file='leftnav.htm'/>
   </xslFile>
   <xslFile file='print.xsl'>

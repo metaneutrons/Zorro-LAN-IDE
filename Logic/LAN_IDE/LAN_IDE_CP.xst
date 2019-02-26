@@ -8,7 +8,7 @@ run
 -p xc9500xl
 -top LAN_IDE_CP
 -opt_mode Speed
--opt_level 1
+-opt_level 2
 -iuc NO
 -keep_hierarchy Yes
 -netlist_hierarchy As_Optimized
@@ -17,8 +17,9 @@ run
 -bus_delimiter <>
 -case Maintain
 -verilog2001 YES
--fsm_extract YES -fsm_encoding One-Hot
+-fsm_extract YES -fsm_encoding Johnson
 -safe_implementation No
+-vlgcase Full
 -mux_extract Yes
 -resource_sharing YES
 -iobuf YES
