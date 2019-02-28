@@ -7,8 +7,8 @@
 
   <Properties>
     <property name="Synthesize - XST:Optimization Goal" value="Speed"/>
-    <property name="Synthesize - XST:Optimization Effort" value="High"/>
-    <property name="Synthesize - XST:FSM Encoding Algorithm" value="Sequential"/>
+    <property name="Synthesize - XST:Optimization Effort" value="Normal"/>
+    <property name="Synthesize - XST:FSM Encoding Algorithm" value="Compact"/>
     <property name="Synthesize - XST:Safe Implementation" value="No"/>
     <property name="Synthesize - XST:Case Implementation Style" value="None"/>
   </Properties>

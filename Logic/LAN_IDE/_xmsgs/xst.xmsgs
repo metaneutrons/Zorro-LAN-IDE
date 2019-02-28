@@ -35,6 +35,9 @@
 <msg type="warning" file="Xst" num="646" delta="old" >Signal &lt;<arg fmt="%s" index="1">LAN_SM_RST</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
 </msg>
 
+<msg type="warning" file="Xst" num="646" delta="old" >Signal &lt;<arg fmt="%s" index="1">LAN_CYCLE_IN_PROGRESS</arg>&gt; is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+</msg>
+
 <msg type="info" file="Xst" num="1799" delta="old" >State <arg fmt="%s" index="1">start_read_upper</arg> is never reached in FSM &lt;<arg fmt="%s" index="2">LAN_SM</arg>&gt;.
 </msg>
 

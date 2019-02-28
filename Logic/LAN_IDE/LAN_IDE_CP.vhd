@@ -144,6 +144,12 @@ architecture Behavioral of LAN_IDE_CP is
 	signal Z3_DS:STD_LOGIC_VECTOR(3 downto 0);
 	signal Z3_A_LOW:STD_LOGIC;
 	signal LAN_SM_RST:STD_LOGIC;
+	signal FCS_P_D0:STD_LOGIC;
+	signal FCS_N_D0:STD_LOGIC;
+	signal FCS_SM_P_D0:STD_LOGIC;
+	signal FCS_SM_N_D0:STD_LOGIC;
+	signal LAN_CYCLE_IN_PROGRESS:STD_LOGIC;
+	
 
 	signal CP_RD_S: std_logic;
 	signal CP_WE_S: std_logic;
@@ -339,10 +345,30 @@ begin
 		end if;
 	end process lan_rst_gen;
 	
-	--lan signal generation: all Signals are HIGH active!
-	lan_rw_gen: process (CLK_EXT,FCS,reset,Z3_DS,LAN_ACCESS,BERR )
+	fcs_pos_edge_detect: process(reset, FCS)
 	begin
-		if(reset = '0') then
+		if(reset ='0') then
+			FCS_P_D0 <='0';
+		elsif(rising_edge(FCS)) then
+			FCS_P_D0 <= not FCS_P_D0; --toggle
+		end if;
+	end process;
+	
+	fcs_neg_edge_detect: process(reset, FCS)
+	begin
+		if(reset ='0') then
+			FCS_N_D0 <='0';
+		elsif(falling_edge(FCS)) then
+			FCS_N_D0 <= not FCS_N_D0; --toggle
+		end if;
+	end process;
+
+
+	
+	--lan signal generation: all Signals are HIGH active!
+	lan_rw_gen: process (CLK_EXT,reset )
+	begin
+		if(reset = '0' ) then
 			LAN_SM <=nop;
 			LAN_RD_S		<= '0';
 			LAN_WRH_S	<= '0';
@@ -351,6 +377,9 @@ begin
 			LAN_READY 	<= '0';
 			Z3_DATA(31 downto 0) <= x"FFFFFFFF";
 			DQ_DATA(15 downto 0) <= x"FFFF";
+			FCS_SM_P_D0 <='0';
+			FCS_SM_N_D0 <='0';
+			LAN_CYCLE_IN_PROGRESS <='0';
 		elsif rising_edge(CLK_EXT) then			
 			--default values
 			LAN_RD_S		<= '0';
@@ -358,6 +387,13 @@ begin
 			LAN_WRL_S	<= '0';
 			Z3_A_LOW		<= '0';
 			LAN_READY 	<= '0';
+			FCS_SM_N_D0 <= FCS_N_D0; --store edge state
+			FCS_SM_P_D0 <= FCS_P_D0; --store edge state
+			if(LAN_ACCESS = '1' and FCS_SM_N_D0 /= FCS_N_D0) then
+				LAN_CYCLE_IN_PROGRESS <='1';
+			elsif(FCS_SM_P_D0 /= FCS_P_D0) then
+				LAN_CYCLE_IN_PROGRESS <='0';
+			end if;
 			case LAN_SM is
 				when nop=>
 					--cycle start!
@@ -380,9 +416,9 @@ begin
 						end if;
 					end if;	
 						
-					if(Z3_DS < "1111" and LAN_ACCESS = '1')then
+					if(Z3_DS < "1111" and LAN_ACCESS = '1' and FCS='0')then
 						if(Z3_ADR(15)='1')then
-								LAN_SM <= config_rw;
+							LAN_SM <= config_rw;
 						elsif(RW='1')then --read from MSB			
 							if(Z3_DS(3 downto 2) < "11")then --determine bushalf
 								LAN_RD_S		<= '1';
@@ -474,10 +510,10 @@ begin
 					LAN_SM<=wait_cycle_end;
 				when wait_cycle_end=>
 					LAN_READY <='1';
-					if(FCS='0')then
-						LAN_SM<=wait_cycle_end; -- stay here until cylce end
-					else
+					if(FCS_SM_P_D0 /= FCS_P_D0 or FCS ='1')then
 						LAN_SM <= nop;
+					else
+						LAN_SM<=wait_cycle_end; -- stay here until cylce end
 					end if;
 				when config_rw=>
 					LAN_READY <='1';
@@ -572,7 +608,7 @@ begin
 					when "100010"	=>
 						D_Z2_OUT <=	"1111" ;
 						if(RW='0')then
-							if(AUTO_CONFIG_Z2_DONE(1) = '0')then --reg (1)?!?! Why? it does not work with (0) but it should!
+							if(AUTO_CONFIG_Z2_DONE(1) = '0')then --reg (1)?!?! Why? it does not work with index 0 but it should!
 								LAN_BASEADR(15 downto 8)	<= D(15 downto 8); --Base adress
 							end if;
 						end if;	
