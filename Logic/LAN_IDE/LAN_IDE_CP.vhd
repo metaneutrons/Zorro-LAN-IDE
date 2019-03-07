@@ -243,7 +243,7 @@ begin
 		end if;
 	end process clock_init;
 	
-	ADDRESS_Z3_DECODE: process(AS,reset,FCS)
+	ADDRESS_Z3_DECODE: process(reset,FCS)
 	begin
 		if(reset='0')then
 			LAN_ACCESS 		<= '0';
