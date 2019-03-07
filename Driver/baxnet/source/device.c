@@ -18,6 +18,8 @@
   in server.c as a separate process. Interrupts are forwarded
   as signals to server.c as well (depending on target hardware).
 
+  S2_CONFIGINTERFACE worked more than once, it *must* only work once.
+  
 */
 #define DEVICE_MAIN
 
@@ -200,6 +202,12 @@ ASM SAVEDS LONG DevOpen( ASMR(a1) struct IOSana2Req *ioreq           ASMREG(a1),
 				dbm->dbm_PacketFilter = (APTR)( GetTagData(S2_PacketFilter,0,
 				                                (struct TagItem *)ioreq->ios2_BufferManagement));
 
+				dbm->dbm_CopyFromBufferDMA = (BMCALL)((void (*)())(GetTagData(S2_DMACopyFromBuff32, 0,
+								(struct TagItem *)ioreq->ios2_BufferManagement)));
+				dbm->dbm_CopyToBufferDMA   = (BMCALL)((void (*)())(GetTagData(S2_DMACopyToBuff32, 0,
+								(struct TagItem *)ioreq->ios2_BufferManagement)));
+
+
 				/* v1.95: disabled CopyToBuffer32 due to problems with MiamiDX */
 				/* v1.99: try identifying Miami */
 				/* MiamiDX requires byte count to be a multiple of 4 */
@@ -215,7 +223,7 @@ ASM SAVEDS LONG DevOpen( ASMR(a1) struct IOSana2Req *ioreq           ASMREG(a1),
 					dbm->dbm_CopyFromBuffer32 = (BMCALL)((void (*)())(GetTagData(S2_CopyFromBuff32, 0,
 				                                (struct TagItem *)ioreq->ios2_BufferManagement)));
 				}
-				
+	
 				D(("BufferMgmt CBuf32 %lx PF %lx CBuf %lx\n",(ULONG)dbm->dbm_CopyFromBuffer32,(ULONG)dbm->dbm_PacketFilter,(ULONG)dbm->dbm_CopyFromBuffer));
 
 				if( !dbm->dbm_CopyToBuffer32 )
@@ -264,6 +272,8 @@ ASM SAVEDS LONG DevOpen( ASMR(a1) struct IOSana2Req *ioreq           ASMREG(a1),
 		db->db_Lib.lib_OpenCnt--;
 	}
 	ioreq->ios2_Req.io_Message.mn_Node.ln_Type = NT_REPLYMSG;
+
+	D(("DevOpen return code %ld\n",ret));
 
 	return ret;
 }
@@ -588,6 +598,8 @@ ASM SAVEDS VOID DevBeginIO( ASMR(a1) struct IOSana2Req *ioreq        ASMREG(a1),
 			{
 			 struct IOStdReq *stdrq = (struct IOStdReq *)ioreq;
 
+			 D(("NSCMD_DEVICEQUERY size %ld\n",(ULONG)stdrq->io_Length));
+
 			 if( (!stdrq->io_Data) || (stdrq->io_Length < sizeof( NSDQueryAnswer ) ) )
 			 {
 				ioreq->ios2_Req.io_Error = IOERR_BADLENGTH;
@@ -598,6 +610,7 @@ ASM SAVEDS VOID DevBeginIO( ASMR(a1) struct IOSana2Req *ioreq        ASMREG(a1),
 				stdrq->io_Actual = sizeof( NSDQueryAnswer ); 
 				ioreq->ios2_Req.io_Error = 0;
 			 }
+			 D(("NSCMD_DEVICEQUERY return %ld\n",(ULONG)ioreq->ios2_Req.io_Error));
 			}
 			break;
 		/* query contents may ask for live data: handle in server.c */

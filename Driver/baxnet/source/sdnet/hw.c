@@ -36,21 +36,20 @@ extern const BYTE DeviceName[];
 #define HW_INTERVALDEF 10000
 #define HW_DEFSPI 2
 
-
 /* these calls might not run within the context of a process and
    will be called from varying tasks and without prior init:
-    hw_Find_Boards()
+    hw_Find_Boards()	- this one just identifies available HW and returns #boards
     hw_AllocBoard()
     hw_ReleaseBoard()
-    hw_GetMacAddress()
+    hw_GetMacAddress()  - get default MAC address from board
 
   these calls are in the context of the server task:
-    hw_Setup()		- general init (board allocated already)
-    hw_Shutdown()	- general shutdown (board still allocated)
-    hw_Attach()		- make hardware ready for action (online)
-    hw_Detach()		- put hardware into sleep mode (offline)
+    hw_Setup()	        - general init (board allocated already)
+    hw_Shutdown()       - general shutdown (board still allocated)
+    hw_Attach()	        - make hardware ready for action (online)
+    hw_Detach()	        - put hardware into sleep mode (offline)
 
-    hw_recv_sigmask()   - get signals for hardware (if any)
+    hw_recv_sigmask()   - get signals for hardware (if any, i.e. signal on interrupt)
     hw_recv_pending()   - check for pending receive frames
 
     hw_recv_frame()	- receive one frame
@@ -59,9 +58,13 @@ extern const BYTE DeviceName[];
                              and apply them (called only when no RX/TX
 			     in progress)
 
-    hw_config_init()    - set defaults for HW
-    hw_config_update()  - update config of HW
+    hw_ConfigInit()     - set defaults for HW
+    hw_ConfigUpdate()   - update config of HW
+
+    hw_change_multicast - re-initialize multicast filter for new address list
+    hw_get_mac_status()	- running parameters (optional), S2_DEVICEQUERYEXT
 */
+
 
 #ifdef PROTO_V2EXPNET
 #define USE_INTERRUPT

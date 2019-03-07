@@ -30,8 +30,8 @@ ASMOBJECTS = $(SUBDIR)/enc624j6l.o$(TYPE) $(SUBDIR)/intervaltimer.o$(TYPE)
 # more than one flavour of the same code base may be build with this setup
 # arguments passed down recursively (example):
 #DEVICEID=v2expeth.device
-#DEFINES1 = -DPROTO_V2EXPNET
-#ASMDEFS  = -DPROTO_V2EXPNET
+DEFINES1 = DEFINE HW_DMA_TX=1
+ASMDEFS1 = -DHW_DMA_TX=1
 #CPU = 68020
 
 
@@ -97,6 +97,8 @@ DEFINES = $(DEFINES) DEFINE DEVICENAME=$(DEVICEID)
 #DEFINES = $(DEFINES) DEFINE DEVICEEXTRA=$(DEVICEEXTRA)
 ASMDEFS = $(ASMDEFS1) 
 #-DDEVICEVERSION=$(DEVICEVERSION) -DDEVICEREVISION=$(DEVICEREVISION)
+
+
 
 ###############################################################################
 #

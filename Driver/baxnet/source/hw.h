@@ -51,7 +51,7 @@ struct devbase;
 #define HW_MACB_SPEEDS_END   18 /* this is the next free bit */
 #define HW_MAC_SPEEDSMASK    ((1<<HW_MACB_SPEEDS_END)-4)
 #define HW_MAC_NEXTSPEED(_a_) ( (_a_)+2 )
-
+#define HW_MAGIC_WORD 0xB00BDEED
 
 
 
@@ -94,10 +94,24 @@ ASM SAVEDS void hw_ConfigInit(   ASMR(a0) DEVBASEP                  ASMREG(a0) )
 ASM SAVEDS void hw_ConfigUpdate( ASMR(a0) DEVBASEP                  ASMREG(a0), 
                                  ASMR(a1) void *                    ASMREG(a1) );
 
+/*
+  send a single frame to the hardware:
+   - either fully assembled frame (14 bytes DMAC,SMAC,TYPE followed by payload
+   - or payload in "frame" and 14 byte header in "header"
+   - provide Makefile-level definition of HW_DMA_TX in the latter case
+
+   - note: if you pass "header==NULL" with active HW_DMA_TX definition,
+     the hw_send_frame assumes the header to be present (SANA-II RAW frames) and
+     is handling "frame" as fully assembled frame
+*/
 ASM SAVEDS LONG hw_send_frame( ASMR(a0) DEVBASEP                  ASMREG(a0),
                                ASMR(d0) ULONG  unit               ASMREG(d0),
 			       ASMR(a1) UBYTE *frame              ASMREG(a1),
-                               ASMR(d1) ULONG  framesize          ASMREG(d1) );
+                               ASMR(d1) ULONG  framesize          ASMREG(d1) 
+#ifdef HW_DMA_TX
+                              ,ASMR(a2) UBYTE *header             ASMREG(a2)
+#endif
+                             );
 
 ASM SAVEDS LONG hw_recv_frame( ASMR(a0) DEVBASEP                  ASMREG(a0),
                                ASMR(d0) ULONG unit                ASMREG(d0),
@@ -115,6 +129,18 @@ ASM SAVEDS LONG hw_change_multicast(  ASMR(a0) DEVBASEP                  ASMREG(
 
 ASM SAVEDS LONG hw_get_mac_status(    ASMR(a0) DEVBASEP                  ASMREG(a0),
                                       ASMR(d0) ULONG unit                ASMREG(d0) );
+
+/* read PHY register (return -1 in case of error) */
+ASM SAVEDS LONG hw_read_phy(          ASMR(a0) DEVBASEP                  ASMREG(a0),
+                                      ASMR(d0) ULONG unit                ASMREG(d0),
+				      ASMR(d1) ULONG reg                 ASMREG(d1) );
+
+/* write PHY register (return -1 in case of error) */
+ASM SAVEDS LONG hw_write_phy(         ASMR(a0) DEVBASEP                  ASMREG(a0),
+                                      ASMR(d0) ULONG unit                ASMREG(d0),
+				      ASMR(d1) ULONG reg                 ASMREG(d1),
+				      ASMR(d2) ULONG value               ASMREG(d2) );
+
 
 /* kept this global for now: Z-II/Z-III boards share the same interrupt */
 ASM SAVEDS ULONG hw_recv_sigmask( ASMR(a0) DEVBASEP                  ASMREG(a0) );

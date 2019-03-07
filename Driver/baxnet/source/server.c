@@ -35,9 +35,12 @@ static LONG server_queryext( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq );
 */
 #define S2QUERYEXT_NOLENGTHCHECK
 
-/* this limits the number of write requests per run, also improves
-   Roadshow performance when active */
-#define ONE_WRITE_REQ
+/* tunables: number of one-call read and write requests */
+/* this limits the number of processed write requests per run when enabled */
+#define ONE_WRITE_REQ 2
+/* this limits the number of processed read requests per run when enabled */
+#define ONE_READ_REQ 2
+
 
 
 /* (avoid external link libraries) this call is not time critical */
@@ -570,6 +573,67 @@ static LONG server_queryext( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq )
 		}
 	}
 
+#ifdef S2_DevQueryExtGetMII
+	tval = GetTagData( S2_DevQueryExtGetMII, 0, tlist );
+	if( tval )
+	{
+		struct S2DevQueryMIIParam *miip;
+		LONG res;
+		LONG curidx=0,lastidx = 0;
+
+		D(("MII Register Query"));
+
+		s2qep = (struct S2DevQueryExtParam *)tval;
+		len   = s2qep->Length; /* in Bytes */
+		miip  = (struct S2DevQueryMIIParam *)s2qep->Data;
+
+		while( curidx <= len-sizeof( struct S2DevQueryMIIParam ) )
+		{
+			if( (res = hw_read_phy( db, unit, miip->ID )) >= 0 )
+			{
+				miip->Content = res;
+				lastidx = curidx; 
+			}
+			else
+			{ /* can't read register ID, invalidate */
+				miip->ID      = S2_DEVQUERYEXT_MII_INVALID;
+				miip->Content = 0;
+			}
+
+			miip++;
+			curidx += sizeof( struct S2DevQueryMIIParam );
+		}
+		s2qep->Actual = lastidx;
+	}
+#endif
+#ifdef S2_DevQueryExtSetMII
+	tval = GetTagData( S2_DevQueryExtSetMII, 0, tlist );
+	if( tval )
+	{
+		struct S2DevQueryMIIParam *miip;
+		LONG res;
+		LONG curidx=0,lastidx = 0;
+
+		D(("MII Register Write"));
+
+		s2qep = (struct S2DevQueryExtParam *)tval;
+		len   = s2qep->Length; /* in Bytes */
+		miip  = (struct S2DevQueryMIIParam *)s2qep->Data;
+
+		while( curidx <= len-sizeof( struct S2DevQueryMIIParam ) )
+		{
+			if( miip->ID != S2_DEVQUERYEXT_MII_INVALID )
+			{
+			  if( (res = hw_write_phy( db, unit, miip->ID, miip->Content )) >= 0 )
+			      lastidx = curidx; 
+
+			  miip++;
+			  curidx += sizeof( struct S2DevQueryMIIParam );
+			}
+		}
+		s2qep->Actual = lastidx;
+	}
+#endif
 	return 1;
 }
 
@@ -632,20 +696,34 @@ LONG server_writeerror( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq, LONG cod
 
 
 #ifndef EXTERNAL_WRITE_FRAME
-/* note: entering here with locked semaphore */
+/* 
+   note:    entering here with locked semaphore 
+   note(2): HW_DMA_TX is maybe a little misleading in it's actual use here.
+            This implementation will use that SANA-II capability in the following
+	    way: Obtain a pointer to either the whole frame (RAW) or the Payload
+	    and send either a complete frame or two chunks down to the hardware.
+	    HW_DMA_TX is defined by the Makefile. One of the chunks
+	    is the constant-size header (14 Bytes) and the other is the payload.
+*/
 static LONG write_frame( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq )
 {
 	LONG ret;/* = SERR_OK;*/
 	UBYTE *copy_ptr,*frame;
 	ULONG framesize;
 	struct db_BufferManagement *dbm;
+#ifdef HW_DMA_TX
+	UBYTE *header_ptr;
+#endif
 
 	   D(("write: type %08lx, size %ld\n",ioreq->ios2_PacketType,
         	                              ioreq->ios2_DataLength));
 
 	frame     = db->db_svdat.sv_frame;
 	framesize = ioreq->ios2_DataLength;
-	copy_ptr = frame;
+	copy_ptr  = frame;
+#ifdef HW_DMA_TX
+	header_ptr= NULL;
+#endif
 
 	/* copy raw frame: simply overwrite ethernet frame part of plip packet */
 	if( !(ioreq->ios2_Req.io_Flags & SANA2IOF_RAW) ) 
@@ -653,18 +731,46 @@ static LONG write_frame( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq )
 		COPYMAC( frame,   ioreq->ios2_DstAddr ); /* macro in server.h */
 		COPYMAC( frame+6, db->db_Units[unit].du_CFGAddr );
 		*( (USHORT*)(frame+12)) = ioreq->ios2_PacketType;
-		copy_ptr += 14;
+#ifdef HW_DMA_TX
+		header_ptr = frame;
+		copy_ptr  += 16; /* aligned behind header with a gap of 2 */
+#else
+		copy_ptr  += 14;
 		framesize += 14;
+#endif
 	} 
 	
    	dbm = (struct db_BufferManagement *)ioreq->ios2_BufferManagement;
 
-	/* copy32 is valid ptr, even if the stack offers only regular CopyFromBuffer */
+/* #if 0 */
+#ifdef HW_DMA_TX
+	/* hw implementation supports it, now check if we can use DMA copy buffer */
+	if( dbm->dbm_CopyFromBufferDMA )
+	{
+		UBYTE *dma_ptr;
+
+		dma_ptr = (UBYTE*)(*dbm->dbm_CopyFromBufferDMA)( ioreq->ios2_Data, NULL, 0 );
+		if( dma_ptr )
+		{
+			/* pass extra header if not raw */
+			hw_send_frame(db, unit, dma_ptr,framesize, header_ptr );
+
+			ret = SERR_OK; /* FIXME: error code */
+			goto dmasend_done;
+		}
+	}
+#endif
+
+	/* copy32 is a valid ptr, even if the stack offers only regular CopyFromBuffer */
 	if( (*dbm->dbm_CopyFromBuffer32)(copy_ptr,ioreq->ios2_Data, ioreq->ios2_DataLength) )
  	{
 send:
 		D(("+hw_send\n"));
-		ret = hw_send_frame(db, unit, frame, framesize) ? SERR_OK : SERR_ERROR;
+#ifdef HW_DMA_TX
+		ret = hw_send_frame(db, unit, copy_ptr, framesize, header_ptr ) ? SERR_OK:SERR_ERROR;
+#else
+		ret = hw_send_frame(db, unit, frame, framesize ) ? SERR_OK : SERR_ERROR;	                
+#endif
 		D(("-hw_send\n"));
 	}
 	else
@@ -676,6 +782,10 @@ send:
 			ret = SERR_BUFFER_ERROR;
 	}
 
+#ifdef HW_DMA_TX
+dmasend_done:
+#endif
+
 	return ret;
 }
 #endif
@@ -684,17 +794,20 @@ send:
 static LONG server_writequeue( DEVBASEP, ULONG unit )
 {
 	LONG code;
+#ifdef ONE_WRITE_REQ
+	LONG t = 0;
+#endif
 	struct IOSana2Req *ioreq,*nextio;
 
 	ObtainSemaphore( &db->db_Units[unit].du_Sem );
 
-#if 1 /* #ifdef ONE_WRITE_REQ */
+#if 1 
 	/* whole queue per call */
 	for(  ioreq = (struct IOSana2Req *)db->db_Units[unit].du_WriteQueue.lh_Head;
 	     (nextio= (struct IOSana2Req *)ioreq->ios2_Req.io_Message.mn_Node.ln_Succ);
 	      ioreq = nextio )
 #else
-	/* single write per call */
+	/* single write per call (deprecated in favor of ONE_WRITE_REQ) */
 	ioreq = (struct IOSana2Req *)db->db_Units[unit].du_WriteQueue.lh_Head;
 	if( ioreq->ios2_Req.io_Message.mn_Node.ln_Succ )
 #endif
@@ -731,8 +844,13 @@ static LONG server_writequeue( DEVBASEP, ULONG unit )
 			server_writeerror( db, unit, ioreq, code );
 		}
 #ifdef ONE_WRITE_REQ
-		if( hw_recv_pending(db,unit) )
+		t++;
+		if( t >= ONE_WRITE_REQ ) /* this somewhat balances hardware polling overhead vs. IP-stack timing */
+		{
+		 t = 0;
+		 if( hw_recv_pending(db,unit) )
 			break;
+		}
 #endif
 	}
 
@@ -817,6 +935,9 @@ static LONG server_readqueue( DEVBASEP, ULONG unit )
 	LONG   framesize;
 	LONG   frametype;
 	LONG   dropflag;
+#ifdef ONE_READ_REQ
+	LONG   t=0;
+#endif
 
 	while(1) 
 	{
@@ -895,7 +1016,17 @@ nextframe:
 			/* TODO: check for error, send S2EVENT_HARDWARE|S2EVENT_ERROR|S2EVENT_RX along with stats db_DevStats.BadData */
 			goto end;
 		}
-	}
+#ifdef ONE_READ_REQ
+		t++;
+		if( t>= ONE_READ_REQ )
+		{
+			struct IOSana2Req *wr = (struct IOSana2Req *)db->db_Units[unit].du_WriteQueue.lh_Head;
+			/* t=0; */
+			if( wr->ios2_Req.io_Message.mn_Node.ln_Succ )
+				goto end; /* pending writes ? -> leave after ONE_READ_REQ requests */
+		}
+#endif
+	} /* while(1) */
 end:
 	return SERR_OK;
 }

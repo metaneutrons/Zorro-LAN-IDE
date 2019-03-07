@@ -51,18 +51,18 @@ void myhw_ControlIntervalTimer( DEVBASEP );
 
 /* these calls might not run within the context of a process and
    will be called from varying tasks and without prior init:
-    hw_Find_Boards()
+    hw_Find_Boards()	- this one just identifies available HW and returns #boards
     hw_AllocBoard()
     hw_ReleaseBoard()
-    hw_GetMacAddress()
+    hw_GetMacAddress()  - get default MAC address from board
 
   these calls are in the context of the server task:
-    hw_Setup()		- general init (board allocated already)
-    hw_Shutdown()	- general shutdown (board still allocated)
-    hw_Attach()		- make hardware ready for action (online)
-    hw_Detach()		- put hardware into sleep mode (offline)
+    hw_Setup()	        - general init (board allocated already)
+    hw_Shutdown()       - general shutdown (board still allocated)
+    hw_Attach()	        - make hardware ready for action (online)
+    hw_Detach()	        - put hardware into sleep mode (offline)
 
-    hw_recv_sigmask()   - get signals for hardware (if any)
+    hw_recv_sigmask()   - get signals for hardware (if any, i.e. signal on interrupt)
     hw_recv_pending()   - check for pending receive frames
 
     hw_recv_frame()	- receive one frame
@@ -71,10 +71,11 @@ void myhw_ControlIntervalTimer( DEVBASEP );
                              and apply them (called only when no RX/TX
 			     in progress)
 
-    hw_config_init()    - set defaults for HW
-    hw_config_update()  - update config of HW
+    hw_ConfigInit()     - set defaults for HW
+    hw_ConfigUpdate()   - update config of HW
 
-    hw_get_mac_status()	- running parameters
+    hw_change_multicast - re-initialize multicast filter for new address list
+    hw_get_mac_status()	- running parameters (optional), S2_DEVICEQUERYEXT
 */
 
 const BYTE exp_name[] = "expansion.library";
@@ -274,13 +275,31 @@ ASM SAVEDS void hw_ConfigUpdate( ASMR(a0) DEVBASEP                  ASMREG(a0),
 		hwd->multicast = 1;
 }
 
+/*
+  send a single frame to the hardware:
+   - either fully assembled frame (14 bytes DMAC,SMAC,TYPE followed by payload
+   - or payload in "frame" and 14 byte header in "header"
+   - provide Makefile-level definition of HW_DMA_TX in the latter case
 
+   - note: if you pass "header==NULL" with active HW_DMA_TX definition,
+     the hw_send_frame assumes the header to be present (SANA-II RAW frames) and
+     is handling "frame" as fully assembled frame
+*/
 ASM SAVEDS LONG hw_send_frame( ASMR(a0) DEVBASEP                  ASMREG(a0),
                                ASMR(d0) ULONG  unit               ASMREG(d0),
 			       ASMR(a1) UBYTE *frame              ASMREG(a1),
-                               ASMR(d1) ULONG  framesize          ASMREG(d1) )
+                               ASMR(d1) ULONG  framesize          ASMREG(d1)
+#ifdef HW_DMA_TX
+                              ,ASMR(a2) UBYTE *header             ASMREG(a2)
+#endif
+			     )
 {
-   enc624j6l_TransmitFrame( db->db_Units[unit].duh_BASE, frame, framesize );
+   /* TX with separate header support ? (optional) */
+   enc624j6l_TransmitFrame( db->db_Units[unit].duh_BASE, frame, framesize
+#ifdef HW_DMA_TX
+                            ,header
+#endif 
+                          );
    return 1;
 }
 
@@ -329,14 +348,16 @@ ASM SAVEDS LONG hw_check_link_change( ASMR(a0) DEVBASEP                  ASMREG(
 	return 1; /* don't signal panic to the outside, everything is under control */
 }
 
-/* obtain running parameters of Ethernet MAC: link up/down, Speed, Duplex */
+/* obtain running parameters of Ethernet MAC: link up/down, Speed, Duplex for 
+          SANA-II DeviceQueryExtension (general parameters)
+*/
 ASM SAVEDS LONG hw_get_mac_status(    ASMR(a0) DEVBASEP                  ASMREG(a0),
                                       ASMR(d0) ULONG unit                ASMREG(d0) )
 {
-	struct HWData *hwd = &db->db_hwdat;
-	APTR boardbase     = db->db_Units[unit].duh_BASE;
+    struct HWData *hwd = &db->db_hwdat;
+    APTR boardbase     = db->db_Units[unit].duh_BASE;
 
-	LONG ret;
+    LONG ret;
     LONG phstat3;
     LONG phstat1;
     LONG phcon1;
@@ -345,8 +366,8 @@ ASM SAVEDS LONG hw_get_mac_status(    ASMR(a0) DEVBASEP                  ASMREG(
     phstat3 = enc624j6l_ReadPHY( boardbase, PHSTAT3 );
     phcon1  = enc624j6l_ReadPHY( boardbase, PHCON1 );
     phstat1 = enc624j6l_ReadPHY( boardbase, PHSTAT1 ); /* read again to see whether link is established */
-	if( ( phstat1 < 0 ) || ( phstat3 < 0 ) )
-		return HW_MAC_INVALID; /* no valid data found */
+    if( ( phstat1 < 0 ) || ( phstat3 < 0 ) )
+        return HW_MAC_INVALID; /* no valid data found */
 
 	/* a) check Link */
 	ret = 0;
@@ -358,7 +379,7 @@ ASM SAVEDS LONG hw_get_mac_status(    ASMR(a0) DEVBASEP                  ASMREG(
 		if( phcon1  & PHCON1_ANEN ) /* autonegotiation enabled */
 		 ret |= HW_MAC_AUTONEGOTIATION;
 
-	    phstat3 = (phstat3>>2)&7; /* get active Speed/Duplex */
+		phstat3 = (phstat3>>2)&7; /* get active Speed/Duplex */
 		switch( phstat3 )
 		{
 			case 6:	
@@ -385,6 +406,30 @@ ASM SAVEDS LONG hw_get_mac_status(    ASMR(a0) DEVBASEP                  ASMREG(
 
 }
 
+/* read PHY register */
+ASM SAVEDS LONG hw_read_phy(          ASMR(a0) DEVBASEP                  ASMREG(a0),
+                                      ASMR(d0) ULONG unit                ASMREG(d0),
+				      ASMR(d1) ULONG reg                 ASMREG(d1) )
+{
+    APTR boardbase     = db->db_Units[unit].duh_BASE;
+
+    return enc624j6l_ReadPHY( boardbase, reg );
+}
+
+/* write PHY register (return -1 in case of error) */
+ASM SAVEDS LONG hw_write_phy(         ASMR(a0) DEVBASEP                  ASMREG(a0),
+                                      ASMR(d0) ULONG unit                ASMREG(d0),
+				      ASMR(d1) ULONG reg                 ASMREG(d1),
+				      ASMR(d2) ULONG value               ASMREG(d2) )
+{
+    APTR boardbase     = db->db_Units[unit].duh_BASE;
+
+    return enc624j6l_WritePHY( boardbase, reg, value );
+}
+
+
+
+
 ASM SAVEDS LONG hw_change_multicast(  ASMR(a0) DEVBASEP                  ASMREG(a0),
                                       ASMR(d0) ULONG unit                ASMREG(d0),
                                       ASMR(a1) struct List *mcastlist    ASMREG(a1) )
@@ -404,8 +449,6 @@ ASM SAVEDS LONG hw_change_multicast(  ASMR(a0) DEVBASEP                  ASMREG(
 
 	enc624j6l_bc_mc_filter(boardbase, flags );/* flags & (PIO_INIT_BROAD_CAST|PIO_INIT_MULTI_CAST) ); */
 
-
-
 	return	1;
 }
 
@@ -417,7 +460,9 @@ void myhw_ControlInterrupts( DEVBASEP )
 
 	ObtainSemaphore( &hwd->hwd_Sem ); /* redundant here: server is a single task -> but it looks good :-) */
 
-	flag = 0;
+	hwd->hwd_act_boards[0] = HW_MAGIC_WORD;
+	
+	flag = 1;
 	for( i=0 ; i < db->db_NBoards ; i++ )
 	{
 		if( db->db_Units[i].duh_online )
@@ -431,7 +476,7 @@ void myhw_ControlInterrupts( DEVBASEP )
 	hwd->hwd_act_boards[flag+2] = (APTR)hwd->hwd_IntSig; /* append sigbit  */
 	hwd->hwd_act_boards[flag+3] = (APTR)db->db_SysBase;  /* append ExecBase *((APTR*)0x4); */
 
-	if( flag )	/* determine on/off switch */
+	if( flag>1 )	/* determine on/off switch */
 	{
 		/* at least 1 board is online */
 		if(  hwd->hwd_Interrupt.is_Data )

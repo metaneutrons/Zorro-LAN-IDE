@@ -23,7 +23,7 @@
 #DEVICEREVISION=95
 #DEVICEDATE=08.09.2018
 SUBDIR=enc624j6net
-ASMOBJECTS = $(SUBDIR)/enc624j6l.o $(SUBDIR)/intervaltimer.o
+ASMOBJECTS = $(SUBDIR)/enc624j6l.o $(SUBDIR)/intervaltimer.o kprintf.o
 
 ###############################################################################
 # Devices to build (1 or 2, keep DEVICEID2 empty if only one build is desired)
@@ -31,7 +31,7 @@ ASMOBJECTS = $(SUBDIR)/enc624j6l.o $(SUBDIR)/intervaltimer.o
 ###############################################################################
 
 DEVICEID=enc624j6net.device
-DEFINES = # -DPROTO_V2EXPNET
+DEFINES = -DHW_DMA_TX # -DPROTO_V2EXPNET
 ASMDEFS = # -DPROTO_V2EXPNET
 CPU = 68020
 

@@ -22,7 +22,7 @@
 struct HWData {
 	struct Interrupt hwd_Interrupt; /* keep the interrupt at top of HWData !! */
 	struct SignalSemaphore hwd_Sem;      /* list locking (global per unit) */
-	APTR	hwd_act_boards[MAX_UNITS+1+3]; /* poll all active boards by ptr in interrupt, NULL terminated, followed by SigTask,Sigbit,ExecBase */
+	APTR	hwd_act_boards[MAX_UNITS+1+3+1]; /* poll all active boards by ptr in interrupt, MAGIC_WORD INIT, NULL terminated, followed by SigTask,Sigbit,ExecBase */
 
 	ULONG	hwd_SigMask;	/* signal mask to wait for in server main instance */
 

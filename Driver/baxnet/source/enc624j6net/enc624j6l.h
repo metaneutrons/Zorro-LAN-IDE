@@ -196,17 +196,23 @@ ASM SAVEDS int enc624j6l_RecvFrame( ASMR(a0) void *board           ASMREG(a0),
   input:   board      - mmapped board base address
            buffer     - output buffer (should have >=1514 bytes)
            sendsize   - size of buffer in bytes ( no CRC appended (!) )
+           header     - 14 Bytes Ethernet header 
+                        (total frame transmit size = sendsize+14)
 
   output:  <0  - error
             0  - nothing in receive buffer
            >0  - size of received frame
 
   notes:   
-         
+           "header" argument valid only when "HW_DMA_TX" is defined (Makefile)
 */
 ASM SAVEDS int enc624j6l_TransmitFrame( ASMR(a0) void *board           ASMREG(a0),
                                         ASMR(a1) unsigned char* buffer ASMREG(a1),
-                                        ASMR(d0) short sendsize        ASMREG(d0) );
+                                        ASMR(d0) short sendsize        ASMREG(d0) 
+#ifdef HW_DMA_TX
+                                       ,ASMR(a2) unsigned char* header ASMREG(a2)
+#endif
+                                      );
 
 
 /*
@@ -330,7 +336,7 @@ ASM SAVEDS int enc624j6l_CheckLinkChange( ASMR(a0) void *board ASMREG(a0) );
   Purpose: read PHY register
 
   input:   board      - mmapped board base address
-           flags      - broadcast,promiscous, multicast
+           phyreg     - PHY register to read
 
   output:  <0  - error
            >=0 - OK
@@ -339,6 +345,21 @@ ASM SAVEDS int enc624j6l_ReadPHY(
                                ASMR(a0) void *board           ASMREG(a0),
                                ASMR(d0) unsigned long phyreg  ASMREG(d0) );
 
+
+/*
+  Purpose: write PHY register
+
+  input:   board      - mmapped board base address
+           phyreg     - PHY register to read
+           value      - value written into PHY reg
+
+  output:  <0  - error
+           >=0 - OK
+*/
+ASM SAVEDS int enc624j6l_WritePHY( 
+                               ASMR(a0) void *board           ASMREG(a0),
+                               ASMR(d0) unsigned long  phyreg ASMREG(d0),
+                               ASMR(d1) unsigned short data   ASMREG(d1) );
 
 
 #endif /* _INC_ENC624J6L_H */

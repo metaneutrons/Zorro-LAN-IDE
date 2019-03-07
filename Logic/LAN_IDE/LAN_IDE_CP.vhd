@@ -107,7 +107,7 @@ architecture Behavioral of LAN_IDE_CP is
 				end_write_upper,
 				start_write_lower,
 				wait_write_lower,
-				wait_cycle_end,
+				end_write_lower,
 				config_rw
 	);
 
@@ -135,6 +135,7 @@ architecture Behavioral of LAN_IDE_CP is
 	signal LAN_WRH_S: std_logic;
 	signal LAN_WRL_S: std_logic;
 	signal LAN_READY: std_logic;
+	signal CONFIG_READY: std_logic;
 	signal LAN_IRQ_D0: std_logic;
 	signal LAN_IRQ_OUT: std_logic;
 	signal Z3_ADR:STD_LOGIC_VECTOR(15 downto 2);
@@ -144,12 +145,6 @@ architecture Behavioral of LAN_IDE_CP is
 	signal Z3_DS:STD_LOGIC_VECTOR(3 downto 0);
 	signal Z3_A_LOW:STD_LOGIC;
 	signal LAN_SM_RST:STD_LOGIC;
-	signal FCS_P_D0:STD_LOGIC;
-	signal FCS_N_D0:STD_LOGIC;
-	signal FCS_SM_P_D0:STD_LOGIC;
-	signal FCS_SM_N_D0:STD_LOGIC;
-	signal LAN_CYCLE_IN_PROGRESS:STD_LOGIC;
-	
 
 	signal CP_RD_S: std_logic;
 	signal CP_WE_S: std_logic;
@@ -160,6 +155,7 @@ architecture Behavioral of LAN_IDE_CP is
 	
 	signal LAN_CS_RST: std_logic;
 	signal LAN_WR_RST: std_logic;
+	signal INT_VECTOR_CYCLE: std_logic;
 	
 	signal LAN_A_INIT:STD_LOGIC_VECTOR(13 downto 0) :="11"&x"FFF";
 	signal LAN_D_INIT:STD_LOGIC_VECTOR(15 downto 0) := x"0000";
@@ -249,37 +245,38 @@ begin
 	
 	ADDRESS_Z3_DECODE: process(AS,reset,FCS)
 	begin
-		if(--AS ='0' or 
-			reset='0')then
+		if(reset='0')then
 			LAN_ACCESS 		<= '0';
 			DQ_SWAP  <= '1';
 			Z3_ADR <= (others => '1'); 
-			
+			INT_VECTOR_CYCLE <='0';
 		elsif(falling_edge(FCS))then		
 
 			Z3_ADR(15 downto 2) <= A(15 downto 2);-- latch the whole address for the whole cycle
-
-			if(A(14 downto 13)<"11")then
-				DQ_SWAP  <= '1';
-			else
-				DQ_SWAP  <= '0';
-			end if;			
+			
+			INT_VECTOR_CYCLE <= not 	MTCR; --is this s special int vector cycle?!?
 			
 			--use D(15 downto 8)& A(23 downto 16) = A(31 downto 16) for quick response
 			
 			--lan base
-			if(Z3='1' and (D(15 downto 8) & A(23 downto 16)) = LAN_BASEADR and SHUT_UP_Z2(0)='0' )then	
+			--if(Z3='1' and (D(15 downto 8) & A(23 downto 16)) = LAN_BASEADR and SHUT_UP_Z2(0)='0' )then	
+			if(Z3='1' and (D(15 downto 8) ) = LAN_BASEADR(15 downto 8) and SHUT_UP_Z2(0)='0' )then	--only the upper 8 bits matter!!!
+				if(A(14 downto 13)<"11")then
+					DQ_SWAP  <= '1';
+				else
+					DQ_SWAP  <= '0';
+				end if;
 				LAN_ACCESS 		<= '1';
 			else
 				LAN_ACCESS 		<= '0';
+				DQ_SWAP  <= '1';
 			end if;		
 		end if;				
 	end process ADDRESS_Z3_DECODE;
 	
 	ADDRESS_Z2_DECODE: process(FCS,reset,AS)
 	begin
-		if(--FCS ='0' or 
-			reset='0')then
+		if(reset='0' or FCS='1')then
 			AUTOCONFIG_Z2_ACCESS <= '0';
 			IDE_ACCESS 				<= '0';
 			CP_ACCESS				<= '0'; 
@@ -292,14 +289,14 @@ begin
 			end if;	
 
 			--CP base
-			if(A(23 downto 16) = CP_BASEADR and SHUT_UP_Z2(1)='0' )then	
+			if(A(23 downto 16) = CP_BASEADR and SHUT_UP_Z2(1)='0' and LAN_ACCESS = '0')then	
 				CP_ACCESS 		<= '1';
 			else
 				CP_ACCESS 		<= '0';
 			end if;		
 
 			--IDE base
-			if(A(23 downto 16) = IDE_BASEADR and SHUT_UP_Z2(2)='0' )then	
+			if(A(23 downto 16) = IDE_BASEADR and SHUT_UP_Z2(2)='0' and LAN_ACCESS = '0' )then	
 				IDE_ACCESS 		<= '1';
 			else
 				IDE_ACCESS 		<= '0';
@@ -337,7 +334,7 @@ begin
 	lan_rst_gen: process (CLK_EXT)
 	begin
 		if falling_edge(CLK_EXT) then			
-			if(FCS ='1' or reset = '0' or Z3_DS = "1111" or LAN_ACCESS = '0' or BERR = '0') then
+			if(FCS ='1' or reset = '0' or Z3_DS = "1111" or LAN_ACCESS = '0'  or INT_VECTOR_CYCLE ='1') then
 				LAN_SM_RST <='1';
 			else
 				LAN_SM_RST <='0';
@@ -345,30 +342,10 @@ begin
 		end if;
 	end process lan_rst_gen;
 	
-	fcs_pos_edge_detect: process(reset, FCS)
-	begin
-		if(reset ='0') then
-			FCS_P_D0 <='0';
-		elsif(rising_edge(FCS)) then
-			FCS_P_D0 <= not FCS_P_D0; --toggle
-		end if;
-	end process;
-	
-	fcs_neg_edge_detect: process(reset, FCS)
-	begin
-		if(reset ='0') then
-			FCS_N_D0 <='0';
-		elsif(falling_edge(FCS)) then
-			FCS_N_D0 <= not FCS_N_D0; --toggle
-		end if;
-	end process;
-
-
-	
 	--lan signal generation: all Signals are HIGH active!
-	lan_rw_gen: process (CLK_EXT,reset )
+	lan_rw_gen: process (CLK_EXT,LAN_SM_RST)
 	begin
-		if(reset = '0' ) then
+		if(LAN_SM_RST ='1' ) then
 			LAN_SM <=nop;
 			LAN_RD_S		<= '0';
 			LAN_WRH_S	<= '0';
@@ -377,9 +354,6 @@ begin
 			LAN_READY 	<= '0';
 			Z3_DATA(31 downto 0) <= x"FFFFFFFF";
 			DQ_DATA(15 downto 0) <= x"FFFF";
-			FCS_SM_P_D0 <='0';
-			FCS_SM_N_D0 <='0';
-			LAN_CYCLE_IN_PROGRESS <='0';
 		elsif rising_edge(CLK_EXT) then			
 			--default values
 			LAN_RD_S		<= '0';
@@ -387,13 +361,6 @@ begin
 			LAN_WRL_S	<= '0';
 			Z3_A_LOW		<= '0';
 			LAN_READY 	<= '0';
-			FCS_SM_N_D0 <= FCS_N_D0; --store edge state
-			FCS_SM_P_D0 <= FCS_P_D0; --store edge state
-			if(LAN_ACCESS = '1' and FCS_SM_N_D0 /= FCS_N_D0) then
-				LAN_CYCLE_IN_PROGRESS <='1';
-			elsif(FCS_SM_P_D0 /= FCS_P_D0) then
-				LAN_CYCLE_IN_PROGRESS <='0';
-			end if;
 			case LAN_SM is
 				when nop=>
 					--cycle start!
@@ -416,27 +383,23 @@ begin
 						end if;
 					end if;	
 						
-					if(Z3_DS < "1111" and LAN_ACCESS = '1' and FCS='0')then
-						if(Z3_ADR(15)='1')then
+					if(Z3_ADR(15)='1')then
 							LAN_SM <= config_rw;
-						elsif(RW='1')then --read from MSB			
-							if(Z3_DS(3 downto 2) < "11")then --determine bushalf
-								LAN_RD_S		<= '1';
-								LAN_SM <= wait_read_upper;
-							else		
-								LAN_RD_S		<= '1';
-								LAN_SM <= wait_read_lower;
-							end if;
-						else
-							
-							if(Z3_DS(3 downto 2) < "11")then -- determine bushalf
-								LAN_SM <= start_write_upper;
-							else
-								LAN_SM <= start_write_lower;
-							end if;
+					elsif(RW='1')then --read from MSB			
+						if(Z3_DS(3 downto 2) < "11")then --determine bushalf
+							LAN_RD_S		<= '1';
+							LAN_SM <= wait_read_upper;
+						else		
+							LAN_RD_S		<= '1';
+							LAN_SM <= wait_read_lower;
 						end if;
-					else 
-						LAN_SM <= nop;
+					else
+						
+						if(Z3_DS(3 downto 2) < "11")then -- determine bushalf
+							LAN_SM <= start_write_upper;
+						else
+							LAN_SM <= start_write_lower;
+						end if;
 					end if;
 				when start_read_upper=>
 					LAN_RD_S		<= '1';
@@ -453,7 +416,7 @@ begin
 					end if;
 					if(Z3_DS(1 downto 0) = "11")then -- no lower half
 						LAN_READY <='1';
-						LAN_SM <= wait_cycle_end;
+						LAN_SM <= end_read_upper;  -- stay here until cylce end
 					else
 						Z3_A_LOW		<= '1';
 						LAN_SM <= start_read_lower;
@@ -475,7 +438,7 @@ begin
 						Z3_DATA(15 downto 0) <= DQ(7 downto 0) & DQ(15 downto 8);
 					end if;
 					LAN_READY <='1';
-					LAN_SM <= wait_cycle_end;
+					LAN_SM<=end_read_lower; -- stay here until cylce end
 				when start_write_upper=>
 					-- swapped DS3/DS2 here: ENC624 is little endian
 					LAN_WRH_S   <= not Z3_DS(2);
@@ -493,7 +456,7 @@ begin
 									
 					if(Z3_DS(1 downto 0) = "11")then -- no lower half
 						LAN_READY <='1';
-						LAN_SM <= wait_cycle_end;
+						LAN_SM <= end_write_upper;  -- stay here until cylce end
 					else
 						Z3_A_LOW		<= '1';
 						LAN_SM <= start_write_lower;
@@ -507,14 +470,10 @@ begin
 				when wait_write_lower=>
 					Z3_A_LOW		<= '1';
 					LAN_READY <='1';
-					LAN_SM<=wait_cycle_end;
-				when wait_cycle_end=>
+					LAN_SM<=end_write_lower;
+				when end_write_lower=>
 					LAN_READY <='1';
-					if(FCS_SM_P_D0 /= FCS_P_D0 or FCS ='1')then
-						LAN_SM <= nop;
-					else
-						LAN_SM<=wait_cycle_end; -- stay here until cylce end
-					end if;
+					LAN_SM<=end_write_lower; -- stay here until cylce end
 				when config_rw=>
 					LAN_READY <='1';
 					if(Z3_DS(3) ='0' and RW='0')then 
@@ -522,7 +481,7 @@ begin
 					elsif(Z3_DS(1) ='0' and RW='0')then
 						LAN_INT_ENABLE <= Z3_DATA_IN(15); --this controlls the output bit
 					end if;
-					LAN_SM <= wait_cycle_end;
+					LAN_SM<=config_rw; -- stay here until cylce end
 				end case;			
 		end if;
 	end process lan_rw_gen;
@@ -604,22 +563,20 @@ begin
 					--when "010101"	=> Dout1 <=	"1111" ; --Rom vector high byte low  nibble 
 					--when "010110"	=> Dout1 <=	"1111" ; --Rom vector low byte high nibble
 					when "010111"	=> 
-						D_Z2_OUT <=	"1110" ; --Rom vector low byte low  nibble							
+						D_Z2_OUT <=	"1110" ; --Rom vector low byte low  nibble						
 					when "100010"	=>
 						D_Z2_OUT <=	"1111" ;
 						if(RW='0')then
-							if(AUTO_CONFIG_Z2_DONE(1) = '0')then --reg (1)?!?! Why? it does not work with index 0 but it should!
-								LAN_BASEADR(15 downto 8)	<= D(15 downto 8); --Base adress
+							if(AUTO_CONFIG_Z2_DONE(0) = '0')then
+								LAN_BASEADR(15 downto 0)	<= D(15 downto 0); --Base adress
+								SHUT_UP_Z2(0)					<='0'; --enable board
+								AUTO_CONFIG_Z2_DONE_CYCLE(0)	<= '1'; --done here
 							end if;
 						end if;	
 					when "100100"	=>
 						D_Z2_OUT <=	"1111" ;
-						if(RW='0')then
-							if(AUTO_CONFIG_Z2_DONE(0) = '0')then
-								LAN_BASEADR(7 downto 0)	<= D(15 downto 8); --Base adress
-								SHUT_UP_Z2(0)					<='0'; --enable board
-								AUTO_CONFIG_Z2_DONE_CYCLE(0)	<= '1'; --done here
-							elsif(AUTO_CONFIG_Z2_DONE(1) = '0')then
+						if(RW='0' and AUTO_CONFIG_Z2_DONE(0)='1')then
+							if(AUTO_CONFIG_Z2_DONE(1) = '0')then
 								CP_BASEADR(7 downto 0)	<= D(15 downto 8); --Base adress
 								SHUT_UP_Z2(1)					<='0'; --enable board
 								AUTO_CONFIG_Z2_DONE_CYCLE(1)	<= '1'; --done here
@@ -696,7 +653,7 @@ begin
 				'0' when  AS='0' and (AUTOCONFIG_Z2_ACCESS  = '1' or IDE_ACCESS = '1' or CP_ACCESS = '1') else '1';	
 	CFOUT <= '0' when AUTO_CONFIG_Z2_DONE ="111" else '1';
 	
-	OVR <= 'Z'; --'0' when FCS='0' and LAN_ACCESS = '1' else 'Z'; --is Cache inhibit on Z3!
+	OVR <= '0' when FCS='0' and LAN_ACCESS = '1' else 'Z'; --is Cache inhibit on Z3!
 
 	DTACK <= '0' when FCS='0' and LAN_READY = '1' else 'Z';
 
@@ -745,7 +702,7 @@ begin
 			--default values
 			CP_RD_S		<= '1';
 			CP_WE_S		<= '1';
-			if(CP_ACCESS = '1' and DS='0' and AS='0')then --datastrobe and AS!
+			if(CP_ACCESS = '1' and DS='0')then --datastrobe instead of AS!
 				CP_RD_S		<= not RW;
 				CP_WE_S		<= RW;
 			end if;				
@@ -756,7 +713,7 @@ begin
 	--for the future
 	CP_WE		<= CP_WE_S when AS='0' and CP_WE_QUIRK ='1' else '1';
 	CP_RD		<= CP_RD_S when AS='0' else '1';
-	CP_CS		<= not CP_ACCESS when AS='0' else '1';
+	CP_CS		<= not CP_ACCESS;
 
 end Behavioral;
 

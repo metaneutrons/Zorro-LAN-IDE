@@ -123,7 +123,7 @@ struct devbase {
 };
 
 
-typedef BOOL (* ASM BMCALL)( ASMR(a0) void * ASMREG(a0), ASMR(a1) void * ASMREG(a1), ASMR(d0) LONG ASMREG(d0) );
+typedef LONG (* ASM BMCALL)( ASMR(a0) void * ASMREG(a0), ASMR(a1) void * ASMREG(a1), ASMR(d0) LONG ASMREG(d0) );
 
 struct db_BufferManagement {
 	struct MinNode dbm_n;
@@ -131,6 +131,8 @@ struct db_BufferManagement {
 	BMCALL	dbm_CopyToBuffer32;
 	BMCALL	dbm_CopyFromBuffer;
 	BMCALL	dbm_CopyToBuffer;
+	BMCALL	dbm_CopyFromBufferDMA;  /* this buffering method requires additional support from lowlevel HW implementation */
+	BMCALL	dbm_CopyToBufferDMA;    /* usage of this pointer requires additional checks */
 	APTR	dbm_PacketFilter;	/* this is actually a Hook */
 	ULONG	dbm_ID;
 };

@@ -1,0 +1,94 @@
+MIITool
+-------
+
+This utility allows to observe and change the physical parameters 
+of Ethernet NICs on AmigaOS. The parameters include autonegotiation
+settings and forced speed/duplex combinations. While it is expected
+that autonegotiation "just works" with modern equipment, there still
+are people with some interest in retro-computing who might or might
+not experience link-related problems or are just curious about some
+inner workings of everyday hardware.
+
+A modern switch ("link partner") should advertise it`s capabilities
+properly such that the Ethernet hardware can select the optimal mode
+out of the supported set. If that is not the case, you can narrow down
+the list of advertised modes such that the link partners come to a
+working agreement. The last resort is to set a fixed speed/duplex
+combination. Please note that fixed parameters must be set at both
+ends of the link. Otherwise the link will work slowly or not at all.
+
+None of the settings this tool applies is permanent. Changed parameters
+are only valid until a reboot of the NIC. 
+
+Examples for usage are given at the end of this text.
+
+
+Prerequisites:
+- AmigaOS 2.04 on 68k
+- active Ethernet SANA-II driver, i.e. after starting the IP-Stack
+
+
+Invocation:
+- MIITool is supposed to be run from CLI/Shell. 
+
+
+Arguments template:
+DEVICE/K,UNIT/K/N,V/S,FORCEMEDIA/K,ADVERTISE/K,RENEG/S,RESET/S,VV/S
+
+
+Detailed description of arguments:
+
+keyword    - description
+------------------------
+DEVICE/K   - device name corresponding to active ethernet interface
+DEV/K        example: DEVICE=enc624j6net.device
+
+UNIT/K/N   - unit number of device to be opened (default: 0)
+             example: UNIT=0
+
+FORCEMEDIA - speed/duplex combination to set unconditionally,
+             see below for a list of valid speed or duplex modes
+
+ADVERTISE  - speed/duplex combinations to announce by autonegotiation,
+             implicitly restart autonegotiation,
+             see below for a list of valid speed or duplex modes
+
+RENEG      - restart autonegotiation, please allow a couple of seconds
+RESTART      until the negotiation is finished
+
+RESET      - reset PHY to power-on state
+
+VERBOSE    - more detailed outputs
+V          
+
+VERYVERBOSE- even more detailed outputs
+VV
+
+
+Valid Speed/Duplex combinations (not case sensitive):
+
+10baseT-HD   - 10 Mbit/s half duplex
+10baseT-FD   - 10 Mbit/s full duplex
+100baseTx-HD - 100 Mbit/s half duplex over two wire pairs
+100baseTx-FD - 100 Mbit/s full duplex over two wire pairs (common)
+100baseT4    - 100 Mbit/s full duplex over 4 wire pairs (rare)
+10baseT      - 10 Mbit/s half or full duplex
+10bT         - 10 Mbit/s half or full duplex
+100baseTx    - 100 Mbit/s half or full duplex
+100bTx       - 100 Mbit/s half or full duplex
+
+
+Examples:
+
+current status (detailed):
+ miitool DEV=enc624j6net.device v
+ 
+negotiate 10 Mbit/s only
+ miitool DEV=enc624j6net.device ADVERTISE=10bT
+
+negotiate 100baseTx and 10baseT half duplex only:
+ miitool DEV=enc624j6net.device ADVERTISE=100bTx,10baseT-HD
+
+force 100 Mbit/s full duplex
+ miitool DEV=enc624j6net.device FORCEMEDIA=100baseTx-FD
+ 
