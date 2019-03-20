@@ -127,7 +127,7 @@ CFLAGS  = $(CFLAGS) INCLUDEDIR="" INCLUDEDIR=$(SUBDIR) $(DEFINES)
 # ASM based alternative to deviceheader.o would be romtag.o
 
 OBJECTS = deviceheader.o$(TYPE) deviceinit.o$(TYPE) device.o$(TYPE) \
-          server.o$(TYPE) $(SUBDIR)/hw.o$(TYPE)
+          server.o$(TYPE) $(SUBDIR)/hw.o$(TYPE) kprintf.o$(TYPE)
 
 OBJECTS = $(OBJECTS) $(ASMOBJECTS)
 

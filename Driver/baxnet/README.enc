@@ -64,6 +64,18 @@ PRIORITY=PRI/K/N,BPS/K/N,MTU/K/N,FULLDUPLEX/S,FLOWCONTROL/S,TIMER/K/N,MULTICAST/
 Changelog:
 ----------
 
+2.2   - some more tuning to RX/TX scheduling
+      - added optional debug code to lowlevel routines
+      - removed some obsolete bus transfers
+      - uses DMACopyFromBuffer for IP-stacks supporting
+        this capability
+      - explicit 32 bit alignment for RX/TX to speed up
+        ZIII transfers
+      - added experimental support for MII interface to
+        poll and modify speed and duplex settings on the
+        fly
+      - miitool added (see README.miitool)
+
 2.00  - improved RX speed for buffer wraparound cases
       - some more safety checks for boards with unresponsive
         ENC chips (explicit card bus clear before verification of

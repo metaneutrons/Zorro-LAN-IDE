@@ -460,9 +460,7 @@ void myhw_ControlInterrupts( DEVBASEP )
 
 	ObtainSemaphore( &hwd->hwd_Sem ); /* redundant here: server is a single task -> but it looks good :-) */
 
-	hwd->hwd_act_boards[0] = HW_MAGIC_WORD;
-	
-	flag = 1;
+	flag = 0;
 	for( i=0 ; i < db->db_NBoards ; i++ )
 	{
 		if( db->db_Units[i].duh_online )
@@ -476,7 +474,7 @@ void myhw_ControlInterrupts( DEVBASEP )
 	hwd->hwd_act_boards[flag+2] = (APTR)hwd->hwd_IntSig; /* append sigbit  */
 	hwd->hwd_act_boards[flag+3] = (APTR)db->db_SysBase;  /* append ExecBase *((APTR*)0x4); */
 
-	if( flag>1 )	/* determine on/off switch */
+	if( flag )	/* determine on/off switch */
 	{
 		/* at least 1 board is online */
 		if(  hwd->hwd_Interrupt.is_Data )

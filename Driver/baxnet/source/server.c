@@ -37,7 +37,7 @@ static LONG server_queryext( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq );
 
 /* tunables: number of one-call read and write requests */
 /* this limits the number of processed write requests per run when enabled */
-#define ONE_WRITE_REQ 2
+#define ONE_WRITE_REQ 1
 /* this limits the number of processed read requests per run when enabled */
 #define ONE_READ_REQ 2
 
@@ -1071,6 +1071,7 @@ VOID SAVEDS ServerTask(void)
  {
  	if( !action ) /* queues quiet ? -> sleep */
 	{
+		Disable();
 	 	i=0;BOARDLOOP( ( ; i < db->db_NBoards ; i++ ) )
 		{ 	/* housekeeping -> check for link change on idle, re-enable interrupts etc. */
 			hw_check_link_change(db,i);
