@@ -19,9 +19,10 @@ _LVORawMayGetChar		equ 	-$1fe
 ;
 ;
 ;
-	ifd DEBUG
+	ifne	DEBUG
 
-	XREF	_KPrintF
+;	XREF	_KPrintFa0a1
+;	XREF	_KPrintF
 
 WRITEDEBUG	macro
 		movem.l			d0/d1/a0/a1,-(sp)	
@@ -51,7 +52,7 @@ WRITEDEBUG	macro
 		endif
 		lea.l		(\1),a0
 		move.l		sp,a1
-		jsr			_KPrintF
+		jsr			_KPrintFa0a1
 		ifnb \2
 			add.l		#4,sp
 		endif
@@ -80,7 +81,7 @@ WRITEDEBUG	macro
 	endm
 	else
 WRITEDEBUG macro
-	nop
+	;
 	endm
 	endc
 
@@ -117,7 +118,7 @@ WRITEOUT macro
 	ifd DEBUG
 		move.l		\1,a0
 		move.l		sp,a1
-		jsr			_KPrintF
+		jsr			_KPrintFa0a1
 	endif
 	move.l		\1,d1
 	move.l		sp,d2

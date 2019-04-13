@@ -21,19 +21,15 @@
 # debug = 1 will include string debugging for terminal/sushi/sashimi
 debug = 0
 # compiler_vcc = 1 will trigger VBCC, else GCC
-compiler_vcc = 1
+compiler_vcc = 0 
 
 ###############################################################################
 # prefix for system includes (ASM)
 # native AmigaOS compilation: set PREFX=GG: or PREFX=ADE:, depending on toolchain
 ###############################################################################
-
-PREFX  = /opt/amigaos-68k/
-#PREFX = gg:
-#PREFX  = c:/Users/Matze/Amiga/development/VBCC/
-
+#PREFX  = /opt/amigaos-68k/
+PREFX = gg:
 SYSINC = $(PREFX)os-include
-#SYSINC = $(PREFX)NDK39/Include/include_i
 
 ###############################################################################
 #
@@ -130,8 +126,7 @@ endif
 ifeq ($(debug),1)
 CFLAGS  += -DDEBUG -g
 CFLAGS2 += -DDEBUG -g
-LINKLIBS = -L$(PREFX)/lib -L$(PREFX)targets/m68k-amigaos/lib -ldebug
-#LINKLIBS = -L$(PREFX)targets/m68k-amigaos/lib -ldebug
+LINKLIBS = -L$(PREFX)/lib -ldebug
 endif
 
 ###############################################################################

@@ -75,6 +75,12 @@ const struct NSDeviceQueryResult NSDQueryAnswer = {
 #include "hw.h"
 #include "macros.h"
 
+/* enable heavy debug (D2=beginIO) */
+#define D2(x)
+#define D4(x)
+/* #define D2(x) D(x) */
+/* #define D4(x) D(x) */
+
 
 
 
@@ -382,7 +388,8 @@ ASM SAVEDS VOID DevBeginIO( ASMR(a1) struct IOSana2Req *ioreq        ASMREG(a1),
 	/*ioreq->ios2_Req.io_Error = S2ERR_NO_ERROR;
 	ioreq->ios2_WireError = S2WERR_GENERIC_ERROR;*/
 
-	D(("BeginIO command %ld unit %ld\n",(LONG)ioreq->ios2_Req.io_Command,unit));
+	/* heavy debug on beginIO */
+	D2(("BeginIO command %ld unit %ld\n",(LONG)ioreq->ios2_Req.io_Command,unit));
 
 	switch( ioreq->ios2_Req.io_Command )
 	{
