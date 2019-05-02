@@ -46,7 +46,7 @@ ASMDEFS1 = -DHW_DMA_TX=1
 ###############################################################################
 # debug = 1 will include string debugging for terminal/sushi/sashimi
 # not enabled yet in SAS/C makefile
-debug = 0
+#debug = 0
 
 ###############################################################################
 # prefix for system includes (ASM)
@@ -127,7 +127,7 @@ CFLAGS  = $(CFLAGS) INCLUDEDIR="" INCLUDEDIR=$(SUBDIR) $(DEFINES)
 # ASM based alternative to deviceheader.o would be romtag.o
 
 OBJECTS = deviceheader.o$(TYPE) deviceinit.o$(TYPE) device.o$(TYPE) \
-          server.o$(TYPE) $(SUBDIR)/hw.o$(TYPE)
+          server.o$(TYPE) $(SUBDIR)/hw.o$(TYPE) kprintf.o$(TYPE)
 
 OBJECTS = $(OBJECTS) $(ASMOBJECTS)
 

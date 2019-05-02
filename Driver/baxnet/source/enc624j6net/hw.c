@@ -30,6 +30,7 @@ extern const BYTE DeviceName[];
 /* use generic board fields in current unit */
 #define duh_online    du_hwl0
 #define duh_BASE      du_hwp0
+#define duh_RefCount  du_hwl1
 
 #define HW_INTERVALDEF 100000L
 
@@ -105,7 +106,7 @@ ASM SAVEDS LONG hw_Find_Boards( ASMR(a0) DEVBASEP                  ASMREG(a0) )
 
 		/* bring board to sane state (i.e. perform soft reset) */
 		/* if( boardbase < (APTR)0x40000000 ) */ /* debug only */
-			enc624j6l_CheckBoard( boardbase );
+		enc624j6l_CheckBoard( boardbase );
 	}
 	ret = i;
 	D(("%ld boards found\n",ret));
@@ -119,7 +120,33 @@ ASM SAVEDS LONG hw_Find_Boards( ASMR(a0) DEVBASEP                  ASMREG(a0) )
 ASM SAVEDS LONG hw_AllocBoard( ASMR(a0) DEVBASEP                  ASMREG(a0),
                                ASMR(d0) ULONG unit                ASMREG(d0) )
 {
-	/* is there a way to lock a ZII Board ? */
+#if 0
+	LONG i;
+	struct ConfigDev *cfg = (0);
+
+	if( unit > db->db_NBoards )
+		return 0;
+
+	for( i=0 ; i < db->db_NBoards ; i++ )
+	{
+		cfg = FindConfigDev( cfg, ENC_MANUFACTURER, ENC_BOARD );
+		if( !cfg )
+			return 0;
+		if( (APTR)cfg->cd_BoardAddr == db->db_Units[unit].duh_BASE )
+			break;
+	}
+
+	if( (APTR)cfg->cd_BoardAddr != db->db_Units[unit].duh_BASE )
+		return 0;
+
+	if( db->db_Units[unit].duh_RefCount == 0 )
+	{
+		ObtainConfigBinding();
+
+		ReleaseConfigBinding();
+	}
+	db->db_Units[unit].duh_RefCount++;
+#endif
 	return 1;
 }
 
@@ -127,6 +154,20 @@ ASM SAVEDS LONG hw_AllocBoard( ASMR(a0) DEVBASEP                  ASMREG(a0),
 ASM SAVEDS LONG hw_ReleaseBoard( ASMR(a0) DEVBASEP                  ASMREG(a0),
                                  ASMR(d0) ULONG unit                ASMREG(d0) )
 {
+#if 0
+	if( unit > db->db_NBoards )
+		return 0;
+
+	for( i=0 ; i < db->db_NBoards ; i++ )
+	{
+		cfg = FindConfigDev( cfg, ENC_MANUFACTURER, ENC_BOARD );
+		if( !cfg )
+			return 0;
+		if( (APTR)cfg->cd_BoardAddr == db->db_Units[unit].duh_BASE )
+			break;
+	}
+
+#endif
 	return 1;
 }
 
@@ -427,27 +468,143 @@ ASM SAVEDS LONG hw_write_phy(         ASMR(a0) DEVBASEP                  ASMREG(
     return enc624j6l_WritePHY( boardbase, reg, value );
 }
 
+/*
+  calculate CRC32 for MAC address hashing
+  slow but relatively short (and can be adapted to other 
+  polynoms easily)
+*/
+ASM ULONG myhw_CRC32( ASMR(a0) UBYTE *buffer ASMREG(a0), 
+                      ASMR(d0) ULONG nbytes  ASMREG(d0) )
+{
+	UWORD i,j;
+	ULONG t,crc = 0xffffffff;
+	ULONG poly  = 0x04c11db7; 
+
+	for( j = 0 ; j < nbytes ; j++ )
+	{
+	  for( i = 0 ; i < 8 ; i++ )
+	  {
+		t     = crc>>31;
+		crc <<= 1;
+		if( ( t ^ ( buffer[j] >> i ) ) & 0x01 )
+			crc ^= poly;
+	  }
+	}
+
+	return crc;
+}
+
+#if 0
+ASM ULONG CMPgeMAC( ASMR(a0) UBYTE *cur ASMREG(a0), 
+                    ASMR(a1) UBYTE *cmp ASMREG(a1) )
+{
+ USHORT i;
+ ULONG  res = 1;
+
+ for( i = 0 ; i < 6 ; i++ )
+ {
+	if( cur[i] > cmp[i] )
+		break;
+	if( cur[i] < cmp[i] )
+	{
+		res = 0;
+		break;
+	}
+ }
+ return res;
+}
+#endif
+
+ASM ULONG CMPleMAC( ASMR(a0) UBYTE *cur ASMREG(a0), 
+                    ASMR(a1) UBYTE *cmp ASMREG(a1) )
+{
+ USHORT i;
+ ULONG  res = 1;
+
+ for( i = 0 ; i < 6 ; i++ )
+ {
+	if( cur[i] < cmp[i] )
+		break;
+	if( cur[i] > cmp[i] )
+	{
+		res = 0;
+		break;
+	}
+ }
+ return res;
+}
 
 
+ASM void INCMAC( ASMR(a0) UBYTE *curmc ASMREG(a0) )
+{
+ SHORT i;
+	for( i=5 ; i >= 0 ; i-- )
+	{
+		curmc[i]++;
+		if( curmc[i] != 0 )
+		{
+			break;
+		}
+	}
+}
 
+/* TODO: implement Multicast hashing */
 ASM SAVEDS LONG hw_change_multicast(  ASMR(a0) DEVBASEP                  ASMREG(a0),
                                       ASMR(d0) ULONG unit                ASMREG(d0),
                                       ASMR(a1) struct List *mcastlist    ASMREG(a1) )
 {
-	/* TODO: implement Multicast hashing */
-	APTR boardbase = db->db_Units[unit].duh_BASE;
-	ULONG flags;
+	APTR   boardbase = db->db_Units[unit].duh_BASE;
+	struct HWData *hwd = &db->db_hwdat;
+	ULONG  flags;
+	ULONG  crc,curhash;
+	USHORT mc_hashes[4] = {0,0,0,0}; /* EHT1, EHT2, EHT3, EHT4 */
+	USHORT *hash_tab;
+	struct MCastEntry *mc;
+	UBYTE  *curmc;
 
 	flags = PIO_INIT_BROAD_CAST;
 
 	if( db->db_Units[0].du_Flags & DUF_PROMISC )
 	    flags |= PIO_INIT_PROMISC;
 
-	/* list non-empty ? (kludge right now, can be done more fine grained) */
-	if( mcastlist->lh_Head->ln_Succ )
+	if( hwd->multicast ) /* accept ALL multicast ? (config option) */
 	     flags |= PIO_INIT_MULTI_CAST;
 
-	enc624j6l_bc_mc_filter(boardbase, flags );/* flags & (PIO_INIT_BROAD_CAST|PIO_INIT_MULTI_CAST) ); */
+	/* list non-empty ? */
+	hash_tab = NULL;
+	if( mcastlist->lh_Head->ln_Succ )
+	{
+	     /* flags |= PIO_INIT_MULTI_CAST; */ /* see above */
+	     hash_tab = mc_hashes;
+
+	      for( mc = (struct MCastEntry *)mcastlist->lh_Head; 
+	           mc->mce_Node.mln_Succ ; 
+	           mc=(struct MCastEntry*)mc->mce_Node.mln_Succ )
+	      {
+	     	curmc = mc->mce_start;
+		while( CMPleMAC( curmc, mc->mce_stop ) )
+		{
+		     	 D(("CMPleMAC %ld %02lx%02lx%02lx%02lx%02lx%02lx - %02lx%02lx%02lx%02lx%02lx%02lx\n",\
+		     	        CMPleMAC( curmc, mc->mce_stop ),\
+				(ULONG)curmc[0],(ULONG)curmc[1],\
+				(ULONG)curmc[2],(ULONG)curmc[3],\
+				(ULONG)curmc[4],(ULONG)curmc[5],\
+				(ULONG)mc->mce_stop[0],(ULONG)mc->mce_stop[1],\
+				(ULONG)mc->mce_stop[2],(ULONG)mc->mce_stop[3],\
+				(ULONG)mc->mce_stop[4],(ULONG)mc->mce_stop[5] \
+			  ));
+
+			crc     = myhw_CRC32( mc->mce_start, 6 );
+			curhash = (crc & 0x1f800000)>>23; /* 2 bit reg, 4 bit hash pos in reg */
+			mc_hashes[ ((curhash >> 4)&3) ] |= 1<<(curhash&0xf);
+			INCMAC( curmc );
+		}
+	      }
+	}
+	
+	D(("hw_change_multicast board %lx flags %lx hashtab %lx\n",(ULONG)boardbase,(ULONG)flags,(ULONG)hash_tab));
+
+	enc624j6l_bc_mc_filter(boardbase, flags, hash_tab );/* flags & (PIO_INIT_BROAD_CAST|PIO_INIT_MULTI_CAST) ); */
 
 	return	1;
 }
@@ -460,9 +617,7 @@ void myhw_ControlInterrupts( DEVBASEP )
 
 	ObtainSemaphore( &hwd->hwd_Sem ); /* redundant here: server is a single task -> but it looks good :-) */
 
-	hwd->hwd_act_boards[0] = HW_MAGIC_WORD;
-	
-	flag = 1;
+	flag = 0;
 	for( i=0 ; i < db->db_NBoards ; i++ )
 	{
 		if( db->db_Units[i].duh_online )
@@ -476,7 +631,7 @@ void myhw_ControlInterrupts( DEVBASEP )
 	hwd->hwd_act_boards[flag+2] = (APTR)hwd->hwd_IntSig; /* append sigbit  */
 	hwd->hwd_act_boards[flag+3] = (APTR)db->db_SysBase;  /* append ExecBase *((APTR*)0x4); */
 
-	if( flag>1 )	/* determine on/off switch */
+	if( flag )	/* determine on/off switch */
 	{
 		/* at least 1 board is online */
 		if(  hwd->hwd_Interrupt.is_Data )
@@ -496,7 +651,7 @@ void myhw_ControlInterrupts( DEVBASEP )
 	        hwd->hwd_Interrupt.is_Code = (void(*)())enc624j6l_IntServer_List;
 	        hwd->hwd_Interrupt.is_Data = &hwd->hwd_act_boards[0];
 	        hwd->hwd_Interrupt.is_Node.ln_Type = NT_INTERRUPT;
-	        hwd->hwd_Interrupt.is_Node.ln_Pri = 51;
+	        hwd->hwd_Interrupt.is_Node.ln_Pri = 126; /* 51; */
 	        hwd->hwd_Interrupt.is_Node.ln_Name = (char*)intname;
 	        AddIntServer( HW_INTSOURCE, &hwd->hwd_Interrupt );
 	}

@@ -66,6 +66,51 @@ struct S2DevQueryExtParam
 /* Current physical link speed, see definitions below: */
 #define S2_DevQueryExtLinkSpeed         (S2_DevQueryExtTagBase + 4)
 
+/* proposal added by Henryk Richter: access to MII */
+/* MII is the standardized ethernet interface to the 
+   PHY registers. It allows to read and modify autonegotiation
+   settings and status, as well as manual reconfiguration of
+   link parameters. In order to ease the burden on the
+   SANA-II driver, this interface is transparent in the sense
+   that no processing of MII registers is necessary.
+
+   Please note that MII read/write is slow. Use with discretion.
+
+   The format of the Data APTR is per entry as follows:
+    UWORD ID
+    UWORD Content
+
+   S2_DevQueryExtGetMII
+    Please pass a writable Data array of Length=2*NumIDs to the call and
+    initialize the IDs you are interested in. The driver will initialize
+    the Content of the IDs it knows about. Should a requested ID be
+    unsupported by the driver or underlying chipset, the driver will 
+    overwrite the respective IDs with S2_DEVQUERYEXT_MII_INVALID and
+    clear the associated Content field.
+    In case of fatal error, the "Actual" field of S2DevQueryExtParam
+    will be 0. Otherwise, the last successfully updated location + 2
+    will be returned.
+
+   S2_DevQueryExtSetMII
+    Please pass a Data array of Length=2*NumIDs to the call and initialize
+    the IDs to write along with their content. The driver will write the 
+    MII registers corresponding with the IDs in the given order.
+    In case of fatal error, the "Actual" field of S2DevQueryExtParam
+    will be 0. Otherwise, the last successfully updated location + 2 
+    will be returned.
+
+*/
+#define S2_DevQueryExtGetMII		(S2_DevQueryExtTagBase + 0x20)
+#define S2_DevQueryExtSetMII		(S2_DevQueryExtTagBase + 0x21)
+
+struct S2DevQueryMIIParam
+{
+	UWORD ID;
+	UWORD Content;
+};
+#define S2_DEVQUERYEXT_MII_INVALID	0xfe
+
+
 #define S2_DEVQUERYEXT_LINK_UNDEFINED   0xffffffff
 #define S2_DEVQUERYEXT_LINK_DOWN        0
 #define S2_DEVQUERYEXT_LINK_UP          1

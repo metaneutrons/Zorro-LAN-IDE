@@ -4,7 +4,6 @@
 /**  SANA-II extension for access to Ethernet PHY registers over MII interface            **/
 /**                                                                                       **/
 /**  Copyright (c) 2019, Henryk Richter, Timm S. Müller                                   **/
-/**  All rights reserved.                                                                 **/
 /**                                                                                       **/
 /**  Redistribution and use in source and binary forms, with or without                   **/
 /**  modification, are permitted provided that the following conditions are met:          **/
@@ -16,9 +15,6 @@
 /**  3. All advertising materials mentioning features or use of this software             **/
 /**     must display the following acknowledgement:                                       **/
 /**     This product includes software developed by Henryk Richter.                       **/
-/**  4. Neither the name of the Henryk Richter nor the                                    **/
-/**     names of its contributors may be used to endorse or promote products              **/
-/**     derived from this software without specific prior written permission.             **/
 /**                                                                                       **/
 /** THIS SOFTWARE IS PROVIDED BY Henryk Richter ''AS IS'' AND ANY                         **/
 /** EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED             **/
@@ -32,15 +28,22 @@
 /** SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.                          **/
 /**                                                                                       **/
 /*******************************************************************************************/
+/** Acknowledgements:                                                                     **/
+/**  text and definitions in "media" table and "miitool.h" file originate from mii-tool.c **/
+/**  written/copyright 1997-2000 by Donald Becker                                         **/
+/*******************************************************************************************/
 /* 
  Notes:
   - make sure you have an up-to-date devices/sana2devqueryext.h
   - make sure you have devices/newstyle.h
   - compilation
-     sc miitool.c link
-
+     sc  miitool.c link INCLUDEDIR=sc:netinclude
+     gcc miitool.c -Igg:netinclude -o miitool
+  - if you don`t have the Roadshow SDK installed, just comment "RSHOW" out to build
+    without auto-detection code
 */
 
+#define RSHOW
 
 #include <proto/exec.h>
 #include <proto/dos.h>
@@ -49,7 +52,16 @@
 #include <devices/sana2.h>
 #include <devices/sana2devqueryext.h>
 #include "miitool.h"
+#ifdef RSHOW
+#include <libraries/bsdsocket.h>
+#include <proto/bsdsocket.h>
+#endif
 
+
+#ifdef __GNUC__
+struct UtilityBase *UtilityBase;
+static USHORT Utility_MY = 0;
+#endif
 
 #define OPT_TEMPLATE "DEVICE=DEV/K,UNIT/K/N,VERBOSE=V/S,FORCEMEDIA/K,ADVERTISE/K,RENEG=RESTART/S,RESET/S,VERYVERBOSE=VV/S"
 const char opt_template[] = OPT_TEMPLATE;
@@ -70,12 +82,17 @@ struct prgdata {
  struct Device     *sana2dev;
  UBYTE  devvalid; 
  struct progopts opts;
+ BYTE   *auto_devname; /* device name, if auto-detected */
 };
+
 
 
 
 void end_prog( struct prgdata *prg )
 {
+	if( prg->auto_devname )
+		FreeVec( prg->auto_devname );
+
 	if( prg->sana2devio )
 	{
 		if( prg->devvalid )
@@ -84,6 +101,16 @@ void end_prog( struct prgdata *prg )
 	}
 	if( prg->sana2devport )
 		DeleteMsgPort( prg->sana2devport );
+
+#ifdef __GNUC__
+	if( (UtilityBase) && (Utility_MY) )
+	{
+		CloseLibrary( (struct Library*)UtilityBase );
+		Utility_MY  = 0;
+		UtilityBase = NULL;
+	}
+#endif /* __GNUC__ */
+
 }
 
 /*
@@ -105,6 +132,13 @@ LONG start_prog( struct prgdata *prg )
 	if( !prg->sana2devio )
 		goto err;
 
+#ifdef __GNUC__
+	if( !UtilityBase )
+	{
+		UtilityBase = (struct UtilityBase*)OpenLibrary("utility.library",37);
+		Utility_MY  = 1;
+	}
+#endif /* __GNUC__ */
 	return 1;
 err:
 	end_prog( prg );
@@ -189,36 +223,37 @@ const struct {
     BYTE	*name;
     UWORD	namelen;
     UWORD	value;
-} media[] = {
-    /* The order through 100baseT4 matches bits in the BMSR */
+} mediatypes[] = {
+    /* these are kept in this order for the dump loop decision about best mode */
     { "10baseT-HD",     10,MII_AN_10BASET_HD },
     { "10baseT-FD",     10,MII_AN_10BASET_FD },
     { "100baseTx-HD",   12,MII_AN_100BASETX_HD },
     { "100baseTx-FD",   12,MII_AN_100BASETX_FD },
     { "100baseT4",       9,MII_AN_100BASET4 },
+    /* generic mode names where only the speed matters */
     { "100baseTx",       9,MII_AN_100BASETX_FD | MII_AN_100BASETX_HD },
     { "10baseT",         7,MII_AN_10BASET_FD | MII_AN_10BASET_HD },
     { "100bTx",          6,MII_AN_100BASETX_FD | MII_AN_100BASETX_HD },
     { "10bT",            4,MII_AN_10BASET_FD | MII_AN_10BASET_HD },
 };
-#define NMEDIA (sizeof(media)/sizeof(media[0]))
+#define NMEDIA (sizeof(mediatypes)/sizeof(mediatypes[0]))
 
-void dump_mii_media( USHORT par, BOOL bestonly )
+
+void dump_mii_media( USHORT parms, BOOL bestonly )
 {
 	LONG i;
 	
-	par >>= 5; /* get upper bits */
-	for( i=4 ; i >= 0 ; i-- )
+	for( i=9 ; i >= 5 ; i-- )
 	{
-		if( par & (1<<i) )
+		if( parms & (1<<i) )
 		{
-			Printf(" ");
-			Printf("%s",(ULONG)media[i].name);
+			Printf(" %s",(ULONG)mediatypes[i-5].name);
 			if( bestonly )
 				break;
 		}
 	}
-	if( par & (1<<5) )
+
+	if( parms & (1<<10) )
 		Printf(" flow-control");
 }
 
@@ -234,13 +269,13 @@ LONG parse_speedduplex( BYTE *parameters )
 	while( *s != 0 )
 	{
 		for( i=0 ; i < NMEDIA ; i++ )
-			if( Strnicmp( media[i].name, s, media[i].namelen ) == 0 )
+			if( Strnicmp( mediatypes[i].name, s, mediatypes[i].namelen ) == 0 )
 				break;
 		if( i==NMEDIA )
 			goto err;
 
-		s += media[i].namelen;
-		res |= media[i].value;
+		s += mediatypes[i].namelen;
+		res |= mediatypes[i].value;
 
 		/* skip " " and/or "," */
 		while( *s != 0 )
@@ -254,26 +289,26 @@ LONG parse_speedduplex( BYTE *parameters )
 	
 	return res;
 err:	
-	Printf("Invalid media specification %s\n",parameters);
+	Printf("Invalid media specification %s\n",(ULONG)parameters);
 	Printf("Valid Arguments:\n");
 	for( i=0 ; i < NMEDIA ; i++ )
-		Printf("%s\n",media[i].name);
+		Printf("%s\n",(ULONG)mediatypes[i].name);
 	return -1;
 }
 
 /*
-  note: this code assumes that "mii" has the register contents in natural 
+  note: this code assumes that "mii" has the register contents in network
         byte ordering. Also, the registers themselves shall be consecutive
         in memory.
 */
 int dump_mii( struct S2DevQueryMIIParam *mii, LONG length, LONG verbose )
 {
-	USHORT bmcr,bmsr,advert,curlink;
+	USHORT bmcr,bmsr,selfad,curlink;
 	LONG i;
 
 	bmcr    = mii[MII_BMCR].Content;
 	bmsr    = mii[MII_BMSR].Content;
-	advert  = mii[MII_ANAR].Content;
+	selfad  = mii[MII_ANAR].Content;
 	curlink = mii[MII_ANLPAR].Content;
 
 	if( bmcr == 0xffff )
@@ -286,19 +321,19 @@ int dump_mii( struct S2DevQueryMIIParam *mii, LONG length, LONG verbose )
 	{
 		if( bmsr & MII_BMSR_AN_COMPLETE)
 		{
-		    if( advert & curlink )
+		    if( selfad & curlink )
 		    {
-		    	if( curlink & MII_AN_ACK )
+		    	/* if( curlink & MII_AN_ACK ) */
 		    		Printf("negotiated ");
-		    	else	Printf("no autonegotiation,");
-		    	dump_mii_media( advert & curlink, 1 );
+		    	/* else	Printf("no autonegotiation,"); */
+		    	dump_mii_media( selfad & curlink, 1 );
 		    	Printf(", ");
 		    }
 		    else
 		    {
-			Printf("autonegotiation failed, ");
-	    	    }
+				Printf("autonegotiation failed, ");
 	    	}
+	    }
 		else 
 		 if (bmcr & MII_BMCR_RESTART)
 		 {
@@ -308,8 +343,8 @@ int dump_mii( struct S2DevQueryMIIParam *mii, LONG length, LONG verbose )
 	else
 	{
 	    Printf("%s Mbit, %s duplex, ",
-	           (bmcr & MII_BMCR_100MBIT) ? "100" : "10",
-	           (bmcr & MII_BMCR_DUPLEX) ? "full" : "half" );
+	           (bmcr & MII_BMCR_100MBIT) ? (ULONG)"100" : (ULONG)"10",
+	           (bmcr & MII_BMCR_DUPLEX) ? (ULONG)"full" : (ULONG)"half" );
 	}
 	if( bmsr & MII_BMSR_LINK_VALID )
 		Printf("link ok");
@@ -353,8 +388,8 @@ int dump_mii( struct S2DevQueryMIIParam *mii, LONG length, LONG verbose )
 	    Printf("autonegotiation enabled\n");
 	  else
 	    Printf("%s Mbit, %s duplex\n",
-		   (bmcr & MII_BMCR_100MBIT) ? "100" : "10",
-		   (bmcr & MII_BMCR_DUPLEX) ? "full" : "half");
+		   (bmcr & MII_BMCR_100MBIT) ? (ULONG)"100" : (ULONG)"10",
+		   (bmcr & MII_BMCR_DUPLEX) ? (ULONG)"full" : (ULONG)"half");
 	  Printf(" basic status: ");
 	  if( bmsr & MII_BMSR_AN_COMPLETE )
 	    Printf("autonegotiation complete, ");
@@ -366,7 +401,7 @@ int dump_mii( struct S2DevQueryMIIParam *mii, LONG length, LONG verbose )
 	  Printf("\n capabilities:");
 	  dump_mii_media( bmsr >> 6, 0 );
 	  Printf("\n advertising: ");
-	  dump_mii_media( advert, 0 );
+	  dump_mii_media( selfad, 0 );
 	  if( curlink & MII_AN_ABILITY_MASK )
 	  {
 	  	Printf("\n link partner:");
@@ -438,6 +473,111 @@ LONG write_mii( struct prgdata *prg, struct S2DevQueryMIIParam *mii, LONG num )
 		return parm_mii.Actual;
 }
 
+#ifdef RSHOW
+/* return string length without closing 0 */
+LONG myStrLen( BYTE *str )
+{
+ LONG ret = 0;
+ 
+ if( str )
+ { 
+	 while( *str++ )
+ 		ret++;
+ }
+
+ return ret;
+}
+/* copy string, append 0 */
+void myStrNCpy( BYTE *dst, BYTE*src, LONG bytes )
+{
+ if( !dst )
+ 	return;
+
+ if( src )
+ {
+ 	while( (bytes--) && (*src != 0) )
+ 	{ 
+ 	  *dst++ = *src++;
+ 	}
+ }
+ *dst = 0;
+ 
+}
+
+
+/* find active interface and its device in RoadShow (optional) */
+/* "which" index of Ethernet adapter 0,1,2,...                 */
+/* "unit" is the output unit                                   */
+BYTE *find_active_interface(LONG which, LONG *unit )
+{
+ struct Library *SocketBase;
+ BYTE *ret = NULL;
+ struct List * interface_list = NULL;
+ struct Node *n;
+ BYTE *dev = NULL;
+ LONG hw = -1;
+ 
+ SocketBase = OpenLibrary("bsdsocket.library",4);
+ if( !SocketBase )
+ {
+ 	Printf("Cannot open bsdsocket.library version 4 for device auto-detection\n");
+ 	return NULL;
+ }
+ 
+ do
+ {
+   LONG have_iface = 0;
+ 	
+   if(  !(SocketBaseTags(SBTM_GETREF(SBTC_HAVE_INTERFACE_API), &have_iface, TAG_DONE) == 0)
+      ||(!have_iface) )
+   {
+    Printf("RoadShow-style interface API not available in IP stack\n");
+    break;
+   }
+   
+   interface_list = ObtainInterfaceList();
+   if( !interface_list )
+   {
+   
+   	break;
+   }
+   for( n=interface_list->lh_Head ; n->ln_Succ != NULL ; n=n->ln_Succ )
+   {
+    /* Printf("Interface %s\n",n->ln_Name); */
+    /* find Ethernet interface */
+    if(!QueryInterfaceTags( n->ln_Name, IFQ_HardwareType, &hw, 
+                                        IFQ_DeviceName, &dev,
+                                        IFQ_DeviceUnit, unit ) )
+    	continue;
+
+    /* Printf("device %s hwtype %ld\n",dev,hw); */
+
+    if( hw == S2WireType_Ethernet )
+    	break;
+   }
+
+   if( hw == S2WireType_Ethernet )
+   {
+	if( dev )
+	{
+ 		ret = AllocVec( myStrLen( dev ), 0 );
+ 		if( ret )
+ 			myStrNCpy( ret, dev, myStrLen(dev) );
+	}
+   }
+ }
+ while(0);
+
+ if( interface_list )
+ 	ReleaseInterfaceList(interface_list);
+
+ CloseLibrary(SocketBase);
+
+ return ret;
+}
+#endif
+
+
 /* 8 basic registers, we poll 16 out of curiosity */
 #define MII_REGNUM 16
 /* two spare registers for write mode */
@@ -468,17 +608,34 @@ int main(int argc, char **argv)
       return res;
   }
 
+  unit = (prg->opts.unit) ? *prg->opts.unit : 0;		
+
   if( !prg->opts.devname )
   {
+#ifdef RSHOW
+      LONG _unit;
+      prg->auto_devname = find_active_interface( 0, &_unit );
+      if( prg->auto_devname )
+      {
+       unit = _unit;
+       name = prg->auto_devname;
+      }
+      else
+      {
+        Printf("cannot auto-determine device, please use DEVICE=... as argument\n");
+	end_prog(prg);
+      	return res;
+      }
+#else
       name = "enc624j6net.device";
-      Printf("TODO: auto-detect, now trying default %s\n",name);
+      Printf("device auto-detect not compiled in, now trying default %s\n",name);
+#endif  
       /* end_prog(prg);
       return res; */
   }
   else
       name = prg->opts.devname;
 
-  unit = (prg->opts.unit) ? *prg->opts.unit : 0;		
   if( prg->opts.vverbose )
       prg->opts.verbose = 2;
   else
@@ -524,7 +681,7 @@ int main(int argc, char **argv)
 	parm_productname.Data   = productname;
 	parm_productname.Length = sizeof(productname);
 	parm_productname.Actual = 0;
-#if 1
+
 	tags[i=0].ti_Tag  = S2_DevQueryExtVendorName;
 	tags[i++].ti_Data = (ULONG) &parm_vendorname;
 	tags[i  ].ti_Tag  = S2_DevQueryExtProductName;
@@ -542,55 +699,28 @@ int main(int argc, char **argv)
 	parm_mii.Actual = query_mii( prg, mii, 0, 15 );
 	if( parm_mii.Actual )
 	{
-		/* read BMSR twice */
-		 query_mii( prg, mii+MII_BMSR, MII_BMSR, MII_BMSR );
+		/* read BMSR a second time */
+		query_mii( prg, mii+MII_BMSR, MII_BMSR, MII_BMSR );
 		res = RETURN_OK;
 	}
 	else
+	{
+		Printf("Sana2DeviceQueryExtension for MII access not present\n");
 		res = RETURN_WARN;
-#else
-		/* MII specific */
-		parm_mii.Data           = (APTR)mii;
-		parm_mii.Length         = sizeof(mii);
-		parm_mii.Actual         = 0;
-
-		for( i=0 ; i < 16 ; i++ ) /* MII standard register set: 8 */
-		{
-			mii[i].ID = i;	/* mii[i].Content = 0; */
-		}
-		mii[16].ID = MII_BMSR;  /* read BMSR twice */
-
-		tags[i=0].ti_Tag  = S2_DevQueryExtVendorName;
-		tags[i++].ti_Data = (ULONG) &parm_vendorname;
-		tags[i  ].ti_Tag  = S2_DevQueryExtProductName;
-		tags[i++].ti_Data = (ULONG) &parm_productname;
-		tags[i  ].ti_Tag  = S2_DevQueryExtGetMII;
-		tags[i++].ti_Data = (ULONG) &parm_mii;
-		tags[i  ].ti_Tag = TAG_DONE;
-
-		prg->sana2devio->ios2_Req.io_Command = S2_DEVICEQUERYEXT;
-		prg->sana2devio->ios2_Data = tags;
-		prg->sana2devio->ios2_DataLength = sizeof tags;
-		
-		if( DoIO((struct IORequest *) prg->sana2devio ) != 0 )
-			res = RETURN_WARN;
-		else	res = RETURN_OK;
-
-		mii[MII_BMSR].Content = mii[16].Content;  /* read BMSR twice */
-#endif
+	}
   }
 
-  Printf("Device:  %s\n",name);
+  Printf("Device:  %s\n",(ULONG)name);
   /* general info */
   if( parm_vendorname.Actual != 0 )
   {
 	vendorname[parm_vendorname.Actual-1] = 0;
-	Printf("Vendor:  %s\n",vendorname);
+	Printf("Vendor:  %s\n",(ULONG)vendorname);
   }
   if( parm_productname.Actual != 0 )
   {
 	productname[parm_productname.Actual-1] = 0;
-	Printf("Product: %s\n",productname);
+	Printf("Product: %s\n",(ULONG)productname);
   }
 
   /* after query, see what we've got */
@@ -603,6 +733,7 @@ int main(int argc, char **argv)
 	}
 	else
 	{
+		/* command or query ? */
 		if(    !(prg->opts.renegotiate) && !(prg->opts.reset)
 		    && !(prg->opts.advertise)   && !(prg->opts.force)
 		  )
@@ -659,3 +790,4 @@ int main(int argc, char **argv)
   end_prog(prg);
   return res;
 }
+

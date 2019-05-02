@@ -1,6 +1,7 @@
 	incdir	include:
 	ifnd	_LVOSupervisor
-	include	exec/exec_lib.i
+	include	lvo/exec_lib.i
+	;include	exec/exec_lib.i
 	endc
 	include exec/execbase.i
 
@@ -13,12 +14,19 @@ _LVORawIOInit			equ	-$1f8
 _LVORawMayGetChar		equ 	-$1fe
 	endc
 
-	XDEF	_KPrintF
+;	XDEF	_KPrintF
+	XDEF	_KPrintFa0a1
+
+;_KPrintF:
+	rts
+	move.l	4(sp),a0
+	lea	8(sp),a1
+	; fall through
 
 ;A0 = format
 ;A1 = arguments
-_KPrintF:
-	ifd	DEBUG
+_KPrintFa0a1:
+;	ifd	DEBUG
 
 	movem.l	d0-d2/a0-a3/a6,-(sp)
 
@@ -37,7 +45,7 @@ _KPrintF:
 	jsr	_LVORawPutChar(a6)	;	move.b	d0,(a3)+
 	movem.l	(sp)+,d0/d1/a0/a1/a6
 
-	endc	;DEBUG
+;	endc	;DEBUG
 
 	rts
 

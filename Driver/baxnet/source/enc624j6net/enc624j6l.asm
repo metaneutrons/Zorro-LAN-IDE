@@ -20,19 +20,25 @@
 ; - _enc624j6l_RXReset -> won't recover from totally unresponsive chip (but exits gracefully)
 ; 
 ; enable debugging code block (comment/uncomment, see below)
-;DEBUG	EQU	1
+DEBUG		EQU	0
+GLOBALINT_BOARD	EQU	1	;if 1, then toggle board interrupt, else ENC624 INTIE
 
 	incdir	src:baxnet/trunk/source/
 	;Temp:Amiga/src/Zorro-LAN-IDE.git/Driver/enc624j6net/
 	include "enc624j6net/registers.i"
 	include "enc624j6net/macros.i"
-	include "debug.i"
-	include "hw.i"
 
 	ifnd	DEBUG
 DEBUG	EQU	0
 	endc
 
+	ifne	1
+	include "debug.i"
+	else
+WRITEDEBUG	macro
+		nop
+		endm
+	endc
 ;
 ADD_4RX	EQU	1	;add 4 to valid RX size (fake CRC), fixes shapeshifter RAW treatment
 _OPT_LONGRESET	EQU	0	;in testing, don't enable
@@ -41,7 +47,7 @@ _OPT_LONGRESET	EQU	0	;in testing, don't enable
 ;
 ; options for buffer memory configuration, please reserve some space for private variables
 ;
-PSTART_INIT	EQU	$0BF0	; 16 Bytes private storage for driver
+PSTART_INIT	EQU	$0BF8	; 8 Bytes private storage for driver
 PSTOP_INIT	EQU	$0BFF	; (see below for definitions)
 
 RXSTART_INIT   EQU     $0C00  ; start of RX buffer, room for 14 packets
@@ -57,10 +63,8 @@ MAX_FRAMELEN   EQU     1518
 ;------------ driver private storage ------------------------------
 PNextPacket	EQU	PSTART_INIT	;2 Bytes - private "next packet" pointer for RX
 PNextTX		EQU	PSTART_INIT+2	;2 Bytes - private "next packet" pointer for TX (init as 0)
-PSigBit		EQU	PSTART_INIT+4	;2 Bytes interrupt bit
-PSigTask	EQU	PSTART_INIT+6	;4 Bytes signaled task
-PLinkChange	EQU	PSTART_INIT+10	;2 Bytes Link Change (copy of PHYDPX,PHYLNK bits)
-Punused		EQU	PSTART_INIT+12	;
+PLinkChange	EQU	PSTART_INIT+4	;2 Bytes Link Change (copy of PHYDPX,PHYLNK bits)
+Punused		EQU	PSTART_INIT+6	;
 
 ;------------- TX: double buffering --------------------------------
 PSwapTX		EQU	$600		;swap between two TX buffers (one active, one activated after last TX done)
@@ -136,12 +140,6 @@ _LVOSignal	EQU	-324
 	;machine	68020
 
 	section	code,code
-
-
-
-
-
-
 
 ; -----------------------------------------------------------------------------
 ; |                                                                           |
@@ -280,7 +278,13 @@ regtests:
 	READREG	ESTAT,a0,d0
 	READREG	ECON1,a0,d1
 	READREG MACON2,a0,d2
-	READREG MABBIPG,a0,d3
+;	READREG MABBIPG,a0,d3
+
+	READREG ERXFCON,a0,d3
+	READREG EHT1,a0,d4
+	READREG EHT2,a0,d5
+	READREG EHT3,a0,d6
+	READREG EHT4,a0,d7
 	rts
 	
 
@@ -560,6 +564,8 @@ _enc624j6l_Init:
 	move.l	a0,d0
 	beq	.err
 
+	WRITEDEBUG Init_MSG,a0
+
 	READREG	ESTAT,a0,d0
 	and	#(ESTAT_CLKRDY|ESTAT_PHYRDY),d0
 	cmp	#(ESTAT_CLKRDY|ESTAT_PHYRDY),d0
@@ -588,6 +594,7 @@ _enc624j6l_Init:
 	WRITEREG ERXST,a0,d0		;set RX start pointer (end will be $5fff)
 	WRITEREG PNextPacket,a0,d0	;set user read pointer
 
+	suba.l	a1,a1			;no multicast hash table (yet)
 	bsr	_enc624j6l_bc_mc_filter ;in: A0/D1, out: D0
 
 	move	#RXSTOP_INIT&$fffe,d0
@@ -645,6 +652,7 @@ _enc624j6l_Init:
 ;
 ; in: A0 - board base
 ;     D1 - init flags
+;     A1 - multicast hash table (4x USHORT)
 ;out: D0 >0  = OK
 ;        <=0 = FAIL
 _enc624j6l_bc_mc_filter:
@@ -659,15 +667,32 @@ _enc624j6l_bc_mc_filter:
 	move    #ERXFCON_NOTMEEN|ERXFCON_MCEN|ERXFCON_BCEN|ERXFCON_UCEN|ERXFCON_MPEN|ERXFCON_CRCEN|ERXFCON_RUNTEN,d0
 	bra.s	.setfilter
 .no_promisc:
-	moveq	#PIO_INIT_MULTI_CAST,d0
+	moveq	#PIO_INIT_MULTI_CAST,d0	;all multicast ?
 	and	d1,d0
 	beq.s	.no_multicast
 	move	#ERXFCON_MCEN|ERXFCON_BCEN|ERXFCON_UCEN|ERXFCON_MPEN|ERXFCON_CRCEN|ERXFCON_RUNTEN,d0
 	bra.s	.setfilter
 .no_multicast:
 	move	#ERXFCON_BCEN|ERXFCON_UCEN|ERXFCON_MPEN|ERXFCON_CRCEN|ERXFCON_RUNTEN,d0
+
+	; did we get a multicast hash table ?
+	move.l	a1,d1
+	beq.s	.nohashes
+	AND	#$ffff-ERXFCON_MCEN,d0	;don't accept ALL multicast
+	OR	#ERXFCON_HTEN,d0	;enable multicast hash table filter
+
+	move	(a1),d1
+	WRITEREG EHT1,a0,d1
+	move	2(a1),d1
+	WRITEREG EHT2,a0,d1
+	move	4(a1),d1
+	WRITEREG EHT3,a0,d1
+	move	6(a1),d1
+	WRITEREG EHT4,a0,d1
+.nohashes:
+
 .setfilter:
-	WRITEREG ERXFCON,a0,d0 ;set filter TODO: pattern matching stuff
+	WRITEREG ERXFCON,a0,d0 ;set filter
 
 	moveq	#1,d0
 .rts:
@@ -787,20 +812,13 @@ _enc624j6l_EnableInterrupt:
 	move.l	a0,d1
 	beq.s	.err
 
-	WRITEREG	PSigBit,a0,d0	;save signal bit
-
-	move.l	a1,d0
-	WRITEREG	PSigTask+2,a0,d0 ;lower two bytes
-	swap	d0		 ;
-	WRITEREG	PSigTask,a0,d0   ;upper two bytes
-
 	; enable interrupt for incoming packet
 	moveq	#-1,d0			;magic trick: the board enables Interrupts
 	lea	$4000(a0),a0
 	move.w	d0,($4000,a0)
 	lea	-$4000(a0),a0
 
-	move	#EIE_PKTIE|EIE_PCFULIE|EIE_INTIE,d0
+	move	#EIE_PKTIE|EIE_INTIE|EIE_PCFULIE,d0
 	SETREG	EIE,a0,d0
 
 	moveq	#1,d0
@@ -823,8 +841,20 @@ _enc624j6l_EnableInterrupt:
 ; Notes: assumes that init() was called before
 ; 
 _enc624j6l_EnableGlobalInterrupt:
-	move	#EIE_PKTIE|EIE_PCFULIE|EIE_INTIE,d0	;	move	#EIE_INTIE,d0
-	SETREG	EIE,a0,d0
+	ifne	GLOBALINT_BOARD
+	
+	 moveq	#-1,d0			;magic trick: the board enables Interrupts
+	 lea	$4000(a0),a0
+	 move.w	d0,($4000,a0)
+	 lea	-$4000(a0),a0
+	
+	else	;GLOBALINT_BOARD
+
+	 move	#EIE_PKTIE|EIE_INTIE|EIE_PCFULIE,d0
+	 SETREG	EIE,a0,d0
+
+	endc	;GLOBALINT_BOARD
+
 	moveq	#1,d0
 .rts
 	rts
@@ -842,8 +872,21 @@ _enc624j6l_EnableGlobalInterrupt:
 ; Notes: assumes that init() was called before
 ; 
 _enc624j6l_DisableGlobalInterrupt:
-	move	#EIE_INTIE,d0
-	CLRREG	EIE,a0,d0
+
+	ifne	GLOBALINT_BOARD
+	
+	 moveq	#0,d0			;magic trick: the board enables Interrupts
+	 lea	$4000(a0),a0
+	 move.w	d0,($4000,a0)
+	 lea	-$4000(a0),a0
+	
+	else	;GLOBALINT_BOARD
+
+	 move	#EIE_INTIE,d0
+	 CLRREG	EIE,a0,d0
+
+	endc	;GLOBALINT_BOARD
+
 	moveq	#1,d0
 .rts
 	rts
@@ -878,10 +921,6 @@ _enc624j6l_DisableInterrupt:
 	move	#EIE_INTIE|EIE_PKTIE|EIE_LINKIE|EIE_AESIE|EIE_MODEXIE|EIE_HASHIE|EIE_PRDYIE|EIE_DMAIE|EIE_TXIE|EIE_TXABTIE|EIE_RXABTIE|EIE_PCFULIE,d0
 	CLRREG	EIE,a0,d0
 
-	moveq		#0,d0
-	WRITEREG	PSigTask+2,a0,d0 ;lower two bytes
-	WRITEREG	PSigTask,a0,d0   ;upper two bytes
-	
 	moveq	#1,d0
 .err:
 	rts
@@ -905,35 +944,50 @@ _enc624j6l_DisableInterrupt:
 ;           ULONG sigbit
 ; 
 _enc624j6l_IntServer_List:
+	move.l	a6,-(sp)
+
 	move.l	a1,d0				;no pointer supplied ? -> return
-	beq.s	.end
-	movem.l	d1/A1/a6,-(sp)
-
+	beq.s	.rts
 	move.l	a1,a6
+
 	moveq	#0,d1
-	move.l	(A6)+,d0			;read magic word
-	cmp.l #HW_MAGIC_WORD,D0 ; are we in the right structure?
-	bne.s	.done
-
 .boardloop:
-	move.l	(A6)+,d0			;next entry from list
+	move.l	(a1)+,d0			;next entry from list
 	beq.s	.done				;	
-	move.l	d0,a1				;current board
+	move.l	d0,a0				;current board
 
-	READREG	EIR,A1,d0			;get interrupt status reg
-	and	#EIR_PKTIF|EIR_PCFULIF,D0
-	beq.s .boardloop ;no interrupt here
-	or.l	d0,D1 ; save if at least one one board has interrupted
-	move	#EIE_INTIE,D0 ;disable board interrupt until someone enables it again
-	CLRREG	EIE,A1,d0
-	BRA.s	.boardloop
+	READREG	EIR,a0,d0			;get interrupt status reg
+	and	#EIR_PKTIF|EIR_PCFULIF|EIR_RXABTIF|EIR_PKTIF|EIR_TXABTIF,d0
+
+	or.l	d0,d1
+	bra.s	.boardloop
 .done:
 	tst.w	d1
 	beq.s	.rts
 
+	; clear EIE_INTIE in all active boards directly from here
+.intdis_loop:
+	move.l	(a6)+,d0
+	beq.s	.boardsdone
+	move.l	d0,a1
+
+	ifne	GLOBALINT_BOARD
+	
+	 moveq	#0,d0			;magic trick: the board enables Interrupts
+	 lea	$4000(a1),a1
+	 move.w	d0,($4000,a1)
+	
+	else	;GLOBALINT_BOARD
+
+	 move	#EIE_INTIE,D0 ;disable board interrupt until someone enables it again
+	 CLRREG	EIE,A1,d0
+
+	endc	;GLOBALINT_BOARD
+
+	bra.s	.intdis_loop
+.boardsdone:
 
 	;faster: get from extended Driver board list instead from ZII/ZIII card
-	ifne	1		
 
 	move.l	(a6)+,d0	;SigTask
 	beq.s	.rts
@@ -941,33 +995,16 @@ _enc624j6l_IntServer_List:
 	move.l	(a6)+,d1	;SigBit
 	move.l	d0,a1		;SigTask
 
-	move.l	(a6)+,a6	;ExecBase
+	move.l	(a6)+,a6	;ExecBase (from FastRAM)
+	;move.l	4.w,a6
 	moveq	#0,d0
 
 	bset	d1,d0
 
-	else
-
-	READREG	PSigTask,a0,d0		;upper two bytes
-	swap	d0	;
-	READREG	PSigTask+2,a0,d0	;lower two bytes
-	tst.l	d0			; no task ?
-	beq.s	.rts
-	move.l	d0,a1			; signaled task
-
-	moveq	#0,d0
-	READREG	PSigBit,a0,d1		;get signal bit
-	bset	d1,d0			;signal mask
-
-	move.l	4.w,a6
-
-	endc
-
 	jsr	_LVOSignal(a6)
 
 .rts
-	movem.l	(sp)+,D1/A1/A6
-.end
+	move.l	(sp)+,a6
 	moveq	#0,d0		;set Z flag
 	rts
 
@@ -1071,7 +1108,11 @@ _enc624j6l_CheckLinkChange:
 ; 
 
 	ifne	DEBUG
-RXReset_MSG:	dc.b "RXReset Head %04lx Tail %04lx NextPacket %04lx ReadPTR %04lx Bytes %04lx",10,0
+RXReset_MSG:	dc.b "RXReset Head %04lx Tail %04lx NextPacket %04lx NextReadPTR %04lx Bytes(maybe) %04lx ESTAT %04lx",13,10,0
+Init_MSG:		dc.b "ENC624j6net init (debug build) board address %lx",13,10,0
+TXWait_MSG:		dc.b "TransmitFrame: waiting",13,10,0
+TXAbort_MSG:	dc.b "TransmitFrame: abort",13,10,0
+	cnop	0,4
 	endc
 
 _enc624j6l_RXReset:
@@ -1084,6 +1125,8 @@ _enc624j6l_RXReset:
 	moveq	#0,d1
 	moveq	#0,d2
 	moveq	#0,d3
+	moveq	#0,d7
+	READREG	ESTAT,a0,d7
 	READREG	ERXHEAD,A0,d0
 	READREG	ERXTAIL,A0,d1
 	READREG PNextPacket,a0,d2
@@ -1092,19 +1135,16 @@ _enc624j6l_RXReset:
 	         rol.w  #8,d3           ;swap pointer to Big Endian
         endc				;d3=next Packet (from receive status vector)
 
-	moveq	#2,d5
-	add	d2,d5			;increment pointer by one word
+	moveq	  #2,d5
+	add		  d2,d5			;increment pointer by one word
 	WRAPINDEX d5			;wrap D4 if beyond buffer
-	READSRAM a0,d5,d4		;receive byte count
+	READSRAM  a0,d5,d4		;receive byte count
 	ifeq	_OPT_BUFFER_SWAP
 	 rol.w	#8,d4			;swap pointer to Big Endian
 	endc
 
-
-
-
-	WRITEDEBUG RXReset_MSG,d0,d1,d2,d3,d4
-
+	WRITEDEBUG RXReset_MSG,d0,d1,d2,d3,d4,d7
+	
 	movem.l	(sp)+,d2-d7
 	endc
 
@@ -1194,16 +1234,18 @@ _enc624j6l_HaveRecv:
 _enc624j6l_RecvFrame:		;
 	movem.l	d2-d7/a1-a3,-(sp)
 	move.l	a0,d1
-	beq	.err
+	beq		.err
 
 	moveq	#0,d0
 	READREG	ESTAT,a0,d2	;number of pending frames
 	move.b	d2,d0		;clear out count (ESTAT_PKTCNT7...ESTAT_PKTCNT0)
-	beq	.rts		;nothing in buffer, return sheer emptiness
+	beq		.rts		;nothing in buffer, return sheer emptiness
 	;at least one frame in buffer
 
+	ifne	DEBUG
 	READREG	ERXHEAD,A0,d4
 	READREG	ERXTAIL,A0,d5
+	endc
 
 	;----------- check next packet pointer and verify expected state -----------
 	READREG PNextPacket,a0,d7	;get user read pointer from private space
@@ -1214,15 +1256,6 @@ _enc624j6l_RecvFrame:		;
 	ifeq	_OPT_BUFFER_SWAP
 	 rol.w	#8,d0			;swap pointer to Big Endian
 	endc
-
-;	btst	#0,d0
-;	beq.s	.nozerobit
-;	nop
-;.nozerobit
-;	btst	#0,d7
-;	beq.s	.nozerobit2
-;	nop
-;.nozerobit2
 
 	;verify next packet pointer, re-initialize recv if this is invalid
 	cmp	#RXSTOP_INIT,d0		;bad pointer (<0 or >end of memory)
@@ -1238,54 +1271,39 @@ _enc624j6l_RecvFrame:		;
 	add.w	d0,d1				;next pkt + unwrap distance
 .ptrcheck:
 	sub.w	d7,d1				;length of pkt
-	cmp	#MAX_FRAMELEN+2+6,d1		;must be smaller than max framelen + ptr + status vector
+	cmp	#MAX_FRAMELEN+2+6+2,d1		;must be smaller than max framelen + ptr + status vector + alignment
 	bhi	.recv_err			;-> reinit recv (am I paranoid ? -> try ENC28J60, then you know why...)
-
-	;debug: collect packet positions 
-	;move.l	recvptr,a2
-	;move	d0,(a2)+
-	;move.l	a2,recvptr
-	;addq.l	#1,recvcount
-	;cmp.l	#65536,recvcount
-	;bgt	.recv_err
-
-	WRITEREG PNextPacket,a0,d0	;write pointer for next packet
 
 	;------------------ check receive status vector -----------------------------
 	addq.w	#2,d7			;increment pointer
 	WRAPINDEX d7			;wrap D7 if beyond buffer
-	;lea	(a0,d7.w),a2		;read ptr for first control word
-	;READREG 0,a2,d0		;last control word = length (byte count)
-	READSRAM a0,d7,d0		;move (a0,d7.w),d0
-	ifeq	_OPT_BUFFER_SWAP
-	 rol.w	#8,d0			;swap pointer to Big Endian
+
+	ifne	0
+	 READSRAM a0,d7,d2		;move (a0,d7.w),d0
+	 ifeq	_OPT_BUFFER_SWAP
+	  rol.w	#8,d2			;swap pointer to Big Endian
+	 endc
+	 and.w	#$f800,d2		;verify (should be all zeros in upper 9 bits)
+	 bne	.recv_err		;receive buffer is wrong -> re-initialize
 	endc
-
-	and.w	#$f800,d0		;verify (should be all zeros in upper 9 bits)
-	bne	.recv_err		;receive buffer is wrong -> re-initialize
-
+	
 	addq.w	#4,d7			;increment pointer
 	WRAPINDEX d7			;wrap D7 if beyond buffer
-	;lea	(a0,d7.w),a2		;new read pointer for length
-	;READREG 0,a2,d0		;last control word = length (byte count)
-	READSRAM a0,d7,d0		;move (a0,d7.w),d0
-	ifeq	_OPT_BUFFER_SWAP
-	 rol.w	#8,d0			;swap pointer to Big Endian
-	endc
 
-	ifne	1
+	WRITEREG PNextPacket,a0,d0	;write pointer for next packet
+
+	ifne	0
+	 ;lea	(a0,d7.w),a2		;new read pointer for length
+	 ;READREG 0,a2,d0		;last control word = length (byte count)
+	 READSRAM a0,d7,d2		;move (a0,d7.w),d0
+	 ifeq	_OPT_BUFFER_SWAP
+	  rol.w	#8,d2			;swap pointer to Big Endian
+	 endc	;_OPT_BUFFER_SWAP
+	endc	;0
+
 	;D1 is the distance to the next frame = stored length + recv vevtor
-	sub	#6+2,d1			;STATUS VECTOR, Pointer
+	subq	#6+2,d1			;STATUS VECTOR, Pointer
 	move	d1,d0			;
-
-	else
-
-	cmp	#2,d0
-	blt	.recv_err		;can't be: SRC MAC 6 DST MAC 6 LEN/TYPE 2 CRC 4 (discounting variable data)
-	cmp	#MAX_FRAMELEN,d0
-	bgt	.recv_err
-	
-	endc
 
 	subq	#4,d0			;subtract CRC length
 
@@ -1365,6 +1383,10 @@ _enc624j6l_RecvFrame:		;
 		bra.s	.end_read
 
 .nooptrecv:
+	;DEBUG ONLY
+	;bra.s	.emergency_slow
+	;DEBUG ONLY
+	
 	ifeq	_OPT_BUFFER_SWAP	;1
 	;
 	;wraparound aware loop for big endian buffer
@@ -1462,7 +1484,13 @@ _enc624j6l_RecvFrame:		;
 	rts
 .err:	moveq	#-1,d0		;receive error
 	bra.s	.rts
+
 .recv_err:
+	moveq	#0,d0
+	READREG	ESTAT,a0,d2	;number of pending frames
+	move.b	d2,d0		;clear out count (ESTAT_PKTCNT7...ESTAT_PKTCNT0)
+	beq.s	.rts		;nothing in buffer, return sheer emptiness
+
 	;serious problem: we need to re-initialize the recv buffer here
 	bsr	_enc624j6l_RXReset
 
@@ -1613,17 +1641,21 @@ _enc624j6l_TransmitFrame:
 .copydone
 
 	;---------------- wait on last frame ----------------------------------
-	move	#200,d3
+	move	#600,d3	  ;
 .txwait:
 	READREG	ECON1,a0,d1
 	and.w	#ECON1_TXRTS,d1
 	beq.s	.txrdy
 	;100 MBit/s frame time is max. 0.12 ms (without inter-frame spacing)
 
-	;wait 20 us via CIA
-	moveq	#20,d0
+	;WRITEDEBUG TXWait_MSG
+
+	;wait 5 us via CIA
+	moveq	#5,d0
 	bsr	_enc624j6l_UMinDelay
 	dbf	d3,.txwait		;approx. 4ms max. wait
+
+	WRITEDEBUG	TXAbort_MSG
 
 	;hmpf. abort last transmission
 	move	#ECON1_TXRTS,d1		;

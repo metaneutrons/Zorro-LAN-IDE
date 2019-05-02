@@ -18,7 +18,11 @@ combination. Please note that fixed parameters must be set at both
 ends of the link. Otherwise the link will work slowly or not at all.
 
 None of the settings this tool applies is permanent. Changed parameters
-are only valid until a reboot of the NIC. 
+are only valid until the next reset of the NIC. 
+
+This utility is able to detect an active Ethernet interface in case that
+the RoadShow TCP/IP stack is active. Otherwise, the device needs to be
+passed as commandline option explicitly.
 
 Examples for usage are given at the end of this text.
 
@@ -79,6 +83,9 @@ Valid Speed/Duplex combinations (not case sensitive):
 
 
 Examples:
+
+current status (detailed, autodetect)
+ miitool v
 
 current status (detailed):
  miitool DEV=enc624j6net.device v

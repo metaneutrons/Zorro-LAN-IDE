@@ -69,7 +69,7 @@ entity LAN_IDE_CP is
            IDE_R : out  STD_LOGIC;
            IDE_A : out  STD_LOGIC_VECTOR (2 downto 0);
            IDE_CS : out  STD_LOGIC_VECTOR (1 downto 0);
-           LAN_CFG : out  STD_LOGIC_VECTOR (4 downto 1);
+--         LAN_CFG : out  STD_LOGIC_VECTOR (4 downto 1);
            LAN_RD : out  STD_LOGIC;
            LAN_CS : out  STD_LOGIC;
            LAN_WRH : out  STD_LOGIC;
@@ -424,7 +424,7 @@ begin
 	LAN_WRL	<= LAN_WRL_S when AS='0' and reset = '1' else LAN_WR_RST;
 	LAN_WRH	<= LAN_WRH_S when AS='0' and reset = '1' else LAN_WR_RST;
 	LAN_RD	<= LAN_RD_S  when AS='0' and reset = '1' else '0';
-	LAN_CFG	<= "0010"; -- "ZZZZ";
+--	LAN_CFG	<= "0010"; -- "ZZZZ";
 	
 	CP_WE		<= CP_WE_S when AS='0' and CP_WE_QUIRK ='1' else '1';
 	CP_RD		<= CP_RD_S when AS='0' else '1';
