@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.5.0">
+<eagle version="6.6.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="yes"/>
@@ -3150,7 +3150,7 @@ Sollten andere Lagen belegt und relevant sein, so teilen Sie uns dies bitte expl
 <attribute name="NAME" x="42.1792125" y="68.05243125" size="0.8128" layer="25" rot="R180"/>
 <attribute name="VALUE" x="44.205965625" y="67.071175" size="0.6096" layer="27" rot="R180"/>
 </element>
-<element name="C20" library="rcl" package="C1210K" value="10u" x="109.934375" y="64.5795" smashed="yes">
+<element name="C20" library="rcl" package="C1206K" value="10u" x="109.934375" y="64.5795" smashed="yes">
 <attribute name="NAME" x="109.76371875" y="62.17229375" size="0.8128" layer="25"/>
 <attribute name="VALUE" x="109.6723" y="66.20165" size="0.8128" layer="27"/>
 </element>
@@ -3234,7 +3234,7 @@ Sollten andere Lagen belegt und relevant sein, so teilen Sie uns dies bitte expl
 <attribute name="NAME" x="73.817059375" y="69.677809375" size="1.016" layer="25" rot="R90"/>
 <attribute name="VALUE" x="72.57335" y="70.147315625" size="1.016" layer="27" rot="R90"/>
 </element>
-<element name="R12" library="rcl" package="R0603" value="3.3k" x="91.028115625" y="61.5221125" smashed="yes" rot="R270">
+<element name="R12" library="rcl" package="R0603" value="4.7k" x="91.028115625" y="61.5221125" smashed="yes" rot="R270">
 <attribute name="NAME" x="91.694865625" y="63.2366125" size="1.27" layer="25" rot="R270"/>
 <attribute name="VALUE" x="89.043740625" y="63.4112375" size="1.27" layer="27" rot="R270"/>
 </element>
@@ -3368,7 +3368,7 @@ Sollten andere Lagen belegt und relevant sein, so teilen Sie uns dies bitte expl
 <attribute name="NAME" x="112.601375" y="30.32125" size="1.27" layer="25" ratio="10"/>
 <attribute name="VALUE" x="117.236875" y="27.3685" size="1.27" layer="27" ratio="10"/>
 </element>
-<element name="C31" library="rcl" package="C1210K" value="47u" x="124.761625" y="17.0815"/>
+<element name="C31" library="rcl" package="C1206K" value="47u" x="124.761625" y="17.0815"/>
 <element name="C32" library="rcl" package="C0603K" value="100n" x="44.54525" y="54.689375" rot="MR180"/>
 <element name="Q2" library="crystal" package="HC49UP" value="25MHz" x="82.45475" y="34.432875" smashed="yes" rot="R180">
 <attribute name="OC_NEWARK" value="unknown" x="82.45475" y="34.432875" size="1.778" layer="27" rot="R180" display="off"/>

@@ -504,7 +504,7 @@ begin
 		elsif falling_edge(AMIGA_CLK) then -- no reset, so wait for rising edge of the clock		
 			D_Z2_OUT<="1111";
 			if(AS='1')then
-				AUTO_CONFIG_Z2_DONE <= AUTO_CONFIG_Z2_DONE or AUTO_CONFIG_Z2_DONE_CYCLE;
+				AUTO_CONFIG_Z2_DONE <= AUTO_CONFIG_Z2_DONE or AUTO_CONFIG_Z2_DONE_CYCLE or (not AUTOBOOT_OFF & "00") ;
 			elsif(AUTOCONFIG_Z2_ACCESS= '1' and DS='0') then
 				case A(6 downto 1) is
 					when "000000"	=> 
@@ -615,15 +615,9 @@ begin
 	-- LAN_CFG	<= "ZZZZ";
 	
 
-	A_LAN(13 downto 6)<=	 LAN_A_INIT(13 downto 6) when reset ='0' else
-								 Z3_ADR(14 downto 7); 	
-	A_LAN(5 downto 2) <=	 LAN_A_INIT(5 downto 2) when reset ='0' else
-								-- A(5 downto 2) when CP_ACCESS='1' else --mux the clock-port adresses! (CP was shifted by 1 on V1 boards, condition disabled here for V2)
-								 Z3_ADR(6 downto 3); 
-	A_LAN(1 downto 0)<=	 LAN_A_INIT(1 downto 0) when reset ='0' else
-								 Z3_ADR(2) & Z3_A_LOW; 
-	
-	
+	A_LAN(13 downto 0)<=	 LAN_A_INIT(13 downto 0) when reset ='0' else
+								 Z3_ADR(14 downto 2) & Z3_A_LOW when LAN_ACCESS = '1' else
+								 A(12 downto 1)&"00"; 	
 	
 	--signal assignment
 	D(15 downto 0)	<=	Z3_DATA(31 downto 16) 	when RW='1' and FCS='0' and LAN_ACCESS ='1' else		
@@ -693,7 +687,7 @@ begin
 
 	IDE_W <= IDE_W_S	when AS='0' else '1';
 	IDE_R <=	IDE_R_S	when AS='0' else '1';
-	ROM_OE<= ROM_OE_S	when AS='0' and AUTOBOOT_OFF ='0' else '1';			
+	ROM_OE<= ROM_OE_S	when AS='0' else '1';			
 	IDE_CS(0)<= not(A(12));			
 	IDE_CS(1)<= not(A(13));
 	IDE_A(2 downto 0)	<= A(11 downto 9);
