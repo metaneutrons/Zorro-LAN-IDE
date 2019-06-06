@@ -21,14 +21,14 @@
 # debug = 1 will include string debugging for terminal/sushi/sashimi
 debug = 0
 # compiler_vcc = 1 will trigger VBCC, else GCC
-compiler_vcc = 1
+compiler_vcc = 0
 
 ###############################################################################
 # prefix for system includes (ASM)
 # native AmigaOS compilation: set PREFX=GG: or PREFX=ADE:, depending on toolchain
 ###############################################################################
-#PREFX  = /opt/amigaos-68k/
-PREFX = gg:
+PREFX  = /opt/amigaos-68k/
+#PREFX = gg:
 SYSINC = $(PREFX)os-include
 
 ###############################################################################
