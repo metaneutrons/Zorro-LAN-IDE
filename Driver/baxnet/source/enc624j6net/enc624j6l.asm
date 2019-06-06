@@ -22,6 +22,7 @@
 ; enable debugging code block (comment/uncomment, see below)
 DEBUG		EQU	0
 GLOBALINT_BOARD	EQU	1	;if 1, then toggle board interrupt, else ENC624 INTIE
+OPT_AVOID_DEFAULT_RESETS	EQU	0	;if 1, then check valid Microchip MAC OUI and don't reset the whole chip if the MAC address is ok
 
 	incdir	src:baxnet/trunk/source/
 	;Temp:Amiga/src/Zorro-LAN-IDE.git/Driver/enc624j6net/
@@ -375,6 +376,7 @@ txtestlen EQU	*-txtestframe
 ;           Please note that this call will overwrite Board registers and
 ;           buffer memory. Call before initialization.
 _enc624j6l_CheckBoard:	;check whether board is operating correctly
+a
 	movem.l	d1-d2/a0-a1,-(sp)
 
 	move.l	a0,d0
@@ -395,16 +397,71 @@ _enc624j6l_CheckBoard:	;check whether board is operating correctly
 	SETREG	EUDAST,a0,d0	;clear ENC's bus (does not change anything in its regs)
 	READREG	EUDAST,a0,d0	;
 	cmp.w	d0,d1		;do we get the register back ?
-	bne.s	.err		;no -> complain
+	bne	.err		;no -> complain
 
+	; ------------- second initial check: can we read/write all bits? -----
+	move.w	#$5555,d1
+	move.w	d1,(a0)		;write into memory
+	moveq	#0,d0
+	SETREG	EUDAST,a0,d0	;clear ENC's bus (does not change anything in its regs)
+	move.w	(a0),d0
+	cmp.w	d0,d1		;do we get the data back ?
+	bne	.err		;no -> complain
+
+	not.w	d1		;move.w	#$AAAA,d1 ;d1 was $5555
+	move.w	d1,(a0)		;write into memory
+	moveq	#0,d0
+	SETREG	EUDAST,a0,d0	;clear ENC's bus (does not change anything in its regs)
+	move.w	(a0),d0
+	cmp.w	d0,d1		;do we get the register back ?
+	bne	.err		;no -> complain
+
+	; ---------------- disable board interrupt (for now) ------------------
 	moveq	#0,d0			;magic trick: the board enables Interrupts
 	lea		$4000(a0),a0
 	move.w	d0,($4000,a0)	;0=disable interrupt
 	lea		-$4000(a0),a0
 
-	; ------------------------- reset device ------------------------------
 	move	#EIR_CRYPTEN|EIR_MODEXIF|EIR_HASHIF|EIR_AESIF|EIR_LINKIF|EIR_PRDYIF|EIR_PKTIF|EIR_DMAIF|EIR_TXIF|EIR_TXABTIF|EIR_RXABTIF|EIR_PCFULIF,d0
 	CLRREG	EIR,a0,d0
+
+	; ------------------------- reset device ------------------------------
+	ifne	OPT_AVOID_DEFAULT_RESETS
+
+	READREG	ESTAT,a0,d0
+	and	#(ESTAT_CLKRDY|ESTAT_RSTDONE|ESTAT_PHYRDY),d0
+	cmp	#(ESTAT_CLKRDY|ESTAT_RSTDONE|ESTAT_PHYRDY),d0
+	bne.s	.dorst
+	; chip seems alive
+
+	; check whether the OUI part of the MAC address is valid,
+	; by comparing with OUIs registered to Microchip
+	lea	MAADR1L+2(a0),a1	;after first pair of bytes
+	move.w	-(a1),d0
+	rol.w	#8,d0
+	swap	d0
+	move.w	-(a1),d0
+	lsl.w	#8,d0			;OUI<<8
+	lea	.valid_microchip_ouis(pc),a1
+.ouiloop:
+	tst.l	(a1)
+	beq.s	.dorst
+	cmp.l	(a1)+,d0
+	beq.s	.norst
+	bra.s	.ouiloop
+
+; 32 bit per entry, 0-terminated
+.valid_microchip_ouis:
+	dc.b	$00,$04,$A3,0
+	dc.b	$00,$1E,$C0,0
+	dc.b	$04,$91,$62,0
+	dc.b	$54,$10,$EC,0
+	dc.b	$80,$1F,$12,0
+	dc.b	$D8,$80,$39,0
+	dc.b	0,0,0,0
+
+.dorst:
+	endc	OPT_AVOID_DEFAULT_RESETS
 
 ;	ifne	_OPT_LONGRESET
 ;	moveq	#ECON2_ETHRST,d0
@@ -433,7 +490,7 @@ _enc624j6l_CheckBoard:	;check whether board is operating correctly
 	READREG	EUDAST,A0,d0
 	tst.w	d0			;should have gone to 0 after reset
 	bne.s	.err			;(see above, we've written $1234)
-
+.norst
 	ifne	0
 
 	;---------- short RAM check - write phase ----------------------------

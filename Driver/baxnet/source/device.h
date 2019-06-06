@@ -213,7 +213,7 @@ struct MCastEntry
 
 /* PROTOS */
 
-ASM LONG LibNull( void );
+//ASM LONG LibNull( void );
 
 ASM SAVEDS struct Device *DevInit(ASMR(d0) DEVBASEP                  ASMREG(d0), 
                                   ASMR(a0) BPTR seglist              ASMREG(a0), 

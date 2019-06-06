@@ -62,6 +62,7 @@ const UWORD dev_supportedcmds[] = {
 	0
 };
 
+
 const struct NSDeviceQueryResult NSDQueryAnswer = {
 	0,
 	16, /* up to SupportedCommands (inclusive) */
@@ -74,6 +75,14 @@ const struct NSDeviceQueryResult NSDQueryAnswer = {
 #include "device.h"
 #include "hw.h"
 #include "macros.h"
+
+const ULONG blub[6] = {
+	0xDEADCAFE,
+	sizeof(struct Sana2DeviceStats),
+	sizeof(struct ServerData),
+	sizeof(struct DevUnit),
+	sizeof(struct devbase)
+};
 
 /* enable heavy debug (D2=beginIO) */
 #define D2(x)

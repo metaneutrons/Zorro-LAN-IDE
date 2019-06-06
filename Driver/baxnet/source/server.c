@@ -620,6 +620,8 @@ static LONG server_queryext( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq )
 		}
 		s2qep->Actual = lastidx;
 	}
+#else
+#warning "Building server.c without S2_DevQueryExtGetMII"
 #endif
 #ifdef S2_DevQueryExtSetMII
 	tval = GetTagData( S2_DevQueryExtSetMII, 0, tlist );
@@ -846,8 +848,8 @@ static LONG server_writequeue( DEVBASEP, ULONG unit )
 					type = GetSucc( type );
 			 	}
 			}
-
 			db->db_Units[unit].du_DevStats.PacketsSent++;
+
 		        ioreq->ios2_Req.io_Error = S2ERR_NO_ERROR;
 	        	ioreq->ios2_WireError = S2WERR_GENERIC_ERROR;
 		        REMOVE( (struct Node*)ioreq );

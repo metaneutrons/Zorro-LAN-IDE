@@ -32,6 +32,7 @@ static const char _DeviceVersionString[] = "$VER: " xstr(DEVICENAME) " " xstr(DE
 const char *DeviceVersionString = (const char *)_DeviceVersionString;
 const char DeviceName[] = xstr(DEVICENAME);
 
+ASM LONG LibNull( void );
 
 const APTR DeviceFunctions[] = {
 	(APTR) DevOpen,

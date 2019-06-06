@@ -40,6 +40,8 @@ DEFINES2 = # -DPROTO_V2EXPNET
 ASMDEFS2 = # -DPROTO_V2EXPNET
 CPU2 = 68000
 
+SAME_DEVNAME=1
+
 ###############################################################################
 # import generic ruleset
 # 

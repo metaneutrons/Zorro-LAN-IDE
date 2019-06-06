@@ -21,7 +21,7 @@
 # debug = 1 will include string debugging for terminal/sushi/sashimi
 debug = 0
 # compiler_vcc = 1 will trigger VBCC, else GCC
-compiler_vcc = 0 
+compiler_vcc = 1
 
 ###############################################################################
 # prefix for system includes (ASM)
@@ -45,6 +45,8 @@ LINKEXE = vlink -bamigahunk -x -s -mrel -Cvbcc -Bstatic
 #LINK = $(CCX) -nostdlib
 CFLAGS  = -Os -+ -sc -c99 -cpu=$(CPU)
 CFLAGS2 = -Os -+ -sc -c99 -cpu=$(CPU2)
+VASMFORMAT  = -m$(CPU) -Fhunk -nowarn=2064 -quiet -I$(SYSINC)
+VASMFORMAT2 = -m$(CPU2) -Fhunk -nowarn=2064 -quiet -I$(SYSINC)
 
 else
 
@@ -54,12 +56,12 @@ LINK = $(CCX) -nostartfiles -s
 LINKEXE = $(CCX) -s -noixemul
 CFLAGS  = -O3 -s -m$(CPU) -Wall -noixemul -mregparm=4 -fomit-frame-pointer -msoft-float -noixemul
 CFLAGS2 = -O3 -s -m$(CPU2) -Wall -noixemul -mregparm=4 -fomit-frame-pointer -msoft-float -noixemul
+VASMFORMAT  = -m$(CPU) -Faout -nowarn=2064 -quiet -I$(SYSINC)
+VASMFORMAT2 = -m$(CPU2) -Faout -nowarn=2064 -quiet -I$(SYSINC)
 
 endif
 
 VASM = vasmm68k_mot
-VASMFORMAT  = -m$(CPU) -Fhunk -nowarn=2064 -quiet -I$(SYSINC)
-VASMFORMAT2 = -m$(CPU2) -Fhunk -nowarn=2064 -quiet -I$(SYSINC)
 
 # unused here
 #HOST = $(shell uname)
@@ -91,7 +93,11 @@ DEFINES += -DNEWSTYLE
 #DEFINES2 += -DDEVICEVERSION=$(DEVICEVERSION) -DDEVICEREVISION=$(DEVICEREVISION)
 #DEFINES2 += -DDEVICEDATE=$(DEVICEDATE) 
 #DEFINES2 += -DDEVICEEXTRA=$(DEVICEEXTRA)
+ifeq ($(SAME_DEVNAME),1)
+DEFINES2 += -DDEVICENAME="$(DEVICEID)"
+else
 DEFINES2 += -DDEVICENAME="$(DEVICEID2)"
+endif
 DEFINES2 += -DHAVE_VERSION_H=1
 DEFINES2 += -DNEWSTYLE
 #ASMDEFS2 += -DDEVICEVERSION=$(DEVICEVERSION) -DDEVICEREVISION=$(DEVICEREVISION)
@@ -110,7 +116,11 @@ DEFINES += -DNEWSTYLE
 #DEFINES2 += -D"DEVICEVERSION=$(DEVICEVERSION)" -D"DEVICEREVISION=$(DEVICEREVISION)"
 #DEFINES2 += -D"DEVICEDATE=$(DEVICEDATE)" -D"DEVICENAME="$(DEVICEID2)""
 #DEFINES2 += -D"DEVICEEXTRA=$(DEVICEEXTRA)"
+ifeq ($(SAME_DEVNAME),1)
+DEFINES2 += -D"DEVICENAME="$(DEVICEID)""
+else
 DEFINES2 += -D"DEVICENAME="$(DEVICEID2)""
+endif
 DEFINES2 += -DHAVE_VERSION_H=1
 DEFINES2 += -DNEWSTYLE
 #ASMDEFS2 += -DDEVICEVERSION=$(DEVICEVERSION) -DDEVICEREVISION=$(DEVICEREVISION)
