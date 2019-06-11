@@ -27,8 +27,8 @@ compiler_vcc = 0
 # prefix for system includes (ASM)
 # native AmigaOS compilation: set PREFX=GG: or PREFX=ADE:, depending on toolchain
 ###############################################################################
-PREFX  = /opt/amigaos-68k/
-#PREFX = gg:
+#PREFX  = /opt/amigaos-68k/
+PREFX = gg:
 SYSINC = $(PREFX)os-include
 
 ###############################################################################
@@ -54,8 +54,9 @@ else
 CCX  = m68k-amigaos-gcc
 LINK = $(CCX) -nostartfiles -s 
 LINKEXE = $(CCX) -s -noixemul
-CFLAGS  = -O3 -s -m$(CPU) -Wall -noixemul -mregparm=4 -fomit-frame-pointer -msoft-float -noixemul
-CFLAGS2 = -O3 -s -m$(CPU2) -Wall -noixemul -mregparm=4 -fomit-frame-pointer -msoft-float -noixemul
+#$(CPU)
+CFLAGS  = -Os -s -m$(CPU) -Wall -noixemul -mregparm=4 -fomit-frame-pointer -msoft-float -noixemul
+CFLAGS2 = -Os -s -m$(CPU2) -Wall -noixemul -mregparm=4 -fomit-frame-pointer -msoft-float -noixemul
 VASMFORMAT  = -m$(CPU) -Faout -nowarn=2064 -quiet -I$(SYSINC)
 VASMFORMAT2 = -m$(CPU2) -Faout -nowarn=2064 -quiet -I$(SYSINC)
 

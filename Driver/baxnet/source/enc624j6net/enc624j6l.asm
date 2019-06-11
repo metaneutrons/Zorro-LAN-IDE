@@ -21,8 +21,8 @@
 ; 
 ; enable debugging code block (comment/uncomment, see below)
 DEBUG		EQU	0
-GLOBALINT_BOARD	EQU	1	;if 1, then toggle board interrupt, else ENC624 INTIE
-OPT_AVOID_DEFAULT_RESETS	EQU	0	;if 1, then check valid Microchip MAC OUI and don't reset the whole chip if the MAC address is ok
+GLOBALINT_BOARD	EQU	0	;if 1, then toggle board interrupt, else ENC624 INTIE
+OPT_AVOID_DEFAULT_RESETS	EQU	1	;if 1, then check valid Microchip MAC OUI and don't reset the whole chip if the MAC address is ok
 
 	incdir	src:baxnet/trunk/source/
 	;Temp:Amiga/src/Zorro-LAN-IDE.git/Driver/enc624j6net/

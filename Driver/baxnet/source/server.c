@@ -94,11 +94,12 @@ static void server_Offline_CancelRequests( DEVBASEP , ULONG unit )
 		type = GetSucc( type );
 	}
 
-	server_AbortList( db, (struct List*)&db->db_Units[unit].du_WriteQueue );
 	server_AbortList( db, (struct List*)&db->db_Units[unit].du_EventQueue );
 	server_AbortList( db, (struct List*)&db->db_Units[unit].du_ReadOrphans );
-
 	ReleaseSemaphore( &db->db_Units[unit].du_Sem );
+	ObtainSemaphore( &db->db_Units[unit].du_WrSem );
+	server_AbortList( db, (struct List*)&db->db_Units[unit].du_WriteQueue );
+	ReleaseSemaphore( &db->db_Units[unit].du_WrSem );
 
 	/* clear Multicast list, TODO: subroutine */
 	{
@@ -722,7 +723,8 @@ LONG server_writeerror( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq, LONG cod
 	    HW_DMA_TX is defined by the Makefile. One of the chunks
 	    is the constant-size header (14 Bytes) and the other is the payload.
 */
-static LONG write_frame( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq )
+//static 
+LONG write_frame( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq )
 {
 	LONG ret;/* = SERR_OK;*/
 	UBYTE *copy_ptr,*frame;
@@ -816,7 +818,7 @@ static LONG server_writequeue( DEVBASEP, ULONG unit )
 #endif
 	struct IOSana2Req *ioreq,*nextio;
 
-	ObtainSemaphore( &db->db_Units[unit].du_Sem );
+	ObtainSemaphore( &db->db_Units[unit].du_WrSem );
 
 #if 1 
 	/* whole queue per call */
@@ -871,7 +873,7 @@ static LONG server_writequeue( DEVBASEP, ULONG unit )
 #endif
 	}
 
-	ReleaseSemaphore( &db->db_Units[unit].du_Sem );
+	ReleaseSemaphore( &db->db_Units[unit].du_WrSem );
 
 	return SERR_OK;
 }
@@ -977,7 +979,7 @@ static LONG server_readqueue( DEVBASEP, ULONG unit )
 
 			 	 /* desired type not found, get orphan list */
 				 db->db_Units[unit].du_DevStats.UnknownTypesReceived++;
-orphan:
+/*orphan:*/
 				 ioreq = (struct IOSana2Req *)GetHead( (struct List*)&db->db_Units[unit].du_ReadOrphans );
 				 if( ioreq )
 				 {
@@ -1023,7 +1025,7 @@ havetype:
 			 	db->db_Units[unit].du_DevStats.Overruns++;
 				type->srt_Sana2PacketTypeStats.PacketsDropped++;
 				D4(("No Reader for frame\n"));
-				goto orphan; /* does it help if we give the frame to the orphan list? */
+				/* goto orphan; */ /* does it help if we give the frame to the orphan list? */
 			 }
 nextframe:
 			 ReleaseSemaphore( &db->db_Units[unit].du_Sem );

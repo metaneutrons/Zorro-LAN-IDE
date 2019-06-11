@@ -66,6 +66,12 @@ PRIORITY=PRI/K/N,BPS/K/N,MTU/K/N,FULLDUPLEX/S,FLOWCONTROL/S,TIMER/K/N,MULTICAST/
 Changelog:
 ----------
 
+2.4   - added second semaphore, specifically for the write list
+      - recompiled using GCC 2.95 for slightly smaller binary
+      - avoid full ethernet chip reset on startup when the 
+        registers seem to be in a sane state (faster init, especially
+        with DHCP)
+
 2.3   - implemented fine grained multicast filter hashes
 
 2.2   - some more tuning to RX/TX scheduling

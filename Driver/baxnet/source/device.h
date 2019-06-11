@@ -74,6 +74,7 @@ struct DevUnit {
         volatile struct List du_EventQueue; /* Event queue */
 
 	struct SignalSemaphore du_Sem;      /* list locking (global per unit) */
+	struct SignalSemaphore du_WrSem;    /* experimental: separate Sempaphore for write list */
 
 	ULONG	du_OpenCount;		/* unit openers */
 	ULONG	du_Flags;		/* unit flags */

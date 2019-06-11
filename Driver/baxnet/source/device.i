@@ -73,6 +73,7 @@ DUF_PROMISC	EQU	(1<<DUB_PROMISC)
         STRUCT  du_WriteQueue,LH_SIZE      ;TX queue 
         STRUCT  du_EventQueue,LH_SIZE      ;Event queue
         STRUCT  du_Sem,SS_SIZE             ;list locking (global per unit)
+        STRUCT  du_WrSem,SS_SIZE           ;write list locking
 
 	ULONG	du_OpenCount		;unit openers
 	ULONG	du_Flags		;unit flags
