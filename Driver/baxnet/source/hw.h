@@ -51,7 +51,7 @@ struct devbase;
 #define HW_MACB_SPEEDS_END   18 /* this is the next free bit */
 #define HW_MAC_SPEEDSMASK    ((1<<HW_MACB_SPEEDS_END)-4)
 #define HW_MAC_NEXTSPEED(_a_) ( (_a_)+2 )
-#define HW_MAGIC_WORD 0xB00BDEED
+
 
 
 

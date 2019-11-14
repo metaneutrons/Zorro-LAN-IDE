@@ -155,6 +155,8 @@ architecture Behavioral of LAN_IDE_CP is
 
 	signal AMIGA_CLK:STD_LOGIC;
 	signal DS:STD_LOGIC;
+	signal AS_D0:STD_LOGIC;
+	signal AS_D1:STD_LOGIC;
 	
 	signal LAN_CS_RST: std_logic;
 	signal LAN_WR_RST: std_logic;
@@ -249,64 +251,76 @@ begin
 	ADDRESS_Z3_DECODE: process(reset,FCS)
 	begin
 		if(reset='0')then
+
+		elsif(falling_edge(FCS))then		
+
+		
+		end if;				
+	end process ADDRESS_Z3_DECODE;
+	
+	ADDRESS_DECODE: process(FCS,reset,AS)
+	begin
+		if(reset='0' )then
+			AUTOCONFIG_Z2_ACCESS <= '0';
+			IDE_ACCESS 				<= '0';
+			CP_ACCESS				<= '0'; 
+			AS_D0	<='1';
 			LAN_ACCESS 		<= '0';
 			DQ_SWAP  <= '1';
 			Z3_ADR <= (others => '1'); 
 			INT_VECTOR_CYCLE <='0';
-		elsif(falling_edge(FCS))then		
-
-			Z3_ADR(15 downto 2) <= A(15 downto 2);-- latch the whole address for the whole cycle
-			
-			INT_VECTOR_CYCLE <= not 	MTCR; --is this s special int vector cycle?!?
-			
-			--use D(15 downto 8)& A(23 downto 16) = A(31 downto 16) for quick response
-			
-			--lan base
-			--if(Z3='1' and (D(15 downto 8) & A(23 downto 16)) = LAN_BASEADR and SHUT_UP_Z2(0)='0' )then	
-			if(Z3='1' and (D(15 downto 8) ) = LAN_BASEADR(15 downto 8) and SHUT_UP_Z2(0)='0' )then	--only the upper 8 bits matter!!!
-				if(A(14 downto 13)<"11")then
-					DQ_SWAP  <= '1';
+		elsif(rising_edge(CLK_EXT))then		
+		
+			if(FCS='0' and AS_D1 ='1' and Z3='1') then
+				Z3_ADR(15 downto 2) <= A(15 downto 2);-- latch the whole address for the whole cycle
+				
+				INT_VECTOR_CYCLE <= not 	MTCR; --is this s special int vector cycle?!?
+				
+				--use D(15 downto 8)& A(23 downto 16) = A(31 downto 16) for quick response
+				
+				--lan base
+				--if(Z3='1' and (D(15 downto 8) & A(23 downto 16)) = LAN_BASEADR and SHUT_UP_Z2(0)='0' )then	
+				if((D(15 downto 8) ) = LAN_BASEADR(15 downto 8) and SHUT_UP_Z2(0)='0' )then	--only the upper 8 bits matter!!!
+					if(A(14 downto 13)<"11")then
+						DQ_SWAP  <= '1';
+					else
+						DQ_SWAP  <= '0';
+					end if;
+					LAN_ACCESS 		<= '1';
 				else
-					DQ_SWAP  <= '0';
+					LAN_ACCESS 		<= '0';
+					DQ_SWAP  <= '1';
 				end if;
-				LAN_ACCESS 		<= '1';
-			else
+			elsif(FCS ='1' or Z3='0')then
 				LAN_ACCESS 		<= '0';
 				DQ_SWAP  <= '1';
-			end if;		
-		end if;				
-	end process ADDRESS_Z3_DECODE;
-	
-	ADDRESS_Z2_DECODE: process(FCS,reset,AS)
-	begin
-		if(reset='0' or FCS='1')then
-			AUTOCONFIG_Z2_ACCESS <= '0';
-			IDE_ACCESS 				<= '0';
-			CP_ACCESS				<= '0'; 
-		elsif(falling_edge(AS))then		
-			
-			if(A(23 downto 16) = x"E8" and AUTO_CONFIG_Z2_DONE /= "111" and CFIN='0')then
+			end if;
+		
+		
+			AS_D0 <= AS;
+			AS_D1 <= FCS; -- double sync!
+			if(A(23 downto 16) = x"E8" and AUTO_CONFIG_Z2_DONE /= "111" and CFIN='0' and LAN_ACCESS = '0' and AS='0')then
 				AUTOCONFIG_Z2_ACCESS 	<= '1';
 			else
 				AUTOCONFIG_Z2_ACCESS 	<= '0';
 			end if;	
 
 			--CP base
-			if(A(23 downto 16) = CP_BASEADR and SHUT_UP_Z2(1)='0' and LAN_ACCESS = '0')then	
+			if(A(23 downto 16) = CP_BASEADR and SHUT_UP_Z2(1)='0' and LAN_ACCESS = '0' and AS='0' )then	
 				CP_ACCESS 		<= '1';
 			else
 				CP_ACCESS 		<= '0';
 			end if;		
 
 			--IDE base
-			if(A(23 downto 16) = IDE_BASEADR and SHUT_UP_Z2(2)='0' and LAN_ACCESS = '0' )then	
+			if(A(23 downto 16) = IDE_BASEADR and SHUT_UP_Z2(2)='0' and LAN_ACCESS = '0' and AS='0' )then	
 				IDE_ACCESS 		<= '1';
 			else
 				IDE_ACCESS 		<= '0';
 			end if;	
 
 		end if;				
-	end process ADDRESS_Z2_DECODE;
+	end process ADDRESS_DECODE;
 	
 	--LAN interrupt controll
 	lan_int_proc: process (CLK_EXT,reset)
@@ -501,9 +515,9 @@ begin
 			CP_BASEADR<=x"FF";
 			AUTO_CONFIG_Z2_DONE	<="000";
 			LAN_BASEADR<=x"FFFF";
-		elsif falling_edge(AMIGA_CLK) then -- no reset, so wait for rising edge of the clock		
+		elsif rising_edge(CLK_EXT) then -- no reset, so wait for rising edge of the clock		
 			D_Z2_OUT<="1111";
-			if(AS='1')then
+			if(AS_D0='1')then
 				AUTO_CONFIG_Z2_DONE <= AUTO_CONFIG_Z2_DONE or AUTO_CONFIG_Z2_DONE_CYCLE or (not AUTOBOOT_OFF & "00") ;
 			elsif(AUTOCONFIG_Z2_ACCESS= '1' and DS='0') then
 				case A(6 downto 1) is
@@ -667,26 +681,25 @@ begin
 			IDE_R_S		<= '1';
 			IDE_W_S		<= '1';
 			ROM_OE_S		<= '1';
-		elsif falling_edge(AMIGA_CLK) then			
+		elsif rising_edge(CLK_EXT) then			
 			--default values
 			IDE_R_S		<= '1';
 			IDE_W_S		<= '1';
 			ROM_OE_S		<= '1';					
-			if(IDE_ACCESS='1' and AS='0')then
+			if(IDE_ACCESS='1')then
 				if(RW='0')then
 					--the write goes to the hdd!
 					IDE_ENABLE  <= '0'; -- enable IDE on first read
 					IDE_W_S		<= '0';	
 				else
 					IDE_R_S		<= IDE_ENABLE; --read from IDE instead from ROM
-					ROM_OE_S		<=	not IDE_ENABLE;						
+					ROM_OE_S	<=	not IDE_ENABLE;						
 				end if;	
 			end if;				
 		end if;
 	end process ide_rw_gen;
-
 	IDE_W <= IDE_W_S	when AS='0' else '1';
-	IDE_R <=	IDE_R_S	when AS='0' else '1';
+	IDE_R <= IDE_R_S	when AS='0' else '1';
 	ROM_OE<= ROM_OE_S	when AS='0' else '1';			
 	IDE_CS(0)<= not(A(12));			
 	IDE_CS(1)<= not(A(13));
@@ -708,8 +721,6 @@ begin
 			CP_WE_QUIRK <= CP_WE_S; --the clockport write must be low exactly one 7MHz cycle!
 		end if;
 	end process cp_rw_gen;
-	
-	--for the future
 	CP_WE		<= CP_WE_S when AS='0' and CP_WE_QUIRK ='1' else '1';
 	CP_RD		<= CP_RD_S when AS='0' else '1';
 	CP_CS		<= not CP_ACCESS;

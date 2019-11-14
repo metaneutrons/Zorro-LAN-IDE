@@ -44,8 +44,6 @@ PRIORITY=PRI/K/N,BPS/K/N,MTU/K/N,FULLDUPLEX/S,FLOWCONTROL/S,TIMER/K/N,MULTICAST/
                   note: this switch should not be enabled in normal cases.
                         The module features autoconfiguration that determines
                         speed and duplex automatically.
-                  note(2): see miitool for changing speed/duplex
-                           settings at runtime.
 
  PRIORITY       - server task priority (default 1)
 
@@ -53,8 +51,8 @@ PRIORITY=PRI/K/N,BPS/K/N,MTU/K/N,FULLDUPLEX/S,FLOWCONTROL/S,TIMER/K/N,MULTICAST/
 
  MTU            - maximum transmission unit (default 1500) 
 
- MULTICAST      - (V2.3+) override fine-grained automatic multicast filtering
-                  and accept all multicast frames (default: off)
+ MULTICAST      - obsolete, kept for config file backwards compatibility with 
+                  old driver
 
  FLOWCONTROL    - enable automatic flow control that throttles incoming
                   data when the hardware buffer gets full
@@ -65,8 +63,6 @@ PRIORITY=PRI/K/N,BPS/K/N,MTU/K/N,FULLDUPLEX/S,FLOWCONTROL/S,TIMER/K/N,MULTICAST/
 
 Changelog:
 ----------
-
-2.3   - implemented fine grained multicast filter hashes
 
 2.2   - some more tuning to RX/TX scheduling
       - added optional debug code to lowlevel routines
@@ -114,12 +110,11 @@ Changelog:
 Compilation / Development Notes
 -------------------------------
 
-Either VBCC or GCC (tested with version 2.95 only) can be used for 
-cross-compiles. General options for compiler usage can be found in 
-Common.mk. Also, you might want to adapt the paths to your setup 
-(PREFX,SYSINC). In addition to the regular NDK, the sana2.h is expected 
-in the devices/ subdir of the includes. sana2.h may be found in the 
-AmiTCP or Roadshow SDK, respectively.
+Either VBCC or GCC (tested with version 2.95 only) can be used. General
+options for compiler usage can be found in Common.mk. Also, you might want
+to adapt the paths to your setup (PREFX,SYSINC). In addition to the regular
+NDK, the sana2.h is expected in the devices/ subdir of the includes. sana2.h
+may be found in the AmiTCP or Roadshow SDK, respectively.
 
 Call
 
@@ -129,15 +124,6 @@ for building the device.
 
 VBCC note: When calling the GNU Make port supplied with ADE/GG natively on AmigaOS3, 
 please make sure that "vc" is within the search path of "/bin/sh".
-
-Native compilation is also supported for GCC and VBCC. In addition, SAS/C
-smakefiles are provided for the hardware targets.
-
-Call 
-
- smake -f smakefile.enc
-
-for native building with SAS/C.
 
 Conceptually, the driver was meant to support multiple hardware targets. Therefore,
 it features a SANA-II frontend (device.c,deviceheader.c,deviceinit.c), a main

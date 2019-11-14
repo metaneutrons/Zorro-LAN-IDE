@@ -46,7 +46,7 @@ ASMDEFS1 = -DHW_DMA_TX=1
 ###############################################################################
 # debug = 1 will include string debugging for terminal/sushi/sashimi
 # not enabled yet in SAS/C makefile
-#debug = 0
+debug = 0
 
 ###############################################################################
 # prefix for system includes (ASM)

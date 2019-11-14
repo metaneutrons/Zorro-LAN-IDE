@@ -41,12 +41,6 @@ static LONG server_queryext( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq );
 /* this limits the number of processed read requests per run when enabled */
 #define ONE_READ_REQ 2
 
-/* heavy debug on read/write */
-#define D2(x)
-#define D4(x)
-/* #define D2(x) D(x) */
-/* #define D4(x) D(x) */
-
 
 
 /* (avoid external link libraries) this call is not time critical */
@@ -390,15 +384,6 @@ static LONG server_changeMulticast( DEVBASEP, ULONG unit, struct IOSana2Req *ior
 	COPYMAC( entry->mce_start, ioreq->ios2_SrcAddr );
 	COPYMAC( entry->mce_stop,  ioreq->ios2_SrcAddr );
 
-	D(("ADD Multicast MAC %02lx%02lx%02lx%02lx%02lx%02lx - %02lx%02lx%02lx%02lx%02lx%02lx\n",\
-	(ULONG)entry->mce_start[0],(ULONG)entry->mce_start[1],\
-	(ULONG)entry->mce_start[2],(ULONG)entry->mce_start[3],\
-	(ULONG)entry->mce_start[4],(ULONG)entry->mce_start[5],\
-	(ULONG)entry->mce_stop[0],(ULONG)entry->mce_stop[1],\
-	(ULONG)entry->mce_stop[2],(ULONG)entry->mce_stop[3],\
-	(ULONG)entry->mce_stop[4],(ULONG)entry->mce_stop[5] \
-	));
-
 	ADDTAIL( &db->db_svdat.sv_mclist, entry );
 	
 apply:
@@ -730,7 +715,7 @@ static LONG write_frame( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq )
 	UBYTE *header_ptr;
 #endif
 
-	   D2(("write: type %08lx, size %ld\n",ioreq->ios2_PacketType,
+	   D(("write: type %08lx, size %ld\n",ioreq->ios2_PacketType,
         	                              ioreq->ios2_DataLength));
 
 	frame     = db->db_svdat.sv_frame;
@@ -780,13 +765,13 @@ static LONG write_frame( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq )
 	if( (*dbm->dbm_CopyFromBuffer32)(copy_ptr,ioreq->ios2_Data, ioreq->ios2_DataLength) )
  	{
 send:
-		D2(("+hw_send\n"));
+		D(("+hw_send\n"));
 #ifdef HW_DMA_TX
 		ret = hw_send_frame(db, unit, copy_ptr, framesize, header_ptr ) ? SERR_OK:SERR_ERROR;
 #else
 		ret = hw_send_frame(db, unit, frame, framesize ) ? SERR_OK : SERR_ERROR;	                
 #endif
-		D2(("-hw_send\n"));
+		D(("-hw_send\n"));
 	}
 	else
 	{
@@ -907,14 +892,14 @@ static void server_read_frame( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq, U
 	{
 		frame     += 14; /* skip DST,SRC,Type */
 		framesize -= 18; /* also remove CRC */
-		D4(("plain mode: frame flags %ld\n",bcflag));
+		D(("plain mode: frame flags %ld\n",bcflag));
 	}
 	ioreq->ios2_Req.io_Flags &= SANA2IOF_RAW; /* ignore all other flags */
 	ioreq->ios2_Req.io_Flags |= bcflag;
 	ioreq->ios2_Req.io_Error  = 0;
 	ioreq->ios2_WireError     = 0;
 
-	D4(("ReadFrm IO %lx, DBM %lx frm %lx frmsz %ld\n",(ULONG)ioreq,(ULONG)dbm,(ULONG)frame,framesize));
+	D(("ReadFrm IO %lx, DBM %lx frm %lx frmsz %ld\n",(ULONG)ioreq,(ULONG)dbm,(ULONG)frame,framesize));
 
 	if( dbm->dbm_PacketFilter ) /* Filter Packets ? */
 	{
@@ -933,7 +918,7 @@ static void server_read_frame( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq, U
 			ioreq->ios2_WireError = S2WERR_BUFF_ERROR;
 		}
 	}
-	D4(("Copied io_Error %ld\n",(LONG)ioreq->ios2_Req.io_Error));
+	D(("Copied io_Error %ld\n",(LONG)ioreq->ios2_Req.io_Error));
 
 	Remove( (struct Node*)ioreq );
 	svTermIO( db, ioreq );
@@ -961,7 +946,7 @@ static LONG server_readqueue( DEVBASEP, ULONG unit )
 			/* TODO: devstats */
 			frametype = *( (USHORT*)(frame+12) );
 
-			D4(("Have Frame size %ld type %ld\n",framesize,frametype));
+			D(("Have Frame size %ld type %ld\n",framesize,frametype));
 
 			ObtainSemaphore( &db->db_Units[unit].du_Sem );
 
@@ -979,14 +964,14 @@ orphan:
 				 ioreq = (struct IOSana2Req *)GetHead( (struct List*)&db->db_Units[unit].du_ReadOrphans );
 				 if( ioreq )
 				 {
-					D4(("Orphaned Frame\n"));
+					D(("Orphaned Frame\n"));
 
 				 	ioreq->ios2_PacketType = frametype;
 				 	server_read_frame( db, unit, ioreq, frame, framesize );
 				 }
 				 else
 				 {
-					D4(("No ioreq for orphaned frame\n"));
+					D(("No ioreq for orphaned frame\n"));
 				 }
 
 				 goto nextframe;
@@ -1020,7 +1005,7 @@ havetype:
 			 {
 			 	db->db_Units[unit].du_DevStats.Overruns++;
 				type->srt_Sana2PacketTypeStats.PacketsDropped++;
-				D4(("No Reader for frame\n"));
+				D(("No Reader for frame\n"));
 				goto orphan; /* does it help if we give the frame to the orphan list? */
 			 }
 nextframe:
@@ -1109,9 +1094,9 @@ VOID SAVEDS ServerTask(void)
 		}
 		if( hw_recv_pending(db,i) )
 		{
-			D4(("Read on unit %ld start\n",i));
+			D(("Read on unit %ld start\n",i));
 			server_readqueue( db, i );
-			D4(("Read on unit %ld stop\n",i));
+			D(("Read on unit %ld stop\n",i));
 			action = 1;
 		}
 	 }
