@@ -39,7 +39,8 @@ LONG server_writeerror( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq, LONG cod
 #ifdef EXTERNAL_WRITE_FRAME
 LONG write_frame( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq );
 #else
-static LONG write_frame( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq );
+//static 
+LONG write_frame( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq );
 #endif
 
 static LONG server_writequeue( DEVBASETYPE*, ULONG );

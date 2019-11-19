@@ -22,19 +22,45 @@
 #include "device.h"
 
 /* Enable this if you want pure C for the device. (disable compilation of romtag.asm in that case)
-   I personally prefer the small ASM blob to steer away from linking challenges.
+   I personally prefer a small ASM blob to steer away from linking challenges.
 */
 #if  1
-
-ASM LONG LibNull( void )
-{
-	return 0;
-}
-
 extern const char DeviceName[];
 extern const char DeviceVersionString[];
 extern const APTR DeviceInitTab[];
 
+/* force moveq #0,d0;rts in front of the ROMTAG */
+#if 1
+struct myrt0 {
+ ULONG ret0;
+ struct Resident rt;
+};
+
+/* There is a trick here:
+    LibNull() is actually a function returning 0
+*/
+const struct myrt0 LibNull =
+{
+ 0x70004E75,
+ {
+	RTC_MATCHWORD,
+	( struct Resident* ) ((char *)&LibNull+sizeof(ULONG)),
+	( struct Resident* ) ((char *)&LibNull+sizeof(ULONG)+sizeof(struct Resident)),
+	RTF_AUTOINIT,
+	DEVICEVERSION,
+	NT_DEVICE,
+	0,
+	(char*)DeviceName,
+	(char*)DeviceVersionString+6,
+	(APTR)DeviceInitTab
+ }
+};
+#else
+/* hope that the compiler will put LibNull first */
+ASM LONG LibNull( void )
+{
+	return 0;
+}
 static const struct Resident _00RomTag = {
 	RTC_MATCHWORD,
 	( struct Resident* ) &_00RomTag,
@@ -47,6 +73,8 @@ static const struct Resident _00RomTag = {
 	(char*)DeviceVersionString+6,
 	(APTR)DeviceInitTab
 };
+#endif
+
 #endif
 
 

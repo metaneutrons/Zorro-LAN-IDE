@@ -11,6 +11,7 @@
 #define _INC_HWPRIVATE_H
 
 #include "compiler.h"
+#include <libraries/configvars.h>
 
 /* sdnet/v2expnet specific: polling timer */
 #include "intervaltimer.h"

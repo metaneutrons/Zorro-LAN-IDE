@@ -4,6 +4,8 @@
 	;include	exec/exec_lib.i
 	endc
 	include exec/execbase.i
+	include	device.i
+
 
 	ifnd	_LVORawDoFmt
 _LVORawDoFmt			equ 	-$20a
@@ -41,5 +43,12 @@ _KPrintF:
 ;	endc	;DEBUG
 
 	rts
+
+;DEBUG
+	dc.l	$deadbeef
+	dc.l	sds_SIZEOF
+	dc.l	sv_SIZEOF
+	dc.l	du_SIZEOF
+	dc.l	db_SIZEOF
 
 

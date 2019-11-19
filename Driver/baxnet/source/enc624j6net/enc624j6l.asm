@@ -1,3 +1,4 @@
+;APS00000000000000000000000000000000000000000000000000000000000000000000000000000000
 ; ------------------------------------------------------------------------------
 ; | Lowlevel Access to memory mapped ENC624J600 in PSP mode                    |
 ; | Henryk Richter <henryk.richter@gmx.net>                                    |
@@ -19,19 +20,26 @@
 ; - _enc624j6l_RXReset -> won't recover from totally unresponsive chip (but exits gracefully)
 ; 
 ; enable debugging code block (comment/uncomment, see below)
-DEBUG	EQU	1
-GLOBALINT_BOARD	EQU	1	;if 1, then toggle board interrupt, else ENC624 INTIE
+DEBUG		EQU	0
+GLOBALINT_BOARD	EQU	0	;if 1, then toggle board interrupt, else ENC624 INTIE
+OPT_AVOID_DEFAULT_RESETS	EQU	1	;if 1, then check valid Microchip MAC OUI and don't reset the whole chip if the MAC address is ok
 
 	incdir	src:baxnet/trunk/source/
 	;Temp:Amiga/src/Zorro-LAN-IDE.git/Driver/enc624j6net/
 	include "enc624j6net/registers.i"
 	include "enc624j6net/macros.i"
-	include "debug.i"
 
 	ifnd	DEBUG
 DEBUG	EQU	0
 	endc
 
+	ifne	1
+	include "debug.i"
+	else
+WRITEDEBUG	macro
+		nop
+		endm
+	endc
 ;
 ADD_4RX	EQU	1	;add 4 to valid RX size (fake CRC), fixes shapeshifter RAW treatment
 _OPT_LONGRESET	EQU	0	;in testing, don't enable
@@ -133,12 +141,6 @@ _LVOSignal	EQU	-324
 	;machine	68020
 
 	section	code,code
-
-
-
-
-
-
 
 ; -----------------------------------------------------------------------------
 ; |                                                                           |
@@ -277,7 +279,13 @@ regtests:
 	READREG	ESTAT,a0,d0
 	READREG	ECON1,a0,d1
 	READREG MACON2,a0,d2
-	READREG MABBIPG,a0,d3
+;	READREG MABBIPG,a0,d3
+
+	READREG ERXFCON,a0,d3
+	READREG EHT1,a0,d4
+	READREG EHT2,a0,d5
+	READREG EHT3,a0,d6
+	READREG EHT4,a0,d7
 	rts
 	
 
@@ -368,6 +376,7 @@ txtestlen EQU	*-txtestframe
 ;           Please note that this call will overwrite Board registers and
 ;           buffer memory. Call before initialization.
 _enc624j6l_CheckBoard:	;check whether board is operating correctly
+a
 	movem.l	d1-d2/a0-a1,-(sp)
 
 	move.l	a0,d0
@@ -388,16 +397,71 @@ _enc624j6l_CheckBoard:	;check whether board is operating correctly
 	SETREG	EUDAST,a0,d0	;clear ENC's bus (does not change anything in its regs)
 	READREG	EUDAST,a0,d0	;
 	cmp.w	d0,d1		;do we get the register back ?
-	bne.s	.err		;no -> complain
+	bne	.err		;no -> complain
 
+	; ------------- second initial check: can we read/write all bits? -----
+	move.w	#$5555,d1
+	move.w	d1,(a0)		;write into memory
+	moveq	#0,d0
+	SETREG	EUDAST,a0,d0	;clear ENC's bus (does not change anything in its regs)
+	move.w	(a0),d0
+	cmp.w	d0,d1		;do we get the data back ?
+	bne	.err		;no -> complain
+
+	not.w	d1		;move.w	#$AAAA,d1 ;d1 was $5555
+	move.w	d1,(a0)		;write into memory
+	moveq	#0,d0
+	SETREG	EUDAST,a0,d0	;clear ENC's bus (does not change anything in its regs)
+	move.w	(a0),d0
+	cmp.w	d0,d1		;do we get the register back ?
+	bne	.err		;no -> complain
+
+	; ---------------- disable board interrupt (for now) ------------------
 	moveq	#0,d0			;magic trick: the board enables Interrupts
 	lea		$4000(a0),a0
 	move.w	d0,($4000,a0)	;0=disable interrupt
 	lea		-$4000(a0),a0
 
-	; ------------------------- reset device ------------------------------
 	move	#EIR_CRYPTEN|EIR_MODEXIF|EIR_HASHIF|EIR_AESIF|EIR_LINKIF|EIR_PRDYIF|EIR_PKTIF|EIR_DMAIF|EIR_TXIF|EIR_TXABTIF|EIR_RXABTIF|EIR_PCFULIF,d0
 	CLRREG	EIR,a0,d0
+
+	; ------------------------- reset device ------------------------------
+	ifne	OPT_AVOID_DEFAULT_RESETS
+
+	READREG	ESTAT,a0,d0
+	and	#(ESTAT_CLKRDY|ESTAT_RSTDONE|ESTAT_PHYRDY),d0
+	cmp	#(ESTAT_CLKRDY|ESTAT_RSTDONE|ESTAT_PHYRDY),d0
+	bne.s	.dorst
+	; chip seems alive
+
+	; check whether the OUI part of the MAC address is valid,
+	; by comparing with OUIs registered to Microchip
+	lea	MAADR1L+2(a0),a1	;after first pair of bytes
+	move.w	-(a1),d0
+	rol.w	#8,d0
+	swap	d0
+	move.w	-(a1),d0
+	lsl.w	#8,d0			;OUI<<8
+	lea	.valid_microchip_ouis(pc),a1
+.ouiloop:
+	tst.l	(a1)
+	beq.s	.dorst
+	cmp.l	(a1)+,d0
+	beq.s	.norst
+	bra.s	.ouiloop
+
+; 32 bit per entry, 0-terminated
+.valid_microchip_ouis:
+	dc.b	$00,$04,$A3,0
+	dc.b	$00,$1E,$C0,0
+	dc.b	$04,$91,$62,0
+	dc.b	$54,$10,$EC,0
+	dc.b	$80,$1F,$12,0
+	dc.b	$D8,$80,$39,0
+	dc.b	0,0,0,0
+
+.dorst:
+	endc	OPT_AVOID_DEFAULT_RESETS
 
 ;	ifne	_OPT_LONGRESET
 ;	moveq	#ECON2_ETHRST,d0
@@ -426,7 +490,7 @@ _enc624j6l_CheckBoard:	;check whether board is operating correctly
 	READREG	EUDAST,A0,d0
 	tst.w	d0			;should have gone to 0 after reset
 	bne.s	.err			;(see above, we've written $1234)
-
+.norst
 	ifne	0
 
 	;---------- short RAM check - write phase ----------------------------
@@ -587,6 +651,7 @@ _enc624j6l_Init:
 	WRITEREG ERXST,a0,d0		;set RX start pointer (end will be $5fff)
 	WRITEREG PNextPacket,a0,d0	;set user read pointer
 
+	suba.l	a1,a1			;no multicast hash table (yet)
 	bsr	_enc624j6l_bc_mc_filter ;in: A0/D1, out: D0
 
 	move	#RXSTOP_INIT&$fffe,d0
@@ -644,6 +709,7 @@ _enc624j6l_Init:
 ;
 ; in: A0 - board base
 ;     D1 - init flags
+;     A1 - multicast hash table (4x USHORT)
 ;out: D0 >0  = OK
 ;        <=0 = FAIL
 _enc624j6l_bc_mc_filter:
@@ -658,15 +724,32 @@ _enc624j6l_bc_mc_filter:
 	move    #ERXFCON_NOTMEEN|ERXFCON_MCEN|ERXFCON_BCEN|ERXFCON_UCEN|ERXFCON_MPEN|ERXFCON_CRCEN|ERXFCON_RUNTEN,d0
 	bra.s	.setfilter
 .no_promisc:
-	moveq	#PIO_INIT_MULTI_CAST,d0
+	moveq	#PIO_INIT_MULTI_CAST,d0	;all multicast ?
 	and	d1,d0
 	beq.s	.no_multicast
 	move	#ERXFCON_MCEN|ERXFCON_BCEN|ERXFCON_UCEN|ERXFCON_MPEN|ERXFCON_CRCEN|ERXFCON_RUNTEN,d0
 	bra.s	.setfilter
 .no_multicast:
 	move	#ERXFCON_BCEN|ERXFCON_UCEN|ERXFCON_MPEN|ERXFCON_CRCEN|ERXFCON_RUNTEN,d0
+
+	; did we get a multicast hash table ?
+	move.l	a1,d1
+	beq.s	.nohashes
+	AND	#$ffff-ERXFCON_MCEN,d0	;don't accept ALL multicast
+	OR	#ERXFCON_HTEN,d0	;enable multicast hash table filter
+
+	move	(a1),d1
+	WRITEREG EHT1,a0,d1
+	move	2(a1),d1
+	WRITEREG EHT2,a0,d1
+	move	4(a1),d1
+	WRITEREG EHT3,a0,d1
+	move	6(a1),d1
+	WRITEREG EHT4,a0,d1
+.nohashes:
+
 .setfilter:
-	WRITEREG ERXFCON,a0,d0 ;set filter TODO: pattern matching stuff
+	WRITEREG ERXFCON,a0,d0 ;set filter
 
 	moveq	#1,d0
 .rts:

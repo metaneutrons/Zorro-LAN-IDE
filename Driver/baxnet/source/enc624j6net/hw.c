@@ -545,6 +545,8 @@ void myhw_ControlIntervalTimer( DEVBASEP )
 			flag = -1; /* stop timer */
 		else	flag =  0; /* no change */
 	}
+	if( hwd->timervalue < 1000 )
+		flag = -1;
 
 	if( flag > 0 )
 		StartIntervalTimer( &hwd->ivtimer, hwd->timervalue );

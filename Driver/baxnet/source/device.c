@@ -62,6 +62,7 @@ const UWORD dev_supportedcmds[] = {
 	0
 };
 
+
 const struct NSDeviceQueryResult NSDQueryAnswer = {
 	0,
 	16, /* up to SupportedCommands (inclusive) */
@@ -74,6 +75,20 @@ const struct NSDeviceQueryResult NSDQueryAnswer = {
 #include "device.h"
 #include "hw.h"
 #include "macros.h"
+
+const ULONG blub[6] = {
+	0xDEADCAFE,
+	sizeof(struct Sana2DeviceStats),
+	sizeof(struct ServerData),
+	sizeof(struct DevUnit),
+	sizeof(struct devbase)
+};
+
+/* enable heavy debug (D2=beginIO) */
+#define D2(x)
+#define D4(x)
+/* #define D2(x) D(x) */
+/* #define D4(x) D(x) */
 
 
 
@@ -105,6 +120,7 @@ ASM SAVEDS struct Device *DevInit( ASMR(d0) DEVBASEP                  ASMREG(d0)
 		dbNewList( (struct List*)&db->db_Units[i].du_WriteQueue  );
 		dbNewList( (struct List*)&db->db_Units[i].du_EventQueue  );
 		InitSemaphore( &db->db_Units[i].du_Sem );
+		InitSemaphore( &db->db_Units[i].du_WrSem );
 		db->db_Units[i].du_MTU = DEF_MTU;
 		db->db_Units[i].du_BitPerSec = DEF_BPS;
 	}
@@ -382,7 +398,8 @@ ASM SAVEDS VOID DevBeginIO( ASMR(a1) struct IOSana2Req *ioreq        ASMREG(a1),
 	/*ioreq->ios2_Req.io_Error = S2ERR_NO_ERROR;
 	ioreq->ios2_WireError = S2WERR_GENERIC_ERROR;*/
 
-	D(("BeginIO command %ld unit %ld\n",(LONG)ioreq->ios2_Req.io_Command,unit));
+	/* heavy debug on beginIO */
+	D2(("BeginIO command %ld unit %ld\n",(LONG)ioreq->ios2_Req.io_Command,unit));
 
 	switch( ioreq->ios2_Req.io_Command )
 	{
@@ -468,12 +485,27 @@ ASM SAVEDS VOID DevBeginIO( ASMR(a1) struct IOSana2Req *ioreq        ASMREG(a1),
 			   }
 			   else
 			   {
+#if 0
+				LONG code;
+				LONG write_frame( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq );
+
+				ObtainSemaphore(&db->db_Units[unit].du_WrSem);
+				code = write_frame( db, unit, ioreq );
+				if( code >= 0 )
+				{
+					db->db_Units[unit].du_DevStats.PacketsSent++;
+				        ioreq->ios2_Req.io_Error = S2ERR_NO_ERROR;
+	        			ioreq->ios2_WireError = S2WERR_GENERIC_ERROR;
+				}
+				ReleaseSemaphore(&db->db_Units[unit].du_WrSem);
+#else
 				ioreq->ios2_Req.io_Flags &= ~SANA2IOF_QUICK;
-				ObtainSemaphore(&db->db_Units[unit].du_Sem);
+				ObtainSemaphore(&db->db_Units[unit].du_WrSem);
 				 ADDTAIL((struct List*)&db->db_Units[unit].du_WriteQueue,(struct Node*)ioreq);
-				ReleaseSemaphore(&db->db_Units[unit].du_Sem);
+				ReleaseSemaphore(&db->db_Units[unit].du_WrSem);
 				Signal( (struct Task*)db->db_ServerProc, SIGBREAKF_CTRL_F );
 				ioreq = (0);
+#endif
 			   }
 			  }
 			 }

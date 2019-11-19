@@ -74,6 +74,7 @@ struct DevUnit {
         volatile struct List du_EventQueue; /* Event queue */
 
 	struct SignalSemaphore du_Sem;      /* list locking (global per unit) */
+	struct SignalSemaphore du_WrSem;    /* experimental: separate Sempaphore for write list */
 
 	ULONG	du_OpenCount;		/* unit openers */
 	ULONG	du_Flags;		/* unit flags */
@@ -213,7 +214,7 @@ struct MCastEntry
 
 /* PROTOS */
 
-ASM LONG LibNull( void );
+//ASM LONG LibNull( void );
 
 ASM SAVEDS struct Device *DevInit(ASMR(d0) DEVBASEP                  ASMREG(d0), 
                                   ASMR(a0) BPTR seglist              ASMREG(a0), 

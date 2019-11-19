@@ -32,13 +32,15 @@ ASMOBJECTS = $(SUBDIR)/enc624j6l.o $(SUBDIR)/intervaltimer.o kprintf.o
 
 DEVICEID=enc624j6net.device
 DEFINES = -DHW_DMA_TX # -DPROTO_V2EXPNET
-ASMDEFS = # -DPROTO_V2EXPNET
-CPU = 68020
+ASMDEFS = -DHW_DMA_TX # -DPROTO_V2EXPNET
+CPU = 68060
 
 DEVICEID2=enc624j6net.device_68000
 DEFINES2 = # -DPROTO_V2EXPNET
 ASMDEFS2 = # -DPROTO_V2EXPNET
 CPU2 = 68000
+
+SAME_DEVNAME=1
 
 ###############################################################################
 # import generic ruleset
