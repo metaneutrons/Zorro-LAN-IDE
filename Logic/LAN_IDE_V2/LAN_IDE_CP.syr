@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.13 secs
+Total CPU time to Xst completion: 0.12 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 1.00 secs
-Total CPU time to Xst completion: 0.13 secs
+Total CPU time to Xst completion: 0.12 secs
  
 --> Reading design: LAN_IDE_CP.prj
 
@@ -77,8 +77,9 @@ Setting FSM Encoding Algorithm to : Gray
 =========================================================================
 *                          HDL Compilation                              *
 =========================================================================
-Compiling vhdl file "C:/Users/Matze/Amiga/Hardwarehacks/Zorro-LAN-IDE/Logic/LAN_IDE_V2/LAN_IDE_CP-Z2v2.vhd" in Library work.
-Architecture behavioral of Entity lan_ide_cp is up to date.
+Compiling vhdl file "C:/Users/Matze/Amiga/Hardwarehacks/Zorro-LAN-IDE/Logic/LAN_IDE_V2/LAN_IDE_CP.vhd" in Library work.
+Entity <lan_ide_cp> compiled.
+Entity <lan_ide_cp> (Architecture <behavioral>) compiled.
 
 =========================================================================
 *                     Design Hierarchy Analysis                         *
@@ -90,6 +91,12 @@ Analyzing hierarchy for entity <LAN_IDE_CP> in library <work> (architecture <beh
 *                            HDL Analysis                               *
 =========================================================================
 Analyzing Entity <LAN_IDE_CP> in library <work> (Architecture <behavioral>).
+WARNING:Xst:819 - "C:/Users/Matze/Amiga/Hardwarehacks/Zorro-LAN-IDE/Logic/LAN_IDE_V2/LAN_IDE_CP.vhd" line 271: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <CLK_EXT>
+WARNING:Xst:819 - "C:/Users/Matze/Amiga/Hardwarehacks/Zorro-LAN-IDE/Logic/LAN_IDE_V2/LAN_IDE_CP.vhd" line 517: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <CLK_EXT>
+WARNING:Xst:819 - "C:/Users/Matze/Amiga/Hardwarehacks/Zorro-LAN-IDE/Logic/LAN_IDE_V2/LAN_IDE_CP.vhd" line 683: One or more signals are missing in the process sensitivity list. To enable synthesis of FPGA/CPLD hardware, XST will assume that all necessary signals are present in the sensitivity list. Please note that the result of the synthesis may differ from the initial design specification. The missing signals are:
+   <CLK_EXT>
 Entity <LAN_IDE_CP> analyzed. Unit <LAN_IDE_CP> generated.
 
 
@@ -99,25 +106,43 @@ Entity <LAN_IDE_CP> analyzed. Unit <LAN_IDE_CP> generated.
 
 Performing bidirectional port resolution...
 INFO:Xst:2561 - Always blocking tristate driving signal <A> in unit <LAN_IDE_CP> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <A> in unit <LAN_IDE_CP> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <A> in unit <LAN_IDE_CP> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <A> in unit <LAN_IDE_CP> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <A> in unit <LAN_IDE_CP> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <A> in unit <LAN_IDE_CP> is removed.
+INFO:Xst:2561 - Always blocking tristate driving signal <A> in unit <LAN_IDE_CP> is removed.
 
 Synthesizing Unit <LAN_IDE_CP>.
-    Related source file is "C:/Users/Matze/Amiga/Hardwarehacks/Zorro-LAN-IDE/Logic/LAN_IDE_V2/LAN_IDE_CP-Z2v2.vhd".
-WARNING:Xst:647 - Input <DS0> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <DS1> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <FCS> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <Z3> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:647 - Input <MTCR> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-WARNING:Xst:1780 - Signal <LAN_INT_D0> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-WARNING:Xst:1780 - Signal <DTACK_S> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
-    Found finite state machine <FSM_0> for signal <LAN_RST_SM>.
+    Related source file is "C:/Users/Matze/Amiga/Hardwarehacks/Zorro-LAN-IDE/Logic/LAN_IDE_V2/LAN_IDE_CP.vhd".
+WARNING:Xst:647 - Input <IDE_WAIT> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:647 - Input <BERR> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+WARNING:Xst:646 - Signal <LAN_BASEADR<7:0>> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+WARNING:Xst:1780 - Signal <CONFIG_READY> is never used or assigned. This unconnected signal will be trimmed during the optimization process.
+INFO:Xst:1799 - State start_read_upper is never reached in FSM <LAN_SM>.
+    Found finite state machine <FSM_0> for signal <LAN_SM>.
+    -----------------------------------------------------------------------
+    | States             | 13                                             |
+    | Transitions        | 19                                             |
+    | Inputs             | 4                                              |
+    | Outputs            | 14                                             |
+    | Clock              | CLK_EXT                   (rising_edge)        |
+    | Reset              | LAN_SM_RST                (positive)           |
+    | Reset type         | asynchronous                                   |
+    | Reset State        | nop                                            |
+    | Power Up State     | nop                                            |
+    | Encoding           | gray                                           |
+    | Implementation     | automatic                                      |
+    -----------------------------------------------------------------------
+    Found finite state machine <FSM_1> for signal <LAN_RST_SM>.
     -----------------------------------------------------------------------
     | States             | 8                                              |
     | Transitions        | 8                                              |
     | Inputs             | 0                                              |
-    | Outputs            | 8                                              |
+    | Outputs            | 30                                             |
     | Clock              | CLK_EXT                   (rising_edge)        |
     | Reset              | RESET                     (positive)           |
-    | Reset type         | synchronous                                    |
+    | Reset type         | asynchronous                                   |
     | Reset State        | nop                                            |
     | Power Up State     | nop                                            |
     | Encoding           | gray                                           |
@@ -131,50 +156,73 @@ WARNING:Xst:1780 - Signal <DTACK_S> is never used or assigned. This unconnected 
     Found 1-bit tristate buffer for signal <DTACK>.
     Found 1-bit tristate buffer for signal <INT2_OUT>.
     Found 1-bit tristate buffer for signal <INT6_OUT>.
-    Found 1-bit xor2 for signal <AMIGA_CLK$xor0000> created at line 147.
-    Found 2-bit register for signal <AUTO_CONFIG_DONE>.
-    Found 2-bit register for signal <AUTO_CONFIG_DONE_CYCLE>.
-    Found 2-bit adder for signal <AUTO_CONFIG_DONE_CYCLE$addsub0000> created at line 415.
-    Found 1-bit register for signal <autoconfig>.
-    Found 1-bit register for signal <cp>.
-    Found 8-bit comparator equal for signal <cp$cmp_eq0001> created at line 217.
-    Found 8-bit comparator equal for signal <cp$cmp_eq0002> created at line 223.
-    Found 2-bit comparator less for signal <cp$cmp_lt0000> created at line 216.
+    Found 1-bit tristate buffer for signal <A<23>>.
+    Found 1-bit tristate buffer for signal <A<22>>.
+    Found 1-bit tristate buffer for signal <A<21>>.
+    Found 1-bit tristate buffer for signal <A<20>>.
+    Found 1-bit tristate buffer for signal <A<19>>.
+    Found 1-bit tristate buffer for signal <A<18>>.
+    Found 1-bit tristate buffer for signal <A<17>>.
+    Found 1-bit tristate buffer for signal <A<16>>.
+    Found 1-bit tristate buffer for signal <A<15>>.
+    Found 1-bit tristate buffer for signal <A<14>>.
+    Found 1-bit tristate buffer for signal <A<13>>.
+    Found 1-bit tristate buffer for signal <A<12>>.
+    Found 1-bit tristate buffer for signal <A<11>>.
+    Found 1-bit tristate buffer for signal <A<10>>.
+    Found 1-bit tristate buffer for signal <A<9>>.
+    Found 1-bit tristate buffer for signal <A<8>>.
+    Found 1-bit xor2 for signal <AMIGA_CLK$xor0000> created at line 184.
+    Found 1-bit register for signal <AS_D0>.
+    Found 1-bit register for signal <AS_D1>.
+    Found 3-bit register for signal <AUTO_CONFIG_Z2_DONE>.
+    Found 3-bit register for signal <AUTO_CONFIG_Z2_DONE_CYCLE>.
+    Found 1-bit register for signal <AUTOCONFIG_Z2_ACCESS>.
+    Found 1-bit register for signal <CP_ACCESS>.
+    Found 8-bit comparator equal for signal <CP_ACCESS$cmp_eq0000> created at line 309.
     Found 8-bit register for signal <CP_BASEADR>.
     Found 1-bit register for signal <CP_RD_S>.
     Found 1-bit register for signal <CP_WE_QUIRK>.
     Found 1-bit register for signal <CP_WE_S>.
-    Found 4-bit register for signal <Dout1>.
-    Found 3-bit comparator less for signal <Dout1$cmp_lt0000> created at line 337.
-    Found 1-bit register for signal <DS_D>.
-    Found 1-bit register for signal <ide>.
-    Found 8-bit comparator equal for signal <ide$cmp_eq0000> created at line 226.
+    Found 4-bit register for signal <D_Z2_OUT>.
+    Found 4-bit comparator less for signal <DQ$cmp_lt0000> created at line 649.
+    Found 16-bit register for signal <DQ_DATA>.
+    Found 1-bit register for signal <DQ_SWAP>.
+    Found 2-bit comparator less for signal <DQ_SWAP$cmp_lt0000> created at line 284.
+    Found 1-bit register for signal <IDE_ACCESS>.
+    Found 8-bit comparator equal for signal <IDE_ACCESS$cmp_eq0000> created at line 316.
     Found 8-bit register for signal <IDE_BASEADR>.
     Found 1-bit register for signal <IDE_ENABLE>.
     Found 1-bit register for signal <IDE_R_S>.
     Found 1-bit register for signal <IDE_W_S>.
-    Found 1-bit register for signal <lan_adr>.
-    Found 1-bit register for signal <lan_adr_sw>.
-    Found 2-bit comparator less for signal <lan_adr_sw$cmp_lt0000> created at line 219.
-    Found 8-bit register for signal <LAN_BASEADR>.
+    Found 1-bit register for signal <INT_VECTOR_CYCLE>.
+    Found 14-bit register for signal <LAN_A_INIT>.
+    Found 1-bit register for signal <LAN_ACCESS>.
+    Found 8-bit comparator equal for signal <LAN_ACCESS$cmp_eq0000> created at line 283.
+    Found 16-bit register for signal <LAN_BASEADR>.
     Found 1-bit register for signal <LAN_CS_RST>.
+    Found 16-bit register for signal <LAN_D_INIT>.
     Found 1-bit register for signal <LAN_INT_ENABLE>.
     Found 1-bit register for signal <LAN_IRQ_D0>.
     Found 1-bit register for signal <LAN_IRQ_OUT>.
     Found 1-bit register for signal <LAN_RD_S>.
+    Found 1-bit register for signal <LAN_READY>.
+    Found 2-bit comparator less for signal <LAN_SM$cmp_lt0000> created at line 406.
+    Found 1-bit register for signal <LAN_SM_RST>.
     Found 1-bit register for signal <LAN_WR_RST>.
     Found 1-bit register for signal <LAN_WRH_S>.
     Found 1-bit register for signal <LAN_WRL_S>.
-    Found 1-bit register for signal <lancp>.
     Found 1-bit register for signal <ROM_OE_S>.
-    Found 3-bit register for signal <SHUT_UP>.
+    Found 3-bit register for signal <SHUT_UP_Z2>.
+    Found 1-bit register for signal <Z3_A_LOW>.
+    Found 14-bit register for signal <Z3_ADR>.
+    Found 32-bit register for signal <Z3_DATA>.
     Summary:
-	inferred   1 Finite State Machine(s).
-	inferred  18 D-type flip-flop(s).
-	inferred   1 Adder/Subtractor(s).
+	inferred   2 Finite State Machine(s).
+	inferred  61 D-type flip-flop(s).
 	inferred   6 Comparator(s).
 	inferred   1 Xor(s).
-	inferred  38 Tristate(s).
+	inferred  54 Tristate(s).
 Unit <LAN_IDE_CP> synthesized.
 
 
@@ -182,19 +230,19 @@ Unit <LAN_IDE_CP> synthesized.
 HDL Synthesis Report
 
 Macro Statistics
-# Adders/Subtractors                                   : 1
- 2-bit adder                                           : 1
-# Registers                                            : 31
- 1-bit register                                        : 25
- 2-bit register                                        : 2
+# Registers                                            : 73
+ 1-bit register                                        : 64
+ 14-bit register                                       : 2
+ 16-bit register                                       : 3
+ 3-bit register                                        : 1
  4-bit register                                        : 1
- 8-bit register                                        : 3
+ 8-bit register                                        : 2
 # Comparators                                          : 6
  2-bit comparator less                                 : 2
- 3-bit comparator less                                 : 1
+ 4-bit comparator less                                 : 1
  8-bit comparator equal                                : 3
-# Tristates                                            : 8
- 1-bit tristate buffer                                 : 6
+# Tristates                                            : 24
+ 1-bit tristate buffer                                 : 22
  16-bit tristate buffer                                : 2
 # Xors                                                 : 1
  1-bit xor2                                            : 1
@@ -218,16 +266,55 @@ Optimizing FSM <LAN_RST_SM/FSM> on signal <LAN_RST_SM[1:3]> with gray encoding.
  set_commit | 101
  done       | 100
 ------------------------
+Optimizing FSM <LAN_SM/FSM> on signal <LAN_SM[1:4]> with gray encoding.
+-------------------------------
+ State             | Encoding
+-------------------------------
+ nop               | 0000
+ start_read_upper  | unreached
+ wait_read_upper   | 0011
+ end_read_upper    | 0101
+ start_read_lower  | 0100
+ wait_read_lower   | 0010
+ end_read_lower    | 1100
+ start_write_upper | 0110
+ wait_write_upper  | 1101
+ end_write_upper   | 1111
+ start_write_lower | 0111
+ wait_write_lower  | 1110
+ end_write_lower   | 1010
+ config_rw         | 0001
+-------------------------------
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 1 in block <13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 1 in block <12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 1 in block <11>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 1 in block <10>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 1 in block <9>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 1 in block <8>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 1 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 1 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 1 in block <4>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 1 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 1 in block <1>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 1 in block <0>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <15>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <14>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <13>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <12>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <7>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <6>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <5>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <3>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <2>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1293 - FF/Latch <0> has a constant value of 0 in block <0>. This FF/Latch will be trimmed during the optimization process.
 
 =========================================================================
 Advanced HDL Synthesis Report
 
 Macro Statistics
-# FSMs                                                 : 1
-# Adders/Subtractors                                   : 1
- 2-bit adder                                           : 1
-# Registers                                            : 18
- Flip-Flops                                            : 18
+# FSMs                                                 : 2
+# Registers                                            : 61
+ Flip-Flops                                            : 61
 # Comparators                                          : 3
  8-bit comparator equal                                : 3
 
@@ -236,11 +323,65 @@ Macro Statistics
 =========================================================================
 *                         Low Level Synthesis                           *
 =========================================================================
+WARNING:Xst:1293 - FF/Latch <LAN_D_INIT_15> has a constant value of 0 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_D_INIT_14> has a constant value of 0 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_D_INIT_13> has a constant value of 0 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_D_INIT_12> has a constant value of 0 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_D_INIT_7> has a constant value of 0 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_D_INIT_6> has a constant value of 0 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_D_INIT_5> has a constant value of 0 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_D_INIT_3> has a constant value of 0 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_D_INIT_2> has a constant value of 0 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_D_INIT_0> has a constant value of 0 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_A_INIT_13> has a constant value of 1 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_A_INIT_12> has a constant value of 1 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_A_INIT_11> has a constant value of 1 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_A_INIT_10> has a constant value of 1 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_A_INIT_9> has a constant value of 1 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_A_INIT_8> has a constant value of 1 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_A_INIT_7> has a constant value of 1 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_A_INIT_5> has a constant value of 1 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_A_INIT_4> has a constant value of 1 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_A_INIT_2> has a constant value of 1 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_A_INIT_1> has a constant value of 1 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:1896 - Due to other FF/Latch trimming, FF/Latch <LAN_A_INIT_0> has a constant value of 1 in block <LAN_IDE_CP>. This FF/Latch will be trimmed during the optimization process.
+WARNING:Xst:2677 - Node <LAN_BASEADR_7> of sequential type is unconnected in block <LAN_IDE_CP>.
+WARNING:Xst:2677 - Node <LAN_BASEADR_6> of sequential type is unconnected in block <LAN_IDE_CP>.
+WARNING:Xst:2677 - Node <LAN_BASEADR_5> of sequential type is unconnected in block <LAN_IDE_CP>.
+WARNING:Xst:2677 - Node <LAN_BASEADR_4> of sequential type is unconnected in block <LAN_IDE_CP>.
+WARNING:Xst:2677 - Node <LAN_BASEADR_3> of sequential type is unconnected in block <LAN_IDE_CP>.
+WARNING:Xst:2677 - Node <LAN_BASEADR_2> of sequential type is unconnected in block <LAN_IDE_CP>.
+WARNING:Xst:2677 - Node <LAN_BASEADR_1> of sequential type is unconnected in block <LAN_IDE_CP>.
+WARNING:Xst:2677 - Node <LAN_BASEADR_0> of sequential type is unconnected in block <LAN_IDE_CP>.
+INFO:Xst:2261 - The FF/Latch <LAN_D_INIT_8> in Unit <LAN_IDE_CP> is equivalent to the following 2 FFs/Latches, which will be removed : <LAN_D_INIT_10> <LAN_D_INIT_11> 
+INFO:Xst:2261 - The FF/Latch <LAN_D_INIT_1> in Unit <LAN_IDE_CP> is equivalent to the following 2 FFs/Latches, which will be removed : <LAN_D_INIT_4> <LAN_D_INIT_9> 
 
 Optimizing unit <LAN_IDE_CP> ...
+  implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_CYCLE_0
+  implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_CYCLE_1
+  implementation constraint: INIT=s	 : SHUT_UP_Z2_0
+  implementation constraint: INIT=r	 : LAN_INT_ENABLE
+  implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_CYCLE_2
+  implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_1
+  implementation constraint: INIT=s	 : D_Z2_OUT_0
+  implementation constraint: INIT=s	 : D_Z2_OUT_2
+  implementation constraint: INIT=s	 : LAN_A_INIT_3
+  implementation constraint: INIT=s	 : LAN_A_INIT_6
+  implementation constraint: INIT=s	 : D_Z2_OUT_3
+  implementation constraint: INIT=s	 : D_Z2_OUT_1
+  implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_2
+  implementation constraint: INIT=r	 : AUTO_CONFIG_Z2_DONE_0
+  implementation constraint: INIT=r	 : LAN_D_INIT_1
+  implementation constraint: INIT=r	 : LAN_D_INIT_8
+  implementation constraint: INIT=s	 : SHUT_UP_Z2_1
+  implementation constraint: INIT=s	 : SHUT_UP_Z2_2
   implementation constraint: INIT=r	 : LAN_RST_SM_FSM_FFd1
   implementation constraint: INIT=r	 : LAN_RST_SM_FSM_FFd2
   implementation constraint: INIT=r	 : LAN_RST_SM_FSM_FFd3
+  implementation constraint: INIT=r	 : LAN_SM_FSM_FFd1
+  implementation constraint: INIT=r	 : LAN_SM_FSM_FFd2
+  implementation constraint: INIT=r	 : LAN_SM_FSM_FFd3
+  implementation constraint: INIT=r	 : LAN_SM_FSM_FFd4
 
 =========================================================================
 *                           Partition Report                            *
@@ -269,45 +410,43 @@ Clock Enable                       : YES
 wysiwyg                            : NO
 
 Design Statistics
-# IOs                              : 117
+# IOs                              : 113
 
 Cell Usage :
-# BELS                             : 904
-#      AND2                        : 207
-#      AND3                        : 75
-#      AND4                        : 9
-#      AND5                        : 2
-#      AND6                        : 1
+# BELS                             : 1475
+#      AND2                        : 486
+#      AND3                        : 67
+#      AND4                        : 26
+#      AND5                        : 1
 #      AND8                        : 3
 #      GND                         : 1
-#      INV                         : 374
-#      OR2                         : 182
-#      OR3                         : 20
-#      OR4                         : 2
-#      VCC                         : 1
-#      XOR2                        : 27
-# FlipFlops/Latches                : 60
-#      FD                          : 11
-#      FDC                         : 6
-#      FDCE                        : 6
-#      FDP                         : 4
-#      FDPE                        : 33
-# IO Buffers                       : 112
-#      IBUF                        : 37
-#      IOBUFE                      : 32
-#      OBUF                        : 37
+#      INV                         : 558
+#      OR2                         : 246
+#      OR3                         : 58
+#      OR4                         : 4
+#      XOR2                        : 25
+# FlipFlops/Latches                : 136
+#      FD                          : 4
+#      FDC                         : 19
+#      FDCE                        : 10
+#      FDP                         : 27
+#      FDPE                        : 76
+# IO Buffers                       : 111
+#      IBUF                        : 24
+#      IOBUFE                      : 48
+#      OBUF                        : 33
 #      OBUFE                       : 6
 =========================================================================
 
 
 Total REAL time to Xst completion: 9.00 secs
-Total CPU time to Xst completion: 8.51 secs
+Total CPU time to Xst completion: 8.50 secs
  
 --> 
 
-Total memory usage is 4534796 kilobytes
+Total memory usage is 4521784 kilobytes
 
 Number of errors   :    0 (   0 filtered)
-Number of warnings :    7 (   0 filtered)
-Number of infos    :    1 (   0 filtered)
+Number of warnings :   59 (   0 filtered)
+Number of infos    :   10 (   0 filtered)
 

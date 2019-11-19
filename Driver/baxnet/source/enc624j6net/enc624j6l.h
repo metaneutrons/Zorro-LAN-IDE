@@ -239,9 +239,8 @@ ASM SAVEDS int enc624j6l_SetOnline( ASMR(a0) void *board           ASMREG(a0) );
            >=0 - OK
 */
 ASM SAVEDS int enc624j6l_bc_mc_filter( 
-                               ASMR(a0) void *board               ASMREG(a0),
-                               ASMR(d1) unsigned long   flags     ASMREG(d1),
-			       ASMR(a1) unsigned short *mc_hashes ASMREG(a1));
+                               ASMR(a0) void *board         ASMREG(a0),
+                               ASMR(d1) unsigned long flags ASMREG(d1) );
 
 
 /*

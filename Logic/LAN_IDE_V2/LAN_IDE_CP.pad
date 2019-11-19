@@ -1,7 +1,7 @@
 Release 8.1i - Fit P.20131013
 Copyright(c) 1995-2003 Xilinx Inc. All rights reserved
 
- 3- 2-2019  7:56PM
+11-15-2019  0:25AM
 
 NOTE: This file is designed to be imported into a spreadsheet program
 such as Microsoft Excel for viewing, printing and sorting. The pipe '|'
@@ -29,8 +29,8 @@ P8|VCC||VCCINT||||||||||
 P9|A_LAN<4>|O|I/O|OUTPUT|||||||||
 P10|A_LAN<7>|O|I/O|OUTPUT|||||||||
 P11|A_LAN<6>|O|I/O|OUTPUT|||||||||
-P12|LAN_CFG<1>|O|I/O|OUTPUT|||||||||
-P13|LAN_CFG<3>|O|I/O|OUTPUT|||||||||
+P12|TIE||I/O||||||||||
+P13|TIE||I/O||||||||||
 P14|D<6>|I/O|I/O|BIDIR|||||||||
 P15|D<3>|I/O|I/O|BIDIR|||||||||
 P16|D<7>|I/O|I/O|BIDIR|||||||||
@@ -50,7 +50,7 @@ P29|GND||GND||||||||||
 P30|CLK_EXT|GCK|I/O/GCK1||||||||||
 P31|CP_IRQ|I|I/O|INPUT|||||||||
 P32|INT2_OUT|O|I/O/GCK2|OUTPUT|||||||||
-P33|IDE_WAIT|I|I/O|INPUT|||||||||
+P33|TIE||I/O||||||||||
 P34|CP_CS|O|I/O|OUTPUT|||||||||
 P35|ROM_OE|O|I/O|OUTPUT|||||||||
 P36|GND||GND||||||||||
@@ -73,52 +73,52 @@ P52|A<3>|I|I/O|INPUT|||||||||
 P53|A<7>|I|I/O|INPUT|||||||||
 P54|A<2>|I|I/O|INPUT|||||||||
 P55|VCC||VCCIO||||||||||
-P56|A<8>|I|I/O|INPUT|||||||||
+P56|A<8>|I/O|I/O|BIDIR|||||||||
 P57|A<1>|I|I/O|INPUT|||||||||
-P58|A<9>|I|I/O|INPUT|||||||||
-P59|A<10>|I|I/O|INPUT|||||||||
-P60|A<11>|I|I/O|INPUT|||||||||
-P61|A<12>|I|I/O|INPUT|||||||||
+P58|A<9>|I/O|I/O|BIDIR|||||||||
+P59|A<10>|I/O|I/O|BIDIR|||||||||
+P60|A<11>|I/O|I/O|BIDIR|||||||||
+P61|A<12>|I/O|I/O|BIDIR|||||||||
 P62|GND||GND||||||||||
 P63|TDI||TDI||||||||||
-P64|A<13>|I|I/O|INPUT|||||||||
+P64|A<13>|I/O|I/O|BIDIR|||||||||
 P65|TMS||TMS||||||||||
-P66|A<14>|I|I/O|INPUT|||||||||
+P66|A<14>|I/O|I/O|BIDIR|||||||||
 P67|TCK||TCK||||||||||
-P68|INT6_OUT|O|I/O|OUTPUT|||||||||
+P68|ROM_B<0>|O|I/O|OUTPUT|||||||||
 P69|ROM_B<1>|O|I/O|OUTPUT|||||||||
 P70|CP_WE|O|I/O|OUTPUT|||||||||
 P71|CP_RD|O|I/O|OUTPUT|||||||||
 P72|GND||GND||||||||||
 P73|VCC||VCCIO||||||||||
-P74|A<15>|I|I/O|INPUT|||||||||
+P74|A<15>|I/O|I/O|BIDIR|||||||||
 P75|AUTOBOOT_OFF|I|I/O|INPUT|||||||||
 P76|LAN_WRL|O|I/O|OUTPUT|||||||||
-P77|ROM_B<0>|O|I/O|OUTPUT|||||||||
-P78|TIE||I/O||||||||||
-P79|TIE||I/O||||||||||
+P77|FCS|I|I/O|INPUT|||||||||
+P78|DS1|I|I/O|INPUT|||||||||
+P79|Z3|I|I/O|INPUT|||||||||
 P80|AS|I|I/O|INPUT|||||||||
 P81|UDS|I|I/O|INPUT|||||||||
 P82|LDS|I|I/O|INPUT|||||||||
 P83|RW|I|I/O|INPUT|||||||||
 P84|VCC||VCCINT||||||||||
 P85|DTACK|O|I/O|OUTPUT|||||||||
-P86|A<23>|I|I/O|INPUT|||||||||
-P87|A<22>|I|I/O|INPUT|||||||||
-P88|A<21>|I|I/O|INPUT|||||||||
+P86|A<23>|I/O|I/O|BIDIR|||||||||
+P87|A<22>|I/O|I/O|BIDIR|||||||||
+P88|A<21>|I/O|I/O|BIDIR|||||||||
 P89|GND||GND||||||||||
 P90|GND||GND||||||||||
-P91|A<20>|I|I/O|INPUT|||||||||
-P92|A<19>|I|I/O|INPUT|||||||||
-P93|TIE||I/O||||||||||
-P94|A<18>|I|I/O|INPUT|||||||||
-P95|A<17>|I|I/O|INPUT|||||||||
+P91|A<20>|I/O|I/O|BIDIR|||||||||
+P92|A<19>|I/O|I/O|BIDIR|||||||||
+P93|DS0|I|I/O|INPUT|||||||||
+P94|A<18>|I/O|I/O|BIDIR|||||||||
+P95|A<17>|I/O|I/O|BIDIR|||||||||
 P96|MTACK|O|I/O|OUTPUT|||||||||
-P97|A<16>|I|I/O|INPUT|||||||||
-P98|BERR|I|I/O|INPUT|||||||||
+P97|A<16>|I/O|I/O|BIDIR|||||||||
+P98|TIE||I/O||||||||||
 P99|GND||GND||||||||||
 P100|OVR|O|I/O|OUTPUT|||||||||
-P101|TIE||I/O||||||||||
+P101|MTCR|I|I/O|INPUT|||||||||
 P102|C3|I|I/O|INPUT|||||||||
 P103|C1|I|I/O|INPUT|||||||||
 P104|CFIN|I|I/O|INPUT|||||||||
@@ -127,7 +127,7 @@ P106|SLAVE|O|I/O|OUTPUT|||||||||
 P107|OWN|O|I/O|OUTPUT|||||||||
 P108|GND||GND||||||||||
 P109|VCC||VCCIO||||||||||
-P110|LAN_CFG<4>|O|I/O|OUTPUT|||||||||
+P110|TIE||I/O||||||||||
 P111|LAN_INT|I|I/O|INPUT|||||||||
 P112|DQ<15>|I/O|I/O|BIDIR|||||||||
 P113|DQ<13>|I/O|I/O|BIDIR|||||||||
@@ -152,7 +152,7 @@ P131|DQ<14>|I/O|I/O|BIDIR|||||||||
 P132|LAN_WRH|O|I/O|OUTPUT|||||||||
 P133|LAN_CS|O|I/O|OUTPUT|||||||||
 P134|LAN_RD|O|I/O|OUTPUT|||||||||
-P135|LAN_CFG<2>|O|I/O|OUTPUT|||||||||
+P135|INT6_OUT|O|I/O|OUTPUT|||||||||
 P136|A_LAN<12>|O|I/O|OUTPUT|||||||||
 P137|A_LAN<13>|O|I/O|OUTPUT|||||||||
 P138|A_LAN<10>|O|I/O|OUTPUT|||||||||
@@ -160,7 +160,7 @@ P139|A_LAN<11>|O|I/O|OUTPUT|||||||||
 P140|A_LAN<8>|O|I/O|OUTPUT|||||||||
 P141|VCC||VCCINT||||||||||
 P142|A_LAN<9>|O|I/O|OUTPUT|||||||||
-P143|RESET|GSR/I|I/O/GSR||||||||||
+P143|RESET|I|I/O/GSR|INPUT|||||||||
 P144|GND||GND||||||||||
 
 To preserve the pinout above for future design iterations in
