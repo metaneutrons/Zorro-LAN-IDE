@@ -155,9 +155,7 @@ architecture Behavioral of LAN_IDE_CP is
 
 	signal AMIGA_CLK:STD_LOGIC;
 	signal DS:STD_LOGIC;
-	signal AS_D0:STD_LOGIC;
-	signal AS_D1:STD_LOGIC;
-	
+
 	signal LAN_CS_RST: std_logic;
 	signal LAN_WR_RST: std_logic;
 	signal INT_VECTOR_CYCLE: std_logic;
@@ -183,7 +181,6 @@ begin
 	Z3_DS <= UDS & LDS & DS1 & DS0;
 	AMIGA_CLK <= not (C1 xor C3);
 	DS <= UDS and LDS;
-	
 	
 	clock_init: process(reset,CLK_EXT)
 	begin
@@ -248,30 +245,16 @@ begin
 		end if;
 	end process clock_init;
 	
-	ADDRESS_Z3_DECODE: process(reset,FCS)
-	begin
-		if(reset='0')then
-
-		elsif(falling_edge(FCS))then		
-
-		
-		end if;				
-	end process ADDRESS_Z3_DECODE;
-	
-	ADDRESS_DECODE: process(FCS,reset,AS)
+	ADDRESS_Z3_DECODE: process(FCS,reset)
 	begin
 		if(reset='0' )then
-			AUTOCONFIG_Z2_ACCESS <= '0';
-			IDE_ACCESS 				<= '0';
-			CP_ACCESS				<= '0'; 
-			AS_D0	<='1';
 			LAN_ACCESS 		<= '0';
 			DQ_SWAP  <= '1';
 			Z3_ADR <= (others => '1'); 
 			INT_VECTOR_CYCLE <='0';
-		elsif(rising_edge(CLK_EXT))then		
+		elsif(falling_edge(FCS))then		
 		
-			if(FCS='0' and AS_D1 ='1' and Z3='1') then
+			if(Z3='1') then
 				Z3_ADR(15 downto 2) <= A(15 downto 2);-- latch the whole address for the whole cycle
 				
 				INT_VECTOR_CYCLE <= not 	MTCR; --is this s special int vector cycle?!?
@@ -291,36 +274,42 @@ begin
 					LAN_ACCESS 		<= '0';
 					DQ_SWAP  <= '1';
 				end if;
-			elsif(FCS ='1' or Z3='0')then
+			else
 				LAN_ACCESS 		<= '0';
 				DQ_SWAP  <= '1';
 			end if;
-		
-		
-			AS_D0 <= AS;
-			AS_D1 <= FCS; -- double sync!
-			if(A(23 downto 16) = x"E8" and AUTO_CONFIG_Z2_DONE /= "111" and CFIN='0' and LAN_ACCESS = '0' and AS='0')then
+		end if;
+	end process ADDRESS_Z3_DECODE;
+	
+	ADDRESS_Z2_DECODE: process(AS,reset)
+	begin
+		if(reset='0' )then
+			AUTOCONFIG_Z2_ACCESS <= '0';
+			IDE_ACCESS 				<= '0';
+			CP_ACCESS				<= '0'; 
+		elsif(falling_edge(AS))then		
+			if(A(23 downto 16) = x"E8" and AUTO_CONFIG_Z2_DONE /= "111" and CFIN='0' and LAN_ACCESS = '0')then
 				AUTOCONFIG_Z2_ACCESS 	<= '1';
 			else
 				AUTOCONFIG_Z2_ACCESS 	<= '0';
 			end if;	
 
 			--CP base
-			if(A(23 downto 16) = CP_BASEADR and SHUT_UP_Z2(1)='0' and LAN_ACCESS = '0' and AS='0' )then	
+			if(A(23 downto 16) = CP_BASEADR and SHUT_UP_Z2(1)='0' and LAN_ACCESS = '0')then	
 				CP_ACCESS 		<= '1';
 			else
 				CP_ACCESS 		<= '0';
 			end if;		
 
 			--IDE base
-			if(A(23 downto 16) = IDE_BASEADR and SHUT_UP_Z2(2)='0' and LAN_ACCESS = '0' and AS='0' )then	
+			if(A(23 downto 16) = IDE_BASEADR and SHUT_UP_Z2(2)='0' and LAN_ACCESS = '0')then	
 				IDE_ACCESS 		<= '1';
 			else
 				IDE_ACCESS 		<= '0';
 			end if;	
 
 		end if;				
-	end process ADDRESS_DECODE;
+	end process ADDRESS_Z2_DECODE;
 	
 	--LAN interrupt controll
 	lan_int_proc: process (CLK_EXT,reset)
@@ -504,7 +493,7 @@ begin
 	end process lan_rw_gen;
 
 	--autoconfig	
-	autoconfig_proc: process (reset, AMIGA_CLK)
+	autoconfig_proc: process (reset, CLK_EXT)
 	begin
 		if	reset = '0' then
 			-- reset active ...
@@ -517,9 +506,9 @@ begin
 			LAN_BASEADR<=x"FFFF";
 		elsif rising_edge(CLK_EXT) then -- no reset, so wait for rising edge of the clock		
 			D_Z2_OUT<="1111";
-			if(AS_D0='1')then
+			if(AS='1')then
 				AUTO_CONFIG_Z2_DONE <= AUTO_CONFIG_Z2_DONE or AUTO_CONFIG_Z2_DONE_CYCLE or (not AUTOBOOT_OFF & "00") ;
-			elsif(AUTOCONFIG_Z2_ACCESS= '1' and DS='0') then
+			elsif(AUTOCONFIG_Z2_ACCESS= '1' and AS='0' and DS='0') then
 				case A(6 downto 1) is
 					when "000000"	=> 
 						if(AUTO_CONFIG_Z2_DONE(0) = '0')then
@@ -686,7 +675,7 @@ begin
 			IDE_R_S		<= '1';
 			IDE_W_S		<= '1';
 			ROM_OE_S		<= '1';					
-			if(IDE_ACCESS='1')then
+			if(IDE_ACCESS='1' and AS='0' and DS='0')then
 				if(RW='0')then
 					--the write goes to the hdd!
 					IDE_ENABLE  <= '0'; -- enable IDE on first read
@@ -708,22 +697,31 @@ begin
 
 
 	--cp signal generation
-	cp_rw_gen: process (AMIGA_CLK)
+	cp_rw_gen: process (AMIGA_CLK, reset)
 	begin
-		if falling_edge(AMIGA_CLK) then			
+		
+		if	(reset = '0') then
+			CP_RD_S		<= '1';
+			CP_WE_S		<= '1';
+			CP_WE_QUIRK		<= '1';
+		elsif falling_edge(AMIGA_CLK) then			
 			--default values
 			CP_RD_S		<= '1';
 			CP_WE_S		<= '1';
-			if(CP_ACCESS = '1' and DS='0')then --datastrobe instead of AS!
+			if(	CP_ACCESS = '1' and 
+				AS = '0' and 
+				DS = '0' --datastrobe too! 
+				)then  
 				CP_RD_S		<= not RW;
 				CP_WE_S		<= RW;
-			end if;				
-			CP_WE_QUIRK <= CP_WE_S; --the clockport write must be low exactly one 7MHz cycle!
+			end if;	
+			--the clockport write must be low exactly one 7MHz cycle!	
+			CP_WE_QUIRK <= CP_WE_S; 
 		end if;
 	end process cp_rw_gen;
 	CP_WE		<= CP_WE_S when AS='0' and CP_WE_QUIRK ='1' else '1';
 	CP_RD		<= CP_RD_S when AS='0' else '1';
-	CP_CS		<= not CP_ACCESS;
+	CP_CS		<= '0' when CP_ACCESS ='1' and AS='0' else '1';
 
 end Behavioral;
 
