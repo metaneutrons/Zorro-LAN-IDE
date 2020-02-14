@@ -188,7 +188,18 @@ TIMER/K/N,MULTICAST/S
 Changelog:
 ----------
 
-2.00  - parse Vampire 4 UUID for MAC auto-assignment
+2.7   - fixed Enforcer hit
+
+2.6   - more sanity checks to avoid a hanging driver in situations
+        where the chip communication fails (i.e. with ENC28J60 
+        resetting itself or losing power)
+
+2.5   - added support for larger V1200 flash type (for UUID)
+      - better test for Vampire V4 standalone
+
+2.4   - version bump (aligned with other hardware targets)
+
+2.0   - parse Vampire 4 UUID for MAC auto-assignment
       - version bump
 
 1.99  - re-enabled 32 Bit Buffer copies (unless Miami is active)

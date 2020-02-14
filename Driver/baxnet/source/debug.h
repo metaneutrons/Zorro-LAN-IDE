@@ -11,7 +11,8 @@
 #define _INC_DEBUG_H
 
 #ifdef DEBUG
-extern void KPrintF(char *, ...), KGetChar(void);
+extern void STDARGS KPrintF(char *, ...);
+extern void KGetChar(void);
 
 #define D(_x_) do { KPrintF("%s:%ld:",__FILE__,__LINE__); KPrintF _x_; } while(0)
 
