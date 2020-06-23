@@ -53,8 +53,10 @@ static LONG server_queryext( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq );
 /* heavy debug on read/write */
 #define D2(x)
 #define D4(x)
+#define D8(x)
 /* #define D2(x) D(x) */
 /* #define D4(x) D(x) */
+/* #define D8(x) D(x) */
 
 
 
@@ -920,14 +922,16 @@ static void server_read_frame( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq, U
 	{
 		frame     += 14; /* skip DST,SRC,Type */
 		framesize -= 18; /* also remove CRC */
+//		framesize -= 14; /* test: KEEP CRC */
 		D4(("plain mode: frame flags %ld\n",bcflag));
 	}
 	ioreq->ios2_Req.io_Flags &= SANA2IOF_RAW; /* ignore all other flags */
 	ioreq->ios2_Req.io_Flags |= bcflag;
 	ioreq->ios2_Req.io_Error  = 0;
 	ioreq->ios2_WireError     = 0;
+	ioreq->ios2_DataLength    = framesize;
 
-	D4(("ReadFrm IO %lx, DBM %lx frm %lx frmsz %ld\n",(ULONG)ioreq,(ULONG)dbm,(ULONG)frame,framesize));
+	D8(("ReadFrm IO %lx, DBM %lx frm %lx frmsz %ld Flags %ld\n",(ULONG)ioreq,(ULONG)dbm,(ULONG)frame,framesize,(ULONG)ioreq->ios2_Req.io_Flags));
 
 	if( dbm->dbm_PacketFilter ) /* Filter Packets ? */
 	{

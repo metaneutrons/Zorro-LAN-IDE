@@ -27,8 +27,8 @@ compiler_vcc = 0
 # prefix for system includes (ASM)
 # native AmigaOS compilation: set PREFX=GG: or PREFX=ADE:, depending on toolchain
 ###############################################################################
-PREFX  = /opt/amigaos-68k/
-#PREFX = gg:
+#PREFX  = /opt/amigaos-68k/
+PREFX = gg:
 SYSINC = $(PREFX)os-include
 
 ###############################################################################

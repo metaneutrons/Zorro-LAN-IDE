@@ -93,9 +93,9 @@ const ULONG blub[6] = {
 };
 
 /* enable heavy debug (D2=beginIO) */
-//#define D2(x)
+#define D2(x)
 #define D4(x)
-#define D2(x) D(x)
+/* #define D2(x) D(x) */
 /* #define D4(x) D(x) */
 
 
@@ -193,7 +193,10 @@ ASM SAVEDS LONG DevOpen( ASMR(a1) struct IOSana2Req *ioreq           ASMREG(a1),
 		ok = 1;
 		if( (db->db_Units[unit].du_OpenCount > 0) &&
 		    (flags & SANA2OPF_MINE) )
+		{
 			ok = 0;
+			D(("DevOpen fail: OpenCount is >0 and SANA2OPF_MINE requested."));
+		}
 #if 0
 		if( (db->db_Units[unit].du_OpenCount > 0) &&
 		    (flags & SANA2OPF_PROM) )
@@ -201,7 +204,10 @@ ASM SAVEDS LONG DevOpen( ASMR(a1) struct IOSana2Req *ioreq           ASMREG(a1),
 #endif
 
 		if( db->db_Units[unit].du_Flags & DUF_EXCLUSIVE )
+		{
 		 	ok = 0;
+			D(("DevOpen fail: device was opened already with exclusive flag set."));
+		}
 
 		if( ok )
 			ok = hw_AllocBoard( db, unit );
@@ -953,6 +959,7 @@ havetype:
 	if( !(rd = dbAddReader(db,unit,frametype,type,ID ) ))
 		return; /* bail out, no mem left */
 havereader:
+	D(("dbAddReadReq type %ld to unit %ld ID %ld\n",frametype,unit,ID));
 
 	ADDTAIL( &rd->snr_Requests , (struct Node*)ioreq );
 
@@ -993,6 +1000,9 @@ static struct SanaReader *dbAddReader( DEVBASEP, ULONG unit, ULONG frametype, st
 		return (0);
 
 	rd->snr_ID = ID;
+
+	D(("dbAddReader %ld to unit %ld ID %ld\n",frametype,unit,ID));
+
 	dbNewList( &rd->snr_Requests );
 
 	if( (GetHead( &type->srt_Readers ) ))

@@ -188,6 +188,8 @@ TIMER/K/N,MULTICAST/S
 Changelog:
 ----------
 
+2.8   - some workarounds for Fusion
+
 2.7   - fixed Enforcer hit
 
 2.6   - more sanity checks to avoid a hanging driver in situations

@@ -67,6 +67,8 @@ PRIORITY=PRI/K/N,BPS/K/N,MTU/K/N,FULLDUPLEX/S,FLOWCONTROL/S,TIMER/K/N,MULTICAST/
 Changelog:
 ----------
 
+2.8   - some workarounds for Fusion
+
 2.7   - fixed MuForce hit
 
 2.4   - added second semaphore, specifically for the write list
