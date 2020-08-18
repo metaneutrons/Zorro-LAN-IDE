@@ -7,7 +7,11 @@ Here is a pic of the first revision:
 
 All components are Autoconfig. The FastEthernet is based on a ENC624J600 lan chip. The clockport is compatible to A600/A1200 ones but resides at a different address. The IDE works from Kickstart 1.3 to 3.1.4 !
 
-At present there are two firmwares: One for Zorro2, which runs in every Amiga with Zorro-Sots and one for A3000/4000, which puts the LAN-Chip into a Zorro3 environment. The while the Zorro2 variant can transfer 3.5mb/s at most the Zorro3-variant has a signifficantly faster LAN<->Amiga interface of 6-7mb/sec. However, the SANAII-IP Stack is not very efficient and eats much of the performance, thus 1-2MB/sec are the maximum observed right now.
+At present there are two firmwares: One for Zorro2, which runs in every Amiga with Zorro-Sots and one for A3000/4000, which puts the LAN-Chip into a Zorro3 environment. The while the Zorro2 variant can transfer 3.5mb/s at most the Zorro3-variant has a significantly faster LAN<->Amiga interface of 6-7mb/sec. Please note that these RAW data transfer numbers are not the only factor in LAN performance on Amiga and that the actual observed speeds with TCP transfers are in the range of 1-2 MB/s (depending on IP stack and CPU). 
+
+Here is a pic of the current board revision:
+![Zorro-Card with onboard LAN chip](https://gitlab.com/MHeinrichs/Zorro-LAN-IDE/raw/master/Bilder/LANIDEv03.JPG)
+
 
 ## Things to improve
 
@@ -53,7 +57,7 @@ You find the eagle board and schematic files (brd/sch) for the pcb. The software
 You can generate Gerber-files from the brd files according to the specs of your PCB-manufactor. Some specs: min trace width: 0.15mm/6mil, min trace dist: 0.15mm/6mil, min drill: 0.3mm
 
 **ATTENTION: THE PCB has 4 layers!**
-**ATTENTION: Revision 2E has not been build yet!**
+
 
 ## How to get the parts?
 Most parts can be found on digikey or mouser or a parts supplier of your choice.
