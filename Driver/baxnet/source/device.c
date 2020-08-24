@@ -98,8 +98,7 @@ const ULONG blub[6] = {
 /* #define D2(x) D(x) */
 /* #define D4(x) D(x) */
 
-
-
+#define HIGHPRI 11
 
 
 ASM SAVEDS struct Device *DevInit( ASMR(d0) DEVBASEP                  ASMREG(d0), 
@@ -807,31 +806,57 @@ static LONG dbIsInList( struct List *l, struct Node *entry )
  return 0;
 }
 
+/* Workaround for Envoy: assign higher priority to server task */
+LONG Need_HighPri( DEVBASEP )
+{
+	/* don't bother if we are at HIGHPRI already */
+	if( db->db_ServerProc )
+	{
+		if( ((struct Task*)db->db_ServerProc)->tc_Node.ln_Pri >= HIGHPRI )
+			return 0;
+	}
+
+	if( FindPort("Services Manager") )
+		return	1;
+	if( FindPort("Accounts Manager") )
+		return	1;
+
+	return 0;
+}
+
 
 /* start Server function and keep it up */
 /* note: server is global right now */
 static LONG dbStartServer( DEVBASEP, LONG unit )
 {
   struct MsgPort *port;
-  LONG ret = 0,i;
+  LONG ret = 0,i,pri;
   struct TagItem sv_tags[5];
 
   /* server running ? */
   if( db->db_ServerProc )
+  {
+  	if( Need_HighPri( db ) )
+		SetTaskPri((struct Task*)db->db_ServerProc,HIGHPRI);
 	return 1;
-  
+  }
+
   if(!(port = CreateMsgPort() ))
   	return 0;
+
+  pri = 0;
+  if( Need_HighPri( db ) )
+	pri = HIGHPRI;
+  else
+  	if( FindPort("AMITCP") ) /* AmiTCP active ? */
+		pri = 6;
 
   sv_tags[i=0].ti_Tag  = NP_Entry;
   sv_tags[i++].ti_Data = (ULONG)ServerTask;
   sv_tags[i  ].ti_Tag  = NP_Name;
   sv_tags[i++].ti_Data = (ULONG)db->db_Lib.lib_Node.ln_Name;
   sv_tags[i  ].ti_Tag  = NP_Priority;
-  if( FindPort("AMITCP") ) /* AmiTCP active ? */
-	  sv_tags[i++].ti_Data = (ULONG)6;
-  else
-	  sv_tags[i++].ti_Data = (ULONG)0;
+  sv_tags[i++].ti_Data = (ULONG)pri;
   sv_tags[i  ].ti_Tag  = TAG_DONE;
 
   if( (db->db_ServerProc = CreateNewProc(sv_tags)))

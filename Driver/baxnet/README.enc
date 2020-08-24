@@ -67,6 +67,9 @@ PRIORITY=PRI/K/N,BPS/K/N,MTU/K/N,FULLDUPLEX/S,FLOWCONTROL/S,TIMER/K/N,MULTICAST/
 Changelog:
 ----------
 
+2.9   - better support for Envoy: automatically select a higher
+        task priority in presence of Envoy services
+
 2.8   - some workarounds for Fusion
 
 2.7   - fixed MuForce hit
