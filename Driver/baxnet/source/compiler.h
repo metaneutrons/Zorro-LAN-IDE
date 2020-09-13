@@ -27,6 +27,7 @@
 #define SAVEDS __saveds
 #define STRUCTOFFSET OFFSET /* exec/initializers.h */
 #define INLINE __inline static
+#define STDARGS __stdargs
 
 #else /* __SASC */
 
@@ -39,6 +40,7 @@
 #define SAVEDS
 #define STRUCTOFFSET OFFSET /* exec/initializers.h */
 #define INLINE static inline 
+#define STDARGS __stdargs
 
 #else /* __GNUC__ */
 
@@ -52,6 +54,7 @@
 #include <stddef.h>
 /* sorry, I ran into some issues inlining stuff with VBCC, disabling it */
 #define INLINE 
+#define STDARGS __stdargs
 
 #else /* __VBCC__ */
 

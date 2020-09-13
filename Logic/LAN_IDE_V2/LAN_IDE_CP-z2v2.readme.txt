@@ -1,0 +1,8 @@
+Important: The Zorro-II firmware dated 15-Jul-2020 and later
+changes the handling of the "IDE_OFF" jumper compared to earlier
+firmwares. Now IDE_OFF now behaves as stated on the silkscreen
+and will disable the IDE controller if the jumper is set.
+
+This changed behaviour is consistent with the Zorro-III firmware
+now.
+

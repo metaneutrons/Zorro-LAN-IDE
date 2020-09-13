@@ -17,10 +17,17 @@ _LVORawMayGetChar		equ 	-$1fe
 	endc
 
 	XDEF	_KPrintF
+	XDEF	_KPrintFa0a1
+
+_KPrintF:
+;	rts
+	move.l	4(sp),a0
+	lea	8(sp),a1
+	; fall through
 
 ;A0 = format
 ;A1 = arguments
-_KPrintF:
+_KPrintFa0a1:
 ;	ifd	DEBUG
 
 	movem.l	d0-d2/a0-a3/a6,-(sp)

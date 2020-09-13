@@ -1,10 +1,10 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
+-- Company:        a1k.org
+-- Engineer:       M. Heinrichs, H. Richter
 -- 
--- Create Date:    22:08:29 12/13/2016 
+-- Create Date:    14:45:29 07/15/2020
 -- Design Name: 
--- Module Name:    LAN_IDE_CP - Behavioral 
+-- Module Name:    LAN_IDE_CP-Z2v2 - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -69,7 +69,6 @@ entity LAN_IDE_CP is
            IDE_R : out  STD_LOGIC;
            IDE_A : out  STD_LOGIC_VECTOR (2 downto 0);
            IDE_CS : out  STD_LOGIC_VECTOR (1 downto 0);
---         LAN_CFG : out  STD_LOGIC_VECTOR (4 downto 1);
            LAN_RD : out  STD_LOGIC;
            LAN_CS : out  STD_LOGIC;
            LAN_WRH : out  STD_LOGIC;
@@ -402,7 +401,7 @@ begin
 							elsif(AUTO_CONFIG_DONE = 1)then									
 								CP_BASEADR(7 downto 0)	<= D(15 downto 8); --Base adress
 								SHUT_UP(1)					<= '0'; --enable board
-								AUTO_CONFIG_DONE_CYCLE	<= '1' & AUTOBOOT_OFF; --done here, if Autoboot = 1 skip ide part!
+								AUTO_CONFIG_DONE_CYCLE	<= '1' & not AUTOBOOT_OFF; --done here, if Autoboot = 1 skip ide part!
 							elsif(AUTO_CONFIG_DONE = 2)then
 								IDE_BASEADR(7 downto 0)	<= D(15 downto 8); --Base adress
 								SHUT_UP(2) 					<= '0'; --enable board
@@ -424,7 +423,6 @@ begin
 	LAN_WRL	<= LAN_WRL_S when AS='0' and reset = '1' else LAN_WR_RST;
 	LAN_WRH	<= LAN_WRH_S when AS='0' and reset = '1' else LAN_WR_RST;
 	LAN_RD	<= LAN_RD_S  when AS='0' and reset = '1' else '0';
---	LAN_CFG	<= "0010"; -- "ZZZZ";
 	
 	CP_WE		<= CP_WE_S when AS='0' and CP_WE_QUIRK ='1' else '1';
 	CP_RD		<= CP_RD_S when AS='0' else '1';
@@ -437,7 +435,9 @@ begin
 								 A(14 downto 7); 
 	A_LAN(5 downto 2) <=		LAN_A_CLRREG(5 downto 2) when (LAN_RST_SM = wait0 or LAN_RST_SM = clr or LAN_RST_SM = clr_commit) else
 									LAN_A_SETREG(5 downto 2) when (LAN_RST_SM = wait1 or LAN_RST_SM = set or LAN_RST_SM = set_commit) else
-									A(5 downto 2) when cp='1' else A(6 downto 3); --mux the clock-port adresses!
+--									A(5 downto 2) when cp='1' else A(6 downto 3); --mux the clock-port adresses!
+									A(4 downto 1) when cp='1' else A(6 downto 3); --mux the clock-port adresses! (shifted 1 down due to V2 bug)
+
 	A_LAN(1 downto 0)<= LAN_A_CLRREG(1 downto 0) when (LAN_RST_SM = wait0 or LAN_RST_SM = clr or LAN_RST_SM = clr_commit) else
 							  LAN_A_SETREG(1 downto 0) when (LAN_RST_SM = wait1 or LAN_RST_SM = set or LAN_RST_SM = set_commit) else
 							  A(2 downto 1);
@@ -468,7 +468,8 @@ begin
 	IDE_CS(1)<= not(A(13));
 	IDE_A(2 downto 0)	<= A(11 downto 9);
 	ROM_B	<= "00";
-	ROM_OE	<= ROM_OE_S when AS='0' and AUTOBOOT_OFF = '0' else '1';				
+--	ROM_OE	<= ROM_OE_S when AS='0' and AUTOBOOT_OFF = '0' else '1';				
+	ROM_OE	<= ROM_OE_S when AS='0' else '1';
 
 --	INT_OUT <= 'Z';
 	INT2_OUT <= '0' when 

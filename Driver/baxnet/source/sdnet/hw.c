@@ -428,6 +428,24 @@ ASM SAVEDS LONG hw_get_mac_status(    ASMR(a0) DEVBASEP                  ASMREG(
 
 }
 
+/* read PHY register */
+ASM SAVEDS LONG hw_read_phy(          ASMR(a0) DEVBASEP                  ASMREG(a0),
+                                      ASMR(d0) ULONG unit                ASMREG(d0),
+				      ASMR(d1) ULONG reg                 ASMREG(d1) )
+{
+	return -1;
+}
+
+/* write PHY register (return -1 in case of error) */
+ASM SAVEDS LONG hw_write_phy(         ASMR(a0) DEVBASEP                  ASMREG(a0),
+                                      ASMR(d0) ULONG unit                ASMREG(d0),
+				      ASMR(d1) ULONG reg                 ASMREG(d1),
+				      ASMR(d2) ULONG value               ASMREG(d2) )
+{
+	return -1;
+}
+
+
 /* process the list of multicast addresses for an appropriate
    filtering list on the hardware
 

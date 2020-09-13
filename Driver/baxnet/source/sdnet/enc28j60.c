@@ -55,6 +55,11 @@
 /*  (note: maximum ethernet frame length would be 1518 when VLAN tagging is unused) */
 #define MAX_FRAMELEN      1518 
 
+/* perform sanity checks if more this amount of "idle" calls to have_recv()
+   are noted (idle=nothing received)
+*/
+#define SANITY_CHECK_INTERVAL	32
+
 static u16 gNextPacketPtr;
 static u08 is_full_duplex;
 static u08 rev;
@@ -118,20 +123,39 @@ static void writeReg(uint8_t address, uint16_t data)
 /*
   the PHY registers require special care
 */
-static uint16_t readPhyByte (uint8_t address) {
+static uint16_t readPhyByte (uint8_t address) 
+{
+    long wtime = 0xffff;
+    
     writeRegByte(MIREGADR, address);
     writeRegByte(MICMD, MICMD_MIIRD);
     while (readRegByte(MISTAT) & MISTAT_BUSY)
-        ;
+    {
+	if( (--wtime) <= 0 )
+	{
+		writeRegByte(MICMD, 0x00);
+		initvars.have_recv = SANITY_CHECK_INTERVAL+1;
+		return 0xffff;
+	}
+    }
     writeRegByte(MICMD, 0x00);
     return readRegByte(MIRD+1);
 }
 
-static void writePhy (uint8_t address, uint16_t data) {
+static void writePhy (uint8_t address, uint16_t data)
+{
+    long wtime = 0xffff;
+
     writeRegByte(MIREGADR, address);
     writeReg(MIWR, data);
     while (readRegByte(MISTAT) & MISTAT_BUSY)
-        ;
+    {
+	if( (--wtime) <= 0 )
+	{
+		initvars.have_recv = SANITY_CHECK_INTERVAL+1;
+		break;
+	}
+    }
 }
 
 /* just a pass-through to the lowlevel routines */
@@ -460,6 +484,7 @@ u08 enc28j60_send(const u08 *data, u16 size)
      we would overwrite a frame still being sent out
      -> wait first, then fill buffer
   */
+  long maxwait = 0x1ffff; /* wait patiently */
   while (readOp(ENC28J60_READ_CTRL_REG, ECON1) & ECON1_TXRTS)
   {
       /* errata sheet issue 12 -> TXRTS never becomes 0 */
@@ -469,6 +494,8 @@ u08 enc28j60_send(const u08 *data, u16 size)
           writeOp(ENC28J60_BIT_FIELD_SET, ECON1, ECON1_TXRST);
           writeOp(ENC28J60_BIT_FIELD_CLR, ECON1, ECON1_TXRST);
       }
+      if( !(--maxwait) )
+	return PIO_OK; /* waited long enough: drop frame */
   }
 
   /* write buffer */
@@ -591,7 +618,7 @@ u08 enc28j60_has_recv(void)
   if( !ret )
   {
  	initvars.have_recv++;
-	if( initvars.have_recv > 10 )
+	if( initvars.have_recv > SANITY_CHECK_INTERVAL )
 	{	
 		/* check for bad config vars and reset hw if that is the case */
 		if( !enc28j60_check_config( &initvars ) )
