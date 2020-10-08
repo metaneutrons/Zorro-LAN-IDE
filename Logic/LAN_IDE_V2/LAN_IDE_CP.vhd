@@ -184,14 +184,14 @@ begin
 	
 	clock_init: process(reset,CLK_EXT)
 	begin
-		if(reset='1')then
+		if(reset='0')then
 			--default values
 			LAN_CS_RST<='0';
 			LAN_WR_RST<='0';						
 			LAN_RST_SM<=nop;
 			LAN_A_INIT<="11"&x"FFF";
 			LAN_D_INIT<= x"0000";
-		elsif(rising_edge(CLK_EXT))then --reset is low!			
+		elsif(rising_edge(CLK_EXT))then --reset is high!			
 			case LAN_RST_SM is
 				when nop=>
 					LAN_CS_RST<='0';
@@ -281,13 +281,13 @@ begin
 		end if;
 	end process ADDRESS_Z3_DECODE;
 	
-	ADDRESS_Z2_DECODE: process(AS,reset)
+	ADDRESS_Z2_DECODE: process(AMIGA_CLK,reset)
 	begin
 		if(reset='0' )then
 			AUTOCONFIG_Z2_ACCESS <= '0';
 			IDE_ACCESS 				<= '0';
 			CP_ACCESS				<= '0'; 
-		elsif(falling_edge(AS))then		
+		elsif(rising_edge(AMIGA_CLK))then		
 			if(A(23 downto 16) = x"E8" and AUTO_CONFIG_Z2_DONE /= "111" and CFIN='0' and LAN_ACCESS = '0')then
 				AUTOCONFIG_Z2_ACCESS 	<= '1';
 			else
@@ -618,7 +618,7 @@ begin
 	-- LAN_CFG	<= "ZZZZ";
 	
 
-	A_LAN(13 downto 0)<=	 LAN_A_INIT(13 downto 0) when reset ='0' else
+	A_LAN(13 downto 0)<=	 LAN_A_INIT(13 downto 0) when LAN_RST_SM/=done else
 								 Z3_ADR(14 downto 2) & Z3_A_LOW when LAN_ACCESS = '1' else
 								 A(12 downto 1)&"00"; 	
 	
@@ -635,7 +635,7 @@ begin
 	A(7 downto 1) <= (others => 'Z');
 
 	--defined lancp signal that matches both LAN and CP addresses
-	DQ <=	LAN_D_INIT 					when reset='0' else
+	DQ <=	LAN_D_INIT 					when LAN_RST_SM/=done else
 			DQ_DATA(15 downto  0)	when RW='0' and FCS='0' and Z3_DS <"1111" and LAN_ACCESS ='1' else
 			D 	when RW='0' and AS='0' and CP_ACCESS ='1' else
 			D 	when RW='0' and AS='0' and IDE_ACCESS ='1' else
@@ -669,20 +669,21 @@ begin
 			IDE_ENABLE 	<= '1';
 			IDE_R_S		<= '1';
 			IDE_W_S		<= '1';
-			ROM_OE_S		<= '1';
+			ROM_OE_S	<= '1';
 		elsif rising_edge(CLK_EXT) then			
 			--default values
 			IDE_R_S		<= '1';
 			IDE_W_S		<= '1';
-			ROM_OE_S		<= '1';					
+			ROM_OE_S	<= '1';					
 			if(IDE_ACCESS='1' and AS='0' and DS='0')then
 				if(RW='0')then
 					--the write goes to the hdd!
 					IDE_ENABLE  <= '0'; -- enable IDE on first read
 					IDE_W_S		<= '0';	
+				elsif(IDE_ENABLE ='1')then
+					ROM_OE_S <='0';
 				else
-					IDE_R_S		<= IDE_ENABLE; --read from IDE instead from ROM
-					ROM_OE_S	<=	not IDE_ENABLE;						
+					IDE_R_S		<= '0'; --read from IDE instead from ROM					
 				end if;	
 			end if;				
 		end if;

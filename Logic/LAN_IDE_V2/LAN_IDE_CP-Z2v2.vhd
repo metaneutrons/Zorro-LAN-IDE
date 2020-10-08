@@ -110,6 +110,8 @@ architecture Behavioral of LAN_IDE_CP is
 	signal CP_BASEADR:STD_LOGIC_VECTOR(7 downto 0);
 	signal IDE_ENABLE:STD_LOGIC;
 	signal ROM_OE_S:STD_LOGIC;
+	signal ROM_OE_D0:STD_LOGIC;
+	signal IDE_TERM:STD_LOGIC;
 	signal IDE_R_S:STD_LOGIC;
 	signal IDE_W_S:STD_LOGIC;
 	signal DTACK_S:STD_LOGIC;
@@ -118,7 +120,7 @@ architecture Behavioral of LAN_IDE_CP is
 	signal DECODE_RESET: std_logic;
 	signal LAN_INT_D0: std_logic;
 	signal DS: std_logic;
-   signal DS_D: std_logic;
+    signal DS_D: std_logic;
 	signal LAN_RD_S: std_logic;
 	signal LAN_WRH_S: std_logic;
 	signal LAN_WRL_S: std_logic;
@@ -152,8 +154,12 @@ begin
 	clock_init: process(CLK_EXT)
 	begin
 		if(rising_edge(CLK_EXT))then
-			if(reset = '0')then
-				--init the clock!
+			if(reset = '0' )then
+				LAN_RST_SM <= nop;
+				LAN_CS_RST<='0';
+				LAN_WR_RST<='0';
+			else
+				--init the clock afer reset finished!
 				case LAN_RST_SM is
 					when nop=>
 						LAN_CS_RST<='0';
@@ -183,29 +189,25 @@ begin
 						LAN_CS_RST<='1';
 						LAN_WR_RST<='0';						
 						LAN_RST_SM<=done;
-					when 	done=>
+					when 	done=> --stay here
 						LAN_CS_RST<='0';
 						LAN_WR_RST<='0';						
 						LAN_RST_SM<=done;
 				end case;
-			else
-				LAN_CS_RST<='0';
-				LAN_WR_RST<='0';						
-				LAN_RST_SM<=nop;
 			end if;
 		end if;
 	end process clock_init;
 	
-	ADDRESS_DECODE: process(DECODE_RESET,AS)
+	ADDRESS_DECODE: process(reset,AMIGA_CLK)
 	begin
-		if(DECODE_RESET ='0')then
+		if(reset ='0')then
 			autoconfig 	<= '0';
 			ide 			<= '0';
 			lan_adr 		<= '0';
 			lan_adr_sw  <= '0';
 			cp  			<= '0';
 			lancp                   <= '0';
-		elsif(falling_edge(AS))then		
+		elsif(rising_edge(AMIGA_CLK))then		
 			--default values
 			autoconfig 	<= '0';
 			ide 			<= '0';
@@ -255,11 +257,15 @@ begin
 	end process lan_int_proc;
 	
 	--lan signal generation: all Signals are HIGH active!
-	lan_rw_gen: process (AMIGA_CLK)
+	lan_rw_gen: process (AMIGA_CLK,AS)
 	begin
-		if falling_edge(AMIGA_CLK) then			
+		if(AS ='1') then
+			LAN_RD_S	<= '0';
+			LAN_WRH_S	<= '0';
+			LAN_WRL_S	<= '0';
+		elsif falling_edge(AMIGA_CLK) then			
 			--default values
-			LAN_RD_S		<= '0';
+			LAN_RD_S	<= '0';
 			LAN_WRH_S	<= '0';
 			LAN_WRL_S	<= '0';
 
@@ -273,9 +279,13 @@ begin
 	end process lan_rw_gen;
 	
 	--cp signal generation
-	cp_rw_gen: process (AMIGA_CLK)
+	cp_rw_gen: process (AMIGA_CLK,AS)
 	begin
-		if falling_edge(AMIGA_CLK) then			
+		if	(AS = '1') then
+			CP_WE_QUIRK		<= '1';
+			CP_WE_S		<= '1';
+			CP_RD_S		<= '1';
+		elsif falling_edge(AMIGA_CLK) then			
 			--default values
 			CP_RD_S		<= '1';
 			CP_WE_S		<= '1';
@@ -288,27 +298,55 @@ begin
 	end process cp_rw_gen;
 
 	--ide signal generation
-	ide_rw_gen: process (reset,AMIGA_CLK)
+	ide_enable_gen: process (reset,AMIGA_CLK)
 	begin
 		if	(reset = '0') then
 			IDE_ENABLE 	<= '1';
+		elsif falling_edge(AMIGA_CLK) then					
+			if(ide='1' and AS='0' and RW='0')then
+				IDE_ENABLE  <= '0'; -- enable IDE on first write
+			end if;				
+		end if;
+	end process ide_enable_gen;
+	
+	ide_rw_gen: process (AS,AMIGA_CLK)
+	begin
+		if	(AS = '1') then
 			IDE_R_S		<= '1';
 			IDE_W_S		<= '1';
-			ROM_OE_S		<= '1';
+			ROM_OE_S	<= '1';
+			ROM_OE_D0	<= '1';
+			IDE_TERM	<= '1';
 		elsif falling_edge(AMIGA_CLK) then			
-			--default values
-			IDE_R_S		<= '1';
-			IDE_W_S		<= '1';
-			ROM_OE_S		<= '1';					
-			if(ide='1' and AS='0')then
+					
+			if(ide='1')then
 				if(RW='0')then
 					--the write goes to the hdd!
-					IDE_ENABLE  <= '0'; -- enable IDE on first read
 					IDE_W_S		<= '0';	
+					IDE_R_S		<= '1';
+					ROM_OE_S	<= '1';
+					ROM_OE_D0	<= '1';
+					IDE_TERM	<= not IDE_WAIT or IDE_W_S;
+				elsif(IDE_ENABLE ='1')then
+					IDE_W_S		<= '1';
+					IDE_R_S		<= '1';
+					ROM_OE_S	<= '0'; --read from ROM instead from IDE	
+					ROM_OE_D0 <= ROM_OE_S;
+					IDE_TERM <= '0';					
 				else
-					IDE_R_S		<= IDE_ENABLE; --read from IDE instead from ROM
-					ROM_OE_S		<=	not IDE_ENABLE;						
+					IDE_W_S		<= '1';
+					IDE_R_S		<= '0'; --read from IDE instead from ROM
+					ROM_OE_S	<= '1';	
+					ROM_OE_D0	<= '1';
+					IDE_TERM	<= not IDE_WAIT or IDE_R_S;			
 				end if;	
+			else
+				--default values
+				IDE_R_S		<= '1';
+				IDE_W_S		<= '1';
+				ROM_OE_S	<= '1';	
+				ROM_OE_D0	<= '1';
+				IDE_TERM	<= '1';				
 			end if;				
 		end if;
 	end process ide_rw_gen;
@@ -337,7 +375,7 @@ begin
 						if(AUTO_CONFIG_DONE < 2)then
 							Dout1 <= 	"1100" ; --ZII, No-System-Memory, no ROM
 						else
-							Dout1 <= 	"1101" ; --ZII, no System-Memory, (perhaps)ROM
+							Dout1 <= 	"1101" ; --ZII, no System-Memory, ROM
 						end if;
 					when "000001"	=> Dout1 <=	"0001" ; --one Card, 64KB =001
 					when "000010"	=> 
@@ -402,7 +440,7 @@ begin
 							elsif(AUTO_CONFIG_DONE = 1)then									
 								CP_BASEADR(7 downto 0)	<= D(15 downto 8); --Base adress
 								SHUT_UP(1)					<= '0'; --enable board
-								AUTO_CONFIG_DONE_CYCLE	<= '1' & AUTOBOOT_OFF; --done here, if Autoboot = 1 skip ide part!
+								AUTO_CONFIG_DONE_CYCLE	<= ('1' & not(AUTOBOOT_OFF)); --done here, if Autoboot = 1 skip ide part!
 							elsif(AUTO_CONFIG_DONE = 2)then
 								IDE_BASEADR(7 downto 0)	<= D(15 downto 8); --Base adress
 								SHUT_UP(2) 					<= '0'; --enable board
@@ -431,16 +469,10 @@ begin
 	CP_CS		<= not cp;
 
 	--the lanport is shifted by one adress line but I forgot to adopt the clockport address!
-	A_LAN(13 downto 6)<=	LAN_A_CLRREG(13 downto 6) when (LAN_RST_SM = wait0 or LAN_RST_SM = clr or LAN_RST_SM = clr_commit) else
-								LAN_A_SETREG(13 downto 6) when (LAN_RST_SM = wait1 or LAN_RST_SM = set or LAN_RST_SM = set_commit) else
-								 --(A(14)&A(12)&A(13)&A(11 downto 7)); --swap A12/13 for the enj-Chip
-								 A(14 downto 7); 
-	A_LAN(5 downto 2) <=		LAN_A_CLRREG(5 downto 2) when (LAN_RST_SM = wait0 or LAN_RST_SM = clr or LAN_RST_SM = clr_commit) else
-									LAN_A_SETREG(5 downto 2) when (LAN_RST_SM = wait1 or LAN_RST_SM = set or LAN_RST_SM = set_commit) else
-									A(5 downto 2) when cp='1' else A(6 downto 3); --mux the clock-port adresses!
-	A_LAN(1 downto 0)<= LAN_A_CLRREG(1 downto 0) when (LAN_RST_SM = wait0 or LAN_RST_SM = clr or LAN_RST_SM = clr_commit) else
-							  LAN_A_SETREG(1 downto 0) when (LAN_RST_SM = wait1 or LAN_RST_SM = set or LAN_RST_SM = set_commit) else
-							  A(2 downto 1);
+	A_LAN(13 downto 0)<=	LAN_A_CLRREG(13 downto 0) when (LAN_RST_SM = wait0 or LAN_RST_SM = clr or LAN_RST_SM = clr_commit) else
+							LAN_A_SETREG(13 downto 0) when (LAN_RST_SM = wait1 or LAN_RST_SM = set or LAN_RST_SM = set_commit) else
+							A(14 downto 1) when lan_adr ='1' else
+							A(12 downto 1) &"00";
 	
 	
 	
@@ -448,16 +480,16 @@ begin
 	D	<=	--RAM_D 						when RW='1' and TRANSFER_IN_PROGRES ='1' else
 			DQ                             when RW='1' and lan_adr ='1' and lan_adr_sw ='0' and AS='0' else
 			DQ(7 downto 0)&DQ(15 downto 8) when RW='1' and lan_adr ='1' and lan_adr_sw ='1' and AS='0' else
-			DQ(7 downto 0)&DQ(7 downto 0)  when RW='1' and cp = '1'     and AS='0' else
-			DQ                             when RW='1' and ide = '1'    and AS='0' else
-			Dout1	& x"FFF"               when RW='1' and autoconfig ='1' and AS='0' else
+			DQ(7 downto 0)&DQ(7 downto 0)  when RW='1' and (cp = '1' or ROM_OE_S ='0')		and AS='0' else
+			DQ                             when RW='1' and ide = '1' and ROM_OE_S ='1'	    and AS='0' else
+			Dout1	& x"FFF"               when RW='1' and autoconfig ='1' 					and AS='0' else
 			(others => 'Z');
 
 	--defined lancp signal that matches both LAN and CP addresses (and IDE for Rev2 boards)
 	DQ <=	LAN_D_CLR when (LAN_RST_SM = wait0 or LAN_RST_SM = clr or LAN_RST_SM = clr_commit) else
 			LAN_D_SET when (LAN_RST_SM = wait1 or LAN_RST_SM = set or LAN_RST_SM = set_commit) else
-			D( 7 downto 0) & D( 7 downto 0)	when RW='0' and AS='0' and lancp = '1' and LDS='0' and UDS='1' else
-			D(15 downto 8) & D(15 downto 8)	when RW='0' and AS='0' and lancp = '1' and LDS='1' and UDS='0' else
+			--D( 7 downto 0) & D( 7 downto 0)	when RW='0' and AS='0' and lancp = '1' and LDS='0' and UDS='1' else
+			--D(15 downto 8) & D(15 downto 8)	when RW='0' and AS='0' and lancp = '1' and LDS='1' and UDS='0' else
 			D( 7 downto 0) & D(15 downto 8)	when RW='0' and AS='0' and lan_adr ='1' and lan_adr_sw ='1' else
 			D 	when RW='0' and AS='0' and lancp ='1'
 			else (others => 'Z');
@@ -468,7 +500,7 @@ begin
 	IDE_CS(1)<= not(A(13));
 	IDE_A(2 downto 0)	<= A(11 downto 9);
 	ROM_B	<= "00";
-	ROM_OE	<= ROM_OE_S when AS='0' and AUTOBOOT_OFF = '0' else '1';				
+	ROM_OE	<= ROM_OE_S when AS='0' else '1';				
 
 --	INT_OUT <= 'Z';
 	INT2_OUT <= '0' when 
@@ -484,15 +516,11 @@ begin
 	SLAVE <= '0' when AS='0' and (autoconfig  = '1' or ide = '1' or lan_adr = '1' or cp = '1') else '1';	
 	CFOUT <= '0' when AUTO_CONFIG_DONE=3 else '1';
 	
---	OVR <= 'Z';
+	--OVR <= 'Z';
 	OVR <= '0' when ide='1' and AS='0' else 'Z';
 	
---	DTACK <= DTACK_S when --TRANSFER_IN_PROGRES ='1' or 
---								AUTOCONFIG_IN_PROGRES ='1' 
---						  else 'Z';
-	
-	DTACK <= '0' when ide='1' and AS='0' and IDE_WAIT='1' else 'Z';
---	DTACK <= 'Z';
+	DTACK <= IDE_TERM when ide='1' and AS='0' else 'Z';
+	--DTACK <= 'Z';
 	A	<= (others => 'Z');
    MTACK <= 'Z';
 
