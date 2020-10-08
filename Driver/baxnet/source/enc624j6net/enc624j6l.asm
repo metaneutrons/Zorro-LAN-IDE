@@ -140,7 +140,7 @@ _LVOSignal	EQU	-324
 
 	;machine	68020
 
-	section	code,code
+	;section	code,code
 
 ; -----------------------------------------------------------------------------
 ; |                                                                           |

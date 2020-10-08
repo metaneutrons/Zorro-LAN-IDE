@@ -17,7 +17,8 @@ Installation of the driver is straightforward.
 Just copy the enc624j6net.device to devs:networks and enable 
 the interface in your favorite  TCP/IP stack as usual. There is a version
 for MC68020 or later (enc624j6net.device) and another version for 
-68000 (enc624j6net.device_68000). Choose the right one.
+68000 (enc624j6net.device_68000). Choose the right one. Please rename
+the 68000/68010 version to enc624j6net.device before use.
 
 So far, successful tests have been done with the free AmiTCP/IP 3.0b2, 
 AmiTCP4.0-4.2, Genesis, MiamiDX and RoadShow. 
@@ -66,11 +67,21 @@ PRIORITY=PRI/K/N,BPS/K/N,MTU/K/N,FULLDUPLEX/S,FLOWCONTROL/S,TIMER/K/N,MULTICAST/
 Changelog:
 ----------
 
+2.9   - better support for Envoy: automatically select a higher
+        task priority in presence of Envoy services
+
+2.8   - some workarounds for Fusion
+
+2.7   - fixed MuForce hit
+
 2.4   - added second semaphore, specifically for the write list
       - recompiled using GCC 2.95 for slightly smaller binary
       - avoid full ethernet chip reset on startup when the 
         registers seem to be in a sane state (faster init, especially
         with DHCP)
+      - additional checks for properly built hardware:
+        verify data bus bits before accepting card by
+        a simple short mem test
 
 2.3   - implemented fine grained multicast filter hashes
 

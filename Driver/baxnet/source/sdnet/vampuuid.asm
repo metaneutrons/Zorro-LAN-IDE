@@ -1,4 +1,3 @@
-;APS00000000000000000000000000000000000000000000000000000000000000000000000000000000
 ; ------------------------------------------------------------------------------
 ; | Flash ROM Read Serial Number                                               |
 ; | Copyright (c) 2016 APOLLO TEAM                                             |
@@ -6,6 +5,7 @@
 ; ------------------------------------------------------------------------------
 
 FLASH_ID                 EQU   $14 ;cmd=0xAB
+LARGE_FLASH_ID		 EQU   $16
 
 FLASH_ADR_W              EQU   $00DFF1F8
 FLASH_ADR_R              EQU   $00DFF1FA
@@ -26,6 +26,11 @@ VAMPIDREG	EQU	$DFF3FC
 V4_ID1		EQU	$DFF3F4
 V4_ID2		EQU	$DFF3F0
 
+BOARDID_V600	EQU	1
+BOARDID_V500	EQU	2
+BOARDID_V4SA	EQU	5
+BOARDID_V1200	EQU	6
+
 	xdef	_vampire_UUID
 
 ;-------- Get 64 Bit unique ID --------------------
@@ -40,8 +45,11 @@ _vampire_UUID:
 
 	move.w	(a0),d0		;ID reg empty?
 	blt.s	v2$		;yes, try flash method
-	cmp.w	#$2FF,d0	;Core type << 8 | Clock_Multiplier
-	ble.s	v2$
+	lsr.w	#8,d0
+	cmp.b	#BOARDID_V4SA,d0
+	bne.s	v2$
+;	cmp.w	#$2FF,d0	;Core type << 8 | Clock_Multiplier
+;	ble.s	v2$
 
 	move.l	V4_ID1-VAMPIDREG(a0),d0
 	move.l	V4_ID2-VAMPIDREG(a0),d1
@@ -49,8 +57,10 @@ _vampire_UUID:
 v2$
 	bsr	flashreadid
 	cmpi.b	#FLASH_ID,d0
+	beq.s	goodflash$
+	cmpi.b	#LARGE_FLASH_ID,d0
 	bne.s	error$
-
+goodflash$
 	bsr	flashuniqueid
 common$
 	move.l	d0,(a1)

@@ -19,7 +19,7 @@
 #
 ###############################################################################
 # debug = 1 will include string debugging for terminal/sushi/sashimi
-debug = 1
+debug = 0
 # compiler_vcc = 1 will trigger VBCC, else GCC
 compiler_vcc = 0
 
@@ -27,8 +27,8 @@ compiler_vcc = 0
 # prefix for system includes (ASM)
 # native AmigaOS compilation: set PREFX=GG: or PREFX=ADE:, depending on toolchain
 ###############################################################################
-PREFX  = /opt/amigaos-68k/
-#PREFX = gg:
+#PREFX  = /opt/amigaos-68k/
+PREFX = gg:
 SYSINC = $(PREFX)os-include
 
 ###############################################################################
@@ -48,6 +48,7 @@ CFLAGS2 = -Os -+ -sc -c99 -cpu=$(CPU2)
 VASMFORMAT  = -m$(CPU) -Fhunk -nowarn=2064 -quiet -I$(SYSINC)
 VASMFORMAT2 = -m$(CPU2) -Fhunk -nowarn=2064 -quiet -I$(SYSINC)
 
+
 else
 
 # GCC
@@ -59,7 +60,6 @@ CFLAGS  = -Os -s -m$(CPU) -Wall -noixemul -mregparm=4 -fomit-frame-pointer -msof
 CFLAGS2 = -Os -s -m$(CPU2) -Wall -noixemul -mregparm=4 -fomit-frame-pointer -msoft-float -noixemul
 VASMFORMAT  = -m$(CPU) -Faout -nowarn=2064 -quiet -I$(SYSINC)
 VASMFORMAT2 = -m$(CPU2) -Faout -nowarn=2064 -quiet -I$(SYSINC)
-
 endif
 
 VASM = vasmm68k_mot
@@ -137,7 +137,7 @@ endif
 ifeq ($(debug),1)
 CFLAGS  += -DDEBUG -g
 CFLAGS2 += -DDEBUG -g
-LINKLIBS = -L$(PREFX)/lib -ldebug
+#LINKLIBS = -L$(PREFX)/lib -ldebug
 endif
 
 ###############################################################################

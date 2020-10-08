@@ -710,6 +710,12 @@ int main(int argc, char **argv)
 	}
   }
 
+  /* out of curiosity: get MAC address */
+  prg->sana2devio->ios2_Req.io_Command = S2_GETSTATIONADDRESS;
+  prg->sana2devio->ios2_Data = (0);
+  prg->sana2devio->ios2_DataLength = 0;
+  DoIO( (struct IORequest *)prg->sana2devio );
+
   Printf("Device:  %s\n",(ULONG)name);
   /* general info */
   if( parm_vendorname.Actual != 0 )
@@ -722,6 +728,12 @@ int main(int argc, char **argv)
 	productname[parm_productname.Actual-1] = 0;
 	Printf("Product: %s\n",(ULONG)productname);
   }
+  /* MAC address */
+  {
+  	unsigned char*p = (unsigned char*)prg->sana2devio->ios2_SrcAddr;
+	Printf("MAC:     %02lx:%02lx:%02lx:%02lx:%02lx:%02lx\n",
+	(ULONG)p[0],(ULONG)p[1],(ULONG)p[2],(ULONG)p[3],(ULONG)p[4],(ULONG)p[5] );
+  }  
 
   /* after query, see what we've got */
   if( res == RETURN_OK )

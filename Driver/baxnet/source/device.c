@@ -32,10 +32,18 @@
 #ifdef HAVE_VERSION_H
 #include "version.h"
 #endif
+
+#ifndef NO_WR_SEM
+#define WRSEM du_WrSem
+#else
+#define WRSEM du_Sem
+#endif
+
 /* NSD support is optional */
 #ifdef NEWSTYLE
 #include <devices/newstyle.h>
 #include <devices/sana2devqueryext.h> /* new extension, code can be built without this include (but also without ext query then...) */
+
 
 const UWORD dev_supportedcmds[] = {
 	NSCMD_DEVICEQUERY,
@@ -90,8 +98,7 @@ const ULONG blub[6] = {
 /* #define D2(x) D(x) */
 /* #define D4(x) D(x) */
 
-
-
+#define HIGHPRI 11
 
 
 ASM SAVEDS struct Device *DevInit( ASMR(d0) DEVBASEP                  ASMREG(d0), 
@@ -101,6 +108,8 @@ ASM SAVEDS struct Device *DevInit( ASMR(d0) DEVBASEP                  ASMREG(d0)
 	UBYTE*p;
 	ULONG i;
 	LONG  ok;
+
+	D(("DevInit()\n"));
 
 	p = ((UBYTE*)db) + sizeof(struct Library);
 	i = sizeof(DEVBASETYPE)-sizeof(struct Library);
@@ -120,7 +129,9 @@ ASM SAVEDS struct Device *DevInit( ASMR(d0) DEVBASEP                  ASMREG(d0)
 		dbNewList( (struct List*)&db->db_Units[i].du_WriteQueue  );
 		dbNewList( (struct List*)&db->db_Units[i].du_EventQueue  );
 		InitSemaphore( &db->db_Units[i].du_Sem );
+#ifndef NO_WR_SEM
 		InitSemaphore( &db->db_Units[i].du_WrSem );
+#endif
 		db->db_Units[i].du_MTU = DEF_MTU;
 		db->db_Units[i].du_BitPerSec = DEF_BPS;
 	}
@@ -153,6 +164,8 @@ ASM SAVEDS struct Device *DevInit( ASMR(d0) DEVBASEP                  ASMREG(d0)
 		D(("No DOS\n"));
 	}
 
+	D(("%ld Boards found\n",ok));
+
 	/* no hardware found, reject init */
 	return (ok > 0) ? (struct Device*)db : (0);
 }
@@ -179,7 +192,10 @@ ASM SAVEDS LONG DevOpen( ASMR(a1) struct IOSana2Req *ioreq           ASMREG(a1),
 		ok = 1;
 		if( (db->db_Units[unit].du_OpenCount > 0) &&
 		    (flags & SANA2OPF_MINE) )
+		{
 			ok = 0;
+			D(("DevOpen fail: OpenCount is >0 and SANA2OPF_MINE requested."));
+		}
 #if 0
 		if( (db->db_Units[unit].du_OpenCount > 0) &&
 		    (flags & SANA2OPF_PROM) )
@@ -187,7 +203,10 @@ ASM SAVEDS LONG DevOpen( ASMR(a1) struct IOSana2Req *ioreq           ASMREG(a1),
 #endif
 
 		if( db->db_Units[unit].du_Flags & DUF_EXCLUSIVE )
+		{
 		 	ok = 0;
+			D(("DevOpen fail: device was opened already with exclusive flag set."));
+		}
 
 		if( ok )
 			ok = hw_AllocBoard( db, unit );
@@ -489,7 +508,7 @@ ASM SAVEDS VOID DevBeginIO( ASMR(a1) struct IOSana2Req *ioreq        ASMREG(a1),
 				LONG code;
 				LONG write_frame( DEVBASEP, ULONG unit, struct IOSana2Req *ioreq );
 
-				ObtainSemaphore(&db->db_Units[unit].du_WrSem);
+				ObtainSemaphore(&db->db_Units[unit].WRSEM);
 				code = write_frame( db, unit, ioreq );
 				if( code >= 0 )
 				{
@@ -497,12 +516,12 @@ ASM SAVEDS VOID DevBeginIO( ASMR(a1) struct IOSana2Req *ioreq        ASMREG(a1),
 				        ioreq->ios2_Req.io_Error = S2ERR_NO_ERROR;
 	        			ioreq->ios2_WireError = S2WERR_GENERIC_ERROR;
 				}
-				ReleaseSemaphore(&db->db_Units[unit].du_WrSem);
+				ReleaseSemaphore(&db->db_Units[unit].WRSEM);
 #else
 				ioreq->ios2_Req.io_Flags &= ~SANA2IOF_QUICK;
-				ObtainSemaphore(&db->db_Units[unit].du_WrSem);
+				ObtainSemaphore(&db->db_Units[unit].WRSEM);
 				 ADDTAIL((struct List*)&db->db_Units[unit].du_WriteQueue,(struct Node*)ioreq);
-				ReleaseSemaphore(&db->db_Units[unit].du_WrSem);
+				ReleaseSemaphore(&db->db_Units[unit].WRSEM);
 				Signal( (struct Task*)db->db_ServerProc, SIGBREAKF_CTRL_F );
 				ioreq = (0);
 #endif
@@ -651,16 +670,23 @@ ASM SAVEDS VOID DevBeginIO( ASMR(a1) struct IOSana2Req *ioreq        ASMREG(a1),
 			ioreq = (0);
 			break;
 #endif
+		case CMD_FLUSH:
+		/* TODO: really remove all requests */
+			ioreq->ios2_Req.io_Error = S2ERR_NO_ERROR;
+			ioreq->ios2_WireError    = S2WERR_GENERIC_ERROR;
+			break;
 
 		case CMD_RESET:
 		case CMD_UPDATE:
 		case CMD_CLEAR:
 		case CMD_STOP:
 		case CMD_START:
-		case CMD_FLUSH:
 			ioreq->ios2_Req.io_Error = IOERR_NOCMD;
 			/* we might not get a SANA-II request at this point, don't assume anything about struct */
-			/* ioreq->ios2_WireError = S2WERR_GENERIC_ERROR; */
+			if( ioreq->ios2_Req.io_Message.mn_Length >= sizeof( struct IOSana2Req ) )
+			{
+			 ioreq->ios2_WireError = S2WERR_GENERIC_ERROR;
+			}
 			break;
 
 		case S2_ADDMULTICASTADDRESS:
@@ -696,6 +722,8 @@ ASM SAVEDS LONG DevAbortIO( ASMR(a1) struct IOSana2Req *ioreq        ASMREG(a1),
 	LONG   ret = 0;
 
 	ULONG unit = (ULONG)ioreq->ios2_Req.io_Unit;
+
+	D2(("DevAbortIO unit %ld\n",unit));
 
 	ObtainSemaphore(&db->db_Units[unit].du_Sem);
 
@@ -778,37 +806,65 @@ static LONG dbIsInList( struct List *l, struct Node *entry )
  return 0;
 }
 
+/* Workaround for Envoy: assign higher priority to server task */
+LONG Need_HighPri( DEVBASEP )
+{
+	/* don't bother if we are at HIGHPRI already */
+	if( db->db_ServerProc )
+	{
+		if( ((struct Task*)db->db_ServerProc)->tc_Node.ln_Pri >= HIGHPRI )
+			return 0;
+	}
+
+	if( FindPort("Services Manager") )
+		return	1;
+	if( FindPort("Accounts Manager") )
+		return	1;
+
+	return 0;
+}
+
 
 /* start Server function and keep it up */
 /* note: server is global right now */
 static LONG dbStartServer( DEVBASEP, LONG unit )
 {
   struct MsgPort *port;
-  LONG ret = 0,i;
+  LONG ret = 0,i,pri;
   struct TagItem sv_tags[5];
 
   /* server running ? */
   if( db->db_ServerProc )
+  {
+  	if( Need_HighPri( db ) )
+		SetTaskPri((struct Task*)db->db_ServerProc,HIGHPRI);
 	return 1;
-  
+  }
+
   if(!(port = CreateMsgPort() ))
   	return 0;
+
+  pri = 0;
+  if( Need_HighPri( db ) )
+	pri = HIGHPRI;
+  else
+  	if( FindPort("AMITCP") ) /* AmiTCP active ? */
+		pri = 6;
 
   sv_tags[i=0].ti_Tag  = NP_Entry;
   sv_tags[i++].ti_Data = (ULONG)ServerTask;
   sv_tags[i  ].ti_Tag  = NP_Name;
   sv_tags[i++].ti_Data = (ULONG)db->db_Lib.lib_Node.ln_Name;
   sv_tags[i  ].ti_Tag  = NP_Priority;
-  if( FindPort("AMITCP") ) /* AmiTCP active ? */
-	  sv_tags[i++].ti_Data = (ULONG)6;
-  else
-	  sv_tags[i++].ti_Data = (ULONG)0;
+  sv_tags[i++].ti_Data = (ULONG)pri;
   sv_tags[i  ].ti_Tag  = TAG_DONE;
 
   if( (db->db_ServerProc = CreateNewProc(sv_tags)))
   {
 	/* server is running, wait for response */
 	volatile struct ServerMsg msg;
+
+	D(("Server Started, waiting for Response\n"));
 
 	msg.sm_devbase = db;
 	msg.sm_result  = 0;
@@ -928,6 +984,7 @@ havetype:
 	if( !(rd = dbAddReader(db,unit,frametype,type,ID ) ))
 		return; /* bail out, no mem left */
 havereader:
+	D(("dbAddReadReq type %ld to unit %ld ID %ld\n",frametype,unit,ID));
 
 	ADDTAIL( &rd->snr_Requests , (struct Node*)ioreq );
 
@@ -968,6 +1025,9 @@ static struct SanaReader *dbAddReader( DEVBASEP, ULONG unit, ULONG frametype, st
 		return (0);
 
 	rd->snr_ID = ID;
+
+	D(("dbAddReader %ld to unit %ld ID %ld\n",frametype,unit,ID));
+
 	dbNewList( &rd->snr_Requests );
 
 	if( (GetHead( &type->srt_Readers ) ))
@@ -1002,9 +1062,8 @@ static void dbDeleteReader( DEVBASEP, ULONG unit, ULONG ID )
 				{
 					if( !(GetSucc(t2) ))
 						t2->srt_Flags &= ~SRTF_MULTREADER;
+					else	t2->srt_Flags &= ~(SRTF_ONEREADER|SRTF_MULTREADER);
 				}
-				else	t2->srt_Flags &= ~(SRTF_ONEREADER|SRTF_MULTREADER);
-
 				break;
 			}
 			rd = GetSucc(rd);
