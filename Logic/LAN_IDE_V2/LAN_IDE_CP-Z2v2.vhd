@@ -439,11 +439,7 @@ begin
 							elsif(AUTO_CONFIG_DONE = 1)then									
 								CP_BASEADR(7 downto 0)	<= D(15 downto 8); --Base adress
 								SHUT_UP(1)					<= '0'; --enable board
-<<<<<<< HEAD
 								AUTO_CONFIG_DONE_CYCLE	<= ('1' & not(AUTOBOOT_OFF)); --done here, if Autoboot = 1 skip ide part!
-=======
-								AUTO_CONFIG_DONE_CYCLE	<= '1' & not AUTOBOOT_OFF; --done here, if Autoboot = 1 skip ide part!
->>>>>>> 85a06c170160536d7bbf493fc16ea4577085778e
 							elsif(AUTO_CONFIG_DONE = 2)then
 								IDE_BASEADR(7 downto 0)	<= D(15 downto 8); --Base adress
 								SHUT_UP(2) 					<= '0'; --enable board
@@ -471,25 +467,10 @@ begin
 	CP_CS		<= not cp;
 
 	--the lanport is shifted by one adress line but I forgot to adopt the clockport address!
-<<<<<<< HEAD
 	A_LAN(13 downto 0)<=	LAN_A_CLRREG(13 downto 0) when (LAN_RST_SM = wait0 or LAN_RST_SM = clr or LAN_RST_SM = clr_commit) else
 							LAN_A_SETREG(13 downto 0) when (LAN_RST_SM = wait1 or LAN_RST_SM = set or LAN_RST_SM = set_commit) else
 							A(14 downto 1) when lan_adr ='1' else
 							A(12 downto 1) &"00";
-=======
-	A_LAN(13 downto 6)<=	LAN_A_CLRREG(13 downto 6) when (LAN_RST_SM = wait0 or LAN_RST_SM = clr or LAN_RST_SM = clr_commit) else
-								LAN_A_SETREG(13 downto 6) when (LAN_RST_SM = wait1 or LAN_RST_SM = set or LAN_RST_SM = set_commit) else
-								 --(A(14)&A(12)&A(13)&A(11 downto 7)); --swap A12/13 for the enj-Chip
-								 A(14 downto 7); 
-	A_LAN(5 downto 2) <=		LAN_A_CLRREG(5 downto 2) when (LAN_RST_SM = wait0 or LAN_RST_SM = clr or LAN_RST_SM = clr_commit) else
-									LAN_A_SETREG(5 downto 2) when (LAN_RST_SM = wait1 or LAN_RST_SM = set or LAN_RST_SM = set_commit) else
---									A(5 downto 2) when cp='1' else A(6 downto 3); --mux the clock-port adresses!
-									A(4 downto 1) when cp='1' else A(6 downto 3); --mux the clock-port adresses! (shifted 1 down due to V2 bug)
-
-	A_LAN(1 downto 0)<= LAN_A_CLRREG(1 downto 0) when (LAN_RST_SM = wait0 or LAN_RST_SM = clr or LAN_RST_SM = clr_commit) else
-							  LAN_A_SETREG(1 downto 0) when (LAN_RST_SM = wait1 or LAN_RST_SM = set or LAN_RST_SM = set_commit) else
-							  A(2 downto 1);
->>>>>>> 85a06c170160536d7bbf493fc16ea4577085778e
 	
 	
 	
@@ -517,12 +498,7 @@ begin
 	IDE_CS(1)<= not(A(13));
 	IDE_A(2 downto 0)	<= A(11 downto 9);
 	ROM_B	<= "00";
-<<<<<<< HEAD
 	ROM_OE	<= ROM_OE_S when AS='0' else '1';				
-=======
---	ROM_OE	<= ROM_OE_S when AS='0' and AUTOBOOT_OFF = '0' else '1';				
-	ROM_OE	<= ROM_OE_S when AS='0' else '1';
->>>>>>> 85a06c170160536d7bbf493fc16ea4577085778e
 
 --	INT_OUT <= 'Z';
 	INT2_OUT <= '0' when 
