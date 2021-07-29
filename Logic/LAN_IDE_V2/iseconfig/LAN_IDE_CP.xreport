@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2019-11-15T00:18:39</DateModified>
+  <DateModified>2021-07-30T00:50:53</DateModified>
   <ModuleName>LAN_IDE_CP</ModuleName>
-  <SummaryTimeStamp>Unknown</SummaryTimeStamp>
+  <SummaryTimeStamp>2021-07-30T00:26:13</SummaryTimeStamp>
   <SavedFilePath>C:/Users/Matze/Amiga/Hardwarehacks/Zorro-LAN-IDE/Logic/LAN_IDE_V2/iseconfig/LAN_IDE_CP.xreport</SavedFilePath>
   <ImplementationReportsDirectory>C:/Users/Matze/Amiga/Hardwarehacks/Zorro-LAN-IDE/Logic/LAN_IDE_V2\</ImplementationReportsDirectory>
   <DateInitialized>2019-01-09T22:34:04</DateInitialized>

@@ -637,7 +637,7 @@ begin
 	--defined lancp signal that matches both LAN and CP addresses
 	DQ <=	LAN_D_INIT 					when LAN_RST_SM/=done else
 			DQ_DATA(15 downto  0)	when RW='0' and FCS='0' and Z3_DS <"1111" and LAN_ACCESS ='1' else
-			D 	when RW='0' and AS='0' and CP_ACCESS ='1' else
+			D(15 downto 8 ) & D(15 downto 8) 	when RW='0' and AS='0' and CP_ACCESS ='1' else
 			D 	when RW='0' and AS='0' and IDE_ACCESS ='1' else
 			(others => 'Z');
 

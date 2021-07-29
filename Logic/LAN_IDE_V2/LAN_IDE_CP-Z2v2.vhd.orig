@@ -216,19 +216,16 @@ begin
 			lancp                   <= '0';
 			if(A(23 downto 16) = x"E8" and AUTO_CONFIG_DONE < "11" and CFIN='0')then
 				autoconfig 	<= '1';
-			end if;
-			if(A(23 downto 16) = LAN_BASEADR and SHUT_UP(0)='0' )then	
+			elsif(A(23 downto 16) = LAN_BASEADR and SHUT_UP(0)='0' )then	
 				if(A(14 downto 13)<"11")then
 					lan_adr_sw  <= '1';
 				end if;
 				lan_adr 		<= '1';
 				lancp                   <= '1';
-			end if;
-			if(A(23 downto 16) =  CP_BASEADR and SHUT_UP(1)='0')then					
+			elsif(A(23 downto 16) =  CP_BASEADR and SHUT_UP(1)='0')then					
 				cp  			<= '1';
 				lancp                   <= '1';
-			end if;
-			if(A(23 downto 16) = IDE_BASEADR and SHUT_UP(2)='0')then					
+			elsif(A(23 downto 16) = IDE_BASEADR and SHUT_UP(2)='0')then					
 				ide 			<= '1';
 				lancp                   <= '1';
 			end if;		
@@ -281,24 +278,20 @@ begin
 	end process lan_rw_gen;
 	
 	--cp signal generation
-	cp_rw_gen: process (AMIGA_CLK,reset)
+	cp_rw_gen: process (AMIGA_CLK,AS)
 	begin
-		if	(reset = '0') then
+		if	(AS = '1') then
 			CP_WE_QUIRK		<= '1';
 			CP_WE_S		<= '1';
 			CP_RD_S		<= '1';
 		elsif falling_edge(AMIGA_CLK) then			
-			if(cp = '1' and AS='0' and RW ='1')then 
-				CP_RD_S		<= '0';
-			else
-				CP_RD_S		<= '1';
-			end if;		
-			if(cp = '1' and DS='0' and RW ='0')then --datastrobe instead of AS!!!
-				CP_WE_S		<= '0';
-			else
-				CP_WE_S		<= '1';
-			end if;	
-			-- quirk to ensure the WE-Strobe is just one cycle!
+			--default values
+			CP_RD_S		<= '1';
+			CP_WE_S		<= '1';
+			if(cp = '1' and DS='0')then --datastrobe instead of AS!
+				CP_RD_S		<= not RW;
+				CP_WE_S		<= RW;
+			end if;				
 			CP_WE_QUIRK <= CP_WE_S;
 		end if;
 	end process cp_rw_gen;
@@ -446,7 +439,11 @@ begin
 							elsif(AUTO_CONFIG_DONE = 1)then									
 								CP_BASEADR(7 downto 0)	<= D(15 downto 8); --Base adress
 								SHUT_UP(1)					<= '0'; --enable board
+<<<<<<< HEAD
 								AUTO_CONFIG_DONE_CYCLE	<= ('1' & not(AUTOBOOT_OFF)); --done here, if Autoboot = 1 skip ide part!
+=======
+								AUTO_CONFIG_DONE_CYCLE	<= '1' & not AUTOBOOT_OFF; --done here, if Autoboot = 1 skip ide part!
+>>>>>>> 85a06c170160536d7bbf493fc16ea4577085778e
 							elsif(AUTO_CONFIG_DONE = 2)then
 								IDE_BASEADR(7 downto 0)	<= D(15 downto 8); --Base adress
 								SHUT_UP(2) 					<= '0'; --enable board
@@ -474,10 +471,25 @@ begin
 	CP_CS		<= not cp;
 
 	--the lanport is shifted by one adress line but I forgot to adopt the clockport address!
+<<<<<<< HEAD
 	A_LAN(13 downto 0)<=	LAN_A_CLRREG(13 downto 0) when (LAN_RST_SM = wait0 or LAN_RST_SM = clr or LAN_RST_SM = clr_commit) else
 							LAN_A_SETREG(13 downto 0) when (LAN_RST_SM = wait1 or LAN_RST_SM = set or LAN_RST_SM = set_commit) else
 							A(14 downto 1) when lan_adr ='1' else
 							A(12 downto 1) &"00";
+=======
+	A_LAN(13 downto 6)<=	LAN_A_CLRREG(13 downto 6) when (LAN_RST_SM = wait0 or LAN_RST_SM = clr or LAN_RST_SM = clr_commit) else
+								LAN_A_SETREG(13 downto 6) when (LAN_RST_SM = wait1 or LAN_RST_SM = set or LAN_RST_SM = set_commit) else
+								 --(A(14)&A(12)&A(13)&A(11 downto 7)); --swap A12/13 for the enj-Chip
+								 A(14 downto 7); 
+	A_LAN(5 downto 2) <=		LAN_A_CLRREG(5 downto 2) when (LAN_RST_SM = wait0 or LAN_RST_SM = clr or LAN_RST_SM = clr_commit) else
+									LAN_A_SETREG(5 downto 2) when (LAN_RST_SM = wait1 or LAN_RST_SM = set or LAN_RST_SM = set_commit) else
+--									A(5 downto 2) when cp='1' else A(6 downto 3); --mux the clock-port adresses!
+									A(4 downto 1) when cp='1' else A(6 downto 3); --mux the clock-port adresses! (shifted 1 down due to V2 bug)
+
+	A_LAN(1 downto 0)<= LAN_A_CLRREG(1 downto 0) when (LAN_RST_SM = wait0 or LAN_RST_SM = clr or LAN_RST_SM = clr_commit) else
+							  LAN_A_SETREG(1 downto 0) when (LAN_RST_SM = wait1 or LAN_RST_SM = set or LAN_RST_SM = set_commit) else
+							  A(2 downto 1);
+>>>>>>> 85a06c170160536d7bbf493fc16ea4577085778e
 	
 	
 	
@@ -496,7 +508,6 @@ begin
 			--D( 7 downto 0) & D( 7 downto 0)	when RW='0' and AS='0' and lancp = '1' and LDS='0' and UDS='1' else
 			--D(15 downto 8) & D(15 downto 8)	when RW='0' and AS='0' and lancp = '1' and LDS='1' and UDS='0' else
 			D( 7 downto 0) & D(15 downto 8)	when RW='0' and AS='0' and lan_adr ='1' and lan_adr_sw ='1' else
-			D(15 downto 8) & D(15 downto 8)	when RW='0' and AS='0' and cp ='1' else
 			D 	when RW='0' and AS='0' and lancp ='1'
 			else (others => 'Z');
 								
@@ -506,7 +517,12 @@ begin
 	IDE_CS(1)<= not(A(13));
 	IDE_A(2 downto 0)	<= A(11 downto 9);
 	ROM_B	<= "00";
+<<<<<<< HEAD
 	ROM_OE	<= ROM_OE_S when AS='0' else '1';				
+=======
+--	ROM_OE	<= ROM_OE_S when AS='0' and AUTOBOOT_OFF = '0' else '1';				
+	ROM_OE	<= ROM_OE_S when AS='0' else '1';
+>>>>>>> 85a06c170160536d7bbf493fc16ea4577085778e
 
 --	INT_OUT <= 'Z';
 	INT2_OUT <= '0' when 
